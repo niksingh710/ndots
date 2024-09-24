@@ -19,11 +19,11 @@
         	--idle-indicator: #f23f43; /* change to #f0b232 for default yellow */
         	--streaming-indicator: #593695; /* change to #593695 for default purple */
 
-        	--accent-1: #${base0F}; /* links */
-        	--accent-2: #${base0E}; /* general unread/mention elements */
-        	--accent-3: #${base0D}; /* accent buttons */
-        	--accent-4: #${base0C}; /* accent buttons when hovered */
-        	--accent-5: #${base0B}; /* accent buttons when clicked */
+        	--accent-1: #${base01}; /* links */
+        	--accent-2: #${base01}; /* general unread/mention elements */
+        	--accent-3: #${base01}; /* accent buttons */
+        	--accent-4: #${base02}; /* accent buttons when hovered */
+        	--accent-5: #${base02}; /* accent buttons when clicked */
         	--mention: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.1); /* mentions & mention messages */
         	--mention-hover: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.05); /* mentions & mention messages when hovered */
 
@@ -69,6 +69,12 @@
         	--login-bg-filter: saturate(0.3) hue-rotate(-15deg) brightness(0.4); /* login background artwork */
         	--green-to-accent-3-filter: hue-rotate(56deg) saturate(1.43); /* add friend page explore icon */
         	--blurple-to-accent-3-filter: hue-rotate(304deg) saturate(0.84) brightness(1.2); /* add friend page school icon */
+        }
+
+        html.theme-light,
+        .theme-dark {
+          --background-floating: var(--bg-1) !important;
+          --background-nested-floating: var(--bg-1) !important;
         }
         .childWrapper_f90abb:has(> svg:not(.favoriteIcon_dcc7a4)) {
         	background-image: url('https://raw.githubusercontent.com/NYRI4/LilyPichu/main/assets/icon.png');
