@@ -3,35 +3,42 @@ let
   recorder = pkgs.writeShellApplication {
     name = "recorder";
     bashOptions = [ "pipefail" ];
-    runtimeInputs = with pkgs; [ wl-screenrec slurp libnotify ];
+    runtimeInputs = with pkgs; [ wl-screenrec slurp libnotify pulseaudio ];
     text = ''
 
       notify() {
         notify-send "$@"
         echo "$@"
       }
-      dir="$HOME/Videos/Screencapture"
-      [ -d "$dir" ] || mkdir -p "$dir"
-      filename="$dir/$(date +%Y-%m-%d___%H-%M-%S).mp4"
 
       if pgrep wl-screenrec &>/dev/null; then
         kill -s SIGINT $(pgrep -x wl-screenrec) && notify "wl-screenrec stopped"
+        sleep 1
         pkill -RTMIN+4 waybar
         exit 1
       fi
+
+
+      audioDevice="$(pactl -f json list sinks | jq ".[] | select(.name==\"$(pactl get-default-sink)\")" | jq '.name').monitor"
+      dir="$HOME/Videos/Screencapture"
+
+      [ -d "$dir" ] || mkdir -p "$dir"
+
+      filename="$dir/$(date +%Y-%m-%d___%H-%M-%S).mp4"
 
       if [ $# -eq 0 ]; then
         dim="$(slurp -o)"
       else
         dim="$(slurp)"
       fi
+
       if [ -z "$dim" ]; then
         echo "some"
         notify "No area selected"
         exit 1
       fi
 
-      wl-screenrec -f "$filename" -g "$dim" &
+      wl-screenrec --audio --audio-device "$audioDevice" -f "$filename" -g "$dim" &
 
       if pgrep wl-screenrec &>/dev/null; then
         notify "wl-screenrec started"
@@ -42,6 +49,7 @@ let
     '';
   };
 in {
+  home.packages = [ recorder ];
   wayland.windowManager.hyprland.settings.bind = [
     "CTRL,Print,exec,${lib.getExe recorder}"
     "SUPERCTRL,Print,exec,${lib.getExe recorder} -s"
