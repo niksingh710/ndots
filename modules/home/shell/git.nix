@@ -4,7 +4,8 @@
     gh = {
       enable = true;
       settings.editor = "vim";
-      settings.git_protocol = "https"; # NOTE: :( Have to use this till under my College Network
+      settings.git_protocol =
+        "https"; # NOTE: :( Have to use this till under my College Network
     };
     git = {
       enable = true;
