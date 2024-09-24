@@ -36,7 +36,7 @@ This repository contains my Linux rice setup, along with my shell configuration,
 
 #### Partitioning 🖥️
 
-> Boot configuration can be found in `nixos/core/boot.nix` and the btrfs module is located in `modules/nixos/disks/btrfs` of my flake.
+> Boot and Btrfs modules are in `/modules/nixos/`.
 
 The general disk layout I prefer is embedded within these two sections of my config.
 
