@@ -30,6 +30,7 @@
 
       "float,title:(WhatsApp)"
 
+      "float,title:Choose*"
       "float,title:(ripdrag)"
       "pin,title:(ripdrag)"
 
