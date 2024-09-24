@@ -7,6 +7,7 @@
 
     {
       home-manager = {
+        backupFileExtension = "bak";
         extraSpecialArgs = { inherit opts inputs self; };
         useGlobalPkgs = true;
         useUserPackages = true;
