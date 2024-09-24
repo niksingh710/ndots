@@ -9,7 +9,8 @@ in {
 
   config = {
     services.throttled.enable = cfg.throttled;
-    boot.kernelParams = lib.optional (!cfg.pstate) "intel_pstate=disable";
+    boot.kernelParams = lib.optional (!cfg.pstate) "intel_pstate=disable"
+      ++ [ "i915.enable_guc=2" ];
 
     hardware = {
       cpu.intel.updateMicrocode = mkDefault true;
