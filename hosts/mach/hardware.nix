@@ -3,10 +3,8 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
     kernelParams = [
+      "amdgpu.runpm=0"
       "amdgpu.ppfeaturemask=0xffffffff"
-      "amdgpu.sg_display=0"
-      "radeon.si_support=0"
-      "amdgpu.si_support=1"
       "usbcore.autosuspend=15"
     ];
 
