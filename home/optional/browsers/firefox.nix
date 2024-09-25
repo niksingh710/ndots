@@ -11,8 +11,10 @@ in {
   config = mkMerge [
 
     {
+      home.packages = [ pkgs.firefoxpwa ];
       programs.firefox = {
         enable = true;
+        nativeMessagingHosts = [ pkgs.firefoxpwa ];
         profiles.default.extraConfig = # js
           ''
             user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -40,6 +42,8 @@ in {
         adaptive-tab-bar-colour
         unpaywall
         simple-translate
+        pwas-for-firefox
+        qr-code-address-bar
 
         # NOTE: Hacky solution here will change when get time
         (languagetool.overrideAttrs { meta.license = lib.licenses.free; })
