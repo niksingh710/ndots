@@ -44,7 +44,7 @@ let
         ''
           hyprctl clients -j | jq -r '.[] 
             | select(.mapped==true) 
-            | select(.workspace.name | contains("special") | not) 
+            | select((.workspace.name | contains("special") | not) or (.workspace.name == "special:comms"))
             | .class + " - " + (.pid|tostring) + " - " + .title' 
 
           out=$(echo "$1" | awk '{print $3}')

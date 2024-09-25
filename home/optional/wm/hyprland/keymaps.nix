@@ -307,8 +307,7 @@ let
   ];
 
   contrib = inputs.hyprland-contrib.packages.${pkgs.system};
-in
-{
+in {
   home.packages = (with contrib; [ grimblast scratchpad ])
     ++ (with applications; [ volume brightness ]);
 
@@ -416,6 +415,8 @@ in
         "$modSHIFT,l,exec,${scripts.move} r"
         "$modSHIFT,j,exec,${scripts.move} d"
         "$modSHIFT,k,exec,${scripts.move} u"
+
+        "$mod, C, togglespecialworkspace, comms"
 
         ",XF86AudioRaiseVolume,exec,${lib.getExe applications.volume} up"
         ",XF86AudioLowerVolume,exec,${lib.getExe applications.volume} down"

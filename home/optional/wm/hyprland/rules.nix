@@ -1,18 +1,13 @@
 {
   wayland.windowManager.hyprland.settings = {
+    workspace = [
+
+      "special:comms,gapsin:15,gapsout:50"
+      "special:comms,gapsin:15,gapsout:50"
+      "special:comms,gapsin:15,gapsout:50"
+
+    ];
     windowrule = [
-
-      "workspace 2,^(firefox)"
-      "workspace 3,^(org.telegram.desktop)"
-      "workspace 3,^(io.github.kukuruzka165.materialgram)"
-      "workspace 3,^(discord)$"
-      "workspace 3,^(vesktop)$"
-      "workspace 3,^(google-chat-linux)$"
-      "workspace 3,^(whatsapp-for-linux)$"
-      "workspace 3,^(tangram)$"
-      "workspace 3,^(whatsapp)$"
-
-      "workspace 4,^(mailspring)"
 
       "workspace 6,^(lutris)"
 
@@ -26,9 +21,19 @@
 
     ];
     windowrulev2 = [
-      "noanim,class:^(rofi)$"
 
-      "float,title:(WhatsApp)"
+      "workspace special:comms, class:(Signal)"
+      "workspace special:comms, class:(vesktop)"
+      "workspace special:comms, class:(whatsapp-for-linux)"
+      "workspace special:comms, class:(org.gnome.Fractal)"
+      "workspace special:comms, class:(io.github.kukuruzka165.materialgram)"
+      "group set, class:(Signal)"
+      "group set, class:(vesktop)"
+      "group set, title:(io.github.kukuruzka165.materialgram)"
+      "group set, class:(whatsapp-for-linux)"
+      "group set, class:(org.gnome.Fractal)"
+
+      "noanim,class:^(rofi)$"
 
       "float,title:Choose*"
       "float,title:(ripdrag)"

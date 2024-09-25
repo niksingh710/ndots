@@ -22,7 +22,7 @@ let
 
       if [ "$rcount" -eq 0 ]; then
         send "No running access points found." "Going to Create one."
-        pkexec --user root create_ap wlp0s20f3 enp0s20f0u1u4 '|:-:|' "$pass" --hidden --daemon
+        pkexec --user root create_ap wlp0s20f3 enp2s0 '|:-:|' "$pass" --hidden --daemon
       else
         id="$(pkexec --user root create_ap --list-running | cut -d ' ' -f1)"
         send "$rcount: Running access point found." "Going to Stop id: $id"

@@ -9,6 +9,10 @@
     ];
     exec-once = [
 
+      "[workspace special:comms silent] vesktop"
+      "[workspace special:comms silent] sleep 5s && materialgram"
+      "[workspace special:comms silent] sleep 5s && whatsapp-for-linux"
+
       "${lib.getExe pkgs.tmux} has-session -t main || ${
         lib.getExe pkgs.tmux
       } new-session -d -s main"
