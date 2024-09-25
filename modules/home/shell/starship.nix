@@ -151,7 +151,7 @@
       # TODO: fix heuristic
       [nix_shell]
       impure_msg = '[❄️impure shell](bold red)'
-      pure_msg = '[❄️ ure shell](bold green)'
+      pure_msg = '[❄️pure shell](bold green)'
       unknown_msg = '[](bold yellow)'
       format = '[$state( \($name\))](bold blue) '
       heuristic = true
