@@ -1,19 +1,20 @@
 { pkgs, lib, ... }: {
 
   wayland.windowManager.hyprland.settings = {
-
-    monitor = [ "eDP-1,preferred,1920x0,1" " DP-1,preferred,0x0,1" ];
+    
+    # TODO: Make this an option configuratble
+    monitor = [ "eDP-1,preferred,1920x0,1" "HDMI-A-2,preferred,0x0,1" ];
 
     workspace = [
-      "1,monitor:DP-1,default:true"
-      "2,monitor:DP-1,default:true"
-      "3,monitor:DP-1,default:true"
-      "4,monitor:DP-1,default:true"
-      "5,monitor:DP-1,default:true"
-      "6,monitor:DP-1,default:true"
-      "7,monitor:DP-1,default:true"
-      "8,monitor:DP-1,default:true"
-      "9,monitor:DP-1,default:true"
+      "1,monitor:HDMI-A-2,default:true"
+      "2,monitor:HDMI-A-2,default:true"
+      "3,monitor:HDMI-A-2,default:true"
+      "4,monitor:HDMI-A-2,default:true"
+      "5,monitor:HDMI-A-2,default:true"
+      "6,monitor:HDMI-A-2,default:true"
+      "7,monitor:HDMI-A-2,default:true"
+      "8,monitor:HDMI-A-2,default:true"
+      "9,monitor:HDMI-A-2,default:true"
       "10,monitor:eDP-1,default:true"
     ];
 

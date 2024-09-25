@@ -9,7 +9,7 @@ in {
     users.${opts.username} = mkMerge [
       {
         isNormalUser = true;
-        extraGroups = [ "wheel" "${opts.username}" ];
+        extraGroups = [ "wheel" "video" "audio" "${opts.username}" ];
         useDefaultShell = true;
       }
       (if sops then {

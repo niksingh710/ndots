@@ -36,8 +36,8 @@
 
         	--bg-1: #${base00}; /* dark buttons when clicked */
         	--bg-2: #${base00}; /* dark buttons */
-        	--bg-3: transparent; /* spacing, secondary elements */
-        	--bg-4: #${base00}dd; /* main background color */
+        	--bg-3: #${base00}; /* spacing, secondary elements */
+        	--bg-4: #00000077; /* main background color */
         	--hover: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.1); /* channels and buttons when hovered */
         	--active: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.2); /* channels and buttons when clicked or selected */
         	--message-hover: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.1); /* messages when hovered */

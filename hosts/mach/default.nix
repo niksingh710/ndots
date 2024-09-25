@@ -16,6 +16,8 @@ in {
 
   core.sops = true;
   nmod = {
+    hardware.ddc = true;
+    intel.governer = "ondemand";
     virtualisation.waydroid = true;
     network.timezone = "Asia/Kolkata";
     fonts = {

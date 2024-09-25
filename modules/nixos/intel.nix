@@ -5,9 +5,18 @@ in {
   options.nmod.intel = {
     throttled = mkEnableOption "Throttled" // { default = true; };
     pstate = mkEnableOption "Intel P-State";
+    governer = mkOption {
+      type = types.str;
+      default = null;
+      description = "CPU governer";
+    };
   };
 
   config = {
+    powerManagement = {
+      powertop.enable = mkDefault true;
+      cpuFreqGovernor = cfg.governer;
+    };
     services.throttled.enable = cfg.throttled;
     boot.kernelParams = lib.optional (!cfg.pstate) "intel_pstate=disable"
       ++ [ "i915.enable_guc=2" ];
