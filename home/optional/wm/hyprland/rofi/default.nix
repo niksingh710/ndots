@@ -70,7 +70,7 @@ let
         clients() {
           hyprctl clients -j | jq -r '.[] 
           | select(.mapped==true) 
-          | select(.workspace.name | contains("special") | not) 
+          | select((.workspace.name | contains("special") | not) or (.workspace.name == "special:comms"))
           | .class + " - " + (.pid|tostring) + " - " + .title'
         }
 
@@ -81,6 +81,7 @@ let
         )
 
         [ -z "$out" ] || {
+          hyprctl dispatch moveoutofgroup "pid:$out" &>/dev/null
           hyprctl dispatch movetoworkspace "$_current_workspace,pid:$out" &>/dev/null
           hyprctl dispatch alterzorder top,"pid:$out" &>/dev/null
         }
