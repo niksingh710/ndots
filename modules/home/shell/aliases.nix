@@ -30,9 +30,6 @@
         "--git --icons --classify --group-directories-first --time-style=long-iso --group --color-scale all";
     in {
 
-      help =
-        ''"$@" --help 2>&1 | ${lib.getExe pkgs.bat} --plain --language=help'';
-
       # general
       c = "clear";
       isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
@@ -84,6 +81,10 @@
           })) attrs;
 
       packages = {
+        help = # bash
+          ''
+            "$@" --help 2>&1 | ${lib.getExe pkgs.bat} --plain --language=help
+          '';
         cat = # bash
           ''
             paged=false

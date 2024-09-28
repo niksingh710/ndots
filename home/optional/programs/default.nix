@@ -5,7 +5,6 @@
 
   home.packages = with pkgs; [
     dissent
-    proton-pass
     fractal
     whatsapp-for-linux
     onlyoffice-bin_latest

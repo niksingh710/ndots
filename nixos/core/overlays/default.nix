@@ -25,6 +25,11 @@
         rofi-unwrapped = prev.rofi-wayland-unwrapped;
       };
 
+      google-chrome = prev.google-chrome.overrideAttrs {
+        enableWidevine = true;
+        enableFlash = true;
+      };
+
       rofimoji = prev.rofimoji.override { rofi = prev.rofi-wayland; };
 
       mpv = prev.mpv.override {

@@ -2,7 +2,6 @@
 let stateVersion = "23.11";
 in {
   hm = {
-    wbar.hotspot = true;
     core.sops = true;
     hmod = {
 

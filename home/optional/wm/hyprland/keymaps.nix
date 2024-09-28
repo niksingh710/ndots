@@ -416,7 +416,8 @@ in {
         "$modSHIFT,j,exec,${scripts.move} d"
         "$modSHIFT,k,exec,${scripts.move} u"
 
-        "$mod, C, togglespecialworkspace, comms"
+        "bind = SUPER, c, togglespecialworkspace, comms"
+        "bind = SUPERSHIFT, C, movetoworkspace, special:comms"
 
         ",XF86AudioRaiseVolume,exec,${lib.getExe applications.volume} up"
         ",XF86AudioLowerVolume,exec,${lib.getExe applications.volume} down"

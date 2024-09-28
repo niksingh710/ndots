@@ -8,6 +8,7 @@ in
 {
   options.nmod.disks.btrfs = {
     enable = mkEnableOption "btrfs";
+    # TODO: restructure these for ipermanence
     description = ''
       Enable Btrfs filesystem support.
       Label: nixos

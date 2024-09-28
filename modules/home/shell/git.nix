@@ -13,7 +13,6 @@
       userEmail = "${opts.mail}";
 
       extraConfig = {
-        credential.helper = "store";
         init.defaultBranch = "master";
         core.editor = "vim";
         alias = { blame = "blame -w -C -C -C"; };
