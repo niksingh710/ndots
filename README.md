@@ -5,8 +5,8 @@
 <div align="center">
 
 <small><small>**[gdots](https://github.com/niksingh710/gdots) + [cdots](https://github.com/niksingh710/cdots)**</small>
-</div>
 
+</div>
 
 <div align="center">
 <table>
@@ -36,12 +36,13 @@ This repository contains my Linux rice setup, along with my shell configuration,
 
 #### Partitioning 🖥️
 
-> Boot and Btrfs modules are in `/modules/nixos/`.
+```
+# Look the disko dir, It contains a non Encrypted partitioning scheme (disko) and an Encrypted partitioning scheme (enc-disko).
 
-The general disk layout I prefer is embedded within these two sections of my config.
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko disko.nix
 
-The **disks** module of my flake is structured like this. The `btrfs` module also supports encryption as an option.
-
+nixos-install --root /mnt --flake github:niksingh710/ndots#<hostname>
+```
 
 ```sh
 Label: /dev/disk/by-partlabel/disk-primary-root or /dev/mapper/cryptroot (if rooted)
@@ -57,14 +58,12 @@ Label: /dev/disk/by-partlabel/disk-primary-ESP
 
 **To search through backup mount Label of root**
 
-
 ### 🎨 Hyprland and Themed Setup
 
 ![image](https://github.com/user-attachments/assets/1cd4da7d-ef2c-45f8-9a14-ada0288e1d6d)
 
-
 | ![discord](https://github.com/user-attachments/assets/6921057d-1c40-417f-a652-a0063e98a55b) | ![telegram](https://github.com/user-attachments/assets/22afed68-5ce7-4d1e-8866-3ad46f613a85) |
-| ----- | ------- |
+| ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 
 ![image](https://github.com/user-attachments/assets/ee3824ed-5d00-4f77-9661-fe2c3d4fcf32)
 
@@ -74,7 +73,7 @@ You can find more UI previews in my old repository: [gdots](https://github.com/n
 
 **Colors are adapted from the wallpapers**
 
-* For Telegram and Vesktop I have ported `walogram` and `midnight` themes respectively for my stylix config.
+- For Telegram and Vesktop I have ported `walogram` and `midnight` themes respectively for my stylix config.
 
 I’ve used **[Stylix](https://github.com/danth/stylix)** for theming.
 
