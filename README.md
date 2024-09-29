@@ -42,17 +42,21 @@ The general disk layout I prefer is embedded within these two sections of my con
 
 The **disks** module of my flake is structured like this. The `btrfs` module also supports encryption as an option.
 
-```sh
-Label: nixos
-  subvol:
-    root      -> /
-    home      -> /home
-    nix       -> /nix
-    btr_pool  -> /btr_pool
 
-Label: boot
+```sh
+Label: /dev/disk/by-partlabel/disk-primary-root or /dev/mapper/cryptroot (if rooted)
+  subvol:
+    root       -> /
+    nix        -> /nix
+    persistent -> /persistent
+    old_root   -> (not mounted [contains backup])
+
+Label: /dev/disk/by-partlabel/disk-primary-ESP
   vfat -> /boot
 ```
+
+**To search through backup mount Label of root**
+
 
 ### 🎨 Hyprland and Themed Setup
 
