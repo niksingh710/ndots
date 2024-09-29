@@ -209,6 +209,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1727531434,
+        "narHash": "sha256-b+GBgCWd2N6pkiTkRZaMFOPztPO4IVTaclYPrQl2uLk=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "b709e1cc33fcde71c7db43850a55ebe6449d0959",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -636,6 +656,21 @@
       "original": {
         "owner": "hyprwm",
         "repo": "contrib",
+        "type": "github"
+      }
+    },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1727556076,
+        "narHash": "sha256-5Iplxbdn/7kQp4UYXMnUMFL2i2lyysOhRyzvvtPe1Qc=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "fff0d95cf40609941769a443a001b25fb95b68ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
         "type": "github"
       }
     },
@@ -1074,11 +1109,13 @@
     "root": {
       "inputs": {
         "bstat": "bstat",
+        "disko": "disko",
         "firefox-addons": "firefox-addons",
         "firefox-shyfox": "firefox-shyfox",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hyprland-contrib": "hyprland-contrib",
+        "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "minimal-tmux": "minimal-tmux",
         "nixpkgs": "nixpkgs",
