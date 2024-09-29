@@ -14,22 +14,12 @@ in {
       default = [ ];
     };
   };
-
   config = mkIf cfg {
     security.sudo.extraConfig = "Defaults lecture=never";
     fileSystems."/persistent".neededForBoot = true;
 
-    boot.initrd.systemd.services.rollback = {
-      description = "Rollback BTRFS root subvolume to a pristine state";
-      wantedBy = [ "initrd.target" ];
-      after = [
-        # LUKS/TPM process
-        "systemd-cryptsetup@enc.service"
-      ];
-      before = [ "sysroot.mount" ];
-      unitConfig.DefaultDependencies = "no";
-      serviceConfig.Type = "oneshot";
-      script = ''
+    boot.initrd.postDeviceCommands = lib.mkAfter # bash
+      ''
         mkdir /btrfs_tmp
         mount /dev/disk/by-partlabel/disk-primary-root /btrfs_tmp
         if [[ -e /btrfs_tmp/root ]]; then
@@ -53,8 +43,6 @@ in {
         btrfs subvolume create /btrfs_tmp/root
         umount /btrfs_tmp
       '';
-    };
-
     environment.persistence."/persistent" = {
       enable = true; # NB: Defaults to true, not needed
       hideMounts = true;
