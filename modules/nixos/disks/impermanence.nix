@@ -71,9 +71,10 @@ in {
       hideMounts = true;
       directories = [
         "/etc/nixos"
-        "/etc/"
         "/var/log"
         "/var/lib/nixos"
+        "/var/lib/libvirt"
+        "/var/lib/waydroid"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
       ] ++ config.persist.dir;
