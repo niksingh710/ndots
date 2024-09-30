@@ -10,7 +10,7 @@ in {
     persist.dir = [ "/var/lib/sops/age" ];
     sops = {
       defaultSopsFile = ../../secrets/keys.yaml;
-      age.keyFile = "/var/lib/sops/age/keys.txt";
+      age.keyFile = "/persistent/var/lib/sops/age/keys.txt";
 
       secrets = {
         "private-keys/ssh" = {
