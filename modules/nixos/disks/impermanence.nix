@@ -77,6 +77,8 @@ in {
         "/var/lib/waydroid"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
+        "/etc/waydroid-extra"
+        "/etc/waydroid"
       ] ++ config.persist.dir;
       inherit (config.persist) files;
       users.${opts.username} = {
@@ -85,6 +87,7 @@ in {
           "Pictures"
           "Documents"
           "Videos"
+          "repos"
           {
             directory = ".gnupg";
             mode = "0700";
