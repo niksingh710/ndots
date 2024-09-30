@@ -71,6 +71,7 @@ in {
       hideMounts = true;
       directories = [
         "/etc/nixos"
+        "/etc/secureboot"
         "/var/log"
         "/var/lib/nixos"
         "/var/lib/libvirt"

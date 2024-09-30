@@ -8,6 +8,7 @@
     ".local/share/whatsapp-for-linux" 
     ".local/share/onlyoffice" 
 
+    ".config/whatsapp-for-linux" 
     ".config/dissent" 
     ".config/onlyoffice" 
   ];
