@@ -8,6 +8,8 @@
     ];
     exec-once = [
 
+      # waydroid entries to be forced size to 0 bytes
+      "truncate -s 0 ~/.local/share/applications/waydroid.*.desktop"
       "[workspace special:comms silent] vesktop"
       "[workspace special:comms silent] sleep 5s && materialgram"
       "[workspace special:comms silent] sleep 5s && whatsapp-for-linux"
