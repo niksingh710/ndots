@@ -2,6 +2,7 @@
 let minimal-tmux = inputs.minimal-tmux.packages.${pkgs.system}.default;
 in lib.mkMerge [
   {
+    persist.files = [ ".zsh_history" ".local/share/zoxide/db.zo" ];
     stylix.targets.fzf.enable = false;
     stylix.targets.tmux.enable = false;
     programs.tmux.plugins = [{
@@ -13,6 +14,7 @@ in lib.mkMerge [
   }
 
   (lib.mkIf config.core.sops {
+
     sops.secrets."private-keys/github_token" = { };
 
     programs.gh.package = pkgs.symlinkJoin {

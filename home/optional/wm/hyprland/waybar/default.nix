@@ -1,5 +1,4 @@
 {
-
   imports = [
     ./hyprland.nix
     ./stats.nix

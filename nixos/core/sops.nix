@@ -7,6 +7,7 @@ in {
   options.core.sops = mkEnableOption "sops";
 
   config = mkIf sops {
+    persist.dir = [ "/var/lib/sops/age" ];
     sops = {
       defaultSopsFile = ../../secrets/keys.yaml;
       age.keyFile = "/var/lib/sops/age/keys.txt";

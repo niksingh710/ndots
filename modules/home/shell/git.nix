@@ -1,4 +1,5 @@
 { opts, ... }: {
+  persist.dir = [ ".config/lazygit" ];
   programs = {
     lazygit.enable = true;
     gh = {

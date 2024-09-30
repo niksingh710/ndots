@@ -1,5 +1,4 @@
 { pkgs, lib, config, ... }: {
-
   wayland.windowManager.hyprland.settings = {
     exec = [
       "${lib.getExe pkgs.killall} swww-daemon;sleep 1; ${

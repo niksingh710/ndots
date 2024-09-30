@@ -56,15 +56,11 @@ in {
         "/etc/nixos"
         "/etc/"
         "/var/log"
-        "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
       ] ++ config.persist.dir;
-      files = [{
-        file = "/var/keys/secret_file";
-        parentDirectory = { mode = "u=rwx,g=,o="; };
-      }] ++ config.persist.files;
+      inherit (config.persist) files;
       users.${opts.username} = {
         directories = [
           "Downloads"

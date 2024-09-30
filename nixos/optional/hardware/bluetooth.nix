@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+  persist.dir = [
+    "/var/lib/bluetooth"
+  ];
   environment.systemPackages = with pkgs; [ bluez ];
   hardware.bluetooth = {
     enable = true;

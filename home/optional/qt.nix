@@ -1,6 +1,7 @@
 { pkgs, config, opts, ... }:
 let inherit (config.lib.stylix) colors;
 in {
+  persist.dir = [ ".config/qt6ct" ".config/qt5ct" ".config/QtProject.conf" ];
   qt = {
     enable = true;
     platformTheme.name = "qt6ct";
