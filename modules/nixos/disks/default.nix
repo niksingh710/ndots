@@ -1,8 +1,18 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 with lib; {
   options.nmod.disks = {
     impermanence = mkEnableOption "impermanence";
-    encrypted = mkEnableOption "encrypted";
+    encrypted = {
+      enable = mkEnableOption "encrypted";
+      name = mkOption {
+        type = types.str;
+        example = literalExample "cryptroot";
+        default = "cryptroot";
+        description = ''
+          The name of the encrypted partition.
+        '';
+      };
+    };
     partition = mkOption {
       type = types.str;
       example = literalExample "/dev/vda";

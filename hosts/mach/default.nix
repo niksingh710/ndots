@@ -30,7 +30,7 @@ in {
       partition = "/dev/nvme0n1";
       ssd.enable = true;
       impermanence = true;
-      encrypted = true;
+      encrypted.enable = true;
     };
   };
 

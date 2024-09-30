@@ -1,29 +1,13 @@
 { inputs, lib, config, opts, ... }:
 with lib;
-let cfg = config.nmod.disks;
-in {
-  imports = [ inputs.impermanence.nixosModules.impermanence ];
+let
+  cfg = config.nmod.disks;
+  mount = if cfg.encrypted.enable then
+    "/dev/mapper/cryptroot"
+  else
+    "/dev/disk/by-partlabel/disk-primary-root";
 
-  options.persist = {
-    dir = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-    };
-    files = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-    };
-  };
-  config = mkIf cfg.impermanence {
-    security.sudo.extraConfig = "Defaults lecture=never";
-    fileSystems."/persistent".neededForBoot = true;
-
-    boot.initrd.postDeviceCommands = let
-      mount = if cfg.encrypted then
-        "/dev/mapper/cryptroot"
-      else
-        "/dev/disk/by-partlabel/disk-primary-root";
-    in lib.mkAfter # bash
+  cleanup = # bash
     ''
       mkdir /btrfs_tmp
       mount ${mount} /btrfs_tmp
@@ -47,8 +31,41 @@ in {
 
       btrfs subvolume create /btrfs_tmp/root
       umount /btrfs_tmp
+
     '';
 
+in {
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
+
+  options.persist = {
+    dir = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+    };
+    files = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+    };
+  };
+  config = mkIf cfg.impermanence {
+    security.sudo.extraConfig = "Defaults lecture=never";
+    fileSystems."/persistent".neededForBoot = true;
+
+    boot.initrd = {
+      postDeviceCommands =
+        mkAfter (optionalString (!cfg.encrypted.enable) cleanup);
+      systemd = mkIf cfg.encrypted.enable {
+        enable = true;
+        services.wipe-my-fs = {
+          wantedBy = [ "initrd.target" ];
+          after = [ "systemd-cryptsetup@cryptroot.service" ];
+          before = [ "sysroot.mount" ];
+          unitConfig.DefaultDependencies = "no";
+          serviceConfig.Type = "oneshot";
+          script = cleanup;
+        };
+      };
+    };
     environment.persistence."/persistent" = {
       enable = true; # NB: Defaults to true, not needed
       hideMounts = true;

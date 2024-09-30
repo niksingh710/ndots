@@ -3,7 +3,7 @@
     enable = true;
     enableSSHSupport = true;
   };
-  hm.persist.dir = [ ".gnupg" ];
+
   environment.variables.GNUPGHOME = "/home/${opts.username}/.gnupg";
 
   security = {

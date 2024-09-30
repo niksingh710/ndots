@@ -16,7 +16,7 @@ in {
       partition = "/dev/vda";
       ssd.enable = true;
       impermanence = true;
-      encrypted = true;
+      encrypted.enable = true;
     };
   };
 

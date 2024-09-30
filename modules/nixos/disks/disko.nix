@@ -51,7 +51,7 @@ in {
           };
         }
 
-        (mkIf (!cfg.encrypted) {
+        (mkIf (!cfg.encrypted.enable) {
           # /dev/disk/by-partlabel/disk-primary-root
           root = {
             size = "100%"; # Use remaining space
@@ -64,7 +64,7 @@ in {
 
         })
 
-        (mkIf cfg.encrypted {
+        (mkIf cfg.encrypted.enable {
           root = {
             size = "100%";
             content = {
