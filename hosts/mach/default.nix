@@ -4,7 +4,7 @@ in {
   hm = {
     core.sops = true;
     hmod = {
-
+      # TODO: put control for all type virtualisation (will make vm setup easy)
       virtualisation.waydroid = true;
       firefox = {
         plugins = true;
