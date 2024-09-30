@@ -250,8 +250,7 @@ let
     };
   };
   rofi-bin = "${lib.getExe pkgs.rofi-wayland}";
-in
-{
+in {
   imports = [ ./config.nix ];
   home = {
     file.".config/networkmanager-dmenu/config.ini".text = # ini

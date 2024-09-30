@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  hm.persist.dir = [ ".local/state/wireplumber" ];
   services.pipewire = {
     enable = true;
 

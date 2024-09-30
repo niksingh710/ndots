@@ -11,6 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    persist.dir = [
+      ".local/share/nvim"
+      ".local/state/nvim"
+    ];
     home = {
       sessionVariables.EDITOR = "vim";
       packages = [ nvix ]

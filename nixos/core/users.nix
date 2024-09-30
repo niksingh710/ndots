@@ -3,7 +3,7 @@ with lib;
 let inherit (config.core) sops;
 in {
 
-  sops.secrets.user-password.neededForUsers = sops;
+  sops.secrets = mkIf sops { user-password.neededForUsers = sops; };
   users = {
     groups."${opts.username}" = { };
     users.${opts.username} = mkMerge [

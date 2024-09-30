@@ -11,6 +11,7 @@ in {
   config = mkMerge [
 
     {
+      persist.dir = [ ".mozilla" ];
       home.packages = [ pkgs.firefoxpwa ];
       programs.firefox = {
         enable = true;

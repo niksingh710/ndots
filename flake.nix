@@ -26,6 +26,12 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     stylix.url = "github:danth/stylix";
     nur.url = "github:nix-community/NUR";
+    impermanence.url = "github:nix-community/impermanence";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # My neovim config based on Nixvim
     nvix = {

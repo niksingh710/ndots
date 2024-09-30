@@ -3,6 +3,7 @@
     enable = true;
     enableSSHSupport = true;
   };
+
   environment.variables.GNUPGHOME = "/home/${opts.username}/.gnupg";
 
   security = {

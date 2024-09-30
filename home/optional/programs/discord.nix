@@ -1,5 +1,7 @@
-{ pkgs, config, opts, ... }: with config.lib.stylix.colors; {
+{ pkgs, config, opts, ... }:
+with config.lib.stylix.colors; {
   stylix.targets.vesktop.enable = false;
+  persist.dir = [ ".config/vesktop" ];
   home = {
     packages = with pkgs; [ vesktop ];
     file.".config/vesktop/themes/midnight.stylix.css".text = # css

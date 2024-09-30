@@ -3,7 +3,7 @@ with lib;
 let cfg = config.nmod.intel;
 in {
   options.nmod.intel = {
-    throttled = mkEnableOption "Throttled" // { default = true; };
+    throttled = mkEnableOption "Throttled";
     pstate = mkEnableOption "Intel P-State";
     governer = mkOption {
       type = types.str;

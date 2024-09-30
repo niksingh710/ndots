@@ -7,7 +7,6 @@ in {
   options.core.sops = mkEnableOption "sops";
 
   config = mkIf sops {
-
     home = {
       packages = [ pkgs.sops ];
       activation = {

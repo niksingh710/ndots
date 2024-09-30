@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [ ffmpegthumbnailer ];
-
+  persist.dir = [ ".local/state/mpv" ];
   programs.mpv = {
     enable = true;
     config = {

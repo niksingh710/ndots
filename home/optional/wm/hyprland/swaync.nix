@@ -1,4 +1,5 @@
 { pkgs, config, ... }: {
+  persist.dir = [ ".config/swaync" ];
   services.swaync = {
     enable = true;
     settings = builtins.fromJSON

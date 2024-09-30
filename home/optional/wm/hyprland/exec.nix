@@ -1,14 +1,15 @@
 { pkgs, lib, config, ... }: {
-
   wayland.windowManager.hyprland.settings = {
     exec = [
       "${lib.getExe pkgs.killall} swww-daemon;sleep 1; ${
         lib.getExe' pkgs.swww "swww-daemon"
       }"
-      "${lib.getExe pkgs.swww} img ${config.stylix.image}"
+      "sleep 1 && ${lib.getExe pkgs.swww} img ${config.stylix.image}"
     ];
     exec-once = [
 
+      # waydroid entries to be forced size to 0 bytes
+      "truncate -s 0 ~/.local/share/applications/waydroid.*.desktop"
       "[workspace special:comms silent] vesktop"
       "[workspace special:comms silent] sleep 5s && materialgram"
       "[workspace special:comms silent] sleep 5s && whatsapp-for-linux"

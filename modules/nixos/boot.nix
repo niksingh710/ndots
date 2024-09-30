@@ -15,7 +15,7 @@ in {
     {
       boot.loader = {
         systemd-boot.enable = mkDefault true;
-        efi.canTouchEfiVariables = mkDefaul true;
+        efi.canTouchEfiVariables = mkDefault true;
       };
     }
 

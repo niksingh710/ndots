@@ -2,32 +2,18 @@
 let stateVersion = "23.11";
 in {
   hm = {
-    core.sops = true;
-    hmod = {
-      # TODO: put control for all type virtualisation (will make vm setup easy)
-      virtualisation.waydroid = true;
-      firefox = {
-        plugins = true;
-        shyfox = true;
-      };
-    };
+    core.sops = false;
+    # hmod = { };
   };
 
-  core.sops = true;
+  core.sops = false;
   nmod = {
-    hardware.ddc = true;
     intel.governer = "ondemand";
-    intel.throttled = true;
-    virtualisation.waydroid = true;
     network.timezone = "Asia/Kolkata";
-    fonts = {
-      nerd = true;
-      emoji = true;
-    };
-    boot.secure = true;
-    boot.plymouth = true;
+
+    boot.plymouth = false;
     disks = {
-      partition = "/dev/nvme0n1";
+      partition = "/dev/vda";
       ssd.enable = true;
       impermanence = true;
       encrypted.enable = true;
@@ -44,15 +30,10 @@ in {
     self.nixosModules.networking
 
     self.nixosModules.shell
-    self.nixosModules.fonts
-
-    self.nixosModules.gnome
-    self.nixosModules.virtualisation
 
     self.nixosModules.home
 
     "${self}/nixos/core"
-    "${self}/nixos/optional"
 
   ];
 
@@ -60,10 +41,8 @@ in {
 
     self.homeModules.shell
     self.homeModules.editors
-    self.homeModules.virtualisation
 
     "${self}/home/core"
-    "${self}/home/optional"
 
     {
       disabledModules = [
