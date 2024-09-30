@@ -4,7 +4,7 @@
       "${lib.getExe pkgs.killall} swww-daemon;sleep 1; ${
         lib.getExe' pkgs.swww "swww-daemon"
       }"
-      "${lib.getExe pkgs.swww} img ${config.stylix.image}"
+      "sleep 1 && ${lib.getExe pkgs.swww} img ${config.stylix.image}"
     ];
     exec-once = [
 

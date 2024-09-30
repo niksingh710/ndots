@@ -1,6 +1,11 @@
 { pkgs, config, lib, ... }:
 
 {
+  persist.dir = [
+    ".config/materialgram"
+    ".local/share/materialgram"
+    ".cache/stylix-telegram-theme"
+  ];
   home = {
     packages = [
 
