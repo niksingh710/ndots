@@ -126,13 +126,13 @@ I will be updating this repository in the near future. If you can help with docu
 ### 📝 TODO
 
 - [ ] Add more previews to the documentation.
-- [ ] Setup Impermanence
+- [x] Setup Impermanence
 - [ ] Expand the documentation.
 - [ ] Complete all the `TODO:` comments in the code.
 - [ ] Add other devices from local configurations.
 - [ ] Add development shells.
 - [ ] Set up `direnv`.
-- [ ] Set up [Diskio](https://github.com/nix-community/disko) for disk partitioning.
+- [x] Set up [Diskio](https://github.com/nix-community/disko) for disk partitioning.
 
 ---
 
