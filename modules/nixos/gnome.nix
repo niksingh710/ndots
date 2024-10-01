@@ -22,8 +22,6 @@ in {
         gnome-online-accounts
         gnome-online-accounts-gtk
         gnome-control-center
-
-        thunderbird
       ];
     })
 

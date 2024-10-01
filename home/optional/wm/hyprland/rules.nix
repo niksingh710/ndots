@@ -29,7 +29,7 @@
       "workspace special:comms, class:(io.github.kukuruzka165.materialgram)"
       "group set, class:(Signal)"
       "group set, class:(vesktop)"
-      "group set, title:(io.github.kukuruzka165.materialgram)"
+      "group set, class:(io.github.kukuruzka165.materialgram)"
       "group set, class:(whatsapp-for-linux)"
       "group set, class:(org.gnome.Fractal)"
 

@@ -65,6 +65,9 @@
       lt = "${lib.getExe pkgs.eza} --tree ${params}";
       tree = "${lib.getExe pkgs.eza} --tree ${params}";
 
+      rcp = "${lib.getExe pkgs.rsync} -a";
+      srcp = "sudo ${lib.getExe pkgs.rsync} -a";
+
       font-family = "fc-list : family | ${lib.getExe pkgs.fzf}";
 
     };
