@@ -54,6 +54,7 @@ let
       '';
   };
 in {
+  persist.dir = [".cache/nsearch"];
   home.packages =
     [ inputs.nsearch.packages.${pkgs.system}.default nrun nshell ];
   nix.settings = {
