@@ -2,9 +2,9 @@
 let stateVersion = "23.11";
 in {
   hm = {
-    core.sops = true;
     hmod = {
       # TODO: put control for all type virtualisation (will make vm setup easy)
+      sops.enable = true;
       virtualisation.waydroid = true;
       firefox = {
         plugins = true;
@@ -13,7 +13,7 @@ in {
     };
   };
 
-  core.sops = true;
+  # core.sops = false;
   nmod = {
     hardware.ddc = true;
     intel.governer = "ondemand";

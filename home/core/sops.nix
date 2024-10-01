@@ -1,16 +1,22 @@
 { inputs, lib, config, pkgs, ... }:
 with lib;
-let inherit (config.core) sops;
+let inherit (config.hmod) sops;
 in {
   imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
-  options.core.sops = mkEnableOption "sops";
+  options.hmod.sops = {
+    enable = mkEnableOption "sops";
+    keyFile = mkOption {
+      type = types.str;
+      default = "/persistent/var/lib/sops/age/keys.txt";
+      description = "Sops Key path";
+    };
+  };
 
-  config = mkIf sops {
+  config = mkIf sops.enable {
     home = {
       packages = [ pkgs.sops ];
       activation = {
-
         # This will run the service and allow sops to create entries in home dir
         setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
           /run/current-system/sw/bin/systemctl restart --user sops-nix
@@ -20,9 +26,12 @@ in {
 
     sops = {
       defaultSopsFile = ../../secrets/keys.yaml;
-      age.keyFile = "/var/lib/sops/age/keys.txt";
+      age.keyFile = sops.keyFile;
 
       secrets = {
+        "private-keys/ssh" = {
+          path = "${config.home.homeDirectory}/.ssh/id_ed25519";
+        };
         hotspot-password = { };
         netrc = { path = "${config.home.homeDirectory}/.netrc"; };
         calendar-nvim = {

@@ -2,11 +2,9 @@
 let stateVersion = "23.11";
 in {
   hm = {
-    core.sops = false;
     # hmod = { };
   };
 
-  core.sops = false;
   nmod = {
     intel.governer = "ondemand";
     network.timezone = "Asia/Kolkata";

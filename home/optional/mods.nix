@@ -14,7 +14,7 @@ in lib.mkMerge [
     }];
   }
 
-  (lib.mkIf config.core.sops {
+  (lib.mkIf config.hmod.sops.enable {
 
     sops.secrets."private-keys/github_token" = { };
 

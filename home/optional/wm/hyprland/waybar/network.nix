@@ -6,7 +6,7 @@ let
     runtimeInputs = [ pkgs.linux-wifi-hotspot ];
     bashOptions = [ "pipefail" ];
     text = let
-      hpass = optionalString config.core.sops
+      hpass = optionalString config.hmod.sops.enable
         "${config.sops.secrets.hotspot-password.path}";
     in ''
       rcount="$(pkexec --user root create_ap --list-running | wc -l)"

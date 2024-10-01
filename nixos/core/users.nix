@@ -1,9 +1,7 @@
 { opts, lib, config, ... }:
-with lib;
-let inherit (config.core) sops;
-in {
-
-  sops.secrets = mkIf sops { user-password.neededForUsers = sops; };
+with lib; {
+  sops.secrets =
+    mkIf config.nmod.sops.enable { user-password.neededForUsers = true; };
   users = {
     groups."${opts.username}" = { };
     users.${opts.username} = mkMerge [
@@ -12,7 +10,7 @@ in {
         extraGroups = [ "wheel" "video" "audio" "${opts.username}" ];
         useDefaultShell = true;
       }
-      (if sops then {
+      (if config.nmod.sops.enable then {
         hashedPasswordFile = config.sops.secrets.user-password.path;
       } else {
         initialPassword = "${opts.password}";
