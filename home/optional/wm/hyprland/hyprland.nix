@@ -5,8 +5,7 @@ in {
     enable = true;
     systemd = {
       enableXdgAutostart = true;
-      variables =
-        [ "--all" "XDG_SESSION_TYPE" "QT_QPA_PLATFORMTHEME" "XDG_CONFIG_HOME" ];
+      variables = [ "--all" ];
     };
 
     settings = {
