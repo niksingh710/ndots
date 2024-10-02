@@ -1,6 +1,17 @@
 { pkgs, lib, inputs, config, ... }:
 let
   scripts = {
+    img-annotate = pkgs.writeShellScript "img-annotate" ''
+      ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${
+        lib.getExe pkgs.swappy
+      } -f - &>/dev/null || {
+        ${
+          lib.getExe' pkgs.libnotify "notify-send"
+        } "swappy failed" "Maybe clipboard is not having a image as input"
+        exit 1
+      }
+    '';
+
     focus = pkgs.writeShellScript "focus" ''
 
       [ $# -eq 0 ] && {
@@ -405,6 +416,8 @@ in {
         ", switch:on:Lid Switch, exec,${scripts.lib-down}"
       ];
       binde = [
+
+        "$mod,e,exec,${scripts.img-annotate}"
 
         "$modCTRL,h,resizeactive,-50 0"
         "$modCTRL,l,resizeactive,50 0"

@@ -24,9 +24,13 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    stylix.url = "github:danth/stylix";
     nur.url = "github:nix-community/NUR";
     impermanence.url = "github:nix-community/impermanence";
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     disko = {
       url = "github:nix-community/disko";
@@ -37,6 +41,7 @@
     nvix = {
       url = "github:niksingh710/nvix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixvim.inputs.home-manager.follows = "home-manager";
     };
 
     # For secrets management
