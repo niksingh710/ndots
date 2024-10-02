@@ -16,12 +16,11 @@ in {
     }
 
     (mkIf cfg.online {
+      hm.persist.dir = [ ".config/goa-1.0" ];
       services.gnome.gnome-online-accounts.enable = true;
       environment.systemPackages = with pkgs; [
         endeavour
-        gnome-online-accounts
         gnome-online-accounts-gtk
-        gnome-control-center
       ];
     })
 

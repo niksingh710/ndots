@@ -15,6 +15,7 @@ in {
 
   # core.sops = false;
   nmod = {
+    gnome.online = true;
     hardware.ddc = true;
     intel.governer = "ondemand";
     intel.throttled = true;
