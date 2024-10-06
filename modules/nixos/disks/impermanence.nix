@@ -2,10 +2,17 @@
 with lib;
 let
   cfg = config.nmod.disks;
-  mount = if cfg.encrypted.enable then
-    "/dev/mapper/cryptroot"
-  else
-    "/dev/disk/by-partlabel/disk-primary-root";
+  mount =
+    if cfg.encrypted.enable then
+      "/dev/mapper/cryptroot"
+    else
+      "/dev/disk/by-partlabel/disk-primary-root";
+
+  service =
+    if cfg.encrypted.enable then
+      "systemd-cryptsetup@cryptroot.service"
+    else
+      "initrd-root-device.target";
 
   cleanup = # bash
     ''
@@ -34,7 +41,8 @@ let
 
     '';
 
-in {
+in
+{
   imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   options.persist = {
@@ -52,13 +60,11 @@ in {
     fileSystems."/persistent".neededForBoot = true;
 
     boot.initrd = {
-      postDeviceCommands =
-        mkAfter (optionalString (!cfg.encrypted.enable) cleanup);
       systemd = mkIf cfg.encrypted.enable {
         enable = true;
         services.wipe-my-fs = {
           wantedBy = [ "initrd.target" ];
-          after = [ "systemd-cryptsetup@cryptroot.service" ];
+          after = [ "${service}" ];
           before = [ "sysroot.mount" ];
           unitConfig.DefaultDependencies = "no";
           serviceConfig.Type = "oneshot";
