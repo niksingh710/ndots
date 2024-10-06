@@ -7,6 +7,7 @@ in {
   };
 
   nmod = {
+    ssh.enable = true;
     intel.governer = "ondemand";
     network.timezone = "Asia/Kolkata";
 
@@ -15,7 +16,7 @@ in {
       partition = "/dev/vda";
       ssd.enable = true;
       impermanence = true;
-      encrypted.enable = true;
+      encrypted.enable = false;
     };
   };
 
@@ -41,7 +42,9 @@ in {
     self.homeModules.shell
     self.homeModules.editors
 
-    "${self}/home/core"
+    "${self}/home/core/nix.nix"
+    "${self}/home/core/sops.nix"
+    "${self}/home/core/impermanence.nix"
 
     {
       disabledModules = [

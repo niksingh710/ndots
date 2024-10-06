@@ -46,7 +46,6 @@ in {
 
     (mkIf cfg.plymouth {
       boot.plymouth.enable = true;
-      boot.initrd.systemd.enable = true;
     })
 
     (mkIf cfg.secure {

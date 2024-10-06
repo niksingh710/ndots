@@ -51,7 +51,7 @@ nix build .#nixosConfigurations.iso.config.system.build.isoImage
 
 disko --mode disko ./disko/disko.nix
 
-nixos-install --root /mnt --flake github:niksingh710/ndots#<hostname>
+nixos-install --no-root-passwd --root /mnt --flake github:niksingh710/ndots#<hostname>
 ```
 
 <img width="2000" height="0">

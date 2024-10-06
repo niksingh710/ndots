@@ -8,12 +8,6 @@ let
     else
       "/dev/disk/by-partlabel/disk-primary-root";
 
-  service =
-    if cfg.encrypted.enable then
-      "systemd-cryptsetup@cryptroot.service"
-    else
-      "initrd-root-device.target";
-
   cleanup = # bash
     ''
       mkdir /btrfs_tmp
@@ -60,11 +54,13 @@ in
     fileSystems."/persistent".neededForBoot = true;
 
     boot.initrd = {
+      postDeviceCommands =
+        mkAfter (optionalString (!cfg.encrypted.enable) cleanup);
       systemd = mkIf cfg.encrypted.enable {
         enable = true;
         services.wipe-my-fs = {
           wantedBy = [ "initrd.target" ];
-          after = [ "${service}" ];
+          after = [ "systemd-cryptsetup@cryptroot.service" ];
           before = [ "sysroot.mount" ];
           unitConfig.DefaultDependencies = "no";
           serviceConfig.Type = "oneshot";

@@ -13,7 +13,10 @@
     };
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  networking = {
+    networkmanager.enable = true;
+    wireless.enable = false; # This does not disable's wifi (It is an minimal alternative to Network manager)
+  };
   services.openssh = {
     enable = true;
     settings = {
