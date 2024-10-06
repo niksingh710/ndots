@@ -43,10 +43,11 @@ This repository contains my Linux rice setup, along with my shell configuration,
 nix build .#nixosConfigurations.iso.config.system.build.isoImage
 ```
 
-### Instructions to Install
+# Instructions to Install
 ```bash
 # (This will partition the disk and mount it) 
 # [For encryption use enc-disko, that will prompt for password during partitioning]
+# (use nixos-generate-config to generate the hardware-configuration)
 
 disko --mode disko ./disko/disko.nix
 
