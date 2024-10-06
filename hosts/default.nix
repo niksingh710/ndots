@@ -31,5 +31,14 @@
       ];
     };
 
+    iso = nixosSystem {
+      specialArgs = args {
+        platform = "x86_64-linux";
+      };
+      modules = [
+        ./iso
+      ];
+    };
+
   };
 }

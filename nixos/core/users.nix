@@ -13,7 +13,8 @@ with lib; {
       (if config.nmod.sops.enable then {
         hashedPasswordFile = config.sops.secrets.user-password.path;
       } else {
-        initialPassword = "${opts.password}";
+        # initialPassword = "${opts.password}";
+        password = "${opts.password}";
       })
     ];
   };

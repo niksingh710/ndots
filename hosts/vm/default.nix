@@ -22,7 +22,7 @@ in {
   imports = [
     ./hardware.nix
 
-    # custom modules (TODO: Move them into a seperate repository) [give a thought if it is a gread idea or not]
+    # custom modules (TODO: Move them into a separate repository) [give a thought if it is a gread idea or not]
     self.nixosModules.disks
     self.nixosModules.boot
     self.nixosModules.intel

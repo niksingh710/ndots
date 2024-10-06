@@ -13,11 +13,9 @@
       ];
       systems =
         [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
-
       # checkout `./parts/variables.nix` for more options
       # do not use it directly change username and mail
       flake.opts.wallpaper = ./wall.png;
-
     };
 
   inputs = {

@@ -32,17 +32,49 @@ I've used **[Flake-Parts](https://flake.parts)** to modularize the config.<br>
 
 This repository contains my Linux rice setup, along with my shell configuration, which I find intuitive and efficient to work with. 🎨✨
 
-### NixOS
+| Hosts | Description |
+| ----- | ----------- |
+| **mach**  | My personal laptop (Hyprland, waybar, and much More, Most of the setup is setted up for this.) |
+| **vm**    | Virtual Machine for testing (The tinker box it is minimal and works for anything [CLI ONLY]) |
+| **iso**  | Custom ISO for installation (My [editor](https://github.com/niksingh710/nvix), git, disko, NetworkManager, Presetted up)|
 
-#### Partitioning 🖥️
-
+```bash
+# Instructions to build the ISO (output will reside in result/iso)
+nix build .#nixosConfigurations.iso.config.system.build.isoImage
 ```
+
+### Instructions to Install
+```bash
+# (This will partition the disk and mount it) 
+# [For encryption use enc-disko, that will prompt for password during partitioning]
+
+disko --mode disko ./disko/disko.nix
+
+nixos-install --root /mnt --flake github:niksingh710/ndots#<hostname>
+```
+
+<img width="2000" height="0">
+</td>
+</tbody>
+</table>
+</div>
+</p>
+
+<details>
+
+  <summary>
+    Instructions for Default ISO
+  </summary>
+
+   ```
 # Look the disko dir, It contains a non Encrypted partitioning scheme (disko) and an Encrypted partitioning scheme (enc-disko).
 
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko disko.nix
 
 nixos-install --root /mnt --flake github:niksingh710/ndots#<hostname>
 ```
+
+</details>
 
 ```sh
 Label: /dev/disk/by-partlabel/disk-primary-root or /dev/mapper/cryptroot (if rooted)
