@@ -24,6 +24,8 @@ let
       unbind '}'
       unbind '['
       unbind -T copy-mode-vi MouseDragEnd1Pane # don't exit copy mode when dragging with mouse
+      unbind -n C-j
+      unbind -n C-k
     '';
 
   options = # tmux
@@ -40,6 +42,11 @@ let
       # Enable Sixel support
       set -g allow-passthrough on
 
+      # Undercurl neovim fix
+      set -g default-terminal "''${TERM}"
+      set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+      set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
     '';
 
 in
@@ -54,7 +61,7 @@ in
     terminal = "screen-256color";
     aggressiveResize = true;
 
-    plugins = (with pkgs.tmuxPlugins; [ open urlview ])
+    plugins = (with pkgs.tmuxPlugins; [ open urlview vim-tmux-navigator ])
       ++ [{ plugin = minimal-tmux; }];
 
     extraConfig = # tmux
@@ -111,20 +118,6 @@ in
         bind V copy-mode
 
         set -g @urlview-key 'u'
-
-        # christoomey Mappings Smart pane switching with awareness of vim and nvim and fzf
-        forward_programs="view|n?vim?|fzf|lvim"
-
-        should_forward="ps -o state= -o comm= -t '#{pane_tty}' |\
-          grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?($forward_programs)(diff)?$'"
-
-
-        bind -n C-h if-shell "$should_forward" "send-keys C-h" "select-pane -L"
-        bind -n C-j if-shell "$should_forward" "send-keys C-j" "select-pane -D"
-        bind -n C-k if-shell "$should_forward" "send-keys C-k" "select-pane -U"
-        bind -n C-l if-shell "$should_forward" "send-keys C-l" "select-pane -R"
-        bind -n C-\\ if-shell "$should_forward" "send-keys C-\\" "select-pane -l"
-
       '';
 
   };

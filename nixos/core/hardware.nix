@@ -10,6 +10,7 @@ in {
           (writeShellApplication {
             name = "dbrig";
             bashOptions = [ "pipefail" ];
+            runtimeInputs = with pkgs;[ ddcutil ];
             text = # bash
               ''
                 # Check if an argument is provided

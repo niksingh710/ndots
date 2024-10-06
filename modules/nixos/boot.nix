@@ -1,6 +1,8 @@
-{ lib, inputs, config, ... }:
+{ lib, inputs, config, pkgs, opts, ... }:
 with lib;
-let cfg = config.nmod.boot;
+let
+  cfg = config.nmod.boot;
+  center-align = inputs.center-align.packages.${pkgs.system}.default;
 in {
 
   options.nmod.boot = {
@@ -13,6 +15,9 @@ in {
 
   config = mkMerge [
     {
+      environment.etc."issue".source = pkgs.runCommand "issue" { } ''
+        echo "${opts.username}" | ${lib.getExe' pkgs.figlet "figlet"} | ${lib.getExe center-align} > $out
+      '';
       boot.loader = {
         systemd-boot.enable = mkDefault true;
         efi.canTouchEfiVariables = mkDefault true;

@@ -16,9 +16,11 @@
         inherit lib;
       };
 
-      # include custom packages lib fn's
-      # custom = (prev.custom or { })
-      #   // (import ./pkgs { inherit (prev) pkgs; });
+      nvix = inputs.nvix.packages.${pkgs.system}.full.extend {
+        config.colorschemes.tokyonight.settings.transparent = true;
+      };
+      nvix-bare = inputs.nvix.packages.${pkgs.system}.bare;
+
       custom = self.packages.${prev.system};
 
       rofi-calc = prev.rofi-calc.override {

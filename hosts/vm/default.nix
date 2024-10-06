@@ -1,7 +1,8 @@
-{ self, ... }:
+{ self, pkgs, ... }:
 let stateVersion = "23.11";
 in {
   hm = {
+    nvix.pkg = pkgs.nvix-bare;
     # hmod = { };
   };
 

@@ -29,8 +29,8 @@
   };
 
   xdg.mimeApps.defaultApplications = {
-    "application/pdf" = "zathura.desktop";
-    "application/vnd.ms-powerpoint" = "zathura.desktop";
+    "application/pdf" = "org.pwmt.zathura.desktop";
+    "application/vnd.ms-powerpoint" = "org.pwmt.zathura.desktop";
   };
 
 }

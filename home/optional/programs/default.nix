@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }:
+let center-align = inputs.center-align.packages.${pkgs.system}.default;
+in {
   imports = with builtins;
     map (fn: ./${fn})
     (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
@@ -13,10 +15,7 @@
     ".config/onlyoffice"
   ];
 
-  home.packages = with pkgs; [
-    dissent
-    fractal
-    whatsapp-for-linux
-    onlyoffice-bin_latest
-  ];
+  home.packages = with pkgs;
+    [ dissent fractal whatsapp-for-linux onlyoffice-bin_latest ]
+    ++ [ center-align ];
 }

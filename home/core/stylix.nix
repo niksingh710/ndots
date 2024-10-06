@@ -7,7 +7,7 @@
     image = "${opts.wallpaper}";
 
     opacity = {
-      terminal = 0.8;
+      terminal = 0.9;
       popups = 0.8;
     };
 

@@ -15,7 +15,10 @@ in {
       spice-vdagentd.enable = true;
     };
 
-    virtualisation.libvirtd.enable = true;
+    virtualisation = {
+      libvirtd.enable = true;
+      spiceUSBRedirection.enable = true;
+    };
 
   };
 }

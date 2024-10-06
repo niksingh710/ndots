@@ -38,11 +38,7 @@
     };
 
     # My neovim config based on Nixvim
-    nvix = {
-      url = "github:niksingh710/nvix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixvim.inputs.home-manager.follows = "home-manager";
-    };
+    nvix.url = "github:niksingh710/nvix/v2";
 
     # For secrets management
     sops-nix = {
@@ -91,6 +87,10 @@
     };
     nsearch = {
       url = "github:niksingh710/nsearch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    center-align = {
+      url = "github:niksingh710/center-align";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

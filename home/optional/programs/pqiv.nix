@@ -91,14 +91,11 @@
         }    '';
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "image/jpeg" = "pqiv.desktop";
-      "image/gif" = "pqiv.desktop";
-      "image/webp" = "pqiv.desktop";
-      "image/png" = "pqiv.desktop";
-      "image/svg+xml" = "pqiv.desktop";
-    };
+  xdg.mimeApps.defaultApplications = {
+    "image/jpeg" = "pqiv.desktop";
+    "image/gif" = "pqiv.desktop";
+    "image/webp" = "pqiv.desktop";
+    "image/png" = "pqiv.desktop";
+    "image/svg+xml" = "pqiv.desktop";
   };
 }

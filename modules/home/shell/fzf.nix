@@ -230,8 +230,6 @@ in
             lib.getExe fzf-preview
           } 'SYSTEMD_COLORS=1 systemctl status $word'
 
-
-
         '';
     };
 
