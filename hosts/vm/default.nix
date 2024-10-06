@@ -8,7 +8,7 @@ in {
 
   nmod = {
     ssh.enable = true;
-    intel.governer = "ondemand";
+    intel.governor = "ondemand";
     network.timezone = "Asia/Kolkata";
 
     boot.plymouth = false;
@@ -53,6 +53,8 @@ in {
       ];
     }
   ];
+
+  boot.kernelParams = [ "video=1920x1080" ];
 
   services = {
     logind.extraConfig = ''

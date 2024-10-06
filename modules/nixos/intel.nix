@@ -5,17 +5,17 @@ in {
   options.nmod.intel = {
     throttled = mkEnableOption "Throttled";
     pstate = mkEnableOption "Intel P-State";
-    governer = mkOption {
+    governor = mkOption {
       type = types.str;
       default = null;
-      description = "CPU governer";
+      description = "CPU governor";
     };
   };
 
   config = {
     powerManagement = {
       powertop.enable = mkDefault true;
-      cpuFreqGovernor = cfg.governer;
+      cpuFreqGovernor = cfg.governor;
     };
     services.throttled.enable = cfg.throttled;
     boot.kernelParams = lib.optional (!cfg.pstate) "intel_pstate=disable"
@@ -68,8 +68,8 @@ in {
                   "turbo")
                     [ -f /sys/devices/system/cpu/intel_pstate/no_turbo ] && echo "Turbo Boost: $(cat /sys/devices/system/cpu/intel_pstate/no_turbo)" || echo "Turbo Boost: no Pstate"
                     ;;
-                  "governer")
-                    echo "Governer: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor)"
+                  "governor")
+                    echo "Governor: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor)"
                     ;;
                   *)
                     echo "Usage: cpu [freq|temp|usage]"

@@ -17,7 +17,7 @@ in {
   nmod = {
     gnome.online = true;
     hardware.ddc = true;
-    intel.governer = "ondemand";
+    intel.governor = "ondemand";
     intel.throttled = true;
     virtualisation.waydroid = true;
     network.timezone = "Asia/Kolkata";
@@ -38,7 +38,7 @@ in {
   imports = [
     ./hardware.nix
 
-    # custom modules (TODO: Move them into a seperate repository) [give a thought if it is a gread idea or not]
+    # custom modules (TODO: Move them into a separate repository) [give a thought if it is a gread idea or not]
     self.nixosModules.disks
     self.nixosModules.boot
     self.nixosModules.intel
