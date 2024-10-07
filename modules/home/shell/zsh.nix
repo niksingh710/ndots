@@ -13,6 +13,7 @@
       enableCompletion = true;
 
       history = {
+        path = "$HOME/.config/zsh/.history";
         expireDuplicatesFirst = true;
         ignoreAllDups = true;
         ignoreSpace = true;

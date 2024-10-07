@@ -2,7 +2,6 @@
 let minimal-tmux = inputs.minimal-tmux.packages.${pkgs.system}.default;
 in lib.mkMerge [
   {
-    persist.files = [ ".zsh_history" ];
     persist.dir = [ ".local/share/zoxide" ];
     stylix.targets.fzf.enable = false;
     stylix.targets.tmux.enable = false;

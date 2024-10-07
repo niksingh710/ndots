@@ -917,6 +917,22 @@
         "type": "github"
       }
     },
+    "nvim-window-picker": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702792768,
+        "narHash": "sha256-D5ikm5Fw0N/AjDL71cuATp1OCONuxPZNfEHuh0vXkq0=",
+        "owner": "s1n7ax",
+        "repo": "nvim-window-picker",
+        "rev": "41cfaa428577c53552200a404ae9b3a0b5719706",
+        "type": "github"
+      },
+      "original": {
+        "owner": "s1n7ax",
+        "repo": "nvim-window-picker",
+        "type": "github"
+      }
+    },
     "nvix": {
       "inputs": {
         "buffer-manager": "buffer-manager",
@@ -925,6 +941,7 @@
         "minty": "minty",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
+        "nvim-window-picker": "nvim-window-picker",
         "rnoweb": "rnoweb",
         "volt": "volt",
         "windows": "windows",
@@ -932,16 +949,15 @@
         "windows-mc": "windows-mc"
       },
       "locked": {
-        "lastModified": 1728211608,
-        "narHash": "sha256-hh02AfTfkhMa9bguTzBAefGMH3JgDFkboBl4BdEi97A=",
+        "lastModified": 1728303206,
+        "narHash": "sha256-3EZkk6ECNfqp34gAyqcl7BlwOu6c7uaCFIaTGcF8HUk=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "f5d6682643dcd8f36a5e9fe299ea0693329cd486",
+        "rev": "1b4bf0ddad3d825ed92e34851f1060d212ad5626",
         "type": "github"
       },
       "original": {
         "owner": "niksingh710",
-        "ref": "v2",
         "repo": "nvix",
         "type": "github"
       }

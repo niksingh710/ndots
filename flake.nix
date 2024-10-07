@@ -8,6 +8,7 @@
 
         ./modules
         ./pkgs
+        ./devshells
 
         ./hosts
       ];
@@ -36,7 +37,7 @@
     };
 
     # My neovim config based on Nixvim
-    nvix.url = "github:niksingh710/nvix/v2";
+    nvix.url = "github:niksingh710/nvix";
 
     # For secrets management
     sops-nix = {
