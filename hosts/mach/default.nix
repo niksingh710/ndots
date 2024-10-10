@@ -5,6 +5,7 @@ in {
     hmod = {
       # TODO: put control for all type virtualisation (will make vm setup easy)
       sops.enable = true;
+      rclone.enable = true;
       virtualisation.waydroid = true;
       firefox = {
         plugins = true;
@@ -19,6 +20,7 @@ in {
     hardware.ddc = true;
     intel.governor = "ondemand";
     intel.throttled = true;
+    intel.pstate = true;
     virtualisation.waydroid = true;
     network.timezone = "Asia/Kolkata";
     fonts = {

@@ -160,9 +160,17 @@ let
     "ls"
     "vim"
     "nvim"
-    "e"
     "lsd"
     "eza"
+    "xdg-open"
+    "rsync"
+
+    # below are the aliases
+    "e"
+    "rcp"
+    "srcp"
+    "open"
+    "dopen"
   ];
 
   fzf-tab-preview = cmd: ''

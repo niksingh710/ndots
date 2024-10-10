@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, self, ... }:
 with lib;
 let cfg = config.nmod.fonts;
 in {
@@ -34,10 +34,13 @@ in {
       ];
     in
     {
-      fonts = {
+      fonts = mkMerge [{
         fontconfig.useEmbeddedBitmaps = true;
         packages = [ pkgs.dejavu_fonts pkgs.custom.road-rage ]
           ++ (lib.optionals cfg.emoji emoji) ++ (lib.optionals cfg.nerd nerd);
-      };
+      }
+        (mkIf config.nmod.sops.enable {
+          packages = [ (pkgs.callPackage "${self}/pkgs/mono-lisa" { inherit self; }) ];
+        })];
     };
 }

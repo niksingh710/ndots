@@ -44,6 +44,7 @@
         mkdir = "mkdir -p";
         mount = "mount --mkdir";
         open = "xdg-open";
+        dopen = "setsid xdg-open $@ &>/dev/null";
         py = "${lib.getExe pkgs.python3}";
 
         d = "setsid $@ &>/dev/null";

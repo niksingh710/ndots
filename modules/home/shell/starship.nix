@@ -33,7 +33,6 @@
 
       [character]
       vimcmd_symbol = "[](bold-blue)"
-      # success_symbol = "[ﬦ](bold-green)"
       success_symbol = "[󰘧](bold-green)"
       error_symbol = "[](bold-red)"
       # disabled = true
@@ -85,14 +84,14 @@
 
       [git_status]
       format = '(:[$all_status$ahead_behind]($style)) '
-      conflicted = '\[ [$count](bright-white bold)\]'
+      conflicted = '\[ [$count](bright-white bold)\]'
       ahead = '\[[ ](bright-blue)[$count](bright-white bold)\]'
       behind = '\[[ ](white)[$count](bright-white bold)\]'
       diverged = '\[[ ](purple)|[ 󱡷 ](bright-blue)[$ahead_count](bright-white bold)[ 󱡷 ](white)[$behind_count](bright-white)\]'
-      untracked = '\[ [$count](bright-white bold)\]'
-      stashed = '\[[](yellow) [$count](bright-white bold)\]'
+      untracked = '\[◌ [$count](bright-white bold)\]'
+      stashed = '\[[󰃖 ](yellow) [$count](bright-white bold)\]'
       modified = '\[[ ](bright-yellow)[$count](bright-white bold)\]'
-      staged = '\[[ ](bright-green)[$count](bright-white bold)\]'
+      staged = '\[[✓ ](bright-green)[$count](bright-white bold)\]'
       renamed = '\[[ ](bright-cyan) [$count](bright-white bold)\]'
       deleted = '\[ [$count](bright-white bold)\]'
 
@@ -166,7 +165,7 @@
       disabled = true # disable because of rclone mount 
 
       [custom.file_number]
-      command = "find . -maxdepth 1 -type f -not -name '.DS_Store' | wc -l"
+      command = "find . -maxdepth 1 ''\( -type f -o -type l ''\) -not -name '.DS_Store' | wc -l"
       when = "exit 0" # run always
       symbol = " "
       description = "Number of files in the current working directory"

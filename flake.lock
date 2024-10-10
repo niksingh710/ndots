@@ -949,11 +949,11 @@
         "windows-mc": "windows-mc"
       },
       "locked": {
-        "lastModified": 1728303206,
-        "narHash": "sha256-3EZkk6ECNfqp34gAyqcl7BlwOu6c7uaCFIaTGcF8HUk=",
+        "lastModified": 1728373623,
+        "narHash": "sha256-ePkSsE7eZqseO3kG/g6P/grUOO+naACBb70fN6cPxu8=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "1b4bf0ddad3d825ed92e34851f1060d212ad5626",
+        "rev": "c0021244a007f3adb43617e06a335a25869570c6",
         "type": "github"
       },
       "original": {

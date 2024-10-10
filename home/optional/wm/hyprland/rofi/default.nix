@@ -250,7 +250,8 @@ let
     };
   };
   rofi-bin = "${lib.getExe pkgs.rofi-wayland}";
-in {
+in
+{
   imports = [ ./config.nix ];
   home = {
     file.".config/networkmanager-dmenu/config.ini".text = # ini
@@ -273,8 +274,8 @@ in {
         [nmdm]
         # rescan_delay = <seconds>  # (seconds to wait after a wifi rescan before redisplaying the results)
       '';
-    packages = (with pkgs; [ cliphist wl-clipboard rofi-wayland gawk ])
-      ++ [ scripts.clipboard ];
+    packages = (with pkgs; [ cliphist wl-clipboard rofi-wayland gawk playerctl ])
+      ++ [ scripts.clipboard scripts.powermenu ];
   };
   wayland.windowManager.hyprland = {
     extraConfig = ''
