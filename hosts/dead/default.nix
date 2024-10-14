@@ -14,14 +14,14 @@ in {
     boot.plymouth = false;
     disks = {
       partition = "/dev/sda";
-      ssd.enable = true;
-      impermanence = true;
+      ssd.enable = false;
+      impermanence = false; # coz it's hdd (and that's also about to die)
       encrypted.enable = false;
     };
   };
 
   imports = [
-    # ./hardware.nix
+    ./hardware.nix
 
     # custom modules (TODO: Move them into a separate repository) [give a thought if it is a gread idea or not]
     self.nixosModules.disks
