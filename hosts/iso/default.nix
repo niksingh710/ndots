@@ -1,4 +1,10 @@
-{ pkgs, modulesPath, opts, self, ... }: {
+{ pkgs, modulesPath, opts, self, ... }:
+let
+  keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwouW1kRGVOgb58dJPwF+HCsXXYl2OUOqpxuqAXGKIZ nik.singh710@gmail.com"
+  ];
+in
+{
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
     "${self}/nixos/core/overlays"
@@ -25,9 +31,10 @@
     };
   };
 
-  users.users.root = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwouW1kRGVOgb58dJPwF+HCsXXYl2OUOqpxuqAXGKIZ nik.singh710@gmail.com"
-    ];
+  users.users.root.openssh.authorizedKeys = {
+    inherit keys;
+  };
+  users.users.nixos.openssh.authorizedKeys = {
+    inherit keys;
   };
 }
