@@ -1,0 +1,70 @@
+[
+    {
+        "command": "hyprctl dispatch dpms off",
+        "name": "DPMS"
+    },
+    {
+        "command": "hyprctl dispatch dpms on",
+        "name": "DPMS on"
+    },
+    {
+        "command": "/etc/profiles/per-user/niksingh710/bin/brightness up",
+        "name": "brig + "
+    },
+    {
+        "command": "/etc/profiles/per-user/niksingh710/bin/brightness down",
+        "name": "brig -"
+    },
+    {
+        "command": "/run/current-system/sw/bin/loginctl lock-session",
+        "name": "lock"
+    },
+    {
+        "command": "/etc/profiles/per-user/niksingh710/bin/powermenu -l",
+        "name": "logout"
+    },
+    {
+        "command": "/run/current-system/sw/bin/systemctl reboot",
+        "name": "reboot"
+    },
+    {
+        "command": "/run/current-system/sw/bin/systemctl poweroff",
+        "name": "shutdown"
+    },
+    {
+        "command": "/run/current-system/sw/bin/systemctl suspend",
+        "name": "suspend"
+    },
+    {
+        "command": "/etc/profiles/per-user/niksingh710/bin/playerctl play-pause",
+        "name": "toggle play"
+    },
+    {
+        "command": "/run/current-system/sw/bin/loginctl unlock-session",
+        "name": "unlock"
+    },
+    {
+        "command": "/etc/profiles/per-user/niksingh710/bin/volume up",
+        "name": "vol +"
+    },
+    {
+        "command": "/etc/profiles/per-user/niksingh710/bin/volume down",
+        "name": "vol -"
+    },
+    {
+        "command": "/etc/profiles/per-user/niksingh710/bin/volume mute",
+        "name": "vol mute"
+    },
+    {
+        "command": "hyprctl dispatch workspace e+1",
+        "name": "w+1"
+    },
+    {
+        "command": "hyprctl dispatch workspace e-1",
+        "name": "w-1"
+    },
+    {
+        "command": "",
+        "name": ""
+    }
+]

@@ -1,11 +1,26 @@
-{ pkgs, opts, ... }: {
+{ pkgs, opts, lib, ... }: with lib;
+{
   programs.hyprland = {
     enable = true;
-    portalPackage = pkgs.stable.xdg-desktop-portal-hyprland;
+    package = pkgs.wmhypr.hyprland;
+    portalPackage = pkgs.wmhypr.xdg-desktop-portal-hyprland;
   };
 
   services.getty.autologinUser = "${opts.username}";
-
   security.pam.services.hyprlock = { };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  nix.settings = {
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  };
+
+  hardware.graphics = {
+    package = pkgs.wmhypr.mesa.drivers;
+
+    # if you also want 32-bit support (e.g for Steam)
+    enable32Bit = mkForce true;
+    package32 = pkgs.wmhypr.pkgsi686Linux.mesa.drivers;
+  };
 
 }

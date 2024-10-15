@@ -5,7 +5,7 @@
     kernelParams = [
       "amdgpu.runpm=0"
       "amdgpu.ppfeaturemask=0xffffffff"
-      "usbcore.autosuspend=15"
+      "usbcore.autosuspend=-1"
     ];
 
     # This is imp as the drive is encrypted.

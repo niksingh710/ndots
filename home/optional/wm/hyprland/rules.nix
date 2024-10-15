@@ -24,14 +24,12 @@
 
       "workspace special:comms, class:(Signal)"
       "workspace special:comms, class:(vesktop)"
-      "workspace special:comms, class:(whatsapp-for-linux)"
       "workspace special:comms, class:(org.gnome.Fractal)"
-      "workspace special:comms, class:(io.github.kukuruzka165.materialgram)"
-      "group set, class:(Signal)"
+      "workspace special:comms, class:(telegram-desktop)"
       "group set, class:(vesktop)"
-      "group set, class:(io.github.kukuruzka165.materialgram)"
-      "group set, class:(whatsapp-for-linux)"
+      "group set, class:(telegram-desktop)"
       "group set, class:(org.gnome.Fractal)"
+      "group set, class:(geary)"
 
       "noanim,class:^(rofi)$"
 

@@ -12,13 +12,14 @@
     ./monitor.nix
     ./keymaps.nix
     ./swaync.nix
+    ./plugins.nix
 
     ./rofi
     ./waybar
   ];
 
   home = {
-    packages = with pkgs; [ grim slurp wl-clipboard cliphist swww ];
+    packages = with pkgs; [ cliphist grim slurp wl-clipboard swww ];
     shellAliases = {
       copy = "wl-copy";
       paste = "wl-paste";

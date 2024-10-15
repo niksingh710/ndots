@@ -26,6 +26,13 @@
     nur.url = "github:nix-community/NUR";
     impermanence.url = "github:nix-community/impermanence";
 
+    # Hyprland
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     stylix = {
       url = "github:danth/stylix";
       inputs.home-manager.follows = "home-manager";

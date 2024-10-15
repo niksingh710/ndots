@@ -7,15 +7,13 @@ in {
   persist.dir = [
     ".local/share/applications"
     ".local/share/fractal"
-    ".local/share/whatsapp-for-linux"
     ".local/share/onlyoffice"
 
-    ".config/whatsapp-for-linux"
     ".config/dissent"
     ".config/onlyoffice"
   ];
 
   home.packages = with pkgs;
-    [ dissent fractal whatsapp-for-linux onlyoffice-bin_latest ]
+    [ dissent fractal onlyoffice-bin_latest ]
     ++ [ center-align ];
 }

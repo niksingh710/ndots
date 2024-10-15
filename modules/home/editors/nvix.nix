@@ -14,7 +14,7 @@ in
 
   # packages are coming from the overlay
   config = mkIf cfg.enable {
-    persist.dir = [ ".local/share/nvim" ".local/state/nvim" ".config/github-copilot" ];
+    persist.dir = [ ".local/share/nvim" ".local/state/nvim" ".config/github-copilot" ".cache/nvim"];
     home = {
       sessionVariables.EDITOR = "vim";
       packages = [ cfg.pkg ];

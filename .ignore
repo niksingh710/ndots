@@ -1,3 +1,5 @@
 secrets/
 ^secrets/
 *.svg
+wall.png
+flake.lock

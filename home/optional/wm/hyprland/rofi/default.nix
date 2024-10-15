@@ -274,7 +274,7 @@ in
         [nmdm]
         # rescan_delay = <seconds>  # (seconds to wait after a wifi rescan before redisplaying the results)
       '';
-    packages = (with pkgs; [ cliphist wl-clipboard rofi-wayland gawk playerctl ])
+    packages = (with pkgs; [ wl-clipboard rofi-wayland gawk playerctl ])
       ++ [ scripts.clipboard scripts.powermenu ];
   };
   wayland.windowManager.hyprland = {

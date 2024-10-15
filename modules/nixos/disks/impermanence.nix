@@ -108,7 +108,7 @@ in
             mode = "0700";
           }
           ".cache/zsh"
-
+          ".local/share/waydroid"
         ] ++ config.hm.persist.dir;
 
         inherit (config.hm.persist) files;
