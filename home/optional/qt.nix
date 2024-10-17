@@ -3,14 +3,12 @@ let inherit (config.lib.stylix) colors;
 in {
   qt = {
     enable = true;
-    platformTheme.name = "qt6ct";
-    style = {
-      name = "kvantum-dark";
-      package = with pkgs; [ adwaita-qt adwaita-qt6 libsForQt5.qt5ct ];
-    };
+    platformTheme.name = "gtk";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
   };
   home = {
-    packages = with pkgs; [ libsForQt5.qt5.qtwayland kdePackages.qtwayland ];
+    # packages = with pkgs; [ libsForQt5.qt5.qtwayland kdePackages.qtwayland ];
     file = {
       ".config/qt6ct/qt6ct.conf".text = ''
         [Appearance]

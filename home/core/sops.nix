@@ -33,7 +33,7 @@ in {
           path = "${config.home.homeDirectory}/.ssh/id_ed25519";
         };
         "private-keys/age" = {
-          path = "${config.home.homeDirectory}/.cofnig/sops/age/keys.txt";
+          path = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
         };
         hotspot-password = { };
         netrc = { path = "${config.home.homeDirectory}/.netrc"; };

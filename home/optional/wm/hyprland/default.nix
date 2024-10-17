@@ -4,8 +4,8 @@
 
   imports = [
     ./env.nix
-    ./exec.nix
     ./rules.nix
+    ./exec.nix
     ./hyprland.nix
     ./hypridle.nix
     ./hyprlock.nix

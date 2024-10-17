@@ -4,8 +4,15 @@
     enableSSHSupport = true;
   };
 
-  environment.variables.GNUPGHOME = "/home/${opts.username}/.gnupg";
+  environment = {
+    variables.GNUPGHOME = "/home/${opts.username}/.gnupg";
+    systemPackages = with pkgs; [
+      seahorse
+      libsecret
+    ];
+  };
 
+  services.gnome.gnome-keyring.enable = true;
   security = {
     pam.services.login.enableGnomeKeyring = true;
     polkit = {

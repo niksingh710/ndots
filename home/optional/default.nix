@@ -5,6 +5,6 @@
 
   home.packages = with pkgs;
     let bstat = inputs.bstat.packages.${pkgs.system}.default;
-    in [ zip unzip unrar killall libnotify wget jq bstat ];
+    in [ zip unzip unrar killall libnotify wget jq duf bstat ];
   xdg.mimeApps.enable = true;
 }

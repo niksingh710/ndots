@@ -9,7 +9,7 @@ in {
       "sudo systemctl start waydroid-container;setsid waydroid show-full-ui &>/dev/null";
     waydroid-status = "sudo systemctl status waydroid-container";
     waydroid-stop =
-      "sudo waydroid container stop;sudo systemctl stop waydroid-container";
+      "sudo waydroid container stop;sleep 1;sudo systemctl stop waydroid-container";
   };
 
 }

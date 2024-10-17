@@ -2,8 +2,7 @@
 
 {
   persist.dir = [
-    ".config/telegram"
-    ".local/share/telegram"
+    ".local/share/TelegramDesktop"
     ".cache/stylix-telegram-theme"
   ];
   home = {

@@ -41,7 +41,7 @@ in {
     };
 
     environment = {
-      variables = { VDPAU_DRIVER = lib.mkDefault "va_gl"; };
+      variables.VDPAU_DRIVER = lib.mkDefault "va_gl";
       systemPackages = with pkgs;
         [
           (writeShellApplication {
@@ -72,7 +72,7 @@ in {
                     echo "Governor: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor)"
                     ;;
                   *)
-                    echo "Usage: cpu [freq|temp|usage]"
+                    echo "Usage: cpu [freq|governor|temp|usage]"
                     ;;
                 esac
               '';

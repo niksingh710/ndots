@@ -2,12 +2,9 @@
   home.packages = with pkgs; [ nautilus ];
   gtk = {
     enable = true;
-    gtk3.extraConfig.gtk-decoration-layout = "menu:";
-    theme = {
-      package = lib.mkForce pkgs.stable.adw-gtk3;
-    };
+    theme.package = lib.mkForce pkgs.stable.adw-gtk3;
     iconTheme = {
-      name = "Qogir";
+      name = "Qogir-dark";
       package = pkgs.qogir-icon-theme;
     };
   };

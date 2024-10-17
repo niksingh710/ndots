@@ -85,8 +85,8 @@ in
         # Setting up preferred keybindings
 
         set -g prefix C-a                                 # change prefix to Control-a
-        bind C-a send-prefix
 
+    bind C-a send-prefix
         # Mapping in bind are to be followed by leader key -> `C-a` <bind>
         bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded."
         bind n new-window
@@ -94,7 +94,6 @@ in
 
         bind H swap-pane -D
         bind L swap-pane -U
-
 
         bind C-e run-shell "${vim-edit-tmux-output}"    # edit tmux output in vim `ctrl-e`
 
@@ -105,6 +104,10 @@ in
         bind -T copy-mode-vi 'v' send -X begin-selection # start selecting text with "v"
         bind -T copy-mode-vi 'y' send -X copy-selection # copy text with "y"
         bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
+
+        bind -T copy-mode-vi v send -X begin-selection
+        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
+        bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
 
         bind -n c-f \
           if-shell -F '#{==:#{session_name},scratch}' \

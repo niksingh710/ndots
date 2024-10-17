@@ -7,7 +7,9 @@ in {
   };
 
   config = mkIf cfg.qemu {
-
+    persist.dir = [
+      "/var/lib/libvirt"
+    ];
     environment.systemPackages = with pkgs; [ virtiofsd ];
     programs.virt-manager.enable = true;
     services = {

@@ -19,7 +19,6 @@ let
   drives = [
     "gdrive"
     "gphotos"
-    "shared-gbu"
   ];
 
   genScript = drives: ''

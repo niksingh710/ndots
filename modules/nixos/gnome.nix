@@ -11,7 +11,6 @@ in {
 
   config = mkMerge [
     {
-      services.gnome.gnome-keyring.enable = true;
       environment.systemPackages = with pkgs; [ gnome-sound-recorder ];
     }
 

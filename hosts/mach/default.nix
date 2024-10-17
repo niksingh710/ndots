@@ -20,7 +20,7 @@ in {
     hardware.ddc = true;
     intel.governor = "ondemand";
     intel.throttled = true;
-    intel.pstate = true;
+    intel.pstate = false;
     virtualisation.waydroid = true;
     network.timezone = "Asia/Kolkata";
     fonts = {

@@ -135,6 +135,22 @@
         "type": "github"
       }
     },
+    "calendar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677764960,
+        "narHash": "sha256-I/YqDiajmKnheQ4vAA6x+sGkCaAWeIn1MEYvffEbR0Y=",
+        "owner": "itchyny",
+        "repo": "calendar.vim",
+        "rev": "66e6d0955efb6beb68912dce3ff484e8805d975c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "itchyny",
+        "repo": "calendar.vim",
+        "type": "github"
+      }
+    },
     "center-align": {
       "inputs": {
         "nixpkgs": [
@@ -897,6 +913,22 @@
         "type": "github"
       }
     },
+    "mailspring-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1573109447,
+        "narHash": "sha256-S3eO09G/f6WoT56wwjsNq6AYC+/+R4GbcR0aV7v3+KQ=",
+        "owner": "jpminor",
+        "repo": "mailspring-isaac-dark-theme",
+        "rev": "93ce214471f28c8db07e9b997a053bb72cb9b34f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jpminor",
+        "repo": "mailspring-isaac-dark-theme",
+        "type": "github"
+      }
+    },
     "md-pdf": {
       "flake": false,
       "locked": {
@@ -1229,6 +1261,7 @@
     "nvix": {
       "inputs": {
         "buffer-manager": "buffer-manager",
+        "calendar": "calendar",
         "flake-parts": "flake-parts_3",
         "md-pdf": "md-pdf",
         "minty": "minty",
@@ -1241,11 +1274,11 @@
         "windows-mc": "windows-mc"
       },
       "locked": {
-        "lastModified": 1728941424,
-        "narHash": "sha256-7DU+SLca0vvBJnnQn6OSY12vdRLmirlMNh5jiuRLdU8=",
+        "lastModified": 1729079614,
+        "narHash": "sha256-57yeaYRxPUVXSjUUFRfSWmMW5hqx+m0qPj8kyEeE1Bk=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "b01df0653a4068eb9147402061c5f324e9958f66",
+        "rev": "8f3f68d94481176085d1bdeb99c2c033f93cddb0",
         "type": "github"
       },
       "original": {
@@ -1319,6 +1352,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
+        "mailspring-theme": "mailspring-theme",
         "minimal-tmux": "minimal-tmux",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable_3",

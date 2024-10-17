@@ -19,7 +19,7 @@ let
       fi
 
 
-      audioDevice="$(pactl -f json list sinks | jq ".[] | select(.name==\"$(pactl get-default-sink)\")" | jq '.name').monitor"
+      audioDevice="$(pactl -f json list sinks | jq ".[] | select(.name==\"$(pactl get-default-sink)\")" | jq '.name' | sed -z 's/"//g').monitor"
       dir="$HOME/Videos/Screencapture"
 
       [ -d "$dir" ] || mkdir -p "$dir"

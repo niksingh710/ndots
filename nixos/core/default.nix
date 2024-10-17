@@ -7,7 +7,8 @@
     enable = true;
     binfmt = true;
   };
-
+  
+  environment.sessionVariables.EDITOR = "vim";
   environment.systemPackages = with pkgs; [
     fuse
     exfat

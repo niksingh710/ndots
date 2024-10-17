@@ -26,6 +26,12 @@
     nur.url = "github:nix-community/NUR";
     impermanence.url = "github:nix-community/impermanence";
 
+    # Mailspring Theme
+    mailspring-theme = {
+      url = "github:jpminor/mailspring-isaac-dark-theme";
+      flake = false;
+    };
+
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
@@ -100,5 +106,4 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
 }

@@ -18,11 +18,6 @@
         inherit (prev) pkgs;
         inherit lib;
       };
-
-      nvix = inputs.nvix.packages.${pkgs.system}.full.extend {
-        config.colorschemes.tokyonight.settings.transparent = true;
-      };
-
       nvix-bare = inputs.nvix.packages.${pkgs.system}.bare;
 
       custom = self.packages.${prev.system};

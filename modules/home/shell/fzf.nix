@@ -153,6 +153,7 @@ let
     "cat"
     "bat"
     "cd"
+    "rm"
     "cp"
     "mv"
     "advcp"
@@ -164,6 +165,7 @@ let
     "eza"
     "xdg-open"
     "rsync"
+    "pqiv"
 
     # below are the aliases
     "e"
@@ -218,6 +220,10 @@ in
           zstyle '*:fzf-tab:*' fzf-min-height 30
           # disable sort when completing `git checkout`
           zstyle ':completion:*:git-checkout:*' sort false
+          zstyle ':fzf-tab:complete:*:*' fzf-preview '${
+            lib.getExe fzf-preview
+          } $realpath'
+
           # set descriptions format to enable group support
           zstyle ':completion:*:descriptions' format '[%d]'
           # set list-colors to enable filename colorizing

@@ -10,4 +10,15 @@ with lib; {
       default = [ ];
     };
   };
+
+  config.persist = {
+    dir = [
+      "Downloads"
+      "Pictures"
+      "Documents"
+      "Videos"
+      "repos"
+      ".cache/zsh"
+    ];
+  };
 }

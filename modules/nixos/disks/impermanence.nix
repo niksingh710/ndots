@@ -76,21 +76,12 @@ in
         "/etc/secureboot"
         "/var/log"
         "/var/lib/nixos"
-        "/var/lib/libvirt"
-        "/var/lib/waydroid"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
-        "/etc/waydroid-extra"
-        "/etc/waydroid"
       ] ++ config.persist.dir;
       inherit (config.persist) files;
       users.${opts.username} = {
         directories = [
-          "Downloads"
-          "Pictures"
-          "Documents"
-          "Videos"
-          "repos"
           {
             directory = ".gnupg";
             mode = "0700";
@@ -107,8 +98,6 @@ in
             directory = ".local/share/keyrings";
             mode = "0700";
           }
-          ".cache/zsh"
-          ".local/share/waydroid"
         ] ++ config.hm.persist.dir;
 
         inherit (config.hm.persist) files;

@@ -1,4 +1,4 @@
-{ inputs, lib, config, opts, ... }:
+{ inputs, lib, config, ... }:
 with lib;
 let inherit (config.nmod) sops;
 in {
@@ -18,10 +18,6 @@ in {
     sops = {
       defaultSopsFile = ../../secrets/keys.yaml;
       age.keyFile = sops.keyFile;
-      secrets."private-keys/age" = {
-        owner = "${opts.username}";
-        path = "/home/${opts.username}/.config/sops/age/keys.txt";
-      };
     };
   };
 }
