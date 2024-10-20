@@ -20,7 +20,7 @@
       };
 
       plugins = with pkgs; [
-       {
+        {
           name = "vi-mode";
           src = pkgs.zsh-vi-mode;
           file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
@@ -53,41 +53,6 @@
             zvm_bindkey viins "^R" fzf-history-widget
           }
           bindkey '^ ' autosuggest-accept
-
-          # printf '\n%.0s' {1..$LINES}
-          # Transient fns in zsh
-          function zle-line-init() {
-            emulate -L zsh
-            [[ $CONTEXT == start ]] || return 0
-
-            while true; do
-              zle .recursive-edit
-
-              local -i ret=$?
-              [[ $ret == 0 && $KEYS == $'\4' ]] || break
-              [[ -o ignore_eof ]] || exit 0
-            done
-
-            local saved_prompt=$PROMPT
-            local saved_rprompt=$RPROMPT
-            # PROMPT='ﬦ '
-            PROMPT='󰘧 '
-            RPROMPT='''
-            zle .reset-prompt
-            PROMPT=$saved_prompt
-            RPROMPT=$saved_rprompt
-
-            if (( ret )); then
-              zle .send-break
-            else
-              zle .accept-line
-            fi
-            return ret
-          }
-
-          zle -N zle-line-init
-          precmd() { printf "" }
-
         '';
 
     };

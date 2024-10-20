@@ -9,6 +9,9 @@ in lib.mkMerge [
       plugin = minimal-tmux;
       extraConfig = ''
         set -g @minimal-tmux-bg "#${config.stylix.base16Scheme.base01}"
+        set -g @minimal-tmux-use-arrow true
+        set -g @minimal-tmux-right-arrow ""
+        set -g @minimal-tmux-left-arrow ""
       '';
     }];
   }

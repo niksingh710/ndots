@@ -3,14 +3,19 @@
   persist.dir = [ ".local/state/mpv" ];
   programs.mpv = {
     enable = true;
+    package = pkgs.mpv;
+    bindings = {
+      h = "seek -5";
+      l = "seek 5";
+      j = "cycle sub";
+      J = "cycle sub down";
+      k = "cycle audio";
+      K = "cycle audio down";
+      H = "seek -60";
+      L = "seek 60";
+    };
     config = {
-      hwdec = "auto-safe";
-      vo = "gpu";
-      osc = "no";
-      border = "no";
-      profile = "gpu-hq";
-      gpu-context = "wayland";
-      force-window = true;
+      save-position-on-quit = "yes";
       ytdl-format = "bestvideo+bestaudio";
     };
   };

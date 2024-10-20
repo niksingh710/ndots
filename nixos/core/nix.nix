@@ -27,7 +27,7 @@
   nix = {
     package = pkgs.lix;
     settings = {
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ opts.username ];
       auto-optimise-store = true;
       warn-dirty = false;

@@ -37,6 +37,11 @@
       "float,title:(ripdrag)"
       "pin,title:(ripdrag)"
 
+      "float,class:(java)"
+
+      "float,class:(mpv)"
+      "float,class:(xdg-desktop-portal-gtk)"
+
       "pin,class:(showmethekey-gtk)"
       "float,class:(showmethekey-gtk)"
       "noborder,class:(showmethekey-gtk)"

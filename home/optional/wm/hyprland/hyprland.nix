@@ -1,6 +1,7 @@
 { lib, config, ... }:
 let inherit (config.lib.stylix) colors;
 in {
+  # TODO: move everything to the relevent sections
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {

@@ -43,7 +43,7 @@ let
           pid=$(hyprctl activewindow -j | ${lib.getExe pkgs.jq} '.pid')
           hyprctl dispatch alterzorder top,"pid:$pid"
         fi
-      fi 
+      fi
     '';
 
     move = pkgs.writeShellScript "move" ''
@@ -390,7 +390,7 @@ in {
           $modSHIFT,o,exec,hyprctl setprop active opaque toggle
 
         ''
-        "$modSHIFT,c,centerwindow,"
+        "$modCTRL,c,centerwindow,"
 
         ",Scroll_Lock,exec,loginctl lock-session"
         ",F9,exec,loginctl lock-session"
@@ -472,8 +472,8 @@ in {
         bind = $mod,g,submap,Pass
         submap = Pass
         bind = ,,pass,^(.*)$
-        bind = ,escape,submap,reset 
-        bind = $mod,SPACE,submap,reset 
+        bind = ,escape,submap,reset
+        bind = $mod,SPACE,submap,reset
         submap = reset
 
       '';

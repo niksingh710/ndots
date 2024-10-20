@@ -69,7 +69,9 @@ in {
                     [ -f /sys/devices/system/cpu/intel_pstate/no_turbo ] && echo "Turbo Boost: $(cat /sys/devices/system/cpu/intel_pstate/no_turbo)" || echo "Turbo Boost: no Pstate"
                     ;;
                   "governor")
-                    echo "Governor: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor)"
+                    echo "Governor:"
+                    cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor | tr "\n" " | "
+                    echo ""
                     ;;
                   *)
                     echo "Usage: cpu [freq|governor|temp|usage]"

@@ -58,7 +58,7 @@ in {
   home.packages =
     [ inputs.nsearch.packages.${pkgs.system}.default nrun nshell ];
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+    experimental-features = [ "nix-command" "flakes" ];
     show-trace = true;
     system-features = [ "big-parallel" "kvm" "recursive-nix" ];
   };

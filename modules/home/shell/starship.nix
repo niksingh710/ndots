@@ -162,7 +162,7 @@
       symbol = ""
       format = "[$symbol ($output)]($style) "
       style = "bright-blue"
-      disabled = true # disable because of rclone mount 
+      disabled = true # disable because of rclone mount
 
       [custom.file_number]
       command = "find . -maxdepth 1 ''\( -type f -o -type l ''\) -not -name '.DS_Store' | wc -l"

@@ -2,9 +2,9 @@
   persist.dir = [
     "/var/lib/bluetooth"
   ];
-  environment.systemPackages = with pkgs; [ bluez ];
   hardware.bluetooth = {
     enable = true;
+    package = pkgs.stable.bluez;
     powerOnBoot = true;
   };
 

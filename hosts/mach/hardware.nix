@@ -1,6 +1,8 @@
 { modulesPath, lib, config, opts, ... }: {
 
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
+
   boot = {
     kernelParams = [
       "amdgpu.runpm=0"

@@ -1,7 +1,8 @@
-{ self, ... }:
+{ self, pkgs, opts, ... }:
 let stateVersion = "23.11";
 in {
   hm = {
+    home.shellAliases.cdh = "cd /run/media/${opts.username}/hdd";
     hmod = {
       # TODO: put control for all type virtualisation (will make vm setup easy)
       sops.enable = true;
@@ -16,11 +17,9 @@ in {
 
   # core.sops = false;
   nmod = {
-    gnome.online = true;
     hardware.ddc = true;
     intel.governor = "ondemand";
     intel.throttled = true;
-    intel.pstate = false;
     virtualisation.waydroid = true;
     network.timezone = "Asia/Kolkata";
     fonts = {
@@ -37,8 +36,12 @@ in {
     };
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
   imports = [
     ./hardware.nix
+    ./amdgpu.nix
+    ./games.nix
 
     # custom modules (TODO: Move them into a separate repository) [give a thought if it is a gread idea or not]
     self.nixosModules.disks
