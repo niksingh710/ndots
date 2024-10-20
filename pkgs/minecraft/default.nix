@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation rec {
   # Set default JVM options in the derivation itself
   jvmOptions = [
     "-Xms2G" # Set minimum heap size to 2GB
-    "-Xmx4G" # Set maximum heap size to 4GB
+    "-Xmx16G" # Set maximum heap size to 4GB
     "-XX:+UseG1GC" # Use the G1 garbage collector
   ];
 
