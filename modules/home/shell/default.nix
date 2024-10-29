@@ -4,6 +4,7 @@ with lib; {
     map (fn: ./${fn})
       (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
 
+  persist.dir = [ ".cache/nix-index" ];
   programs = {
     nix-index.enable = mkDefault true;
     btop = {

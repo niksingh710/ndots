@@ -21,7 +21,19 @@
       format = "{icon}";
       format-charging = "<b>{icon} </b>";
       format-full = "<span color='#82A55F'><b>{icon}</b></span>";
-      format-icons = [ "󰁻" "󰁼" "󰁾" "󰂀" "󰂂" "󰁹" ];
+      format-icons = [
+        "󰁻"
+        "󰁻"
+        "󰁼"
+        "󰁼"
+        "󰁾"
+        "󰁾"
+        "󰂀"
+        "󰂀"
+        "󰂂"
+        "󰂂"
+        "󰁹"
+      ];
       tooltip-format = "{timeTo} {capacity} % | {power} W";
     };
     power-profiles-daemon = {

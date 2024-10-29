@@ -1,9 +1,10 @@
 { pkgs, lib, ... }:
 
 let
-  java = pkgs.openjdk17.override {
-    enableJavaFX = true;
-  };
+  # java = pkgs.openjdk21.override {
+  #   enableJavaFX = true;
+  # };
+  java = pkgs.jetbrains.jdk;
 in
 pkgs.stdenv.mkDerivation rec {
   pname = "nminecraft";
@@ -21,7 +22,6 @@ pkgs.stdenv.mkDerivation rec {
   jvmOptions = [
     "-Xms2G" # Set minimum heap size to 2GB
     "-Xmx16G" # Set maximum heap size to 4GB
-    "-XX:+UseG1GC" # Use the G1 garbage collector
   ];
 
   installPhase = ''
@@ -52,5 +52,6 @@ pkgs.stdenv.mkDerivation rec {
     homepage = "https://skmedix.pl/";
     license = licenses.unfree; # Since it's a proprietary binary
     maintainers = [ maintainers.niksingh710 ];
+    mainProgram = "nminecraft";
   };
 }

@@ -15,6 +15,7 @@
       set statusbar-v-padding 0
       set page-padding 1
       set database "sqlite"
+      set guioptions ""
 
       map u scroll half-up
       map d scroll half-down
