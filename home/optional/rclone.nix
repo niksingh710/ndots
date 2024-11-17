@@ -1,8 +1,8 @@
 { pkgs, lib, config, ... }: with lib;
 let
   cfg = config.hmod;
-
-  rcloneConfig = "${config.home.homeDirectory}/.config/rclone/rclone.conf";
+  rcloneConfigPath = "${config.home.homeDirectory}/.config/rclone";
+  rcloneConfig = "${rcloneConfigPath}/rclone.conf";
 
   argsList = [
     "--daemon"
@@ -38,7 +38,11 @@ in
   options.hmod.rclone.enable = mkEnableOption "rclone";
   config =
     mkIf (cfg.rclone.enable && cfg.sops.enable) {
-      home.packages = [ pkgs.rclone rmount rumount ];
+      home = {
+        packages = [ pkgs.rclone rmount rumount ];
+        shellAliases.rmount-locked = "RCLONE_CONFIG=/home/$(whoami)/.config/rclone/rclone-locked.conf ${getExe pkgs.rclone} mount ${builtins.concatStringsSep " " argsList}";
+      };
       sops.secrets."rclone/conf".path = "${rcloneConfig}";
+      sops.secrets."rclone/locked-conf".path = "${rcloneConfigPath}/rclone-locked.conf";
     };
 }

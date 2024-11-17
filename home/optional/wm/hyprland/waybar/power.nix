@@ -9,7 +9,7 @@
         transition-duration = 500;
         transition-left-to-right = false;
       };
-      modules = [ "battery" "power-profiles-daemon" ];
+      modules = [ "battery" ];
     };
     battery = {
       rotate = 270;
@@ -35,19 +35,6 @@
         "󰁹"
       ];
       tooltip-format = "{timeTo} {capacity} % | {power} W";
-    };
-    power-profiles-daemon = {
-      format = "{icon}";
-      tooltip-format = ''
-        Power profile= {profile}
-        Driver= {driver}'';
-      tooltip = true;
-      format-icons = {
-        default = "";
-        performance = "<span color='#B37F34'><small></small></span>";
-        balanced = "<span><small> </small></span>";
-        power-saver = "<span color='#a6e3a1'><small></small></span>";
-      };
     };
   };
 }

@@ -1,4 +1,4 @@
-{ lib, opts, config, ... }:
+{ lib, opts, config, pkgs, ... }:
 with lib;
 let cfg = config.nmod.network;
 in {
@@ -20,6 +20,7 @@ in {
 
   config = mkMerge [
     {
+      environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
       time.timeZone = mkDefault cfg.timezone;
       i18n.defaultLocale = mkDefault cfg.locale;
       networking = {

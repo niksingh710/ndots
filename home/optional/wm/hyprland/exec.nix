@@ -14,6 +14,8 @@
       "[workspace special:comms silent] sleep 6s && fractal"
       "[workspace special:comms silent] sleep 6s && vesktop"
 
+      "${lib.getExe pkgs.batsignal}"
+
       "${
         lib.getExe' pkgs.wl-clipboard "wl-paste"
       } --type text --watch cliphist store"

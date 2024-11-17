@@ -3,7 +3,7 @@ let
   recorder = pkgs.writeShellApplication {
     name = "recorder";
     bashOptions = [ "pipefail" ];
-    runtimeInputs = with pkgs; [ wl-screenrec slurp libnotify pulseaudio ];
+    runtimeInputs = with pkgs; [ stable.wl-screenrec slurp libnotify pulseaudio ];
     text = ''
 
       notify() {

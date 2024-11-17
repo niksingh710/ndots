@@ -5,33 +5,36 @@ let
     name = "hotspot";
     runtimeInputs = [ pkgs.linux-wifi-hotspot ];
     bashOptions = [ "pipefail" ];
-    text = let
-      hpass = optionalString config.hmod.sops.enable
-        "${config.sops.secrets.hotspot-password.path}";
-    in ''
-      rcount="$(pkexec --user root create_ap --list-running | wc -l)"
+    text =
+      let
+        hpass = optionalString config.hmod.sops.enable
+          "${config.sops.secrets.hotspot-password.path}";
+      in
+      ''
+        rcount="$(pkexec --user root create_ap --list-running | wc -l)"
 
-      send() {
-        echo "$@"
-        notify-send "$@"
-      }
-      pass="password"
-      if [ -f "${hpass}" ]; then
-        pass="$(cat ${hpass})"
-      fi
+        send() {
+          echo "$@"
+          notify-send "$@"
+        }
+        pass="password"
+        if [ -f "${hpass}" ]; then
+          pass="$(cat ${hpass})"
+        fi
 
-      if [ "$rcount" -eq 0 ]; then
-        send "No running access points found." "Going to Create one."
-        pkexec --user root create_ap wlp0s20f3 enp2s0 '|:-:|' "$pass" --hidden --daemon
-      else
-        id="$(pkexec --user root create_ap --list-running | cut -d ' ' -f1)"
-        send "$rcount: Running access point found." "Going to Stop id: $id"
-        pkexec --user root create_ap --stop "$(pkexec --user root create_ap --list-running | cut -d ' ' -f1)"
-      fi
-      pkill -RTMIN+3 waybar
-    '';
+        if [ "$rcount" -eq 0 ]; then
+          send "No running access points found." "Going to Create one."
+          pkexec --user root create_ap wlp0s20f3 enp2s0 '|:-:|' "$pass" --hidden --daemon
+        else
+          id="$(pkexec --user root create_ap --list-running | cut -d ' ' -f1)"
+          send "$rcount: Running access point found." "Going to Stop id: $id"
+          pkexec --user root create_ap --stop "$(pkexec --user root create_ap --list-running | cut -d ' ' -f1)"
+        fi
+        pkill -RTMIN+3 waybar
+      '';
   };
-in {
+in
+{
   options.wbar.hotspot = mkEnableOption "hotspot";
   config = {
     home.packages = if config.wbar.hotspot then [ hotspot ] else [ ];
@@ -41,6 +44,7 @@ in {
         orientation = "inherit";
         modules = [
           (optionalString config.wbar.hotspot "custom/hotspot")
+          "custom/vpn"
           "group/network"
           "group/bluetooth"
         ];
@@ -52,6 +56,21 @@ in {
           transition-left-to-right = true;
         };
         modules = [ "network" "network#speed" ];
+      };
+      "custom/vpn" = {
+        signal = 5;
+        return-type = "json";
+        format = "{} ";
+        interval = 5;
+        exec = pkgs.writeShellScript "vpn-check" ''
+          if [ -d /proc/sys/net/ipv4/conf/tun0 ]; then
+            gip_data=$(${lib.getExe pkgs.curl} http://ipinfo.io)
+            tooltip=$(echo "$gip_data" | ${lib.getExe pkgs.jq} -r '"IP: " + .ip + "\\n" + .city + ", " + .region + ", " + .country')
+          cat <<EOF
+  { "class": "connected", "text": "<span><small> 󰩠</small></span>", "tooltip": "<b>Vpn is connected</b>\n$tooltip" }
+EOF
+          fi
+       '';
       };
       "custom/hotspot" = {
         format = "{} ";
@@ -97,10 +116,10 @@ in {
         interval = 5;
         tooltip-format = "{ipaddr}";
         tooltip-format-wifi = ''
-          {essid} ({signalStrength}%)   
+          {essid} ({signalStrength}%) 
           {ipaddr} | {frequency} MHz{icon} '';
         tooltip-format-ethernet = ''
-          {ifname} 󰈀 
+          {ifname} 󰈀
           {ipaddr} | {frequency} MHz{icon} '';
         tooltip-format-disconnected = "Not Connected to any type of Network";
         tooltip = true;

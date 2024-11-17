@@ -1,7 +1,8 @@
 { lib, config, ... }:
 let inherit (config.lib.stylix) colors;
 in {
-  # TODO: move everything to the relevent sections
+  # TODO: move everything to the relevant sections
+  stylix.targets.hyprland.enable = false; # TODO: till i get latest hyprland with shadow fix
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
@@ -61,6 +62,7 @@ in {
 
       general = {
         "col.inactive_border" = lib.mkForce "0x00${colors.base06}";
+        "col.active_border" = "0xff${colors.base0D}";
         gaps_in = 2;
         gaps_out = 4;
         border_size = 2;
@@ -71,7 +73,6 @@ in {
       };
 
       decoration = {
-
         rounding = 10;
         active_opacity = 0.9;
         inactive_opacity = 0.8;

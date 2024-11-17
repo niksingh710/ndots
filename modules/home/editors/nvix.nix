@@ -36,7 +36,7 @@ in
   config = mkIf cfg.enable {
     persist.dir = [ ".local/share/nvim" ".local/state/nvim" ".config/github-copilot" ".cache/nvim" ".cache/calendar.vim" ];
     programs.neovide = {
-      enable = true;
+      enable = false; # TODO: enable when the cctools bug is fixed https://github.com/NixOS/nixpkgs/pull/356292
       settings = {
         font = {
           normal = fontName;

@@ -7,7 +7,6 @@
   environment = {
     variables.GNUPGHOME = "/home/${opts.username}/.gnupg";
     systemPackages = with pkgs; [
-      seahorse
       libsecret
     ];
   };
