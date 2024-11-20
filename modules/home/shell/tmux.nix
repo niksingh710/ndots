@@ -7,7 +7,7 @@ let
       editor="vim"
 
       file=$(mktemp).txt
-      tmux capture-pane -pS -32768 >$file
+      tmux capture-pane -pS -32768 >"$file"
       tmux new-window -n:mywindow "$editor '+ normal G $' $file"
     '';
 
@@ -59,7 +59,8 @@ let
       set -g default-terminal "''${TERM}"
       set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
       set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
+      set -s extended-keys on
+      set -as terminal-features 'xterm*:extkeys'
     '';
 
 in
@@ -79,61 +80,61 @@ in
 
     extraConfig = # tmux
       ''
-        ${options}
-        ${unbind}
+            ${options}
+            ${unbind}
 
-        # Setting up preferred keybindings
+            # Setting up preferred keybindings
 
-        set -g prefix C-a                                 # change prefix to Control-a
+            set -g prefix C-a                                 # change prefix to Control-a
 
-    bind C-a send-prefix
-        # Mapping in bind are to be followed by leader key -> `C-a` <bind>
-        bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded."
-        bind n new-window
-        bind N new-session
+        bind C-a send-prefix
+            # Mapping in bind are to be followed by leader key -> `C-a` <bind>
+            bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded."
+            bind n new-window
+            bind N new-session
 
-        bind H swap-pane -D
-        bind L swap-pane -U
+            bind H swap-pane -D
+            bind L swap-pane -U
 
-        bind C-e run-shell "${vim-edit-tmux-output}"    # edit tmux output in vim `ctrl-e`
+            bind C-e run-shell "${vim-edit-tmux-output}"    # edit tmux output in vim `ctrl-e`
 
-        # window remap `-r` allows to repeat the keybinding
-        bind -r C-h previous-window
-        bind -r C-l next-window
+            # window remap `-r` allows to repeat the keybinding
+            bind -r C-h previous-window
+            bind -r C-l next-window
 
-        bind -T copy-mode-vi 'v' send -X begin-selection # start selecting text with "v"
-        bind -T copy-mode-vi 'y' send -X copy-selection # copy text with "y"
-        bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
+            bind -T copy-mode-vi 'v' send -X begin-selection # start selecting text with "v"
+            bind -T copy-mode-vi 'y' send -X copy-selection # copy text with "y"
+            bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
 
-        bind -T copy-mode-vi v send -X begin-selection
-        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
-        bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+            bind -T copy-mode-vi v send -X begin-selection
+            bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
+            bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
 
-        bind -n c-f \
-          if-shell -F '#{==:#{session_name},scratch}' \
-          { detach-client } { display-popup -h 80% -w 90% -E \
-          "tmux new-session -A -s scratch"}
+            bind -n c-f \
+              if-shell -F '#{==:#{session_name},scratch}' \
+              { detach-client } { display-popup -h 80% -w 90% -E \
+              "tmux new-session -A -s scratch"}
 
 
-        bind b set-option  status
+            bind b set-option  status
 
-        bind v split-window -h -c "#{pane_current_path}"
-        bind s split-window -v -c "#{pane_current_path}"
+            bind v split-window -h -c "#{pane_current_path}"
+            bind s split-window -v -c "#{pane_current_path}"
 
-        bind S choose-session
+            bind S choose-session
 
-        bind -r j resize-pane -D
-        bind -r k resize-pane -U
-        bind -r l resize-pane -R
-        bind -r h resize-pane -L
-        bind -r m resize-pane -Z
-        bind x kill-pane                                 # kill pane without confirmation
-        bind q kill-window                               # kill window
-        bind Q kill-session                              # kill session
+            bind -r j resize-pane -D
+            bind -r k resize-pane -U
+            bind -r l resize-pane -R
+            bind -r h resize-pane -L
+            bind -r m resize-pane -Z
+            bind x kill-pane
+            bind q kill-window
+            bind Q kill-session
 
-        bind V copy-mode
+            bind V copy-mode
 
-        set -g @urlview-key 'u'
+            set -g @urlview-key 'u'
       '';
 
   };

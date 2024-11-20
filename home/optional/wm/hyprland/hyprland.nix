@@ -45,6 +45,7 @@ in {
       };
 
       group = {
+        group_on_movetoworkspace = true;
         groupbar = {
 
           gradients = false;

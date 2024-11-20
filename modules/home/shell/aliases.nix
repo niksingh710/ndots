@@ -94,6 +94,9 @@
             attrs;
 
         packages = {
+          "0x0" = ''
+              ${lib.getExe pkgs.curl} -F "file=@$1" https://0x0.st
+              '';
           help = # bash
             ''
               "$@" --help 2>&1 | ${lib.getExe pkgs.bat} --plain --language=help

@@ -1,5 +1,5 @@
 {
-  flake = {
-    templates.dsa = import ./dsa;
+  flake.templates = {
+    dsa.path = ./dsa;
   };
 }

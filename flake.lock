@@ -1473,11 +1473,11 @@
         "windows-mc": "windows-mc"
       },
       "locked": {
-        "lastModified": 1731846483,
-        "narHash": "sha256-rlk0eHVuqXjoz2eMMNZnwMevAGOt7JKjWcZ/DjfJkBg=",
+        "lastModified": 1732094753,
+        "narHash": "sha256-P/UD/gT6JaWiMl+2otU2eil2B5vzrqZfw+ugXpPuYOw=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "3852de6103742b007b99cec0a0ecbde84b03e916",
+        "rev": "dd4cb33c8f657e7110fbab4ad4129530b093fd40",
         "type": "github"
       },
       "original": {
