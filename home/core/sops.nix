@@ -36,7 +36,6 @@ in {
           path = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
         };
         hotspot-password = { };
-        netrc = { path = "${config.home.homeDirectory}/.netrc"; };
         calendar-nvim = {
           path =
             "${config.home.homeDirectory}/.config/calendar.vim/credentials.vim";

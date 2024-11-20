@@ -2,7 +2,7 @@
 let inherit (config.lib.stylix) colors;
 in {
   # TODO: move everything to the relevant sections
-  stylix.targets.hyprland.enable = false; # TODO: till i get latest hyprland with shadow fix
+  # stylix.targets.hyprland.enable = false; # TODO: till i get latest hyprland with shadow fix
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
@@ -23,7 +23,6 @@ in {
       dwindle = {
         pseudotile = true;
         preserve_split = true;
-        no_gaps_when_only = false;
         use_active_for_splits = true;
       };
 
@@ -62,7 +61,6 @@ in {
 
       general = {
         "col.inactive_border" = lib.mkForce "0x00${colors.base06}";
-        "col.active_border" = "0xff${colors.base0D}";
         gaps_in = 2;
         gaps_out = 4;
         border_size = 2;
@@ -86,12 +84,15 @@ in {
           popups = true;
         };
 
-        drop_shadow = true;
-        shadow_range = 10;
-        shadow_render_power = 1;
-        shadow_scale = 6;
-        shadow_offset = "2 6";
-        shadow_ignore_window = true;
+        shadow = {
+          range = 10;
+          render_power = 1;
+          scale = 6;
+          offset = "2 6";
+          ignore_window = true;
+        };
+
+        # drop_shadow = true;
       };
 
       animations = {
