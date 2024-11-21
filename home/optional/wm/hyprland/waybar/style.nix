@@ -1,10 +1,10 @@
-{ config, ... }:
+{ config, opts, ... }:
 let
   colors = ''
     @define-color background #${config.stylix.base16Scheme.base00};
     @define-color foreground #${config.stylix.base16Scheme.base0F};
     @define-color cursor #${config.stylix.base16Scheme.base00};
-     
+
     @define-color color0 #${config.stylix.base16Scheme.base00};
     @define-color color1 #${config.stylix.base16Scheme.base01};
     @define-color color2 #${config.stylix.base16Scheme.base02};
@@ -25,6 +25,8 @@ let
     @define-color inactive #${config.stylix.base16Scheme.base03};
 
   '';
+
+  alphaValue = if opts.transparency then 0.7 else 1.0;
 in
 {
   programs.waybar.style = # css
@@ -40,8 +42,7 @@ in
         transition-duration: 0.5s;
         border-radius: 8px;
         border: 2px solid @active;
-        background: @background;
-        background: alpha(@background, 0.7);
+        background: alpha(@background, ${builtins.toString alphaValue});
         color: lighter(@active);
       }
 

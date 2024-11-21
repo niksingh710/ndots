@@ -74,7 +74,7 @@ in {
     {
       disabledModules = [
         # Ignoring stylix home-manager module coz it comes from nixos
-        "${self}/home/core/stylix.nix"
+        "${self}/home/core/stylix"
       ];
     }
   ];
