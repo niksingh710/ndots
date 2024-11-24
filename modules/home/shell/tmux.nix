@@ -30,6 +30,7 @@ let
     ''
       set -g default-command "''${SHELL}"
 
+      set-option -g escape-time 1 # 1ms listen gap between prefix and extra key (i hate long wait)
       # Default config that will be appended to the end of the generated tmux.conf
       set -g set-clipboard on
       set-option -g automatic-rename on

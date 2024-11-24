@@ -15,6 +15,6 @@ in {
   ];
 
   home.packages = with pkgs;
-    [ fractal whatsapp-for-linux onlyoffice-bin_latest deluge ]
+    [ fractal whatsapp-for-linux onlyoffice-bin_latest deluge nitch ]
     ++ [ center-align ];
 }

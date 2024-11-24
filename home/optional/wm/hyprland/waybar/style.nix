@@ -1,28 +1,28 @@
 { config, opts, ... }:
 let
   colors = ''
-    @define-color background #${config.stylix.base16Scheme.base00};
-    @define-color foreground #${config.stylix.base16Scheme.base0F};
-    @define-color cursor #${config.stylix.base16Scheme.base00};
+    @define-color background #${config.lib.stylix.colors.base00};
+    @define-color foreground #${config.lib.stylix.colors.base0F};
+    @define-color cursor #${config.lib.stylix.colors.base00};
 
-    @define-color color0 #${config.stylix.base16Scheme.base00};
-    @define-color color1 #${config.stylix.base16Scheme.base01};
-    @define-color color2 #${config.stylix.base16Scheme.base02};
-    @define-color color3 #${config.stylix.base16Scheme.base03};
-    @define-color color4 #${config.stylix.base16Scheme.base04};
-    @define-color color5 #${config.stylix.base16Scheme.base05};
-    @define-color color6 #${config.stylix.base16Scheme.base06};
-    @define-color color7 #${config.stylix.base16Scheme.base07};
-    @define-color color8 #${config.stylix.base16Scheme.base08};
-    @define-color color9 #${config.stylix.base16Scheme.base09};
-    @define-color color10 #${config.stylix.base16Scheme.base0A};
-    @define-color color11 #${config.stylix.base16Scheme.base0B};
-    @define-color color12 #${config.stylix.base16Scheme.base0C};
-    @define-color color13 #${config.stylix.base16Scheme.base0D};
-    @define-color color14 #${config.stylix.base16Scheme.base0E};
-    @define-color color15 #${config.stylix.base16Scheme.base0F};
-    @define-color active #${config.stylix.base16Scheme.base0D};
-    @define-color inactive #${config.stylix.base16Scheme.base03};
+    @define-color color0 #${config.lib.stylix.colors.base00};
+    @define-color color1 #${config.lib.stylix.colors.base01};
+    @define-color color2 #${config.lib.stylix.colors.base02};
+    @define-color color3 #${config.lib.stylix.colors.base03};
+    @define-color color4 #${config.lib.stylix.colors.base04};
+    @define-color color5 #${config.lib.stylix.colors.base05};
+    @define-color color6 #${config.lib.stylix.colors.base06};
+    @define-color color7 #${config.lib.stylix.colors.base07};
+    @define-color color8 #${config.lib.stylix.colors.base08};
+    @define-color color9 #${config.lib.stylix.colors.base09};
+    @define-color color10 #${config.lib.stylix.colors.base0A};
+    @define-color color11 #${config.lib.stylix.colors.base0B};
+    @define-color color12 #${config.lib.stylix.colors.base0C};
+    @define-color color13 #${config.lib.stylix.colors.base0D};
+    @define-color color14 #${config.lib.stylix.colors.base0E};
+    @define-color color15 #${config.lib.stylix.colors.base0F};
+    @define-color active #${config.lib.stylix.colors.base0D};
+    @define-color inactive #${config.lib.stylix.colors.base03};
 
   '';
 

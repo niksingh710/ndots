@@ -6,7 +6,20 @@ let
   nvix = inputs.nvix.packages.${pkgs.system}.full.extend {
     config = {
       calendar = true;
-      colorschemes.tokyonight.settings.transparent = true;
+      colorschemes =
+        {
+          gruvbox = {
+            enable = true;
+            settings = {
+              transparent_mode = true;
+              contrast = "hard";
+            };
+          };
+          tokyonight = {
+            enable = mkForce false;
+            settings.transparent = true;
+          };
+        };
       extraConfigLua = # lua
         ''
           if vim.g.neovide then

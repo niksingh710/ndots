@@ -16,7 +16,7 @@ with lib; {
             "The main username to be used throughout the configuration";
         };
 
-        transparency = mkEnableOption "transparency" // { default = true; };
+        transparency = mkEnableOption "transparency" // { default = false; };
 
         password = mkOption {
           type = types.str;

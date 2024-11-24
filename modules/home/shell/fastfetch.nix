@@ -84,7 +84,7 @@
           },
           {
             "type": "host",
-            "key": " PC",
+            "key": "󰌢 PC",
             "keyColor": "green"
           },
           {

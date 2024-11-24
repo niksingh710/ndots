@@ -33,7 +33,7 @@ with config.lib.stylix.colors; {
         	--text-1: #${base0B}; /* other normally white text */
         	--text-2: #${base0C}; /* headings and important text */
         	--text-3: #${base0D}; /* normal text */
-        	--text-4: #${base0E}; /* icon buttons and channels */
+        	--text-4: #${base0B}; /* icon buttons and channels */
         	--text-5: #${base0F}; /* muted channels/chats and timestamps */
 
         	--bg-1: #${base00}; /* dark buttons when clicked */

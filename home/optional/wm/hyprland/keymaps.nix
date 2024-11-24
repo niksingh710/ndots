@@ -1,6 +1,18 @@
 { pkgs, lib, inputs, config, ... }:
 let
   scripts = {
+
+    fast = pkgs.writeShellScript "fast" ''
+      state=$(hyprctl getoption animations:enabled -j | ${lib.getExe pkgs.jq} .int)
+
+      if [ "$state" -eq 0 ]; then
+        hyprctl reload
+      else
+        hyprctl keyword animations:enabled 0
+        hyprctl keyword decoration:rounding 0
+      fi
+    '';
+
     img-annotate = pkgs.writeShellScript "img-annotate" ''
       ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${
         lib.getExe pkgs.swappy
@@ -51,7 +63,7 @@ let
       _curr_win_state=$(hyprctl activewindow -j | ${
         lib.getExe pkgs.jq
       } -r '.floating')
-      val=15
+      val=50
 
       getVal() {
         case "$1" in
@@ -318,7 +330,8 @@ let
   ];
 
   contrib = inputs.hyprland-contrib.packages.${pkgs.system};
-in {
+in
+{
   home.packages = (with contrib; [ grimblast scratchpad ])
     ++ (with applications; [ volume brightness ]);
 
@@ -428,6 +441,8 @@ in {
         "$modSHIFT,l,exec,${scripts.move} r"
         "$modSHIFT,j,exec,${scripts.move} d"
         "$modSHIFT,k,exec,${scripts.move} u"
+
+        "$modSHIFT,q,exec,${scripts.fast}"
 
         "bind = SUPER, c, togglespecialworkspace, comms"
         "bind = SUPERSHIFT, C, movetoworkspace, special:comms"
