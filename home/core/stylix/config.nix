@@ -20,7 +20,7 @@
     serif = config.stylix.fonts.monospace;
     sansSerif = config.stylix.fonts.monospace;
     monospace = {
-      package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+      package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font";
     };
   };
