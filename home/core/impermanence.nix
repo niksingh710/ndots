@@ -18,6 +18,7 @@ with lib; {
       "Documents"
       "Videos"
       "repos"
+      "work"
       ".cache/zsh"
     ];
   };

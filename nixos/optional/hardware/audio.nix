@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  hm.persist.dir = [ ".local/state/wireplumber" ];
+  hm.persist.dir = [ ".local/state/wireplumber" ".config/pulse" ];
   services.pipewire = {
     enable = true;
     audio.enable = true;
