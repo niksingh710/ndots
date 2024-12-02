@@ -45,13 +45,21 @@ nix build .#nixosConfigurations.iso.config.system.build.isoImage
 
 # Instructions to Install
 ```bash
-# (This will partition the disk and mount it) 
+# (This will partition the disk and mount it)
 # [For encryption use enc-disko, that will prompt for password during partitioning]
 # (use nixos-generate-config to generate the hardware-configuration)
 
 disko --mode disko ./disko/disko.nix
 
 nixos-install --no-root-passwd --root /mnt --flake github:niksingh710/ndots#<hostname>
+```
+
+## Instructions for the templates
+
+> **Note:** `android` template is ready for custom rom building. Tested on LineageOs
+
+```
+nix flake init -t github:niksingh710/ndots#<template>
 ```
 
 <img width="2000" height="0">
