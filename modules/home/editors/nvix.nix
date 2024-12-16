@@ -8,17 +8,29 @@ let
       calendar = true;
       colorschemes =
         {
-          gruvbox = {
-            enable = true;
-            settings = {
-              transparent_mode = true;
-              contrast = "hard";
+          tokyonight.enable = mkForce false;
+          nord.enable = true;
+          base16 = {
+            enable = false; # for any color scheme that is not base16
+
+            colorscheme = {
+              inherit (config.lib.stylix.colors.withHashtag)
+                base00 base01 base02 base03 base04 base05 base06 base07
+                base08 base09 base0A base0B base0C base0D base0E base0F;
             };
           };
-          tokyonight = {
-            enable = mkForce false;
-            settings.transparent = true;
+        };
+      highlight =
+        let
+          transparent = {
+            bg = "none";
+            ctermbg = "none";
           };
+        in
+        {
+          Normal = transparent;
+          NonText = transparent;
+          SignColumn = transparent;
         };
       extraConfigLua = # lua
         ''
