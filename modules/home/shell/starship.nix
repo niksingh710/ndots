@@ -88,9 +88,9 @@
       ahead = '\[[ ](bright-blue)[$count](bright-white bold)\]'
       behind = '\[[ ](white)[$count](bright-white bold)\]'
       diverged = '\[[ ](purple)|[ 󱡷 ](bright-blue)[$ahead_count](bright-white bold)[ 󱡷 ](white)[$behind_count](bright-white)\]'
-      untracked = '\[◌ [$count](bright-white bold)\]'
+      untracked = '\[ [$count](bright-white bold)\]'
       stashed = '\[[󰃖 ](yellow) [$count](bright-white bold)\]'
-      modified = '\[[ ](bright-yellow)[$count](bright-white bold)\]'
+      modified = '\[[ ](bright-yellow)[$count](bright-white bold)\]'
       staged = '\[[✓ ](bright-green)[$count](bright-white bold)\]'
       renamed = '\[[ ](bright-cyan) [$count](bright-white bold)\]'
       deleted = '\[ [$count](bright-white bold)\]'
@@ -149,8 +149,8 @@
       format = '\([$output]($style)\) '
       # TODO: fix heuristic
       [nix_shell]
-      impure_msg = '[❄️impure shell](bold red)'
-      pure_msg = '[❄️pure shell](bold green)'
+      impure_msg = '[❄️ impure shell](bold red)'
+      pure_msg = '[❄️ pure shell](bold green)'
       unknown_msg = '[](bold yellow)'
       format = '[$state( \($name\))](bold blue) '
       heuristic = true
