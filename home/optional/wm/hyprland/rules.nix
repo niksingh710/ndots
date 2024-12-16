@@ -33,9 +33,11 @@
 
       "workspace special:comms, class:(Signal)"
       "workspace special:comms, class:(vesktop)"
+      "workspace special:comms, class:(so.libdb.dissent)"
       "workspace special:comms, class:(org.gnome.Fractal)"
       "workspace special:comms, class:(telegram-desktop)"
       "group set, class:(vesktop)"
+      "group set, class:(so.libdb.dissent)"
       "group set, class:(org.telegram.desktop)"
       "group set, class:(org.gnome.Fractal)"
       "group set, class:(geary)"

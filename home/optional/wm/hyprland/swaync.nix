@@ -95,7 +95,7 @@
           background-color: alpha(@color1, 0.25);
           box-shadow: none;
           margin: 0px;
-          border: 2px solid @color15;
+          border: 2px solid @color06;
           color: @foreground;
         }
 

@@ -12,7 +12,7 @@
       "truncate -s 0 ~/.local/share/applications/waydroid.*.desktop"
       "[workspace special:comms silent] sleep 2s && telegram-desktop"
       "[workspace special:comms silent] sleep 6s && fractal"
-      "[workspace special:comms silent] sleep 6s && vesktop"
+      "[workspace special:comms silent] sleep 6s && dissent"
 
       "${lib.getExe pkgs.batsignal}"
 

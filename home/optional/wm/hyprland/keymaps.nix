@@ -165,18 +165,13 @@ let
       	notify "Entered Submap"
       }
     '';
-    lib-down = pkgs.writeShellScript "lid-down" ''
+    lid-down = pkgs.writeShellScript "lid-down" ''
       mon_count=$(hyprctl monitors -j | ${lib.getExe pkgs.jq} '. | length')
 
-      if [ "$mon_count" -eq 1 ]; then
-        state=$(awk '{print $2}' </proc/acpi/button/lid/LID*/state)
-        sleep 3
-        [ "$state" = "open" ] || {
-          systemctl suspend
-        }
-      else
-        sleep 1
+      if [ "$mon_count" -gt 1 ]; then
         hyprctl keyword monitor "eDP-1, disable"
+      else
+        loginctl lock-session
       fi
     '';
   };
@@ -425,8 +420,7 @@ in
       ];
       bindm = [ "$mod,mouse:272,movewindow" "$mod,mouse:273,resizewindow 2" ];
       bindl = [
-        ", switch:off:Lid Switch, exec, hyprctl reload"
-        ", switch:on:Lid Switch, exec,${scripts.lib-down}"
+        ", switch:on:Lid Switch, exec,${scripts.lid-down}"
       ];
       binde = [
 
