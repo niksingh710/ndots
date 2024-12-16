@@ -5,7 +5,7 @@
 
   home.packages = with pkgs;
     let bstat = inputs.bstat.packages.${pkgs.system}.default;
-    in [ zip unzip unrar killall libnotify wget jq duf poppler_utils pdftk bstat ];
+    in [ figlet zip unzip unrar killall libnotify wget jq duf poppler_utils pdftk bstat ];
 
   xdg.mimeApps.enable = true;
 }

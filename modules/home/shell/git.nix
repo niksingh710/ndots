@@ -1,7 +1,10 @@
 { opts, ... }: {
   persist.dir = [ ".local/state/lazygit" ];
   programs = {
-    lazygit.enable = true;
+    lazygit = {
+      enable = true;
+      settings.gui.nerdFontsVersion = "3";
+    };
     gh = {
       enable = true;
       settings.editor = "vim";

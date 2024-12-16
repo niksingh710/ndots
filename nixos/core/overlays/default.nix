@@ -11,6 +11,17 @@
       # TODO: revert to unstable when it's fixed
       cliphist = next.stable.cliphist;
 
+      figlet = prev.figlet.overrideAttrs (oa: rec {
+        contributed = pkgs.fetchFromGitHub {
+          owner = "xero";
+          repo = "figlet-fonts";
+          rev = "a6d2db1a3ee88bec3518214e851825fc4495ac84";
+          hash = "sha256-dAs7N66D2Fpy4/UB5Za1r2qb1iSAJR6TMmau1asxgtY";
+        };
+        postInstall = "cp -ar ${contributed}/* $out/share/figlet/";
+        meta.mainProgram = "figlet";
+      });
+
       intel-vaapi-driver =
         prev.intel-vaapi-driver.override { enableHybridCodec = true; };
 

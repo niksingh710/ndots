@@ -35,6 +35,12 @@
       flake = false;
     };
 
+    # for taskwarrior NOTE: Fix it
+    # syncall = {
+    #   url = "github:kmjayadeep/syncall";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {

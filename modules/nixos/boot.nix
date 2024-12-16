@@ -16,7 +16,7 @@ in {
   config = mkMerge [
     {
       environment.etc."issue".source = pkgs.runCommand "issue" { } ''
-        echo "${opts.username}" | ${lib.getExe' pkgs.figlet "figlet"} | ${lib.getExe center-align} > $out
+        echo "${opts.username}" | ${lib.getExe' pkgs.figlet "figlet"} > $out
       '';
       boot.loader = {
         systemd-boot.enable = mkDefault true;

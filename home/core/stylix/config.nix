@@ -3,7 +3,7 @@
   autoEnable = true;
   polarity = "dark";
   image = "${opts.wallpaper}";
-  base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+  base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
 
   opacity = mkIf opts.transparency {
     terminal = 0.9;

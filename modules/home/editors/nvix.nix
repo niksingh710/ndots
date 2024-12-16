@@ -8,8 +8,9 @@ let
       calendar = true;
       colorschemes =
         {
+          # TokyoDark is the default colorscheme
           tokyonight.enable = mkForce false;
-          nord.enable = true;
+          nord.enable = false;
           base16 = {
             enable = false; # for any color scheme that is not base16
 
@@ -61,7 +62,7 @@ in
   config = mkIf cfg.enable {
     persist.dir = [ ".local/share/nvim" ".local/state/nvim" ".config/github-copilot" ".cache/nvim" ".cache/calendar.vim" ];
     programs.neovide = {
-      enable = false; # TODO: enable when the cctools bug is fixed https://github.com/NixOS/nixpkgs/pull/356292
+      enable = true; # TODO: enable when the cctools bug is fixed https://github.com/NixOS/nixpkgs/pull/356292
       settings = {
         font = {
           normal = fontName;
