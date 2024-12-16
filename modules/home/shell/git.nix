@@ -3,7 +3,13 @@
   programs = {
     lazygit = {
       enable = true;
-      settings.gui.nerdFontsVersion = "3";
+      settings = {
+        gui.nerdFontsVersion = "3";
+        keybinding.universal = {
+          quit = "q";
+          return = "q";
+        };
+      };
     };
     gh = {
       enable = true;
