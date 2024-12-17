@@ -36,10 +36,14 @@
     };
 
     # for taskwarrior NOTE: Fix it
-    # syncall = {
-    #   url = "github:kmjayadeep/syncall";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    syncall = {
+      url = "github:bergercookie/syncall";
+      flake = false;
+    };
 
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
