@@ -18,7 +18,6 @@ in
       };
       cursor = {
         style = "beam";
-        color = "ffffff ${config.lib.stylix.colors.base02}";
         blink = "yes";
       };
     };
