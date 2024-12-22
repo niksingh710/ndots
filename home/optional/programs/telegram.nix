@@ -2,21 +2,20 @@
 
 {
   persist.dir = [
-    ".local/share/TelegramDesktop"
+    ".local/share/materialgram"
     ".cache/stylix-telegram-theme"
   ];
   home = {
     packages = [
 
       (pkgs.symlinkJoin {
-        name = "telegram-desktop";
-        paths = [ pkgs.telegram-desktop ];
+        name = "materialgram";
+        paths = [ pkgs.materialgram ];
         buildInputs = [ pkgs.makeWrapper ];
         postBuild = ''
-          wrapProgram "$out/bin/telegram-desktop" --set 'XDG_CURRENT_DESKTOP' 'gnome'
+          wrapProgram "$out/bin/materialgram" --set 'XDG_CURRENT_DESKTOP' 'gnome'
         '';
       })
-
     ];
     activation =
       let
