@@ -5,7 +5,7 @@ in {
   options.nmod.network = {
 
     firewall = mkEnableOption "firewall";
-    ssh = mkEnableOption "ssh";
+    stevenblack = mkEnableOption "stevenblack";
 
     timezone = mkOption {
       type = types.str;
@@ -18,18 +18,16 @@ in {
 
   };
 
-  config = mkMerge [
-    {
-      environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
-      time.timeZone = mkDefault cfg.timezone;
-      i18n.defaultLocale = mkDefault cfg.locale;
-      networking = {
-        inherit (opts) hostName;
-        networkmanager.enable = true;
-      };
-      users.users.${opts.username}.extraGroups = [ "networkmanager" ];
-    }
-    (mkIf cfg.firewall { networking.firewall.enable = true; })
-    (mkIf cfg.ssh { services.sshd.enable = true; })
-  ];
+  config = {
+    environment.etc.openvpn.source = "${pkgs.update-resolv-conf}/libexec/openvpn";
+    time.timeZone = mkDefault cfg.timezone;
+    i18n.defaultLocale = mkDefault cfg.locale;
+    networking = {
+      firewall.enable = cfg.firewall;
+      stevenblack.enable = cfg.stevenblack;
+      inherit (opts) hostName;
+      networkmanager.enable = true;
+    };
+    users.users.${opts.username}.extraGroups = [ "networkmanager" ];
+  };
 }

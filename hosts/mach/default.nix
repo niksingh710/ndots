@@ -17,11 +17,16 @@ in {
 
   # core.sops = false;
   nmod = {
+    ssh.enable = false;
     hardware.ddc = true;
     intel.governor = "ondemand";
     intel.throttled = true;
     virtualisation.waydroid = true;
-    network.timezone = "Asia/Kolkata";
+    network = {
+      timezone = "Asia/Kolkata";
+      firewall = true;
+      stevenblack = true;
+    };
     fonts = {
       nerd = true;
       emoji = true;

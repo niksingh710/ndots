@@ -1,9 +1,9 @@
-{ lib, opts, ... }:
+{ lib, opts, config, ... }:
 {
   options.nmod.ssh.enable = lib.mkEnableOption "ssh";
   config = {
     services.openssh = {
-      enable = true;
+      enable = config.nmod.ssh.enable;
       settings = {
         PermitRootLogin = "yes";
         PasswordAuthentication = true;
