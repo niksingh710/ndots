@@ -1616,11 +1616,11 @@
         "windows-mc": "windows-mc"
       },
       "locked": {
-        "lastModified": 1734428046,
-        "narHash": "sha256-4JXdLBfxLtK6DFVX0irPTDK3E1zYDLddJRAJ5YvZAeI=",
+        "lastModified": 1734894436,
+        "narHash": "sha256-12jHykUo2y16goTICRqxbYFfzsJjqQ51DHwh/5iJghY=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "d2afca30e1ca090715068c1e69d0d44558c5dd48",
+        "rev": "f0836921d0e67091c2e12893c764162a3cc42d10",
         "type": "github"
       },
       "original": {
