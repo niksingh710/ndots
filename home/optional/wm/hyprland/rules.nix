@@ -90,6 +90,8 @@
       "ignorezero, notifications"
 
       "blur, firefox"
+      "blur, waybar"
+      "blur, rofi"
       "blur, vesktop"
       "blurpopups, firefox"
       "blurpopups, (.*)"
@@ -102,18 +104,5 @@
 
       "blur, notifications"
     ];
-    blurls = [
-      "swaync-control-center"
-      "swaync-notification-window"
-      "firefox"
-      "vesktop"
-
-      # Blurs
-      "rofi"
-      "waybar"
-      "notifications"
-      "gtk-layer-shell"
-    ];
-
   };
 }

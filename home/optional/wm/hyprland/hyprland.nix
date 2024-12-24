@@ -5,10 +5,7 @@ in {
   # stylix.targets.hyprland.enable = false; # TODO: till i get latest hyprland with shadow fix
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd = {
-      enableXdgAutostart = true;
-      variables = [ "--all" ];
-    };
+    systemd.enable = false;
 
     settings = {
       "$mod" = "SUPER";
@@ -135,7 +132,7 @@ in {
         vfr = true;
       };
 
-      debug = { disable_logs = true; };
+      debug = { disable_logs = false; };
 
     };
   };

@@ -275,7 +275,7 @@ let
       bashOptions = [ "pipefail" ];
       text = ''
         # shellcheck disable=SC2009
-        _pid="$(ps -fu | grep "foot-quick" | grep -v "grep" | awk '{print $2}')"
+        _pid="$(hyprctl clients -j | jq -r '.[] | select(.class == "foot-quick") | .pid')"
 
         if [ -n "$_pid" ]; then
           curr_focused="$(hyprctl activewindow -j | jq -r '.class')"

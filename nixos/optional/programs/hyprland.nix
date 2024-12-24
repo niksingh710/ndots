@@ -4,10 +4,13 @@
     enable = true;
     package = pkgs.wmhypr.hyprland;
     portalPackage = pkgs.wmhypr.xdg-desktop-portal-hyprland;
+    withUWSM = true;
   };
 
   services.getty.autologinUser = "${opts.username}";
-  security.pam.services.hyprlock = { };
+
+  security.pam.services.hyprlock.text = "auth include login";
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   nix.settings = {

@@ -34,6 +34,8 @@
       custom = self.packages.${prev.system};
 
       wmhypr = inputs.hyprland.inputs.nixpkgs.legacyPackages.${prev.system};
+      hyprl = inputs.hyprlock.packages.${prev.system};
+      hypri = inputs.hypridle.packages.${prev.system};
 
       rofi-calc = prev.rofi-calc.override {
         rofi-unwrapped = prev.rofi-wayland-unwrapped;

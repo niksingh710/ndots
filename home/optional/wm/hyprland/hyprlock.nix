@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
 let inherit (config.lib.stylix) colors;
 in {
   stylix.targets.hyprlock.enable = false;

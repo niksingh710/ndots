@@ -35,7 +35,12 @@
           zvm_exit_visual_mode
         }
       '';
-    profileExtra = "pgrep -x Hyprland &>/dev/null || Hyprland &>/dev/null";
+    profileExtra = # sh
+      ''
+        if uwsm check may-start; then
+            exec uwsm start hyprland-uwsm.desktop
+        fi
+      '';
   };
 
 }
