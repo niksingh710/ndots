@@ -42,10 +42,10 @@ let
       bashOptions = [ "pipefail" ];
       text = # bash
         ''
-          hyprctl clients -j | jq -r '.[] 
-            | select(.mapped==true) 
+          hyprctl clients -j | jq -r '.[]
+            | select(.mapped==true)
             | select((.workspace.name | contains("special") | not) or (.workspace.name == "special:comms"))
-            | .class + " - " + (.pid|tostring) + " - " + .title' 
+            | .class + " - " + (.pid|tostring) + " - " + .title'
 
           out=$(echo "$1" | awk '{print $3}')
           [ -z "$out" ] || {
@@ -68,8 +68,8 @@ let
         killall -q rofi && exit
 
         clients() {
-          hyprctl clients -j | jq -r '.[] 
-          | select(.mapped==true) 
+          hyprctl clients -j | jq -r '.[]
+          | select(.mapped==true)
           | select((.workspace.name | contains("special") | not) or (.workspace.name == "special:comms"))
           | .class + " - " + (.pid|tostring) + " - " + .title'
         }
@@ -130,7 +130,7 @@ let
 
           clients() {
             hyprctl clients -j | jq -r '.[]
-            | select(.mapped==true) 
+            | select(.mapped==true)
             | select(.workspace.name | contains("special") | not)
             | .class + " - " + (.pid|tostring) + " - " + .title'
           }
@@ -287,18 +287,18 @@ in
       # -- Rofi section in submap
       $rofi = killall rofi || ${lib.getExe pkgs.rofi}
 
-      bind = ,n,exec,$submapreset;killall rofi || ${
+      bind = ,n,exec,$submapreset;killall rofi || uwsm app -- ${
         lib.getExe pkgs.networkmanager_dmenu
       }
       # bind = SHIFT,n,exec,$submapreset;which swaync && swaync-client -t -sw
-      bind = ,b,exec,$submapreset;killall rofi || ${
+      bind = ,b,exec,$submapreset;killall rofi || uwsm app -- ${
         lib.getExe pkgs.rofi-bluetooth
       } -theme bluetooth.rasi -i
-      bind = ,period,exec,$submapreset;killall -q rofi;${
+      bind = ,period,exec,$submapreset;killall -q rofi;uwsm app -- ${
         lib.getExe pkgs.rofimoji
       } -f kaomoji
-      bind = SHIFT,a,exec,$submapreset;killall rofi || rofi -show drun -theme menu-full.rasi
-      bind = ,a,exec,$submapreset;${lib.getExe scripts.audio-channel}
+      bind = SHIFT,a,exec,$submapreset;killall rofi || uwsm app -- rofi -show drun -theme menu-full.rasi
+      bind = ,a,exec,$submapreset;uwsm app -- ${lib.getExe scripts.audio-channel}
       # bind = ,c,exec,$submapreset;$rofi -show calc -modi calc -no-show-match -no-sort
       bind = ,k,exec,$submapreset;${lib.getExe scripts.client-kill}
       bind = ,escape,exec,hyprctl dispatch submap reset; killall rofi
@@ -309,7 +309,7 @@ in
       submap = reset
     '';
     settings = {
-      "$rofi" = "killall rofi || rofi";
+      "$rofi" = "killall rofi || uwsm app -- rofi";
       "$submapreset" = "hyprctl dispatch submap reset";
       bind = [
 

@@ -54,7 +54,7 @@ let
         selected-urgent-background:   @color14;
         selected-urgent-foreground:   @foreground;
 
-        /* theme-based-custom */ 
+        /* theme-based-custom */
 
         al:   #${colors.base00}00;
         bg:   #${colors.base00}88;
@@ -484,7 +484,7 @@ in
             reverse:                     false;
             fixed-height:                true;
             fixed-columns:               true;
-            
+
             spacing:                     @listview-spacing;
             background-color:            transparent;
             cursor:                      "default";
@@ -579,7 +579,7 @@ in
 
         listview, element, element selected, element-text, element-icon {
           cursor: pointer;
-        }    
+        }
       '';
     ".config/rofi/themes/network.rasi".text = # rasi
       ''
@@ -616,7 +616,7 @@ in
           location: south east;
           width: 30%;
           x-offset: 0%;
-          y-offset: 0;
+          y-offset: 0%;
           height: 40%;
           background-color: transparent;
           border-radius: 8px;
@@ -719,7 +719,7 @@ in
             reverse:                     false;
             fixed-height:                true;
             fixed-columns:               true;
-            
+
             spacing:                     0px;
             margin:                      0px;
             padding:                     0px;

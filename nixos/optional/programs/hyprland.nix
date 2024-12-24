@@ -1,4 +1,4 @@
-{ pkgs, opts, lib, ... }: with lib;
+{ pkgs, opts, lib, config, ... }: with lib;
 {
   programs.hyprland = {
     enable = true;
@@ -6,6 +6,7 @@
     portalPackage = pkgs.wmhypr.xdg-desktop-portal-hyprland;
     withUWSM = true;
   };
+  hm.wayland.windowManager.hyprland.package = config.programs.hyprland.package;
 
   services.getty.autologinUser = "${opts.username}";
 
