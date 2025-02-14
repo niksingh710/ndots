@@ -10,7 +10,6 @@ let
   });
 in
 {
-# TODO: add sway keymaps
 # TODO: SessionX implementation
   programs.tmux = {
     enable = true;

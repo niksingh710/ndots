@@ -29,7 +29,7 @@ The **Minimal ISO** is based on the default NixOS minimal ISO with some subtle b
 
 ---
 
-### 🛠️ TODO: Planned Enhancements for Minimal Config
+### 🛠️ Planned Enhancements for Minimal Config
 
 Here are some features planned for future updates:
 - [ ] **Quick Chroot Access Scripts**: Simplify and streamline chroot operations.

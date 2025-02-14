@@ -7,7 +7,6 @@
   config = mkMerge [
     {
       hm.ndots.sops.keyFile =
-        # TODO: fix cross link modules disk/sops
         if config.ndots.disk.impermanence then
           "/persistent/var/lib/sops/age/keys.txt"
         else

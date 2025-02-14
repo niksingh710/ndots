@@ -3,7 +3,6 @@ let
   inherit (config.lib.stylix) colors;
 in
 {
-  # TODO: Add mako notification history script
   services.mako = {
     enable = true;
     anchor = "bottom-right";
@@ -13,11 +12,12 @@ in
     # progressColor = "#${colors.base03}";
     # textColor = "#${colors.base03}";
     defaultTimeout = 6000;
-    margin = "8,8";
-    padding = "1,4";
+    margin = "8";
+    padding = "4";
 
     extraConfig = # ini
       ''
+        outer-margin=0,0,8,0
         [urgency=low]
         border-color=#${colors.base08}
         [mode=dnd]

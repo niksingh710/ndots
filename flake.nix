@@ -2,8 +2,7 @@
   description = "My Personal NixOS Configuration";
   outputs = inputs@{ flake-parts, ... }:
 
-    # TODO: MAJOR: Readme and telegram then push ready
-    #TODO: Readme, ipc fix
+    #TODO: ipc fix
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./iso # custom iso builds for me

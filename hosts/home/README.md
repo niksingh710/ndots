@@ -40,7 +40,7 @@ The `virt` directory contains virtual machine configurations specifically tailor
 
 ---
 
-### 🛠️ TODO: Planned Enhancements
+### 🛠️ Planned Enhancements
 
 - [ ] Add a script or an easy setup process to install Nix with home-manager for non-NixOS systems.
 - [ ] Create a **one-command install** for seamless integration.

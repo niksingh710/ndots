@@ -1,6 +1,5 @@
 { lib, ... }: with lib;
 {
-  # TODO: Move scripts to utils
   # TODO: Add custom/github module back
   stylix.targets.waybar.enable = false;
 
