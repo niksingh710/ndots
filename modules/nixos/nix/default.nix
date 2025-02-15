@@ -1,9 +1,11 @@
 { pkgs, inputs, self, opts, ... }: {
 
+  nixpkgs.overlays = [ inputs.nix-alien.overlays.default ];
+  environment.systemPackages = with pkgs;[ nix-alien ];
   nixpkgs.config.allowUnfree = true;
   # execute shebangs that assume hardcoded shell paths
   services.envfs.enable = true;
-
+  programs.nix-ld.enable = true;
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];

@@ -3,6 +3,8 @@ let
   minimal-tmux = inputs.minimal-tmux.packages.${pkgs.system}.default;
 in
 {
+  nixpkgs.overlays = [ inputs.nixgl.overlay ];
+  environment.systemPackages = with pkgs.nixgl; [ nixGLIntel nixVulkanIntel ];
 
   hm = {
 

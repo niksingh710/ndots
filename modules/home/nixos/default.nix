@@ -2,6 +2,7 @@
 { inputs, lib, pkgs, ... }: with lib;
 let
   utils = inputs.utils.packages.${pkgs.system};
+  nix-alien = inputs.nix-alien.packages.${pkgs.system};
 in
 {
   imports = with builtins;
@@ -30,18 +31,15 @@ in
   home.packages = with pkgs;
     [
       fractal
-      zulip
       whatsapp-for-linux
-      dissent
 
       onlyoffice-bin_latest
       deluge
-      nitch
 
       proton-pass
       ripdrag
 
       libnotify
     ]
-    ++ [ utils.center-align utils.bstat ];
+    ++ [ utils.center-align utils.bstat nix-alien.nix-alien ];
 }
