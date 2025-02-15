@@ -1,4 +1,4 @@
-{ pkgs, inputs,  ... }:
+{ pkgs, inputs, ... }:
 let
   navigator = pkgs.tmuxPlugins.vim-tmux-navigator.overrideAttrs (oa: {
     src = pkgs.fetchFromGitHub {
@@ -10,7 +10,7 @@ let
   });
 in
 {
-# TODO: SessionX implementation
+  # TODO: SessionX implementation
   programs.tmux = {
     enable = true;
     baseIndex = 1;
@@ -28,6 +28,9 @@ in
       navigator
       {
         plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;
+      }
+      {
+        plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
       }
     ];
     extraConfig =

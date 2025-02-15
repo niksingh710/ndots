@@ -125,6 +125,9 @@
       url = "github:niksingh710/minimal-tmux-status";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    tmux-sessionx = {
+      url = "github:omerxx/tmux-sessionx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

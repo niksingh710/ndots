@@ -17,8 +17,10 @@
     };
   };
 
-  wayland.windowManager.hyprland.settings.bind = lib.optionals config.programs.foot.enable [
-    "$mod,Return,exec,foot"
-    ''$modSHIFT,RETURN,exec,foot sh -c "tmux new-session -A -s main"''
-  ];
+  wayland.windowManager.hyprland.settings = {
+    bind = lib.optionals config.programs.foot.enable [
+      "$mod,Return,exec,foot"
+      ''$modSHIFT,RETURN,exec,foot sh -c "TMUX_TMPDIR=''${XDG_RUNTIME_DIR:-/run/user/$(id -u)} tmux new-session -A -s main"''
+    ];
+  };
 }
