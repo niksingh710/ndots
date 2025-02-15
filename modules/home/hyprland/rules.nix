@@ -18,15 +18,15 @@
       "workspace special:quick, class:(org.pulseaudio.pavucontrol)"
 
       "workspace special:comms, class:(Signal)"
-      "workspace special:comms, class:(vesktop)"
+      "workspace special:comms, class:(discord)"
       "workspace special:comms, class:(so.libdb.dissent)"
       "workspace special:comms, class:(org.gnome.Fractal)"
       "workspace special:comms, class:(Zulip)"
       "workspace special:comms, class:(telegram-desktop)"
-      "workspace special:comms, class:( io.github.kukuruzka165.materialgram)"
+      "workspace special:comms, class:(io.github.kukuruzka165.materialgram)"
 
       "group set, class:(org.pulseaudio.pavucontrol)"
-      "group set, class:(vesktop)"
+      "group set, class:(discord)"
       "group set, class:(so.libdb.dissent)"
       "group set, class:(org.telegram.desktop)"
       "group set, class:(io.github.kukuruzka165.materialgram)"
@@ -44,6 +44,7 @@
 
       "float,class:(mpv)"
       "float,class:(xdg-desktop-portal-gtk)"
+      "float,title:(MainPicker)"
 
       "pin,class:(showmethekey-gtk)"
       "float,class:(showmethekey-gtk)"
@@ -73,7 +74,7 @@
     layerrule = [
       "ignorezero, notifications"
       "blur, firefox"
-      "blur, vesktop"
+      "blur, discord"
       "blurpopups, firefox"
       "blurpopups, (.*)"
 

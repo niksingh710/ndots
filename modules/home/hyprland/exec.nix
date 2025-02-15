@@ -7,9 +7,7 @@
       "truncate -s 0 ~/.local/share/applications/waydroid.*.desktop"
 
       "[workspace special:comms silent] sleep 2s && uwsm app -- materialgram"
-      "[workspace special:comms silent] sleep 6s && uwsm app -- fractal"
       "[workspace special:quick silent] sleep 6s && uwsm app -- pavucontrol"
-      # "[workspace special:comms silent] sleep 6s && uwsm app -- dissent"
 
       "${lib.getExe pkgs.batsignal}"
     ];

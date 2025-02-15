@@ -2,7 +2,7 @@
   description = "My Personal NixOS Configuration";
   outputs = inputs@{ flake-parts, ... }:
 
-    #TODO: ipc fix
+    #TODO: ipc fix, rclone implement
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./iso # custom iso builds for me
@@ -24,7 +24,7 @@
       flake.templates = import ./templates;
       flake.disko = import ./disko;
 
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
+      systems = import inputs.systems;
       perSystem = { pkgs, ... }: {
         packages = import ./pkgs { inherit pkgs; }; # Packaged by me accessible to anyone
       };
@@ -32,6 +32,7 @@
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";

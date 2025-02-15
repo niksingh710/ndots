@@ -19,6 +19,7 @@
     self.homeModules.utils
     self.homeModules.sops
     self.homeModules.nixos
+    self.homeModules.programs
   ];
 
   hm.ndots = {

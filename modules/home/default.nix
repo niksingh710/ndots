@@ -9,6 +9,7 @@
   home = ./home.nix;
   nixos = ./nixos;
   utils = ./utils;
+  programs = ./programs;
   browsers = ./browsers;
   hyprland = ./hyprland;
 }

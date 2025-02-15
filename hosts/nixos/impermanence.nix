@@ -55,8 +55,8 @@
       ".local/share/direnv"
 
       ".local/state/mpv"
-      ".config/dissent"
-      ".cache/dissent"
+
+      ".config/discord"
 
       ".config/Proton"
       ".config/Proton Pass"
