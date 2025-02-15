@@ -121,7 +121,7 @@ You can find more UI previews in my old repository: [gdots](https://github.com/n
 
 **Colors are adapted from the wallpapers**
 
-- For Telegram and Vesktop I have ported `walogram` and `midnight` themes respectively for my stylix config.
+- For Telegram I have ported `walogram` theme generator for my stylix config.
 
 I’ve used **[Stylix](https://github.com/danth/stylix)** for theming.
 

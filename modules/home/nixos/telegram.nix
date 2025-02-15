@@ -24,7 +24,6 @@ let
   };
 in
 {
-  home.packages = [ pkgs.materialgram ];
   home.activation.tg-theme = lib.hm.dag.entryAfter [ "" ]
     ''
       run ${lib.getExe walogram}

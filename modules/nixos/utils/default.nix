@@ -13,6 +13,7 @@
     ntfs3g
     usbutils
     xdg-utils
+    seahorse
   ];
 
   services.udisks2.enable = true;

@@ -6,8 +6,8 @@
     in
     {
       enable = true;
-      # package = hyprland.hyprland;
-      # portalPackage = hyprland.xdg-desktop-portal-hyprland;
+      package = hyprland.hyprland;
+      portalPackage = hyprland.xdg-desktop-portal-hyprland;
       withUWSM = true;
     };
 
