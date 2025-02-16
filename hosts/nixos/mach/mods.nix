@@ -1,12 +1,18 @@
-{ config, inputs, pkgs, lib, ... }:
+{ config, inputs, pkgs, lib, self, ... }:
 let
   minimal-tmux = inputs.minimal-tmux.packages.${pkgs.system}.default;
+  inherit (config.lib.stylix) colors;
 in
 {
   nixpkgs.overlays = [ inputs.nixgl.overlay ];
   environment.systemPackages = with pkgs.nixgl; [ nixGLIntel nixVulkanIntel ];
 
   hm = {
+    home.file."stylix-mailspring" = {
+      source = pkgs.callPackage "${self}/pkgs/stylix-mailspring" { inherit inputs colors; };
+      target = ".config/Mailspring/packages/stylix-issac";
+      recursive = true; # Copy the directory recursively
+    };
 
     stylix.targets.fzf.enable = false;
     stylix.targets.tmux.enable = false;

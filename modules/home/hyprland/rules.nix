@@ -24,6 +24,7 @@
       "workspace special:comms, class:(Zulip)"
       "workspace special:comms, class:(telegram-desktop)"
       "workspace special:comms, class:(io.github.kukuruzka165.materialgram)"
+      "workspace special:comms, class:(Mailspring)"
 
       "group set, class:(org.pulseaudio.pavucontrol)"
       "group set, class:(discord)"
@@ -33,6 +34,7 @@
       "group set, class:(org.gnome.Fractal)"
       "group set, class:(Zulip)"
       "group set, class:(geary)"
+      "group set, class:(Mailspring)"
 
       "noanim,class:^(rofi)$"
 

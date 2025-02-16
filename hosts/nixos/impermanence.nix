@@ -66,6 +66,7 @@
 
       ".local/state/wireplumber"
       ".config/pulse"
+      ".config/Mailspring"
 
       "Downloads"
       "Pictures"
@@ -79,7 +80,6 @@
     ];
     files = [
       ".temp.zsh"
-      ".cache/colorpicker/colors"
       ".gtasks_credentials.pickle"
     ];
   };

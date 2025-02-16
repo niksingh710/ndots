@@ -7,6 +7,7 @@
     materialgram
     nitch
     zulip
+    mailspring
   ];
 
   programs.nixcord = {

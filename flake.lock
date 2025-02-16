@@ -1211,6 +1211,22 @@
         "type": "github"
       }
     },
+    "mailspring-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1573109447,
+        "narHash": "sha256-S3eO09G/f6WoT56wwjsNq6AYC+/+R4GbcR0aV7v3+KQ=",
+        "owner": "jpminor",
+        "repo": "mailspring-isaac-dark-theme",
+        "rev": "93ce214471f28c8db07e9b997a053bb72cb9b34f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jpminor",
+        "repo": "mailspring-isaac-dark-theme",
+        "type": "github"
+      }
+    },
     "md-pdf": {
       "flake": false,
       "locked": {
@@ -2001,6 +2017,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
+        "mailspring-theme": "mailspring-theme",
         "minimal-tmux": "minimal-tmux",
         "nix-alien": "nix-alien",
         "nix-gaming": "nix-gaming",

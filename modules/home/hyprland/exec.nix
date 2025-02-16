@@ -8,6 +8,7 @@
 
       "[workspace special:comms silent] sleep 2s && uwsm app -- materialgram"
       "[workspace special:quick silent] sleep 6s && uwsm app -- pavucontrol"
+      "[workspace special:quick silent] sleep 6s && uwsm app -- mailspring"
 
       "${lib.getExe pkgs.batsignal}"
     ];

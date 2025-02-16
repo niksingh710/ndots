@@ -69,6 +69,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mailspring-theme = {
+      url = "github:jpminor/mailspring-isaac-dark-theme";
+      flake = false;
+    };
+
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
