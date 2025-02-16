@@ -3,6 +3,7 @@ let
   utils = inputs.utils.packages.${pkgs.system};
   clients = pkgs.utils-clients;
   menus = pkgs.utils-menus;
+  fullmenu = pkgs.fullmenu;
   spkgs = self.packages.${pkgs.system};
 in
 {
@@ -17,8 +18,8 @@ in
         bind = ,period,exec,$submapreset;killall rofi || uwsm app -- ${getExe' menus "rofimoji"}
 
         bind = ,a,exec,$submapreset;uwsm app -- ${getExe' menus "audio-sink"}
+        bind = SHIFT,a,exec,$submapreset;uwsm app -- ${getExe fullmenu}
         bind = ,m,exec,$submapreset;uwsm app -- ${getExe' menus "audio-source"}
-        # TODO: Full menu ui
 
         bind = ,p,exec,$submapreset;${getExe pkgs.playerctl} play-pause
         bind = ,s,exec,$submapreset;${getExe spkgs.wl-ocr}

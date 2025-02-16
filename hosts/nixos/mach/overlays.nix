@@ -21,6 +21,7 @@ in
   nixpkgs.overlays = [
     (self: super: {
       utils-clients = utils.clients.override (with colors; {
+        uwsm = true;
         rofi-theme-str = # scss
           ''
             * {
@@ -35,6 +36,9 @@ in
         network-theme-str = common;
         bt-theme-str = common;
         audio-theme-str = common;
+      };
+      fullmenu = utils.fullmenu.override {
+        full-theme-str = common;
       };
     })
   ];

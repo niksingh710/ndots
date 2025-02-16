@@ -111,11 +111,20 @@ in
       modules = [
         "custom/mark"
         "custom/weather"
-        # "custom/colorpicker" # TODO: implement in utils
+        "custom/colorpicker"
         "idle_inhibitor"
         "custom/hyprkill"
       ];
     };
+    "custom/colorpicker" = {
+      format = "{}";
+      return-type = "json";
+      interval = "once";
+      exec = "${lib.getExe' utils.waybar-utils "colorpicker"} -j";
+      on-click = "sleep 1 && ${lib.getExe' utils.waybar-utils "colorpicker"}";
+      signal = 1;
+    };
+
     tray = {
       icon-size = 18;
       spacing = 10;

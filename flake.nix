@@ -2,7 +2,6 @@
   description = "My Personal NixOS Configuration";
   outputs = inputs@{ flake-parts, ... }:
 
-    #TODO: ipc fix, rclone implement
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./iso # custom iso builds for me

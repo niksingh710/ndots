@@ -39,7 +39,7 @@ in
         "10,monitor:${cfg.secondary},default:true"
       ];
       exec = [
-        "sleep 5s && ${lib.getExe (pkgs.writeShellApplication
+        "sleep 5s && uwsm -- app ${lib.getExe (pkgs.writeShellApplication
           {
             name = "ipc";
             runtimeInputs = with pkgs; [ libnotify socat jq ];
@@ -59,7 +59,7 @@ in
                 }
 
                 socat - \
-                UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock | \
+                UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | \
                 while read -r line; do handle "$line"; done
               '';
           })}"

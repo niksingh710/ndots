@@ -85,7 +85,7 @@ in
         ''~/Pictures/Screenshots/"$(date +"ss-%d-%b-%C_%H-%M-%S")".png'';
       "$sscommand" = "grimblast -f --notify --cursor copysave";
       "$ssarea" = ''
-        hyprctl keyword animation "fadeOut,1,4,default"; $sscommand area $sspath; hyprctl keyword animation "fadeOut,1,4,default"'';
+        hyprctl keyword animation "fadeOut,1,4,default"; grimblast -f --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"'';
 
       # capslock will work as ctrl
       input.kb_options = "ctrl:nocaps";
