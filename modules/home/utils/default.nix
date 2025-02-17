@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs;[
     figlet
+    file
     zip
     unzip
     unrar

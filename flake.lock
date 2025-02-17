@@ -616,11 +616,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1736585801,
-        "narHash": "sha256-iXwHo/so9rgbxnWdaXYyzYXRIlAymgfCqs3UMuO6Cfk=",
+        "lastModified": 1739807964,
+        "narHash": "sha256-xntCszGBOrq2jWD4g43PeCsNfYNEcsJ3vEZDlwHYqLk=",
         "owner": "niksingh710",
         "repo": "fzf-preview",
-        "rev": "57ed7d1e7561d713ff9d2c71265b2b0481ae80d4",
+        "rev": "793d86fd0b4b9fd979bb1886ca247542c7f6310a",
         "type": "github"
       },
       "original": {
@@ -1886,11 +1886,11 @@
         "tokyodark": "tokyodark"
       },
       "locked": {
-        "lastModified": 1739603702,
-        "narHash": "sha256-iElJ7BzNNZ6kIFCR3i5fKLI5T+nuz8YC8/nRblKTeTs=",
+        "lastModified": 1739807258,
+        "narHash": "sha256-Fc9YdqiJklo/ciAsigS2P8oUgddwVcOcNKJHXy4ubSg=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "9c52bd569f84d0decb12d026f5eb0cd93cd2eed3",
+        "rev": "4f84a90284809ec0828e96f3aef25e7e4f04c351",
         "type": "github"
       },
       "original": {
@@ -2444,11 +2444,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739721534,
-        "narHash": "sha256-8XNQRI6pt/1Fwb0jqijr/7Ol9R6erJ0Wwlj64FE9cPI=",
+        "lastModified": 1739825051,
+        "narHash": "sha256-5sBu4f6IcaVnksA7+SRjWjvKvWl7RMVa9eAp3UkPaW8=",
         "owner": "niksingh710",
         "repo": "utils",
-        "rev": "491936f284bf97cccaa9fd1b8a95934b64151949",
+        "rev": "84e06169429f6ac1f7584205d4f2f707d601d1bd",
         "type": "github"
       },
       "original": {
