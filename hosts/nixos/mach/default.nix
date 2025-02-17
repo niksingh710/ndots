@@ -41,6 +41,8 @@
   };
 
   hm.nvix.pkg = inputs.nvix.packages.${pkgs.system}.full.extend {
+    nvix.explorer.neo-tree = false;
+    nvix.explorer.oil = true;
     colorschemes.gruvbox = {
       enable = true;
       settings.transparent_mode = true;
