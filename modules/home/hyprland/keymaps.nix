@@ -129,8 +129,6 @@ in
         "$modSHIFT,Print,exec,$ssarea"
         "$mod,Print,exec,$sscommand active $sspath"
         "ALT,Print,exec,$sscommand screen $sspath"
-
-        "CTRL,grave,exec,${getExe utils.quick-term}"
       ];
       bindm = [ "$mod,mouse:272,movewindow" "$mod,mouse:273,resizewindow 2" ];
       bindl = [
