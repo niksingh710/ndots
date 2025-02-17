@@ -29,8 +29,11 @@ pkgs.stdenv.mkDerivation {
       @base-border-radius: 2px;
 
       .message-item-white-wrap {
-          background: @isaac-dark !important;
-        }
+        background: @isaac-dark !important;
+      }
+      div.sidebar-participant-picker {
+        color: @text-color !important;
+      }
     EOF
 
   '';
