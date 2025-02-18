@@ -25,6 +25,10 @@
   hm.ndots = {
     # only enable sops after the installation of the system
     sops.enable = true; # to enable sops services and config
+    hyprland.terminal = {
+      foot = false;
+      kitty = true;
+    };
   };
 
   ndots = {

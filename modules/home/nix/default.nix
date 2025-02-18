@@ -5,7 +5,6 @@
       experimental-features = [ "nix-command" "flakes" ];
       show-trace = true;
     };
-    # nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs;[
       nixfmt-rfc-style
       nixpkgs-fmt
