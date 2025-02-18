@@ -9,7 +9,7 @@ in
     username = "${username}";
     homeDirectory = "/home/${username}";
     packages = [ pkgs.home-manager ];
-    stateVersion = "22.05";
+    stateVersion = "25.05";
   };
 
   systemd.user.startServices = true;

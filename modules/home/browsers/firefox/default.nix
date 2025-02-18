@@ -20,7 +20,7 @@ in
           user_pref("browser.urlbar.trimHttps", true);
           user_pref("browser.urlbar.trimURLs", true);
         '';
-      extensions = with plugins; [
+      extensions.packages = with plugins; [
         privacy-badger
         vimium-c
         darkreader
