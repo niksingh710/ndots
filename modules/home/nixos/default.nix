@@ -1,5 +1,5 @@
 # Programs/packages for nixos
-{ inputs, lib, pkgs, ... }: with lib;
+{ inputs, lib, pkgs, config, ... }: with lib;
 let
   utils = inputs.utils.packages.${pkgs.system};
   nix-alien = inputs.nix-alien.packages.${pkgs.system};
@@ -14,7 +14,10 @@ in
         ))
         (attrNames (readDir ./.)));
 
-
+  nixGL = {
+    vulkan.enable = true;
+    packages = inputs.nixgl.packages;
+  };
   home.shellAliases = {
     rdrag = "${lib.getExe pkgs.ripdrag} -s 128 -r -x -a -n -b";
     dopen = "setsid xdg-open $@ &>/dev/null";
@@ -28,18 +31,19 @@ in
     name = "Qogir-dark";
     package = pkgs.qogir-icon-theme;
   };
+
   home.packages = with pkgs;
     [
       fractal
       whatsapp-for-linux
-
-      onlyoffice-bin_latest
       deluge
 
       proton-pass
       ripdrag
 
       libnotify
+
+      (config.lib.nixGL.wrap pkgs.onlyoffice-bin_latest)
     ]
     ++ [ utils.center-align utils.bstat nix-alien.nix-alien ];
 }
