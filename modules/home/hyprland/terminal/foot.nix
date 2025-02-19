@@ -7,7 +7,7 @@
         pad = "5x0 center";
         font = lib.mkForce
           "${config.stylix.fonts.monospace.name}:size=12:termicons:size=10";
-        term = "xterm-256color";
+        term = "screen-256color";
         dpi-aware = "no";
       };
       cursor = {

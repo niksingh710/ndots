@@ -18,6 +18,7 @@ in
     keyMode = "vi";
     mouse = true;
     prefix = "C-a";
+    terminal = "screen-256color";
     escapeTime = 0;
     aggressiveResize = true;
     plugins = with pkgs;[
