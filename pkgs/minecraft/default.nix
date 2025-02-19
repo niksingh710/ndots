@@ -2,11 +2,11 @@
 
 pkgs.stdenv.mkDerivation rec {
   pname = "nminecraft";
-  version = "3.2.10";
+  version = "3.2.12";
 
   src = pkgs.fetchurl {
     url = "https://skmedix.pl/binaries/skl/${version}/SKlauncher-${version}.jar";
-    sha256 = "sha256-POflr/hTIOHTk+s06Rimtxpme8zwglL73VEkQ+XWL5o=";
+    sha256 = "a3912e1e9b4e3b2d5362c91176444c7d5b1a15437cb827f123e4ca2b0d12c3f9";
   };
 
   nativeBuildInputs = [ pkgs.copyDesktopItems ];
