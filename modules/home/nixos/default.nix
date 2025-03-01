@@ -27,9 +27,12 @@ in
     enable = true;
     automount = false;
   };
-  gtk.iconTheme = {
-    name = "Qogir-dark";
+
+  stylix.iconTheme = {
+    enable = true;
     package = pkgs.qogir-icon-theme;
+    dark = "Qogir-Dark";
+    light = "Qogir-Dark";
   };
 
   home.packages = with pkgs;

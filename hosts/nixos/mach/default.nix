@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, self, ... }: with lib;
+{ inputs, pkgs, lib, self, config, ... }: with lib;
 {
   imports = with builtins;
     map (fn: ./${fn})
@@ -31,6 +31,17 @@
     };
   };
 
+  hm.home = {
+    shellAliases.fetch = "${getExe pkgs.fastfetch} -c examples/10.jsonc";
+    file."logo" = {
+      source = pkgs.fetchurl {
+        url = "https://techicons.dev/8f71c3a5-f0f3-40bb-8f98-a6755250c6b8";
+        sha256 = "sha256-TKsB07l8HPxynAEIkLwDmWL61x+oTe2HRnRMpJbXiZg=";
+      };
+      target = "${config.hm.home.homeDirectory}/logo.png";
+    };
+  };
+
   ndots = {
     sec.askPass = false;
     disk.device = "/dev/nvme0n1";
@@ -47,11 +58,34 @@
   hm.nvix.pkg = inputs.nvix.packages.${pkgs.system}.full.extend {
     nvix.explorer.neo-tree = false;
     nvix.explorer.oil = true;
+    plugins.snacks.settings.scroll.enabled = true;
     colorschemes.gruvbox = {
       enable = true;
       settings.transparent_mode = true;
     };
     colorscheme = mkForce "gruvbox";
+    extraConfigLuaPre = # lua
+      ''
+        if vim.g.neovide then
+          vim.g.neovide_transparency = ${builtins.toString config.stylix.opacity.popups}
+          vim.cmd([[highlight Normal guibg=#${config.lib.stylix.colors.base00}]])
+        end
+      '';
+  };
+
+  hm.home.shellAliases = {
+    gvim = "setsid neovide $@ &>/dev/null";
+  };
+
+  hm.programs.neovide = {
+    # TODO: enable when the cctools bug is fixed https://github.com/NixOS/nixpkgs/pull/356292
+    enable = true;
+    settings = {
+      font = {
+        normal = config.stylix.fonts.monospace;
+        size = 10;
+      };
+    };
   };
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
