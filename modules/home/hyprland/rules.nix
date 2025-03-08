@@ -25,6 +25,7 @@
       "workspace special:comms, class:(telegram-desktop)"
       "workspace special:comms, class:(io.github.kukuruzka165.materialgram)"
       "workspace special:comms, class:(Mailspring)"
+      "workspace 10, initialTitle:(Discord Popout)"
 
       "group set, class:(org.pulseaudio.pavucontrol)"
       "group set, class:(discord)"
@@ -35,6 +36,7 @@
       "group set, class:(Zulip)"
       "group set, class:(geary)"
       "group set, class:(Mailspring)"
+      "group unset, initialTitle:(Discord Popout)"
 
       "noanim,class:^(rofi)$"
 
@@ -69,6 +71,7 @@
       "stayfocused,class:^(quick-term)$"
 
       "idleinhibit fullscreen, class:^(firefox)$"
+      "idleinhibit fullscreen, class:^(librewolf)$"
       "idleinhibit fullscreen, class:^(mpv)$"
       "idleinhibit none,class:^(YouTube Music)$"
     ];
@@ -76,8 +79,10 @@
     layerrule = [
       "ignorezero, notifications"
       "blur, firefox"
+      "blur, librewolf"
       "blur, discord"
       "blurpopups, firefox"
+      "blurpopups, librewolf"
       "blurpopups, (.*)"
 
       "blur, swaync-control-center"

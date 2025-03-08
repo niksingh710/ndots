@@ -32,13 +32,13 @@
   };
 
   hm.home = {
-    shellAliases.fetch = "${getExe pkgs.fastfetch} -c examples/10.jsonc";
+    shellAliases.fetch = "${getExe pkgs.fastfetch} -c examples/10.jsonc --kitty-icat $HOME/.logo.png --logo-padding-top 10 ";
     file."logo" = {
       source = pkgs.fetchurl {
-        url = "https://techicons.dev/8f71c3a5-f0f3-40bb-8f98-a6755250c6b8";
-        sha256 = "sha256-TKsB07l8HPxynAEIkLwDmWL61x+oTe2HRnRMpJbXiZg=";
+        url = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/NixOS_logo.svg/320px-NixOS_logo.svg.png";
+        sha256 = "3d80fa904f55fd7adb6a11c327b0db42aa1f22205af4e8b852dbc466a30f3ff5";
       };
-      target = "${config.hm.home.homeDirectory}/logo.png";
+      target = "${config.hm.home.homeDirectory}/.logo.png";
     };
   };
 
@@ -58,7 +58,6 @@
   hm.nvix.pkg = inputs.nvix.packages.${pkgs.system}.full.extend {
     nvix.explorer.neo-tree = false;
     nvix.explorer.oil = true;
-    plugins.snacks.settings.scroll.enabled = true;
     colorschemes.gruvbox = {
       enable = true;
       settings.transparent_mode = true;

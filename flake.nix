@@ -52,7 +52,7 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    textfox.url = "github:adriankarlen/textfox";
+    textfox.url = "github:niksingh710/textfox/librefox";
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
