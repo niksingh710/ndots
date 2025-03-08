@@ -1,12 +1,7 @@
-{ lib, inputs, pkgs, ... }: with lib;
+{ lib, inputs, pkgs, self, ... }: with lib;
 let
   plugins = inputs.firefox-addons.packages.${pkgs.system};
-in
-{
-  options.ndots.browser.firefox = {
-    textfox = mkEnableOption "Enable textfox" // { default = true; };
-  };
-  config.programs.firefox = {
+  cfgFirefox = {
     enable = true;
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
     profiles.default = {
@@ -42,8 +37,26 @@ in
           meta.license = lib.licenses.free;
         })
       ];
-
     };
+  };
+in
+{
+  options.ndots.browser.firefox = {
+    textfox = mkEnableOption "Enable textfox" // { default = true; };
+  };
+  config = {
+    home.packages = [ self.packages.${pkgs.system}.zen-browser-appimage ];
+    programs.librewolf = cfgFirefox // {
+      # enable = false; # till build time get's fixed
+      settings = {
+        "webgl.disabled" = false;
+        "privacy.resistFingerprinting" = false;
+        "identity.fxaccounts.enabled" = true;
+        "privacy.clearOnShutdown.history" = false;
+        "privacy.clearOnShutdown.downloads" = false;
+      };
+    };
+    programs.firefox = cfgFirefox;
   };
 
   imports = with builtins;

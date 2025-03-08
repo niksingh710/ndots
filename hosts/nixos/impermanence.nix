@@ -36,6 +36,7 @@
 
       ".config/google-chrome"
       ".mozilla"
+      ".librewolf"
 
       ".local/share/zoxide"
       ".cache/zsh"
