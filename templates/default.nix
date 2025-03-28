@@ -2,4 +2,5 @@
 {
   dissertation.path = ./dissertation;
   flake-parts.path = ./flake-parts;
+  python-venv.path = ./python-venv;
 }
