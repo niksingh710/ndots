@@ -7,6 +7,11 @@ in
   nixpkgs.overlays = [ inputs.nixgl.overlay ];
   environment.systemPackages = with pkgs.nixgl; [ nixGLIntel nixVulkanIntel ];
 
+  # TODO: fix zulip after this pr merge: https://github.com/NixOS/nixpkgs/pull/390714
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-32.3.3"
+  ];
+
   hm = {
     home.file."stylix-mailspring" = {
       source = pkgs.callPackage "${self}/pkgs/stylix-mailspring" { inherit inputs colors; };
@@ -16,6 +21,7 @@ in
 
     stylix.targets.fzf.enable = false;
     stylix.targets.tmux.enable = false;
+    stylix.targets.firefox.profileNames = [ "default" ];
 
     programs.tmux.plugins = [{
       plugin = minimal-tmux;

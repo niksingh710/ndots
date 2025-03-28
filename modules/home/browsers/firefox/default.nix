@@ -4,6 +4,16 @@ let
   cfgFirefox = {
     enable = true;
     nativeMessagingHosts = [ pkgs.firefoxpwa ];
+    policies = {
+      SanitizeOnShutdown = {
+        Cache = false;
+        Cookies = false;
+        History = false;
+        Sessions = false;
+        SiteSettings = false;
+        Locked = true;
+      };
+    };
     profiles.default = {
       extraConfig = # js
         ''

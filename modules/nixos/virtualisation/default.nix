@@ -18,7 +18,7 @@ with lib;
           "float,class:^(Waydroid)$"
         ];
         windowrule = [
-          "workspace 4,^(.virt-manager-wrapped)"
+          "workspace 4,class:^(.virt-manager-wrapped)"
         ];
       };
       home.shellAliases = lib.mkIf config.ndots.virtualisation.waydroid {

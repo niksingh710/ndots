@@ -10,7 +10,7 @@
       "special:quick,gapsin:15,gapsout:50"
     ];
     windowrule = [
-      "float,^(Choose Files)$"
+      "float,class:^(Choose Files)$"
     ];
 
     windowrulev2 = [

@@ -1,5 +1,9 @@
 # Nix configurations for home-manager
 { pkgs, inputs, opts, lib, ... }: with lib; {
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+  ];
+
   config = {
     nix.settings = {
       experimental-features = [ "nix-command" "flakes" ];
@@ -19,6 +23,7 @@
       # `nix-locate` command will be available to find packages/libraries
       # `command-not-found` will be available in shell env
       nix-index.enable = true;
+      nix-index-database.comma.enable = true;
 
       # This will allow to use the default shell in `nix develop` and `nix-shell`
       nix-your-shell.enable = true;

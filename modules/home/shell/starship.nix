@@ -99,11 +99,7 @@ in
 
 
       lua.symbol = " ";
-
-      python.format = ''
-        via
-        [
-          ''${symbol}''${pyenv_prefix}(''${version} )(\($virtualenv\) )]($style)'';
+      python.format = '' via [ ''${symbol}''${pyenv_prefix}(''${version} )(\($virtualenv\) )]($style)'';
       git_branch = {
         format = ":[$symbol$branch]($style)";
         symbol = " ";
