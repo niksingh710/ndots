@@ -9,6 +9,7 @@
       experimental-features = [ "nix-command" "flakes" ];
       show-trace = true;
     };
+    home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
     home.packages = with pkgs;[
       nixfmt-rfc-style
       nixpkgs-fmt

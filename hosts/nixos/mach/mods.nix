@@ -22,6 +22,7 @@ in
     stylix.targets.fzf.enable = false;
     stylix.targets.tmux.enable = false;
     stylix.targets.firefox.profileNames = [ "default" ];
+    stylix.targets.librewolf.profileNames = [ "default" ];
 
     programs.tmux.plugins = [{
       plugin = minimal-tmux;
