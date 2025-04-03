@@ -18,7 +18,16 @@
     paths = [ prev.materialgram ];
     buildInputs = [ prev.makeWrapper ];
     postBuild = ''
-      wrapProgram "$out/bin/materialgram" --set 'XDG_CURRENT_DESKTOP' 'gnome'
+      wrapProgram "$out/bin/materialgram"--run "export XDG_CURRENT_DESKTOP=gnome"
     '';
   });
+  telegram-desktop = (prev.symlinkJoin {
+    name = "materialgram";
+    paths = [ prev.telegram-desktop ];
+    buildInputs = [ prev.makeWrapper ];
+    postBuild = ''
+      wrapProgram "$out/bin/telegram-desktop" --run "export XDG_CURRENT_DESKTOP=gnome"
+    '';
+  });
+
 })

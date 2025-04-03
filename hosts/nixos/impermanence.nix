@@ -33,6 +33,7 @@
       ".local/share/onlyoffice"
 
       ".config/whatsapp-for-linux"
+      ".config/Slack"
 
       ".config/google-chrome"
       ".mozilla"
@@ -62,6 +63,7 @@
       ".config/Proton"
       ".config/Proton Pass"
 
+      ".local/share/TelegramDesktop"
       ".local/share/materialgram"
       ".cache/stylix-telegram-theme"
 

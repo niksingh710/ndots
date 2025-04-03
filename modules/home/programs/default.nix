@@ -4,9 +4,10 @@
     inputs.nixcord.homeManagerModules.nixcord
   ];
   home.packages = with pkgs;[
-    materialgram
+    telegram-desktop
     nitch
     zulip
+    slack
     mailspring
   ];
 
