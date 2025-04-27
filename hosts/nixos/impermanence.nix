@@ -36,6 +36,7 @@
       ".config/Slack"
 
       ".config/google-chrome"
+      ".zen"
       ".mozilla"
       ".librewolf"
 
