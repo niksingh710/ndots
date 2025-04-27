@@ -2,3 +2,4 @@ secrets
 README.md
 flake.lock
 kdeconnect.commands.json
+devenv.lock
