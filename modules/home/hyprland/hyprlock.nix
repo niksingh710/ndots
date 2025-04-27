@@ -1,6 +1,14 @@
-{ config, lib, self, pkgs, ... }:
-let inherit (config.lib.stylix) colors;
-in {
+{
+  config,
+  lib,
+  self,
+  pkgs,
+  ...
+}:
+let
+  inherit (config.lib.stylix) colors;
+in
+{
   stylix.targets.hyprlock.enable = false;
   home.packages = [ self.packages.${pkgs.system}.road-rage ];
   programs.hyprlock = {
@@ -14,31 +22,34 @@ in {
         disable_loading_bar = true;
       };
 
+      background = [
+        {
+          path = "screenshot";
+          blur_passes = 2;
+          contrast = 0.9;
+          brightness = 0.5;
+          vibrancy = 0.17;
+          vibrancy_darkness = 0;
+        }
+      ];
 
-      background = [{
-        path = "screenshot";
-        blur_passes = 2;
-        contrast = 0.9;
-        brightness = 0.5;
-        vibrancy = 0.17;
-        vibrancy_darkness = 0;
-      }];
+      image = [
+        {
+          monitor = "";
+          # path = ~/.face.png
+          size = 150;
+          rounding = -1;
+          border_size = 3;
+          border_color = "0x44${colors.base0F}";
+          rotate = 0;
+          reload_time = -1;
+          reload_cmd = "";
 
-      image = [{
-        monitor = "";
-        # path = ~/.face.png
-        size = 150;
-        rounding = -1;
-        border_size = 3;
-        border_color = "0x44${colors.base0F}";
-        rotate = 0;
-        reload_time = -1;
-        reload_cmd = "";
-
-        position = "0, 70";
-        halign = "center";
-        valign = "center";
-      }];
+          position = "0, 70";
+          halign = "center";
+          valign = "center";
+        }
+      ];
 
       input-field = [
         {

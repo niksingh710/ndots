@@ -1,4 +1,11 @@
-{ opts, config, lib, pkgs, ... }: with lib;
+{
+  opts,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
 let
   cfg = config.ndots.users;
   inherit (opts) username;
@@ -19,7 +26,12 @@ in
       groups."${username}" = { }; # Creates a default group with the username
       users."${username}" = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "${username}" ];
+        extraGroups = [
+          "wheel"
+          "video"
+          "audio"
+          "${username}"
+        ];
         useDefaultShell = true;
         password = "${cfg.password}";
       };

@@ -1,4 +1,9 @@
-{ lib, opts, config, ... }:
+{
+  lib,
+  opts,
+  config,
+  ...
+}:
 {
   options.ndots.networking.ssh = lib.mkEnableOption "ssh";
   config = {

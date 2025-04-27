@@ -1,4 +1,10 @@
-{ config, opts, lib, ... }: with lib;
+{
+  config,
+  opts,
+  lib,
+  ...
+}:
+with lib;
 let
   inherit (config.lib.stylix) colors;
 in

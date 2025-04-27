@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [ ffmpegthumbnailer ];
   programs.mpv = {
     enable = true;

@@ -1,6 +1,10 @@
-{ pkgs, opts, ... }: {
+{ pkgs, opts, ... }:
+{
 
-  environment.systemPackages = [ pkgs.v4l-utils pkgs.android-tools ];
+  environment.systemPackages = [
+    pkgs.v4l-utils
+    pkgs.android-tools
+  ];
   services.udev.packages = [ pkgs.android-udev-rules ];
   users.users.${opts.username}.extraGroups = [ "plugdev" ];
 

@@ -1,4 +1,11 @@
-{ inputs, config, pkgs, lib, ... }: with lib;
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib;
 {
   config = {
 
@@ -7,13 +14,15 @@
 
     home = {
       sessionVariables.EDITOR = "vim";
-      packages = with config.nvix;[ pkg ];
+      packages = with config.nvix; [ pkg ];
     };
   };
 
   options = {
     nvix = {
-      enable = mkEnableOption "Enabling nvix" // { default = true; };
+      enable = mkEnableOption "Enabling nvix" // {
+        default = true;
+      };
       pkg = mkOption {
         type = types.package;
         # It should be a derivation

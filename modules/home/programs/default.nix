@@ -3,7 +3,7 @@
   imports = [
     inputs.nixcord.homeModules.nixcord
   ];
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     telegram-desktop
     nitch
     zulip

@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   enable = true;
   autoEnable = true;
   polarity = "dark";

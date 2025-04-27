@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: with lib;
+{ pkgs, lib, ... }:
+with lib;
 {
   programs.appimage = {
     enable = true;
@@ -18,12 +19,9 @@
 
   services.udisks2.enable = true;
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

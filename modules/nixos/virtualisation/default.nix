@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 {
   options.ndots.virtualisation.waydroid = mkEnableOption "enable";
@@ -22,11 +27,9 @@ with lib;
         ];
       };
       home.shellAliases = lib.mkIf config.ndots.virtualisation.waydroid {
-        waydroid-start =
-          "sudo systemctl start waydroid-container;setsid waydroid show-full-ui &>/dev/null";
+        waydroid-start = "sudo systemctl start waydroid-container;setsid waydroid show-full-ui &>/dev/null";
         waydroid-status = "sudo systemctl status waydroid-container";
-        waydroid-stop =
-          "sudo waydroid container stop;sleep 1;sudo systemctl stop waydroid-container";
+        waydroid-stop = "sudo waydroid container stop;sleep 1;sudo systemctl stop waydroid-container";
       };
       dconf.settings."org/virt-manager/virt-manager/connections" = {
         autoconnect = [ "qemu:///system" ];

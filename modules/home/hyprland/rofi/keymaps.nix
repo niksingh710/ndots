@@ -1,4 +1,11 @@
-{ inputs, pkgs, self, lib, ... }: with lib;
+{
+  inputs,
+  pkgs,
+  self,
+  lib,
+  ...
+}:
+with lib;
 let
   utils = inputs.utils.packages.${pkgs.system};
   clients = pkgs.utils-clients;

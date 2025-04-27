@@ -1,5 +1,13 @@
 # Minimal Iso stands for CLI variant only
-{ inputs, pkgs, modulesPath, self, hostPlatform, ... }: {
+{
+  inputs,
+  pkgs,
+  modulesPath,
+  self,
+  hostPlatform,
+  ...
+}:
+{
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
 
@@ -7,7 +15,10 @@
     self.nixosModules.shell
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nix.settings = {
     # To install hyprland quickly
@@ -20,9 +31,15 @@
   };
 
   environment = {
-    systemPackages = with pkgs;[ git disko ] ++ ([
-      inputs.nvix.packages.${pkgs.system}.bare # My neovim config based on Nixvim
-    ]);
+    systemPackages =
+      with pkgs;
+      [
+        git
+        disko
+      ]
+      ++ ([
+        inputs.nvix.packages.${pkgs.system}.bare # My neovim config based on Nixvim
+      ]);
     shellAliases = {
       vim = "nvim";
     };
@@ -35,7 +52,6 @@
     # It is just an minimal alternative to Network manager
     wireless.enable = false;
   };
-
 
   services.openssh = {
     enable = true;

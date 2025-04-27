@@ -1,11 +1,17 @@
-{ poetry2nix, syncall, python312, pkgs, ... }:
+{
+  poetry2nix,
+  syncall,
+  python312,
+  pkgs,
+  ...
+}:
 let
   p2n = poetry2nix.lib.mkPoetry2Nix { inherit pkgs; };
 in
 p2n.mkPoetryApplication {
   projectDir = syncall.outPath;
 
-  postInstall = #sh
+  postInstall = # sh
     ''
       if [ -d "$src/completions" ]; then
         mkdir -p $out/share/bash-completion/completions

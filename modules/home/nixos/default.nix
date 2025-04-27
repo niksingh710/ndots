@@ -1,18 +1,22 @@
 # Programs/packages for nixos
-{ inputs, lib, pkgs, config, ... }: with lib;
+{
+  inputs,
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+with lib;
 let
   utils = inputs.utils.packages.${pkgs.system};
   nix-alien = inputs.nix-alien.packages.${pkgs.system};
 in
 {
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 
   nixGL = {
     vulkan.enable = true;
@@ -35,7 +39,8 @@ in
     light = "Qogir-Dark";
   };
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       fractal
       whatsapp-for-linux

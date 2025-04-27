@@ -5,7 +5,7 @@
     Are You Ready to complete the Dissertation work?
   '';
 
-  packages = with pkgs;[
+  packages = with pkgs; [
     biber
     pandoc
     git

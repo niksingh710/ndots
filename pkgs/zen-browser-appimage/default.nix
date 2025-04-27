@@ -24,7 +24,6 @@ appimageTools.wrapType2 {
     install -m 444 -D ${appimageContents}/zen.png $out/share/icons/hicolor/128x128/apps/${pname}.png
   '';
 
-
   meta.platforms = [ "x86_64-linux" ];
 
 }

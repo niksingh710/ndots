@@ -1,4 +1,9 @@
-{ inputs, config, opts, ... }:
+{
+  inputs,
+  config,
+  opts,
+  ...
+}:
 let
   inherit (config.lib.stylix) colors;
 in
@@ -7,7 +12,7 @@ in
     inputs.textfox.homeManagerModules.default
   ];
 
-  textfox = with colors;{
+  textfox = with colors; {
     enable = config.ndots.browser.firefox.textfox;
     profile = "default";
     config = {

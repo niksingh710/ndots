@@ -11,7 +11,10 @@ pkgs.stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ pkgs.copyDesktopItems ];
 
-  phases = [ "installPhase" "copyDesktopItems" ];
+  phases = [
+    "installPhase"
+    "copyDesktopItems"
+  ];
 
   jvmOptions = [
     "-Xms2G" # Set minimum heap size to 2GB

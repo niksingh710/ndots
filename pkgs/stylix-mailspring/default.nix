@@ -1,4 +1,9 @@
-{ pkgs, inputs, colors, ... }:
+{
+  pkgs,
+  inputs,
+  colors,
+  ...
+}:
 
 pkgs.stdenv.mkDerivation {
   name = "stylix-issac";
@@ -7,7 +12,7 @@ pkgs.stdenv.mkDerivation {
     mkdir -p $out/
     cp -r $src/* $out
   '';
-  postFixup = with colors;''
+  postFixup = with colors; ''
     rm $out/*.png
     rm $out/*.md
     rm $out/LICENSE

@@ -1,4 +1,19 @@
-{ inputs, opts, pkgs, config, lib, ... }: {
+{
+  inputs,
+  opts,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   imports = [ inputs.stylix.homeManagerModules.stylix ];
-  stylix = import ./config.nix { inherit opts pkgs config lib; };
+  stylix = import ./config.nix {
+    inherit
+      opts
+      pkgs
+      config
+      lib
+      ;
+  };
 }

@@ -1,4 +1,9 @@
-{ pkgs, lib, inputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   utils = inputs.utils.packages.${pkgs.system};
 in
@@ -22,9 +27,7 @@ in
     packages = [
       utils.myip
       utils.cat
-      (pkgs.writeShellScriptBin
-        "help"
-        "$@ --help 2>&1 | ${lib.getExe pkgs.bat} --plain --language=help")
+      (pkgs.writeShellScriptBin "help" "$@ --help 2>&1 | ${lib.getExe pkgs.bat} --plain --language=help")
     ];
   };
 }

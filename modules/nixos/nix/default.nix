@@ -1,14 +1,24 @@
-{ pkgs, inputs, self, opts, ... }: {
+{
+  pkgs,
+  inputs,
+  self,
+  opts,
+  ...
+}:
+{
 
   nixpkgs.overlays = [ inputs.nix-alien.overlays.default ];
-  environment.systemPackages = with pkgs;[ nix-alien ];
+  environment.systemPackages = with pkgs; [ nix-alien ];
   nixpkgs.config.allowUnfree = true;
   # execute shebangs that assume hardcoded shell paths
   services.envfs.enable = true;
   programs.nix-ld.enable = true;
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       trusted-users = [ opts.username ];
       auto-optimise-store = true;
       warn-dirty = false;
@@ -28,8 +38,7 @@
     ];
   };
 
-  systemd.tmpfiles.rules =
-    [ "L+ /etc/nixpkgs/channels/nixpkgs - - - - ${pkgs.path}" ];
+  systemd.tmpfiles.rules = [ "L+ /etc/nixpkgs/channels/nixpkgs - - - - ${pkgs.path}" ];
 
   hm.imports = [
     self.homeModules.nix

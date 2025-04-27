@@ -1,13 +1,18 @@
-{ inputs, pkgs, lib, self, config, ... }: with lib;
 {
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)))
+  inputs,
+  pkgs,
+  lib,
+  self,
+  config,
+  ...
+}:
+with lib;
+{
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    )
     ++ (builtins.attrValues self.nixosModules)
     ++ [
       ../impermanence.nix # to make common dir permanenet

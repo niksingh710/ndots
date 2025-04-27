@@ -2,7 +2,8 @@
 let
   radius = if opts.rounding then "8px" else "0px";
   radius-small = if opts.rounding then "4px" else "0px";
-  colors = (with config.lib.stylix.colors;
+  colors = (
+    with config.lib.stylix.colors;
     # scss
     ''
       @define-color background #${base00};
@@ -28,7 +29,8 @@ let
       @define-color active #${base06};
       @define-color inactive #${base03};
 
-    '');
+    ''
+  );
 
   alphaValue = config.stylix.opacity.popups;
 in

@@ -1,4 +1,10 @@
-{ lib, pkgs, inputs, config, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 let
   utils = inputs.utils.packages.${pkgs.system};
   colorFront = config.lib.stylix.colors.base03;
@@ -19,14 +25,27 @@ in
   ];
 
   programs.waybar.settings.mainBar = {
-    modules-right = [ "custom/notifications" "privacy" "custom/recorder" "group/brightness" "group/audio" "group/connection" "group/together" "tray" "group/power" ];
+    modules-right = [
+      "custom/notifications"
+      "privacy"
+      "custom/recorder"
+      "group/brightness"
+      "group/audio"
+      "group/connection"
+      "group/together"
+      "tray"
+      "group/power"
+    ];
     "group/brightness" = {
       orientation = "inherit";
       drawer = {
         transition-duration = 500;
         transition-left-to-right = false;
       };
-      modules = [ "backlight" "backlight/slider" ];
+      modules = [
+        "backlight"
+        "backlight/slider"
+      ];
     };
     "custom/notifications" = {
       format = "<b>{}</b>";
@@ -40,8 +59,23 @@ in
     backlight = {
       device = "intel_backlight";
       format = "{icon}";
-      format-icons =
-        [ "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ];
+      format-icons = [
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+      ];
       on-scroll-down = "${lib.getExe pkgs.brightnessctl} s 5%-";
       on-scroll-up = "${lib.getExe pkgs.brightnessctl} s +5%";
       tooltip = true;
@@ -61,7 +95,11 @@ in
         transition-duration = 500;
         transition-left-to-right = false;
       };
-      "modules" = [ "wireplumber" "pulseaudio#mic" "pulseaudio/slider" ];
+      "modules" = [
+        "wireplumber"
+        "pulseaudio#mic"
+        "pulseaudio/slider"
+      ];
     };
     wireplumber = {
       format = "{icon}";
@@ -75,7 +113,11 @@ in
         phone = "";
         portable = "";
         car = " ";
-        default = [ "󰕿" "󰖀" "󰕾" ];
+        default = [
+          "󰕿"
+          "󰖀"
+          "󰕾"
+        ];
       };
       on-click = "${lib.getExe utils.volume} mute";
       on-click-middle = "${lib.getExe pkgs.pavucontrol}";
@@ -88,8 +130,7 @@ in
       format-source = "";
       format-source-muted = "󰍭";
       tooltip-format = "{volume}% {format_source} ";
-      on-click =
-        "${lib.getExe utils.volume} mic-mute";
+      on-click = "${lib.getExe utils.volume} mic-mute";
       on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%+";
       on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%-";
     };
@@ -100,7 +141,10 @@ in
     };
     "group/together" = {
       orientation = "inherit";
-      modules = [ "group/utils" "clock" ];
+      modules = [
+        "group/utils"
+        "clock"
+      ];
     };
     "group/utils" = {
       orientation = "inherit";
@@ -162,7 +206,9 @@ in
         weeks-pos = "right";
         on-scroll = 1;
         on-click-right = "mode";
-        format = { today = "<span color='#${colorFront}'><b><u>{}</u></b></span>"; };
+        format = {
+          today = "<span color='#${colorFront}'><b><u>{}</u></b></span>";
+        };
       };
     };
     idle_inhibitor = {
@@ -189,7 +235,10 @@ in
         transition-duration = 500;
         transition-left-to-right = true;
       };
-      modules = [ "network" "network#speed" ];
+      modules = [
+        "network"
+        "network#speed"
+      ];
     };
 
     network = {
@@ -244,8 +293,7 @@ in
 
         {device_enumerate}'';
       tooltip-format-enumerate-connected = "{device_alias}	{device_address}";
-      tooltip-format-enumerate-connected-battery =
-        "{device_alias}	{device_address}	{device_battery_percentage}%";
+      tooltip-format-enumerate-connected-battery = "{device_alias}	{device_address}	{device_battery_percentage}%";
       on-click = "killall rofi || uwsm app -- ${lib.getExe' pkgs.utils-menus "bluetooth"}";
     };
     "group/bluetooth" = {
@@ -254,15 +302,17 @@ in
         transition-duration = 500;
         transition-left-to-right = true;
       };
-      modules = [ "bluetooth" "bluetooth#status" ];
+      modules = [
+        "bluetooth"
+        "bluetooth#status"
+      ];
     };
     "bluetooth#status" = {
       format-on = "";
       format-off = "";
       format-disabled = "";
       format-connected = "<b>{num_connections}</b>";
-      format-connected-battery =
-        "<small><b>{device_battery_percentage}%</b></small>";
+      format-connected-battery = "<small><b>{device_battery_percentage}%</b></small>";
       tooltip-format = ''
         {controller_alias}	{controller_address}
 
@@ -274,8 +324,7 @@ in
 
         {device_enumerate}'';
       tooltip-format-enumerate-connected = "{device_alias}	{device_address}";
-      tooltip-format-enumerate-connected-battery =
-        "{device_alias}	{device_address}	{device_battery_percentage}%";
+      tooltip-format-enumerate-connected-battery = "{device_alias}	{device_address}	{device_battery_percentage}%";
       on-click = "killall rofi || uwsm app -- ${lib.getExe' pkgs.utils-menus "bluetooth"}";
     };
     privacy = {
@@ -283,11 +332,13 @@ in
       icon-spacing = 4;
       icon-size = 14;
       transition-duration = 250;
-      modules = [{
-        "type" = "screenshare";
-        "tooltip" = true;
-        "tooltip-icon-size" = 24;
-      }];
+      modules = [
+        {
+          "type" = "screenshare";
+          "tooltip" = true;
+          "tooltip-icon-size" = 24;
+        }
+      ];
     };
     "custom/recorder" = {
       format = "{}";

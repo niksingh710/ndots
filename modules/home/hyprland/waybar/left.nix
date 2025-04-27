@@ -1,6 +1,10 @@
 {
   programs.waybar.settings.mainBar = {
-    modules-left = [ "hyprland/workspaces" "hyprland/submap" "group/info" ];
+    modules-left = [
+      "hyprland/workspaces"
+      "hyprland/submap"
+      "group/info"
+    ];
 
     "hyprland/submap" = {
       "format" = "<b>󰇘</b>";
@@ -32,7 +36,12 @@
         transition-duration = 500;
         transition-left-to-right = false;
       };
-      modules = [ "custom/dmark" "group/gcpu" "memory" "disk" ];
+      modules = [
+        "custom/dmark"
+        "group/gcpu"
+        "memory"
+        "disk"
+      ];
     };
     "custom/dmark" = {
       format = "";

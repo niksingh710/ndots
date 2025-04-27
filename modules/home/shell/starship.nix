@@ -4,39 +4,40 @@
 # Where as in nix `'' This is a string ''`
 # '' This is a string ${nixVar} and ''${escaped} ''
 let
-  gitIcons = pkgs.writeShellScriptBin "gitIcons"
-    # sh
-    ''
-      URL=$(command ${lib.getExe pkgs.git} ls-remote --get-url 2> /dev/null)
-      declare -A icons=(
-        ["github"]=" "
-        ["gitlab"]=" "
-        ["bitbucket"]=" "
-        ["kernel"]=" "
-        ["archlinux"]=" "
-        ["gnu"]=" "
-        ["git"]=" "
-      )
+  gitIcons =
+    pkgs.writeShellScriptBin "gitIcons"
+      # sh
+      ''
+        URL=$(command ${lib.getExe pkgs.git} ls-remote --get-url 2> /dev/null)
+        declare -A icons=(
+          ["github"]=" "
+          ["gitlab"]=" "
+          ["bitbucket"]=" "
+          ["kernel"]=" "
+          ["archlinux"]=" "
+          ["gnu"]=" "
+          ["git"]=" "
+        )
 
-      ICON=" "  # Default icon
-      URL="''${URL:-localhost}"  # Default URL if unset
+        ICON=" "  # Default icon
+        URL="''${URL:-localhost}"  # Default URL if unset
 
-      # Prioritize matching longer keys first
-      for key in $(printf "%s\n" "''${!icons[@]}" | awk '{ print length, $0 }' | sort -nr | cut -d" " -f2-); do
-        if [[ "$URL" == *"$key"* ]]; then
-          ICON="''${icons[$key]}"
-          break
-        fi
-      done
-      # # Clean up the URL
-      URL="''${URL#*@}"                      # Remove "git@" if present
-      URL="''${URL#*://}"                    # Remove "https://" or "http://"
-      URL="''${URL%.git}"                     # Remove ".git" suffix
-      URL="''${URL%/}"                        # Remove trailing slash if any
+        # Prioritize matching longer keys first
+        for key in $(printf "%s\n" "''${!icons[@]}" | awk '{ print length, $0 }' | sort -nr | cut -d" " -f2-); do
+          if [[ "$URL" == *"$key"* ]]; then
+            ICON="''${icons[$key]}"
+            break
+          fi
+        done
+        # # Clean up the URL
+        URL="''${URL#*@}"                      # Remove "git@" if present
+        URL="''${URL#*://}"                    # Remove "https://" or "http://"
+        URL="''${URL%.git}"                     # Remove ".git" suffix
+        URL="''${URL%/}"                        # Remove trailing slash if any
 
-      # # Output the final result in "icon: username/repo" format
-      printf "%s%s\n" "$ICON" "$URL"
-    '';
+        # # Output the final result in "icon: username/repo" format
+        printf "%s%s\n" "$ICON" "$URL"
+      '';
 in
 {
   programs.starship = {
@@ -76,7 +77,11 @@ in
       };
       custom.home_dir = {
         command = "echo  ";
-        shell = [ "bash" "--norc" "--noprofile" ];
+        shell = [
+          "bash"
+          "--norc"
+          "--noprofile"
+        ];
         when = ''
           [ "$PWD" == "$HOME" ]
         '';
@@ -85,7 +90,11 @@ in
       };
       custom.dir = {
         command = "echo  ";
-        shell = [ "bash" "--norc" "--noprofile" ];
+        shell = [
+          "bash"
+          "--norc"
+          "--noprofile"
+        ];
         when = ''
           [ "$PWD" != "$HOME" ]
         '';
@@ -97,9 +106,8 @@ in
         min_time_to_notify = 60000;
       };
 
-
       lua.symbol = " ";
-      python.format = '' via [ ''${symbol}''${pyenv_prefix}(''${version} )(\($virtualenv\) )]($style)'';
+      python.format = ''via [ ''${symbol}''${pyenv_prefix}(''${version} )(\($virtualenv\) )]($style)'';
       git_branch = {
         format = ":[$symbol$branch]($style)";
         symbol = " ";
@@ -127,7 +135,11 @@ in
         when = "${lib.getExe pkgs.git} rev-parse --is-inside-work-tree 2> /dev/null";
         style = "bright-yellow bold";
         format = "[$output]($style)";
-        shell = [ "bash" "--norc" "--noprofile" ];
+        shell = [
+          "bash"
+          "--norc"
+          "--noprofile"
+        ];
       };
       hostname = {
         ssh_only = true;

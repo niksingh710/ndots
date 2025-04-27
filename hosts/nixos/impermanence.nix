@@ -1,4 +1,10 @@
-{ config, opts, lib, ... }: with lib;
+{
+  config,
+  opts,
+  lib,
+  ...
+}:
+with lib;
 # This file is to contain common impermanence persistent dirs/files
 # if any host require something host specific define it under host dir
 # make sure home-manger nixosModule is imported

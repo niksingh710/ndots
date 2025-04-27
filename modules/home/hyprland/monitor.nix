@@ -1,4 +1,10 @@
-{ lib, inputs, pkgs, config, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 let
   cfg = config.ndots.hyprland.monitor;
   utils = inputs.utils.packages.${pkgs.system};
@@ -24,7 +30,10 @@ in
   config = {
 
     wayland.windowManager.hyprland.settings = {
-      monitor = [ "${cfg.secondary},preferred,1920x0,1" "${cfg.primary},preferred,0x0,1" ];
+      monitor = [
+        "${cfg.secondary},preferred,1920x0,1"
+        "${cfg.primary},preferred,0x0,1"
+      ];
 
       workspace = [
         "1,monitor:${cfg.primary},default:true"
@@ -39,30 +48,37 @@ in
         "10,monitor:${cfg.secondary},default:true"
       ];
       exec = [
-        "sleep 5s && uwsm -- app ${lib.getExe (pkgs.writeShellApplication
-          {
-            name = "ipc";
-            runtimeInputs = with pkgs; [ libnotify socat jq ];
-            bashOptions = [ "pipefail" ];
-            text = # bash
-              ''
-                handle() {
-                  if [[ ''${1:0:14} == "monitorremoved" ]]; then
-                    notify "Monitor removed"
-                    "${lib.getExe utils.monitor}"
-                  fi
+        "sleep 5s && uwsm -- app ${
+          lib.getExe (
+            pkgs.writeShellApplication {
+              name = "ipc";
+              runtimeInputs = with pkgs; [
+                libnotify
+                socat
+                jq
+              ];
+              bashOptions = [ "pipefail" ];
+              text = # bash
+                ''
+                  handle() {
+                    if [[ ''${1:0:14} == "monitorremoved" ]]; then
+                      notify "Monitor removed"
+                      "${lib.getExe utils.monitor}"
+                    fi
 
-                  if [[ ''${1:0:14} == "monitoraddedv2" ]]; then
-                    notify "Monitor added"
-                    "${lib.getExe utils.monitor}"
-                  fi
-                }
+                    if [[ ''${1:0:14} == "monitoraddedv2" ]]; then
+                      notify "Monitor added"
+                      "${lib.getExe utils.monitor}"
+                    fi
+                  }
 
-                socat - \
-                UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | \
-                while read -r line; do handle "$line"; done
-              '';
-          })}"
+                  socat - \
+                  UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | \
+                  while read -r line; do handle "$line"; done
+                '';
+            }
+          )
+        }"
       ];
     };
   };

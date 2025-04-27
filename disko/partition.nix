@@ -1,11 +1,13 @@
-{ device ? "/dev/vda"
-, encrypted ? false
-, impermanence ? false
-, ssd ? true
-, ssdOptions ? [ ]
-, lib ? import <nixpkgs/lib>
-, ...
-}: with lib;
+{
+  device ? "/dev/vda",
+  encrypted ? false,
+  impermanence ? false,
+  ssd ? true,
+  ssdOptions ? [ ],
+  lib ? import <nixpkgs/lib>,
+  ...
+}:
+with lib;
 let
   mountOptions = [ "compress=zstd" ] ++ optionals ssd ssdOptions;
   subvolumes = mkMerge [
@@ -15,7 +17,10 @@ let
         inherit mountOptions;
       };
       "/nix" = {
-        mountOptions = mountOptions ++ [ "noatime" "noacl" ];
+        mountOptions = mountOptions ++ [
+          "noatime"
+          "noacl"
+        ];
         mountpoint = "/nix"; # Nix subvolume
       };
     }
@@ -43,7 +48,10 @@ in
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [ "defaults" "umask=0077" ];
+              mountOptions = [
+                "defaults"
+                "umask=0077"
+              ];
             };
           };
         }

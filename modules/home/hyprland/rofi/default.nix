@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: with lib;
+{ pkgs, lib, ... }:
+with lib;
 {
   stylix.targets.rofi.enable = false;
 
@@ -28,18 +29,18 @@
       kb-row-left = "Control+h";
       hover-select = true;
       me-select-entry = "";
-      me-accept-entry = [ "MousePrimary" "MouseSecondary" ];
+      me-accept-entry = [
+        "MousePrimary"
+        "MouseSecondary"
+      ];
       terminal = "foot";
       font = "${config.stylix.fonts.monospace.name} 12";
     };
   };
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

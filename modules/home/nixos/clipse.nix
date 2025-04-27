@@ -1,10 +1,14 @@
 { pkgs, config, ... }:
 let
   type = if config.ndots.hyprland.terminal.kitty then "kitty" else "sixel";
-  cmd = if config.ndots.hyprland.terminal.kitty then "kitty --class 'clipse' -e clipse" else "foot -a 'clipse' sh -c 'clipse'";
+  cmd =
+    if config.ndots.hyprland.terminal.kitty then
+      "kitty --class 'clipse' -e clipse"
+    else
+      "foot -a 'clipse' sh -c 'clipse'";
 in
 {
-  home.packages = with pkgs;[ clipse ];
+  home.packages = with pkgs; [ clipse ];
   home.file.".config/clipse/config.json".text = # json
     ''
       {

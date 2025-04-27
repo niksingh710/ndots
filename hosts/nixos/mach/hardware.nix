@@ -1,7 +1,13 @@
-{ modulesPath, lib, config, opts, ... }: {
+{
+  modulesPath,
+  lib,
+  config,
+  opts,
+  ...
+}:
+{
 
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
 
   boot = {
     kernelParams = [
@@ -12,8 +18,14 @@
     ];
     extraModprobeConfig = "options i915 enable_guc=2";
     # This is imp as the drive is encrypted.
-    initrd.availableKernelModules =
-      [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+      "rtsx_pci_sdmmc"
+    ];
     kernelModules = [ "kvm-intel" ];
 
   };
@@ -23,13 +35,15 @@
     device = "/dev/disk/by-label/HDD";
     fsType = "ext4";
     # `nofail` is imp to prevent boot failure if the drive is not connected.
-    options = [ "defaults" "nofail" ];
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
 
   hardware = {
     enableRedistributableFirmware = lib.mkDefault true;
-    cpu.intel.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 
 }

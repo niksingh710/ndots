@@ -1,12 +1,11 @@
 { self, inputs, ... }:
 let
-  hmGenerator = machine: system: opts:
+  hmGenerator =
+    machine: system: opts:
     let
       path = # This will resolve to machine.nix if file is there else machine
         # Will help to include a dir with multiple files
-        if builtins.pathExists ./${machine + ".nix"}
-        then ./${machine + ".nix"}
-        else ./${machine};
+        if builtins.pathExists ./${machine + ".nix"} then ./${machine + ".nix"} else ./${machine};
     in
     inputs.home-manager.lib.homeManagerConfiguration rec {
       # pkgs is from the flake's inputs.nixpkgs
@@ -19,7 +18,12 @@ let
       # Check the home-manager module github for more args accepted by homeManagerConfiguration
       extraSpecialArgs = {
         # self is the flake-parts way to refer this flake
-        inherit self inputs pkgs opts;
+        inherit
+          self
+          inputs
+          pkgs
+          opts
+          ;
       };
       modules = [
         ./common.nix # home-manager common settings
@@ -37,9 +41,10 @@ in
 
     # General standalone config for non-NixOS systems
     # Mostly focused on cli part -- can be used on (ubuntu, mint, arch, etc)
-    virt = hmGenerator "virt" "x86_64-linux"
-      { username = "virt"; userEmail = "virt@localhost"; };
-
+    virt = hmGenerator "virt" "x86_64-linux" {
+      username = "virt";
+      userEmail = "virt@localhost";
+    };
 
     # For more home-manager only config just use hmGenerator directly
   };

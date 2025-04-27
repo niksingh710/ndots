@@ -1,20 +1,33 @@
-{ lib, pkgs, opts, config, inputs, ... }: with lib;
+{
+  lib,
+  pkgs,
+  opts,
+  config,
+  inputs,
+  ...
+}:
+with lib;
 let
   cfg = config.ndots.boot;
 in
 {
   options.ndots.boot = {
-    silent = mkEnableOption "Silent boot?" // { default = true; };
-    plymouth = mkEnableOption "plymouth" // { default = true; };
+    silent = mkEnableOption "Silent boot?" // {
+      default = true;
+    };
+    plymouth = mkEnableOption "plymouth" // {
+      default = true;
+    };
     secureboot = mkEnableOption "secureboot";
   };
 
   config = mkMerge [
     {
-      environment.etc."issue".source = pkgs.runCommand "issue" { } # bash
-        ''
-          echo "Welcome, ${opts.username}" > $out
-        '';
+      environment.etc."issue".source =
+        pkgs.runCommand "issue" { } # bash
+          ''
+            echo "Welcome, ${opts.username}" > $out
+          '';
 
       boot.loader = {
         systemd-boot.enable = true;
@@ -31,7 +44,9 @@ in
       boot = {
         consoleLogLevel = 0;
         initrd.verbose = !cfg.silent;
-        loader = { timeout = 0; };
+        loader = {
+          timeout = 0;
+        };
         kernelParams = [
           "quiet"
           "splash"
@@ -55,13 +70,11 @@ in
     })
   ];
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.))) ++ [ inputs.lanzaboote.nixosModules.lanzaboote ];
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    )
+    ++ [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
 }

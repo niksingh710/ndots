@@ -1,6 +1,11 @@
-{ pkgs, inputs, self, ... }:
 {
-  home.packages = with pkgs;[
+  pkgs,
+  inputs,
+  self,
+  ...
+}:
+{
+  home.packages = with pkgs; [
     figlet
     file
     zip

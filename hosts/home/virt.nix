@@ -1,6 +1,14 @@
-{ self, inputs, pkgs, opts, ... }:
-let inherit (opts) username userEmail;
-in {
+{
+  self,
+  inputs,
+  pkgs,
+  opts,
+  ...
+}:
+let
+  inherit (opts) username userEmail;
+in
+{
   imports = [
     self.homeModules.home # home-manager common settings
     self.homeModules.shell

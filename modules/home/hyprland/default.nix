@@ -1,10 +1,15 @@
-{ pkgs, lib, ... }: with lib;
+{ pkgs, lib, ... }:
+with lib;
 
 {
   home = {
     # making some binaries to be available in the shell
     # specific to wayland/hyprland
-    packages = with pkgs; [ grim slurp wl-clipboard ];
+    packages = with pkgs; [
+      grim
+      slurp
+      wl-clipboard
+    ];
     shellAliases = {
       copy = "wl-copy";
       paste = "wl-paste";
@@ -21,12 +26,9 @@
       }
     '';
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

@@ -1,4 +1,9 @@
-{ inputs, pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 let
   fzf-preview = inputs.fzf-preview.packages.${pkgs.system}.default;
 in
@@ -15,7 +20,10 @@ in
     ripgrep.enable = true;
     fd = {
       enable = true;
-      ignores = [ ".git/" "*.bak" ];
+      ignores = [
+        ".git/"
+        "*.bak"
+      ];
     };
     fzf =
       let

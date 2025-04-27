@@ -1,4 +1,12 @@
-{ inputs, pkgs, lib, config, opts, ... }: with lib;
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  opts,
+  ...
+}:
+with lib;
 {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -29,7 +37,9 @@
       };
 
       # Make sure the ovpn file does not contain the line `auth-user-pass`
-      environment.shellAliases.pvpn = "sudo ${lib.getExe pkgs.openvpn} --auth-user-pass ${config.sops.secrets."protonvpn".path} --config $@";
+      environment.shellAliases.pvpn = "sudo ${lib.getExe pkgs.openvpn} --auth-user-pass ${
+        config.sops.secrets."protonvpn".path
+      } --config $@";
 
       users.users.${opts.username} = {
         hashedPasswordFile = config.sops.secrets.user-password.path;

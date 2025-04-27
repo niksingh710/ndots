@@ -1,4 +1,11 @@
-{ lib, inputs, pkgs, self, ... }: with lib;
+{
+  lib,
+  inputs,
+  pkgs,
+  self,
+  ...
+}:
+with lib;
 let
   plugins = inputs.firefox-addons.packages.${pkgs.system};
   cfgFirefox = {
@@ -52,7 +59,9 @@ let
 in
 {
   options.ndots.browser.firefox = {
-    textfox = mkEnableOption "Enable textfox" // { default = true; };
+    textfox = mkEnableOption "Enable textfox" // {
+      default = true;
+    };
   };
   config = {
     home.packages = [ self.packages.${pkgs.system}.zen-browser-appimage ];
@@ -69,12 +78,9 @@ in
     programs.firefox = cfgFirefox;
   };
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

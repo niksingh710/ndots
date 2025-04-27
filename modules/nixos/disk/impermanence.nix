@@ -1,11 +1,15 @@
-{ inputs, lib, config, opts, ... }: with lib;
+{
+  inputs,
+  lib,
+  config,
+  opts,
+  ...
+}:
+with lib;
 let
   cfg = config.ndots.disk;
   mount =
-    if cfg.encrypted then
-      "/dev/mapper/cryptroot"
-    else
-      "/dev/disk/by-partlabel/disk-primary-root";
+    if cfg.encrypted then "/dev/mapper/cryptroot" else "/dev/disk/by-partlabel/disk-primary-root";
 
   cleanup = # bash
     ''
@@ -37,12 +41,22 @@ in
 {
   options.persist = {
     dir = mkOption {
-      type = types.listOf (types.oneOf [ types.str types.attrs ]);
+      type = types.listOf (
+        types.oneOf [
+          types.str
+          types.attrs
+        ]
+      );
       default = [ ];
       description = "Persist directories";
     };
     files = mkOption {
-      type = types.listOf (types.oneOf [ types.str types.attrs ]);
+      type = types.listOf (
+        types.oneOf [
+          types.str
+          types.attrs
+        ]
+      );
       default = [ ];
       description = "Persist files";
     };
@@ -72,7 +86,6 @@ in
       };
     };
 
-
     environment.persistence."/persistent" = {
       enable = true;
       hideMounts = true;
@@ -90,10 +103,22 @@ in
       ];
       users.${opts.username} = {
         directories = [
-          { directory = ".gnupg"; mode = "0700"; }
-          { directory = ".ssh"; mode = "0700"; }
-          { directory = ".nixops"; mode = "0700"; }
-          { directory = ".local/share/keyrings"; mode = "0700"; }
+          {
+            directory = ".gnupg";
+            mode = "0700";
+          }
+          {
+            directory = ".ssh";
+            mode = "0700";
+          }
+          {
+            directory = ".nixops";
+            mode = "0700";
+          }
+          {
+            directory = ".local/share/keyrings";
+            mode = "0700";
+          }
         ];
       };
     };

@@ -1,8 +1,15 @@
-{ pkgs, lib, inputs, config, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}:
 let
   walogram = inputs.utils.packages.${pkgs.system}.walogram.override {
     image = "${config.stylix.image}";
-    colors = (with config.lib.stylix.colors;
+    colors = (
+      with config.lib.stylix.colors;
       ''
         color0="#${base00}"
         color1="#${base01}"
@@ -20,12 +27,12 @@ let
         color13="#${base0D}"
         color14="#${base0E}"
         color15="#${base0F}"
-      '');
+      ''
+    );
   };
 in
 {
-  home.activation.tg-theme = lib.hm.dag.entryAfter [ "" ]
-    ''
-      run ${lib.getExe walogram}
-    '';
+  home.activation.tg-theme = lib.hm.dag.entryAfter [ "" ] ''
+    run ${lib.getExe walogram}
+  '';
 }

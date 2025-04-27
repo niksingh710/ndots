@@ -1,4 +1,11 @@
-{ config, lib, inputs, self, ... }: with lib;
+{
+  config,
+  lib,
+  inputs,
+  self,
+  ...
+}:
+with lib;
 let
   cfg = config.ndots.disk;
 in

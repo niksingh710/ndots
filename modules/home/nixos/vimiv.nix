@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with config.lib.stylix.colors;
 {
   home.packages = with pkgs; [ vimiv-qt ];

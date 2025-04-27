@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: with lib;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib;
 let
   kitty-tmux = pkgs.writeScript "kitty-tmux" ''
     #!/bin/bash
@@ -8,10 +14,8 @@ let
 in
 {
   home.sessionVariables = {
-    FZF_PREVIEW_IMAGE_HANDLER =
-      if config.ndots.hyprland.terminal.kitty then "kitty" else "sixel";
-    TERMINAL =
-      if config.ndots.hyprland.terminal.kitty then "kitty" else "foot";
+    FZF_PREVIEW_IMAGE_HANDLER = if config.ndots.hyprland.terminal.kitty then "kitty" else "sixel";
+    TERMINAL = if config.ndots.hyprland.terminal.kitty then "kitty" else "foot";
   };
   programs.kitty = {
     enable = config.ndots.hyprland.terminal.kitty;

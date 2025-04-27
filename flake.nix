@@ -1,6 +1,7 @@
 {
   description = "My Personal NixOS Configuration";
-  outputs = inputs@{ flake-parts, ... }:
+  outputs =
+    inputs@{ flake-parts, ... }:
 
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
@@ -24,9 +25,11 @@
       flake.disko = import ./disko;
 
       systems = import inputs.systems;
-      perSystem = { pkgs, ... }: {
-        packages = import ./pkgs { inherit pkgs; }; # Packaged by me accessible to anyone
-      };
+      perSystem =
+        { pkgs, ... }:
+        {
+          packages = import ./pkgs { inherit pkgs; }; # Packaged by me accessible to anyone
+        };
     };
 
   inputs = {

@@ -1,4 +1,5 @@
-{ lib, ... }: with lib;
+{ lib, ... }:
+with lib;
 {
   # TODO: Add custom/github module back
   stylix.targets.waybar.enable = false;
@@ -24,12 +25,9 @@
       };
     };
   };
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

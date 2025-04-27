@@ -4,7 +4,15 @@
 # It expects the private `age` key to be already present
 # at /var/lib/sops/age/keys.txt
 # If using impermanence then point it to a persistent location
-{ inputs, pkgs, lib, config, self, ... }: with lib;
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  self,
+  ...
+}:
+with lib;
 let
   cfg = config.ndots;
 in

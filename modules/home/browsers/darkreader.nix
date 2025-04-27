@@ -1,7 +1,10 @@
 { config, ... }:
-let inherit (config.lib.stylix) colors;
-in {
-  home.file.".config/darkreader/config.json".text = with colors;
+let
+  inherit (config.lib.stylix) colors;
+in
+{
+  home.file.".config/darkreader/config.json".text =
+    with colors;
     # json
     ''
       {

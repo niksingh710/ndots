@@ -1,24 +1,42 @@
 # Nix configurations for home-manager
-{ pkgs, inputs, opts, lib, ... }: with lib; {
+{
+  pkgs,
+  inputs,
+  opts,
+  lib,
+  ...
+}:
+with lib;
+{
   imports = [
     inputs.nix-index-database.hmModules.nix-index
   ];
 
   config = {
     nix.settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       show-trace = true;
     };
     home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
-    home.packages = with pkgs;[
-      nixfmt-rfc-style
-      nixpkgs-fmt
-      nixd
-      deadnix
-      statix
-      nurl
+    home.packages =
+      with pkgs;
+      [
+        nixfmt-rfc-style
+        nixpkgs-fmt
+        nixd
+        deadnix
+        statix
+        nurl
 
-    ] ++ (with inputs.nsearch.packages.${pkgs.system};[ nsearch nrun nshell ]);
+      ]
+      ++ (with inputs.nsearch.packages.${pkgs.system}; [
+        nsearch
+        nrun
+        nshell
+      ]);
     programs = {
       # This tool will index all nix packages
       # `nix-locate` command will be available to find packages/libraries

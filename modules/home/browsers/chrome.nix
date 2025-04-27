@@ -1,5 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs;
-    [ google-chrome ];
+  home.packages = with pkgs; [ google-chrome ];
 }

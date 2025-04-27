@@ -1,4 +1,11 @@
-{ config, lib, opts, ... }: with lib; let
+{
+  config,
+  lib,
+  opts,
+  ...
+}:
+with lib;
+let
   inherit (config.lib.stylix) colors;
   border_active = "0xff${colors.base06}";
   border_inactive = "0x00${colors.base06}";

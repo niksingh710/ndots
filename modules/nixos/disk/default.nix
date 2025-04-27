@@ -1,4 +1,6 @@
-{ lib, config, ... }: with lib; let
+{ lib, config, ... }:
+with lib;
+let
   cfg = config.ndots.disk;
 in
 {
@@ -15,12 +17,21 @@ in
   options.ndots.disk = {
     encrypted = mkEnableOption "Host disk is encrypted!?";
     impermanence = mkEnableOption "Disk is impermanent?";
-    btrfs = mkEnableOption "Use btrfs for root partition?" // { default = true; };
+    btrfs = mkEnableOption "Use btrfs for root partition?" // {
+      default = true;
+    };
     ssd = {
-      enable = mkEnableOption "Disk type is ssd?" // { default = true; };
+      enable = mkEnableOption "Disk type is ssd?" // {
+        default = true;
+      };
       options = mkOption {
         type = types.listOf types.str;
-        default = [ "ssd" "discard=async" "noatime" "compress=zstd" ];
+        default = [
+          "ssd"
+          "discard=async"
+          "noatime"
+          "compress=zstd"
+        ];
         description = "Options for ssd disk";
       };
     };
@@ -31,7 +42,10 @@ in
   };
   config = {
     boot.initrd.availableKernelModules = optionals cfg.ssd.enable [ "nvme" ];
-    boot.supportedFilesystems = [ "btrfs" "vfat" ];
+    boot.supportedFilesystems = [
+      "btrfs"
+      "vfat"
+    ];
 
     services.fstrim.enable = cfg.ssd.enable;
     services.btrfs = mkIf cfg.btrfs {
@@ -42,12 +56,9 @@ in
     };
   };
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

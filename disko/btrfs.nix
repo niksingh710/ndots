@@ -13,7 +13,10 @@
             type = "filesystem";
             format = "vfat";
             mountpoint = "/boot";
-            mountOptions = [ "defaults" "umask=0077" ];
+            mountOptions = [
+              "defaults"
+              "umask=0077"
+            ];
           };
         };
         # Btrfs Root Partition
@@ -24,13 +27,11 @@
             type = "btrfs";
             subvolumes = {
               "/root" = {
-                mountOptions =
-                  [ "compress=zstd" ]; # Compression for better performance
+                mountOptions = [ "compress=zstd" ]; # Compression for better performance
                 mountpoint = "/"; # Root subvolume
               };
               "/persistent" = {
-                mountOptions =
-                  [ "compress=zstd" ]; # Compression for persistent data
+                mountOptions = [ "compress=zstd" ]; # Compression for persistent data
                 mountpoint = "/persistent"; # Persistent subvolume
               };
               "/nix" = {

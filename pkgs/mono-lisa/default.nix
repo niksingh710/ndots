@@ -1,4 +1,10 @@
-{ stdenv, lib, pkgs, self, ... }:
+{
+  stdenv,
+  lib,
+  pkgs,
+  self,
+  ...
+}:
 
 stdenv.mkDerivation rec {
   pname = "MonoLisa-Script";
@@ -7,7 +13,10 @@ stdenv.mkDerivation rec {
   src = "${self}/secrets/enc-font.zip"; # Path to your encrypted zip file
   ageKeyFile = /var/lib/sops/age/keys.txt; # Path to your age key file
 
-  nativeBuildInputs = [ pkgs.sops pkgs.unzip ];
+  nativeBuildInputs = [
+    pkgs.sops
+    pkgs.unzip
+  ];
 
   # Disable the default unpack phase
   unpackPhase = ''

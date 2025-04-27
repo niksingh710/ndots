@@ -21,7 +21,7 @@ in
     terminal = "screen-256color";
     escapeTime = 0;
     aggressiveResize = true;
-    plugins = with pkgs;[
+    plugins = with pkgs; [
       tmuxPlugins.fzf-tmux-url
       tmuxPlugins.yank
       tmuxPlugins.open
@@ -35,14 +35,15 @@ in
     ];
     extraConfig =
       let
-        edit-pane = pkgs.writeShellScript "edit-pane" #sh
-          ''
-            buf=$(mktemp).sh
-            # -32768 is the length of the buffer
-            # Why -32768? Coz everyone using this
-            tmux capture-pane -pS -32768 > "$buf"
-            tmux new-window -n:edit-pane "$EDITOR $buf"
-          '';
+        edit-pane =
+          pkgs.writeShellScript "edit-pane" # sh
+            ''
+              buf=$(mktemp).sh
+              # -32768 is the length of the buffer
+              # Why -32768? Coz everyone using this
+              tmux capture-pane -pS -32768 > "$buf"
+              tmux new-window -n:edit-pane "$EDITOR $buf"
+            '';
       in
       # tmux
       ''

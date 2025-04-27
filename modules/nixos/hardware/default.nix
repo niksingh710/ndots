@@ -1,4 +1,5 @@
-{ lib, ... }: with lib;
+{ lib, ... }:
+with lib;
 {
   services.fwupd.enable = true;
   zramSwap = {
@@ -6,12 +7,9 @@
     memoryPercent = 150;
   };
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

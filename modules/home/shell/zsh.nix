@@ -3,7 +3,7 @@
 # You may need to make zsh as your default shell
 {
 
-  home.packages = with pkgs;[ nix-zsh-completions ];
+  home.packages = with pkgs; [ nix-zsh-completions ];
   programs = {
     zsh = {
       enable = true;

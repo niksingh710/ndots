@@ -1,4 +1,11 @@
-{ lib, pkgs, config, opts, ... }: with lib;
+{
+  lib,
+  pkgs,
+  config,
+  opts,
+  ...
+}:
+with lib;
 let
   cfg = config.ndots.networking;
 in
@@ -31,12 +38,9 @@ in
     users.users.${opts.username}.extraGroups = [ "networkmanager" ];
   };
 
-  imports = with builtins;
-    map (fn: ./${fn})
-      (filter
-        (fn: (
-          fn != "default.nix"
-          && !hasSuffix ".md" "${fn}"
-        ))
-        (attrNames (readDir ./.)));
+  imports =
+    with builtins;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
+    );
 }

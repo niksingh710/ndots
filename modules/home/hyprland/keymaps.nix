@@ -1,19 +1,29 @@
-{ inputs, pkgs, config, lib, ... }: with lib;
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib;
 let
   inherit (config.lib.stylix) colors;
   contrib = inputs.hyprland-contrib.packages.${pkgs.system};
   utils = inputs.utils.packages.${pkgs.system};
-  clients = utils.clients.override (with colors; {
-    rofi-theme-str = # scss
-      ''
-        * {
-            background: #${base00};
-            background-alt: #${base03};
-            selected: #${base02};
-            foreground: #${base06};
-          }
-      '';
-  });
+  clients = utils.clients.override (
+    with colors;
+    {
+      rofi-theme-str = # scss
+        ''
+          * {
+              background: #${base00};
+              background-alt: #${base03};
+              selected: #${base02};
+              foreground: #${base06};
+            }
+        '';
+    }
+  );
   workspace = [
     "$mod,mouse_up,workspace,e+1"
     "$mod,mouse_down,workspace,e-1"
@@ -63,14 +73,21 @@ let
 in
 {
 
-  home.packages = with contrib; [ grimblast scratchpad ]
-    ++ (with utils; [ volume brightness ]);
+  home.packages =
+    with contrib;
+    [
+      grimblast
+      scratchpad
+    ]
+    ++ (with utils; [
+      volume
+      brightness
+    ]);
   xdg = {
     userDirs = {
       enable = true;
       createDirectories = true;
-      extraConfig.XDG_SS_DIR =
-        "${config.home.homeDirectory}/Pictures/Screenshots";
+      extraConfig.XDG_SS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
     };
   };
 
@@ -81,11 +98,10 @@ in
       "$tpadon" = "$tpadcmd:enabled true; $tpadcmd:natural_scroll true";
       "$tpadoff" = "$tpadcmd:enabled false";
 
-      "$sspath" =
-        ''~/Pictures/Screenshots/"$(date +"ss-%d-%b-%C_%H-%M-%S")".png'';
+      "$sspath" = ''~/Pictures/Screenshots/"$(date +"ss-%d-%b-%C_%H-%M-%S")".png'';
       "$sscommand" = "grimblast -f --notify --cursor copysave";
-      "$ssarea" = ''
-        hyprctl keyword animation "fadeOut,1,4,default"; grimblast -f --notify copysave area $sspath; hyprctl keyword animation "fadeOut,1,4,default"'';
+      "$ssarea" =
+        ''hyprctl keyword animation "fadeOut,1,4,default"; grimblast -f --notify copysave area $sspath; hyprctl keyword animation "fadeOut,1,4,default"'';
 
       # capslock will work as ctrl
       input.kb_options = "ctrl:nocaps";
@@ -130,7 +146,10 @@ in
         "$mod,Print,exec,$sscommand active $sspath"
         "ALT,Print,exec,$sscommand screen $sspath"
       ];
-      bindm = [ "$mod,mouse:272,movewindow" "$mod,mouse:273,resizewindow 2" ];
+      bindm = [
+        "$mod,mouse:272,movewindow"
+        "$mod,mouse:273,resizewindow 2"
+      ];
       bindl = [
         ", switch:on:Lid Switch, exec,${getExe utils.lid-down}"
       ];

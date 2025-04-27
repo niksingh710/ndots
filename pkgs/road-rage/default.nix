@@ -1,4 +1,8 @@
-{ lib, stdenv, fontconfig }:
+{
+  lib,
+  stdenv,
+  fontconfig,
+}:
 
 stdenv.mkDerivation rec {
   pname = "road-rage";

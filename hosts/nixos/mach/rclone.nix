@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: with lib;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib;
 let
   configDir = "${config.hm.home.homeDirectory}/.config/rclone";
   configPath = "${configDir}/rclone.conf";
@@ -18,11 +24,10 @@ in
   hm.sops.secrets."rclone/conf".path = "${configPath}";
   hm.sops.secrets."rclone/locked-conf".path = "${configDir}/rclone-locked.conf";
   hm.home = {
-    packages = with pkgs;[ rclone ];
+    packages = with pkgs; [ rclone ];
     shellAliases = rec {
       rmount = "${getExe pkgs.rclone} mount ${builtins.concatStringsSep " " args}";
-      rmount-locked =
-        "RCLONE_CONFIG=$HOME/.config/rclone/rclone-locked.conf \
+      rmount-locked = "RCLONE_CONFIG=$HOME/.config/rclone/rclone-locked.conf \
               ${getExe pkgs.rclone} mount ${builtins.concatStringsSep " " args}";
 
       rdrive = "mkdir -p $HOME/drive/gdrive; ${rmount} gdrive: $HOME/drive/gdrive";

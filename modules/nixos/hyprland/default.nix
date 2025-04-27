@@ -1,4 +1,13 @@
-{ inputs, self, pkgs, opts, lib, config, ... }: with lib;
+{
+  inputs,
+  self,
+  pkgs,
+  opts,
+  lib,
+  config,
+  ...
+}:
+with lib;
 {
   programs.hyprland =
     let
@@ -18,7 +27,6 @@
           exec uwsm start hyprland-uwsm.desktop
       fi
     '';
-
 
   # For quick addition to avoid building from scratch
   # export NIX_CONFIG="substituters = https://cache.nixos.org https://hyprland.cachix.org\ntrusted-public-keys = hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
