@@ -24,7 +24,7 @@
         ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
       };
 
-      initExtra = # sh
+      initContent = # sh
         ''
           bindkey '^ ' autosuggest-accept # Makes `ctrl + space` to accept autosuggestions
 

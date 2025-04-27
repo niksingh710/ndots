@@ -12,7 +12,7 @@
   };
 
   # Enables copy for wl-clipboard in zsh-vi-mode
-  programs.zsh.initExtra = # sh
+  programs.zsh.initContent = # sh
     ''
       zvm_vi_yank () {
         zvm_yank

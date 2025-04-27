@@ -19,6 +19,8 @@ in
         workspace_center_on = 1;
       };
 
+      ecosystem.no_update_news = true;
+
       dwindle = {
         pseudotile = true;
         preserve_split = true;

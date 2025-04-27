@@ -77,7 +77,6 @@
   };
 
   hm.programs.neovide = {
-    # TODO: enable when the cctools bug is fixed https://github.com/NixOS/nixpkgs/pull/356292
     enable = true;
     settings = {
       font = {

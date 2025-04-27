@@ -1,12 +1,13 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-    inputs.nixcord.homeManagerModules.nixcord
+    inputs.nixcord.homeModules.nixcord
   ];
   home.packages = with pkgs;[
     telegram-desktop
     nitch
     zulip
+    zoom-us
     slack
     mailspring
   ];

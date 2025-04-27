@@ -3,8 +3,8 @@
   autoEnable = true;
   polarity = "dark";
   image = pkgs.fetchurl {
-    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/pixelart/dock.png";
-    sha256 = "b7e95e0874aea54c0af2afdb1976f7389a5fd12b84905c57dbbb65168f06c6ff";
+    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/pixelart/gruvbox_image46.png";
+    sha256 = "95f67683e0f3066423f321c6996d656839e14c442dc2f2fbe43bfd2cb1e01103";
   };
   base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
 

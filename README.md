@@ -152,8 +152,7 @@ Check out my favorite color schemes on [base16](https://github.com/niksingh710/b
 | `Ctrl-p`                | Toggle preview window                            |
 | `Ctrl-r`                | Search through history                           |
 | `Ctrl-/`                | Search for an AUR package with installation info |
-| `Ctrl-space` (fzf list) | Select multiple                                  |
-| `Ctrl-/` (fzf list)     | Deselect multiple                                |
+| `Ctrl-space` (fzf list) | toggle selection                                  |
 
 </div>
 

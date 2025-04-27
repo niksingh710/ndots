@@ -5,7 +5,7 @@ in
 {
   home.packages = [ fzf-preview ];
   programs = {
-    zsh.initExtra = # sh
+    zsh.initContent = # sh
       ''
         function zvm_after_init() {
           zvm_bindkey viins "^R" fzf-history-widget
@@ -22,8 +22,7 @@ in
         binds = [
           "--bind='ctrl-d:preview-down'"
           "--bind='ctrl-u:preview-up'"
-          "--bind='ctrl-/:deselect'"
-          "--bind='ctrl-space:select'"
+          "--bind='ctrl-space:toggle'"
           "--bind='ctrl-s:toggle-sort'"
           "--bind='ctrl-y:yank'"
           "--bind='ctrl-p:change-preview-window(down|hidden|)'"
