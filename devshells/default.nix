@@ -3,6 +3,10 @@
     { config, pkgs, ... }:
     {
       devShells = {
+
+        dsa = import ./dsa.nix { inherit pkgs; };
+        python-venv = import ../templates/python-venv/default.nix { inherit pkgs; };
+
         # This can be used if wanna use devShell from git-hooks flake
         # default = config.pre-commit.devShell.overrideAttrs (oa: {
         #   name = "ndots";
@@ -19,7 +23,7 @@
           name = "ndots";
           packages = with pkgs; [
             nixd
-            nixpkgs-fmt
+            nixfmt-rfc-style
             nh
           ];
           shellHook = ''
@@ -28,9 +32,6 @@
             echo 1>&2 "Ready to work on ndots!"
           '';
         };
-
-        dsa = import ./dsa.nix { inherit pkgs; };
-        python-venv = import ./python-venv.nix { inherit pkgs; };
       };
     };
 }
