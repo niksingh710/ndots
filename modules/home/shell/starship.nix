@@ -154,8 +154,8 @@ in
       };
 
       nix_shell = {
-        impure_msg = "[❄️ impure shell](bold red)";
-        pure_msg = "[❄️ pure shell](bold green)";
+        impure_msg = "[󱋋](bold red)";
+        pure_msg = "[](bold green)";
         unknown_msg = "[](bold yellow)";
         format = "[$state( \($name\))](bold blue) ";
         heuristic = true;

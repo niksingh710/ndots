@@ -20,6 +20,9 @@
 
         # My custom overlays
         ./overlays
+
+        # For shell env and commits
+        inputs.git-hooks-nix.flakeModule
       ];
       flake.templates = import ./templates;
       flake.disko = import ./disko;
@@ -29,6 +32,7 @@
         { pkgs, ... }:
         {
           packages = import ./pkgs { inherit pkgs; }; # Packaged by me accessible to anyone
+          pre-commit.settings.hooks.nixfmt-rfc-style.enable = true;
         };
     };
 
@@ -39,6 +43,11 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixcord.url = "github:kaylorben/nixcord";
+
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
