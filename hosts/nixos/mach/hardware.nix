@@ -8,13 +8,14 @@
 {
 
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
+  powerManagement.cpuFreqGovernor = "ondemand";
   boot = {
     kernelParams = [
       "amdgpu.runpm=0"
       "amdgpu.ppfeaturemask=0xffffffff"
       "usbcore.autosuspend=-1"
       "amdgpu"
+      "intel_pstate=disable"
     ];
     extraModprobeConfig = "options i915 enable_guc=2";
     # This is imp as the drive is encrypted.
