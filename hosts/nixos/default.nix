@@ -44,7 +44,7 @@ in
     mach = nixosGenerator "mach" "x86_64-linux" {
       username = "niksingh710";
       userEmail = "nik.singh710@gmail.com";
-      rounding = false;
+      rounding = true;
     };
   };
 }

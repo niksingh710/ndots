@@ -2,7 +2,6 @@
   lib,
   inputs,
   pkgs,
-  self,
   ...
 }:
 with lib;
@@ -34,7 +33,7 @@ let
         '';
       extensions.packages = with plugins; [
         privacy-badger
-        vimium-c
+        vimium
         darkreader
         proton-pass
         ublock-origin
@@ -64,7 +63,6 @@ in
     };
   };
   config = {
-    home.packages = [ self.packages.${pkgs.system}.zen-browser-appimage ];
     programs.librewolf = cfgFirefox // {
       # enable = false; # till build time get's fixed
       settings = {
@@ -73,14 +71,24 @@ in
         "identity.fxaccounts.enabled" = true;
         "privacy.clearOnShutdown.history" = false;
         "privacy.clearOnShutdown.downloads" = false;
+        "browser.tabs.allow_transparent_browser" = true;
       };
     };
     programs.firefox = cfgFirefox;
+    programs.zen-browser = cfgFirefox; # TODO: add nebula theme in home-manager
+    xdg.mimeApps.defaultApplications = {
+      "text/html" = "zen.desktop";
+      "x-scheme-handler/http" = "zen.desktop";
+      "x-scheme-handler/https" = "zen.desktop";
+      "x-scheme-handler/about" = "zen.desktop";
+      "x-scheme-handler/unknown" = "zen.desktop";
+    };
   };
 
   imports =
     with builtins;
     map (fn: ./${fn}) (
       filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
-    );
+    )
+    ++ [ inputs.zen-browser.homeModules.beta ];
 }

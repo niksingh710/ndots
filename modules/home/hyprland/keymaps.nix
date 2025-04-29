@@ -104,7 +104,7 @@ in
         ''hyprctl keyword animation "fadeOut,1,4,default"; grimblast -f --notify copysave area $sspath; hyprctl keyword animation "fadeOut,1,4,default"'';
 
       # capslock will work as ctrl
-      input.kb_options = "ctrl:nocaps";
+      input.kb_options = "caps:swapescape";
       bind = workspace ++ [
         "$mod,q,killactive"
         "$mod,s,togglesplit"
@@ -134,7 +134,7 @@ in
         "$modSHIFT,a,pin,"
         "$modCTRLSHIFT,f,workspaceopt,allfloat"
 
-        "$modSHIFT,o,exec,hyprctl setprop active opaque toggle"
+        "$modSHIFT,o,exec,hyprctl --batch 'setprop active opaque toggle; setprop inactive opaque toggle'"
         "$modCTRL,c,centerwindow,"
 
         ",Scroll_Lock,exec,loginctl lock-session"

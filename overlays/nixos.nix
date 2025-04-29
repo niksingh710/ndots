@@ -21,17 +21,17 @@
       paths = [ prev.materialgram ];
       buildInputs = [ prev.makeWrapper ];
       postBuild = ''
-        wrapProgram "$out/bin/materialgram"--run "export XDG_CURRENT_DESKTOP=gnome"
+        wrapProgram "$out/bin/materialgram" --run "export QT_QPA_PLATFORM=wayland"
       '';
     }
   );
   telegram-desktop = (
     prev.symlinkJoin {
-      name = "materialgram";
+      name = "telegram-desktop";
       paths = [ prev.telegram-desktop ];
       buildInputs = [ prev.makeWrapper ];
       postBuild = ''
-        wrapProgram "$out/bin/telegram-desktop" --run "export XDG_CURRENT_DESKTOP=gnome"
+        wrapProgram "$out/bin/telegram-desktop" --run "export QT_QPA_PLATFORM=wayland"
       '';
     }
   );

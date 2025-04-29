@@ -63,11 +63,20 @@ with lib;
   hm.nvix.pkg = inputs.nvix.packages.${pkgs.system}.full.extend {
     nvix.explorer.neo-tree = false;
     nvix.explorer.oil = true;
-    colorschemes.gruvbox = {
+    # colorschemes.gruvbox = {
+    #   enable = true;
+    #   settings.transparent_mode = true;
+    # };
+    colorschemes.catppuccin = {
       enable = true;
-      settings.transparent_mode = true;
+      settings = {
+        background.dark = "mocha";
+        dim_inactive.enabled = true;
+        transparent_background = true;
+      };
     };
-    colorscheme = mkForce "gruvbox";
+
+    colorscheme = mkForce "catppuccin-mocha";
     extraConfigLuaPre = # lua
       ''
         if vim.g.neovide then
@@ -91,5 +100,5 @@ with lib;
     };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 }

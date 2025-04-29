@@ -23,6 +23,7 @@ let
           foreground: #${base06};
         }
       window {
+          background: transparent;
           location: south;
           anchor: south;
         }
@@ -43,6 +44,9 @@ in
                   background-alt: #${base03};
                   selected: #${base02};
                   foreground: #${base06};
+                }
+              window {
+                background: transparent;
                 }
             '';
         }

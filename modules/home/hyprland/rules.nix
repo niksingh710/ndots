@@ -11,9 +11,10 @@
     ];
     windowrule = [
       "float,class:^(Choose Files)$"
-    ];
 
-    windowrulev2 = [
+      "opacity 1,class:zen-beta"
+      "opacity 1,class:kitty"
+      "opacity 1,initialTitle:Picture-in-Picture"
 
       "workspace special:quick, class:(org.pulseaudio.pavucontrol)"
 
@@ -42,9 +43,13 @@
 
       "noanim,class:^(rofi)$"
 
+      "float,initialTitle:(Picture-in-Picture)"
       "float,title:Choose*"
       "float,title:(ripdrag)"
       "pin,title:(ripdrag)"
+
+      "float,class:(.telegram-desktop-wrapped)"
+      "float,title:(Choose Files)"
 
       "float,class:(java)"
 
@@ -58,7 +63,7 @@
       "noinitialfocus,class:(showmethekey-gtk)"
       "noblur,class:(showmethekey-gtk)"
       "noshadow,class:(showmethekey-gtk)"
-      "opacity 8,class:(showmethekey-gtk)"
+      "opacity 1,class:(showmethekey-gtk)"
       "maxsize 310 95,class:(showmethekey-gtk)"
 
       "float, class:^(quick-term)$"
@@ -76,13 +81,24 @@
       "idleinhibit fullscreen, class:^(librewolf)$"
       "idleinhibit fullscreen, class:^(mpv)$"
       "idleinhibit none,class:^(YouTube Music)$"
+
+      "size 35% 40%,class:clipse"
+      "center 1,class:clipse"
+    ];
+
+    windowrulev2 = [
+
     ];
 
     layerrule = [
       "ignorezero, notifications"
+      "ignorezero, firefox"
+      "ignorezero, zen-beta"
       "blur, firefox"
       "blur, librewolf"
       "blur, discord"
+      "blur, zen-beta"
+      "blurpopups, zen-beta"
       "blurpopups, firefox"
       "blurpopups, librewolf"
       "blurpopups, (.*)"

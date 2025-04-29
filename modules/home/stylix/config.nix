@@ -4,13 +4,13 @@
   autoEnable = true;
   polarity = "dark";
   image = pkgs.fetchurl {
-    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/pixelart/gruvbox_image46.png";
-    sha256 = "95f67683e0f3066423f321c6996d656839e14c442dc2f2fbe43bfd2cb1e01103";
+    url = "https://raw.githubusercontent.com/zhichaoh/catppuccin-wallpapers/refs/heads/main/os/nix-black-4k.png";
+    sha256 = "1d165878a0e67c0e7791bddf671b8d5af47c704f7ab4baea3d9857e3ecf89590";
   };
-  base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+  base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
   opacity = {
-    terminal = 1.0;
+    terminal = 0.9;
     popups = 0.8;
   };
 

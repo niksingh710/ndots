@@ -77,7 +77,7 @@ in
 
       decoration = {
         rounding = if opts.rounding then 10 else 0;
-        active_opacity = config.stylix.opacity.terminal;
+        active_opacity = 1;
         inactive_opacity = config.stylix.opacity.popups;
 
         blur = {

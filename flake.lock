@@ -727,6 +727,27 @@
         "type": "github"
       }
     },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "zen-browser",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743604125,
+        "narHash": "sha256-ZD61DNbsBt1mQbinAaaEqKaJk2RFo9R/j+eYWeGMx7A=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "180fd43eea296e62ae68e079fcf56aba268b9a1a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -1164,15 +1185,15 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1739193687,
-        "narHash": "sha256-Qb3gnEiWyaue5V4WyktMS4O3ir6afur1hI65puAAND0=",
-        "owner": "niksingh710",
+        "lastModified": 1741993116,
+        "narHash": "sha256-Iy8Bi6aXtNXFfuQmRhLo50cs7pMx1l+OIv019Dqj6ow=",
+        "owner": "firecat53",
         "repo": "networkmanager-dmenu",
-        "rev": "0d04b8ed4bcdd9d2634ccbd12069d2b7e56ba0bc",
+        "rev": "65243f5ae1599695397b32dd40259fc888b2e9a7",
         "type": "github"
       },
       "original": {
-        "owner": "niksingh710",
+        "owner": "firecat53",
         "repo": "networkmanager-dmenu",
         "type": "github"
       }
@@ -1773,11 +1794,11 @@
         "tokyodark": "tokyodark"
       },
       "locked": {
-        "lastModified": 1745772062,
-        "narHash": "sha256-CyWHFW7aPnrjeSrfZxmu4ZapkgBsAnkXfFZ/UZbUMYY=",
+        "lastModified": 1745779979,
+        "narHash": "sha256-Rd/L8a7wh9yVDRxZ59xVsNHUWHN70vBp9dcYHOiq17E=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "b78ff5d9ad729e73a42c5113ce30ad3b2d657434",
+        "rev": "6d1cb19a9e4f25f63682757a5a451c3b7e34ba0d",
         "type": "github"
       },
       "original": {
@@ -1922,7 +1943,8 @@
         "systems": "systems_7",
         "textfox": "textfox",
         "tmux-sessionx": "tmux-sessionx",
-        "utils": "utils"
+        "utils": "utils",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -2337,11 +2359,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741474402,
-        "narHash": "sha256-ktoaS9AqeK2CSkEyaZIGtFDFXdZdMQY7wBUJGxar/RQ=",
+        "lastModified": 1745831277,
+        "narHash": "sha256-UkqdCaBIb0vVAQOi7+l+lI5fSmfOs7ZGquX3AHHXMYo=",
         "owner": "niksingh710",
         "repo": "utils",
-        "rev": "6c8ddd1ca3c846d8c4bf2255090b8d4c85573408",
+        "rev": "1c835472a8e5cfee0b32ca77e36da57ed1ab089b",
         "type": "github"
       },
       "original": {
@@ -2388,6 +2410,27 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": "home-manager_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745809801,
+        "narHash": "sha256-TPQZmVUZxq4rIXqZcAuXeHu1etCo0AXF+3Dkar44aCk=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "7902bf43aefe27fc18448702ebe6705bb27ad36c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
