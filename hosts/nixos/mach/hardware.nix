@@ -8,14 +8,13 @@
 {
 
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-  powerManagement.cpuFreqGovernor = "ondemand";
+  powerManagement.cpuFreqGovernor = "performance";
   boot = {
     kernelParams = [
       "amdgpu.runpm=0"
       "amdgpu.ppfeaturemask=0xffffffff"
       "usbcore.autosuspend=-1"
       "amdgpu"
-      "intel_pstate=disable"
     ];
     extraModprobeConfig = "options i915 enable_guc=2";
     # This is imp as the drive is encrypted.
@@ -41,7 +40,7 @@
       "nofail"
     ];
   };
-
+  services.thermald.enable = true;
   hardware = {
     enableRedistributableFirmware = lib.mkDefault true;
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

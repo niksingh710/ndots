@@ -43,6 +43,9 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixcord.url = "github:kaylorben/nixcord";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
+    zen-nebula.url = "github:JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser";
 
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
@@ -53,6 +56,7 @@
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.url = "github:NixOS/nixpkgs";
     };
+
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -93,6 +97,11 @@
 
     mailspring-theme = {
       url = "github:jpminor/mailspring-isaac-dark-theme";
+      flake = false;
+    };
+
+    zulip-theme = {
+      url = "github:botder/zulip-discord-css";
       flake = false;
     };
 

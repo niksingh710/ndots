@@ -11,6 +11,7 @@
     ];
     windowrule = [
       "float,class:^(Choose Files)$"
+      "float,class:^(Choose Directory)$"
 
       "opacity 1,class:zen-beta"
       "opacity 1,class:kitty"

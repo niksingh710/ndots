@@ -15,7 +15,7 @@ with lib;
     )
     ++ (builtins.attrValues self.nixosModules)
     ++ [
-      ../impermanence.nix # to make common dir permanenet
+      ../impermanence.nix # to make common dir permanent
     ];
 
   hm.imports = [
@@ -37,11 +37,11 @@ with lib;
   };
 
   hm.home = {
-    shellAliases.fetch = "${getExe pkgs.fastfetch} -c examples/10.jsonc --kitty-icat $HOME/.logo.png --logo-padding-top 10 ";
+    shellAliases.fetch = "${getExe pkgs.fastfetch} -c examples/17.jsonc --kitty-icat $HOME/.logo.png --logo-width 25 --logo-padding-right 3";
     file."logo" = {
       source = pkgs.fetchurl {
-        url = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/NixOS_logo.svg/320px-NixOS_logo.svg.png";
-        sha256 = "3d80fa904f55fd7adb6a11c327b0db42aa1f22205af4e8b852dbc466a30f3ff5";
+        url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-colours.svg";
+        sha256 = "e37b5a1c11e81496e9d46af04908951ada6babaa416d670aaae4934cce912eb2";
       };
       target = "${config.hm.home.homeDirectory}/.logo.png";
     };

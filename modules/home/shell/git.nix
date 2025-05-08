@@ -11,6 +11,7 @@
       };
     };
     gh.enable = true;
+    gh-dash.enable = true;
     lazygit = {
       enable = true;
       settings.gui.nerdFontsVersion = "3";

@@ -21,7 +21,7 @@
       paths = [ prev.materialgram ];
       buildInputs = [ prev.makeWrapper ];
       postBuild = ''
-        wrapProgram "$out/bin/materialgram" --run "export QT_QPA_PLATFORM=wayland"
+        wrapProgram $out/bin/materialgram --set QT_QPA_PLATFORMTHEME wayland --set XDG_CURRENT_DESKTOP gnome
       '';
     }
   );
@@ -31,7 +31,7 @@
       paths = [ prev.telegram-desktop ];
       buildInputs = [ prev.makeWrapper ];
       postBuild = ''
-        wrapProgram "$out/bin/telegram-desktop" --run "export QT_QPA_PLATFORM=wayland"
+        wrapProgram $out/bin/telegram-desktop --set QT_QPA_PLATFORMTHEME wayland --set XDG_CURRENT_DESKTOP gnome
       '';
     }
   );

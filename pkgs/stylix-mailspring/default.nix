@@ -33,7 +33,7 @@ pkgs.stdenv.mkDerivation {
       @text-color-link-hover: lighten(@isaac-accent, 10%);
       @base-border-radius: 2px;
 
-      .message-item-white-wrap {
+      a.feature,body select,.message-item-white-wrap {
         background: @isaac-dark !important;
       }
       div.sidebar-participant-picker {

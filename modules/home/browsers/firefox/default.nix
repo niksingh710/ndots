@@ -21,6 +21,7 @@ let
       };
     };
     profiles.default = {
+      # nebula-tab-loading-animation is responsible for the webpages to be blurred while loading
       extraConfig = # js
         ''
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -30,6 +31,8 @@ let
           user_pref("browser.urlbar.unitConversion.enabled", true);
           user_pref("browser.urlbar.trimHttps", true);
           user_pref("browser.urlbar.trimURLs", true);
+          user_pref("nebula-tab-loading-animation", 3);
+          user_pref("nebula-tab-switch-animation", 3);
         '';
       extensions.packages = with plugins; [
         privacy-badger
@@ -77,11 +80,16 @@ in
     programs.firefox = cfgFirefox;
     programs.zen-browser = cfgFirefox; # TODO: add nebula theme in home-manager
     xdg.mimeApps.defaultApplications = {
-      "text/html" = "zen.desktop";
-      "x-scheme-handler/http" = "zen.desktop";
-      "x-scheme-handler/https" = "zen.desktop";
-      "x-scheme-handler/about" = "zen.desktop";
-      "x-scheme-handler/unknown" = "zen.desktop";
+      "text/html" = "zen-beta.desktop";
+      "x-scheme-handler/http" = "zen-beta.desktop";
+      "x-scheme-handler/https" = "zen-beta.desktop";
+      "x-scheme-handler/about" = "zen-beta.desktop";
+      "x-scheme-handler/unknown" = "zen-beta.desktop";
+    };
+
+    zen-nebula = {
+      enable = true;
+      profile = "default";
     };
   };
 
@@ -90,5 +98,8 @@ in
     map (fn: ./${fn}) (
       filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
     )
-    ++ [ inputs.zen-browser.homeModules.beta ];
+    ++ [
+      inputs.zen-browser.homeModules.beta
+      inputs.zen-nebula.homeModules.default
+    ];
 }

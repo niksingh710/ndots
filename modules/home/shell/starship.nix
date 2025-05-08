@@ -147,7 +147,10 @@ in
       };
 
       custom.lastcommit = {
-        command = "${lib.getExe pkgs.git} show -s --format=' %h: %s' | awk '{msg=substr($0, index($0,\":\") + 2, 20); if (length($0) - index($0,\":\") > 20) msg=msg \"...\"; print \"(\" $1, msg \")\"}'";
+        # Below command will convert `chore(ci): update something` -> `update something`
+        # This how it will be ( update something)
+        command = "${lib.getExe pkgs.git} show -s --format='|%s' | awk -F'\\|' '{sub(/^.*: /, \"\", $2); msg=substr($2, 1, 20); if (length($2) > 20) msg=msg \"...\"; print \"(\" $1, msg \")\"}'";
+        # command = "${lib.getExe pkgs.git} show -s --format=' %h: %s' | awk '{msg=substr($0, index($0,\":\") + 2, 20); if (length($0) - index($0,\":\") > 20) msg=msg \"...\"; print \"(\" $1, msg \")\"}'";
         when = "${lib.getExe pkgs.git} rev-parse --is-inside-work-tree 2> /dev/null";
         style = "#fd9f9f bold";
         format = "\([$output]($style)\) ";

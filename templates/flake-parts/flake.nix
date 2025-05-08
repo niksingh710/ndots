@@ -37,6 +37,7 @@
             packages = with pkgs; [
               nixd
               nixfmt-rfc-style
+              git
             ];
             shellHook = ''
               ${config.pre-commit.installationScript}

@@ -39,7 +39,9 @@
   };
 
   systemd.tmpfiles.rules = [ "L+ /etc/nixpkgs/channels/nixpkgs - - - - ${pkgs.path}" ];
-
+  imports = [
+    inputs.determinate.nixosModules.default
+  ];
   hm.imports = [
     self.homeModules.nix
   ];
