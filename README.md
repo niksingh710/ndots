@@ -135,7 +135,14 @@ Check out my favorite color schemes on [base16](https://github.com/niksingh710/b
 
 #### Starship Config for Zsh
 
-![image](https://github.com/niksingh710/cdots/assets/60490474/1c1bff31-eb4f-43e7-8dd4-e55892622977)
+> Git repository
+![Image](https://github.com/user-attachments/assets/9d5d8491-1b3e-4e78-9d0d-6c8920560c82)
+
+> Non Git repository
+![Image](https://github.com/user-attachments/assets/020cc96d-2e20-470c-a0c6-f6971c199108)
+
+> Files with programming languages
+![Image](https://github.com/user-attachments/assets/9c75dde8-3b3d-4946-b350-ce219dc4ed2e)
 
 #### FZF
 

@@ -50,13 +50,15 @@ in
         ''''${custom.file_number}''
         ''''${custom.folder_number}''
         ''''${custom.df}''
+        ''$all''
+        ''''${custom.git_line_break}''
         ''''${custom.git_host}''
         ''$git_branch''
         ''$git_commit''
         ''$git_state''
         ''$git_status''
         ''''${custom.lastcommit}''
-        ''$all''
+        ''$line_break''
         ''$character''
       ];
       continuation_prompt = "▶▶ ";
@@ -129,6 +131,16 @@ in
         deleted = ''\[ [$count](bright-white bold)\]'';
       };
 
+      custom.git_line_break = {
+        command = "echo";
+        when = "${lib.getExe pkgs.git} rev-parse --is-inside-work-tree > /dev/null 2>&1";
+        format = "\n";
+        shell = [
+          "bash"
+          "--norc"
+          "--noprofile"
+        ];
+      };
       custom.git_host = {
         command = "${lib.getExe gitIcons}";
         directories = [ ".git" ];
@@ -149,7 +161,7 @@ in
       custom.lastcommit = {
         # Below command will convert `chore(ci): update something` -> `update something`
         # This how it will be ( update something)
-        command = "${lib.getExe pkgs.git} show -s --format='|%s' | awk -F'\\|' '{sub(/^.*: /, \"\", $2); msg=substr($2, 1, 20); if (length($2) > 20) msg=msg \"...\"; print \"(\" $1, msg \")\"}'";
+        command = "${lib.getExe pkgs.git} show -s --format='|%s' | awk -F'\\|' '{sub(/^.*: /, \"\", $2); msg=substr($2, 1, 30); if (length($2) > 30) msg=msg \"...\"; print \"(\" $1, msg \")\"}'";
         # command = "${lib.getExe pkgs.git} show -s --format=' %h: %s' | awk '{msg=substr($0, index($0,\":\") + 2, 20); if (length($0) - index($0,\":\") > 20) msg=msg \"...\"; print \"(\" $1, msg \")\"}'";
         when = "${lib.getExe pkgs.git} rev-parse --is-inside-work-tree 2> /dev/null";
         style = "#fd9f9f bold";
