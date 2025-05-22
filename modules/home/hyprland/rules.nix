@@ -87,10 +87,6 @@
       "center 1,class:clipse"
     ];
 
-    windowrulev2 = [
-
-    ];
-
     layerrule = [
       "ignorezero, notifications"
       "ignorezero, firefox"

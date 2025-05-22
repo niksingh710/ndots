@@ -127,6 +127,7 @@ in
 
         "$mod,f,togglefloating,"
         "$modSHIFT,f,pseudo,"
+        "$modCTRL,f,fullscreenstate,0 2" # Fake fullscreen
         "$mod,m,exec,${getExe utils.fullscreen}"
 
         "$modSHIFT,x,exec,hyprctl kill"
