@@ -24,7 +24,7 @@ in
   config = mkIf cfg.sops.enable {
     home = {
       packages = [ pkgs.sops ]; # get sops binary in PATH
-      activation = {
+      activation = mkIf pkgs.stdenv.isLinux {
         # This will run the service and allow sops to create entries in home dir
         setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
           /run/current-system/sw/bin/systemctl restart --user sops-nix
@@ -39,7 +39,7 @@ in
       };
 
       secrets = {
-        "private-keys/ssh".path = "${config.home.homeDirectory}/.ssh/id_rsa";
+        "private-keys/ssh".path = "${config.home.homeDirectory}/.ssh/id_ed25519";
         "private-keys/age".path = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       };
     };

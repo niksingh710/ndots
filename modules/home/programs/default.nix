@@ -1,16 +1,25 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 {
   imports = [
     inputs.nixcord.homeModules.nixcord
   ];
-  home.packages = with pkgs; [
-    telegram-desktop
-    nitch
-    zulip
-    zoom-us
-    slack
-    mailspring
-  ];
+  home.packages =
+    with pkgs;
+    [
+      telegram-desktop
+      zoom-us
+      slack
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      zulip
+      nitch
+      mailspring
+    ];
 
   programs.nixcord = {
     enable = true;

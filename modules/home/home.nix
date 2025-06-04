@@ -7,10 +7,10 @@ in
 {
   home = {
     username = "${username}";
-    homeDirectory = "/home/${username}";
+    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
     packages = [ pkgs.home-manager ];
     stateVersion = "25.05";
   };
 
-  systemd.user.startServices = true;
+  systemd.user.startServices = pkgs.stdenv.isLinux;
 }

@@ -4,6 +4,7 @@
   inputs,
   opts,
   lib,
+  config,
   ...
 }:
 with lib;
@@ -20,7 +21,13 @@ with lib;
       ];
       show-trace = true;
     };
-    home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
+    home.sessionVariables =
+      {
+        NIXPKGS_ALLOW_UNFREE = 1;
+      }
+      // lib.optionalAttrs (!config.nix.enable) {
+        NH_NO_CHECKS = 1;
+      };
     home.packages =
       with pkgs;
       [
@@ -30,7 +37,6 @@ with lib;
         deadnix
         statix
         nurl
-
       ]
       ++ (with inputs.nsearch.packages.${pkgs.system}; [
         nsearch
@@ -53,7 +59,8 @@ with lib;
           enable = true;
           extraArgs = "--keep-since 4d --keep 3";
         };
-        flake = "/home/${opts.username}/flake";
+        flake =
+          if pkgs.stdenv.isDarwin then "/USers/${opts.username}/flake" else "/home/${opts.username}/flake";
       };
     };
   };

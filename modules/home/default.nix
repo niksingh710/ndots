@@ -12,4 +12,5 @@
   programs = ./programs;
   browsers = ./browsers;
   hyprland = ./hyprland;
+  terminal = ./terminal;
 }

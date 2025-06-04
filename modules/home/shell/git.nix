@@ -8,6 +8,7 @@
       extraConfig = {
         init.defaultBranch = "master";
         core.editor = "vim";
+        core.sharedRepository = "group";
       };
     };
     gh.enable = true;

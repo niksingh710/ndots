@@ -37,6 +37,7 @@ This repository contains my Linux rice setup, along with my shell configuration,
 | **mach**  | My personal laptop (Hyprland, waybar, and much More, Most of the setup is setted up for this.) |
 | **vm**    | Virtual Machine for testing (The tinker box it is minimal and works for anything [CLI ONLY]) |
 | **iso**  | Custom ISO for installation (My [editor](https://github.com/niksingh710/nvix), git, disko, NetworkManager, Presetted up)|
+| **jp-mbp**  | MacBook Pro M4 |
 
 ```bash
 # Instructions to build the ISO (output will reside in result/iso)
