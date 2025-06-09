@@ -78,15 +78,14 @@ in
       };
     };
     programs.firefox = cfgFirefox;
-    # programs.zen-browser = lib.mkForce (lib.optionalAttrs pkgs.stdenv.isLinux cfgFirefox);
-    # xdg.mimeApps.defaultApplications = {
-    #   "text/html" = "zen-beta.desktop";
-    #   "x-scheme-handler/http" = "zen-beta.desktop";
-    #   "x-scheme-handler/https" = "zen-beta.desktop";
-    #   "x-scheme-handler/about" = "zen-beta.desktop";
-    #   "x-scheme-handler/unknown" = "zen-beta.desktop";
-    # };
-    #
+    programs.zen-browser = lib.mkForce (lib.optionalAttrs pkgs.stdenv.isLinux cfgFirefox);
+    xdg.mimeApps.defaultApplications = {
+      "text/html" = "zen-beta.desktop";
+      "x-scheme-handler/http" = "zen-beta.desktop";
+      "x-scheme-handler/https" = "zen-beta.desktop";
+      "x-scheme-handler/about" = "zen-beta.desktop";
+      "x-scheme-handler/unknown" = "zen-beta.desktop";
+    };
     zen-nebula = {
       enable = true;
       profile = "default";
@@ -98,8 +97,8 @@ in
     map (fn: ./${fn}) (
       filter (fn: (fn != "default.nix" && !hasSuffix ".md" "${fn}")) (attrNames (readDir ./.))
     )
-    ++ (lib.optional pkgs.stdenv.isLinux [
+    ++ [
       inputs.zen-browser.homeModules.beta
       inputs.zen-nebula.homeModules.default
-    ]);
+    ];
 }

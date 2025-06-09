@@ -54,8 +54,8 @@ in
       (config.lib.nixGL.wrap pkgs.onlyoffice-bin_latest)
     ]
     ++ [
-      utils.center-align
-      utils.bstat
+      # utils.center-align
+      # utils.bstat
       utils.icpu
       nix-alien.nix-alien
     ];
