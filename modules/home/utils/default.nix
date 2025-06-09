@@ -17,7 +17,7 @@
     duf
     poppler_utils
     pdftk
-    (pkgs.callPackage "${self}/pkgs/syncall" { inherit (inputs) poetry2nix syncall; })
+    # (pkgs.callPackage "${self}/pkgs/syncall" { inherit (inputs) poetry2nix syncall; })
   ];
 
   programs.taskwarrior = {

@@ -20,8 +20,6 @@ in
       margin = "8";
       padding = "4";
       outer-margin = "0,0,8,0";
-    };
-    criteria = {
       "urgency=low" = {
         border-color = lib.mkForce "#${colors.base08}";
       };
