@@ -13,7 +13,7 @@
     [
       telegram-desktop
       zoom-us
-      tmate
+      upterm
       tailscale
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
@@ -24,7 +24,12 @@
     ++ lib.optionals pkgs.stdenv.isDarwin [
       ice-bar
     ];
-
+  programs.zsh.initContent = # sh
+    ''
+      if command -v upterm > /dev/null; then
+        source <(upterm completion zsh)
+      fi
+    '';
   programs.nixcord = {
     enable = true;
     config = {
