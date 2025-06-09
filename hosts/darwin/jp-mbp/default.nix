@@ -8,6 +8,7 @@
 }:
 let
   inherit (opts) username;
+  keyPath = "/Users/${username}/.config/sops/age/keys.txt";
 in
 with lib;
 {
@@ -19,8 +20,6 @@ with lib;
     )
     ++ (builtins.attrValues self.darwinModules);
 
-  nixpkgs.config.allowUnfree = true;
-
   hm.imports = [
     self.homeModules.shell
     self.homeModules.editor
@@ -28,11 +27,18 @@ with lib;
     self.homeModules.sops
     self.homeModules.programs
     self.homeModules.nix
+    inputs.zen-nebula.homeModules.default
   ];
-
-  hm.ndots = {
-    sops.enable = true;
-    sops.keyFile = "/Users/${username}/.config/sops/age/key.txt";
+  hm.zen-nebula = {
+    enable = true;
+    profile = "default";
+  };
+  hm = {
+    home.sessionVariables.SOPS_AGE_KEY_FILE = keyPath;
+    ndots = {
+      sops.enable = true;
+      sops.keyFile = keyPath;
+    };
   };
 
   hm.nvix.pkg = inputs.nvix.packages.${pkgs.system}.core.extend {
@@ -62,9 +68,6 @@ with lib;
     pkgs.vim
     pkgs.fastfetch
   ];
-
-  # Necessary for using flakes on this system.
-  nix.enable = false;
 
   # Enable alternative shell support in nix-darwin.
   # programs.fish.enable = true;

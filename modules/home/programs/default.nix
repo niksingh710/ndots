@@ -13,12 +13,16 @@
     [
       telegram-desktop
       zoom-us
-      slack
+      tmate
+      tailscale
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       zulip
       nitch
       mailspring
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin [
+      ice-bar
     ];
 
   programs.nixcord = {

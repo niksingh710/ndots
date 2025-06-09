@@ -40,7 +40,7 @@ in
 
       secrets = {
         "private-keys/ssh".path = "${config.home.homeDirectory}/.ssh/id_ed25519";
-        "private-keys/age".path = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+        # "private-keys/age".path = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       };
     };
 

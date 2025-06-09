@@ -10,6 +10,7 @@ let
   });
 in
 {
+  home.shellAliases.ta = "tmux new-session -A -s";
   # TODO: SessionX implementation
   programs.tmux = {
     enable = true;

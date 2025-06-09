@@ -36,6 +36,7 @@ in
     mbp = darwinGenerator "Nikhil-Singh-CG74J76YJM" "aarch64-darwin" {
       username = "nikhil.singh";
       userEmail = "nikhil.singh@juspay.in";
+      rounding = true;
     } ./jp-mbp;
   };
 }

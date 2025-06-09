@@ -2,10 +2,12 @@
   inputs,
   config,
   opts,
+  pkgs,
   ...
 }:
 let
   inherit (config.lib.stylix) colors;
+  inherit (pkgs.stdenv) isLinux isDarwin;
 in
 {
   imports = [
@@ -17,9 +19,9 @@ in
     profile = "default";
     config = {
       # Optional config
-      background.color = "#${base00}";
+      background.color = if isLinux then "#${base00}" else "#000000";
       border = {
-        color = "#${base06}";
+        color = if isLinux then "#${base06}" else "#bdbdbd";
         width = "1px";
         radius = if opts.rounding then "10px" else "0px";
       };
@@ -35,10 +37,17 @@ in
           |_| |_|_|  \___|_|  \___/_/\_\
 
         '';
-      font = {
-        family = config.stylix.fonts.monospace.name;
-        accent = "#${base06}";
-      };
+      font =
+        if isLinux then
+          {
+            family = config.stylix.fonts.monospace.name;
+            accent = if isLinux then "#${base06}" else "#bdbdbd";
+          }
+        else
+          {
+            family = "JetBrainsMono Nerd Font Mono";
+            accent = if isLinux then "#${base06}" else "#bdbdbd";
+          };
     };
   };
 }
