@@ -34,9 +34,9 @@ This repository contains my Linux rice setup, along with my shell configuration,
 
 | Hosts | Description |
 | ----- | ----------- |
-| **mach**  | My personal laptop (Hyprland, waybar, and much More, Most of the setup is setted up for this.) |
-| **vm**    | Virtual Machine for testing (The tinker box it is minimal and works for anything [CLI ONLY]) |
-| **iso**  | Custom ISO for installation (My [editor](https://github.com/niksingh710/nvix), git, disko, NetworkManager, Presetted up)|
+| **mach**  | My personal laptop (Hyprland, Waybar, and much more. Most of the setup is set up for this.) |
+| **vm**    | Virtual Machine for testing (The tinker box. It is minimal and works for anything [CLI ONLY].) |
+| **iso**   | Custom ISO for installation (Includes my [editor](https://github.com/niksingh710/nvix), git, disko, NetworkManager, pre-configured setup.) |
 | **jp-mbp**  | MacBook Pro M4 |
 
 ```bash
@@ -56,14 +56,14 @@ sudo nixos-install --no-root-passwd --root /mnt --flake github:niksingh710/ndots
 ```
 
 >[!Note]
-> Nixos is my primary right now and It is a impermanenet setup.
-  To know more search for `erase-your-darlings nix` on the internet. (I could have added resource but it is a rabbit hole.)
+> NixOS is my primary OS right now, and it is an impermanent setup.
+  To learn more, search for [`erase-your-darlings nix`](https://grahamc.com/blog/erase-your-darlings) on the internet. (I could have added more resources, but it is a rabbit hole.)
 
 #### Check out [Utils](https://github.com/niksingh710/utils)
 Repository for my utility scripts and tools.
 They run and anyone can tailor them with overrides.
 
-## Instructions for the templates
+## 📂 Instructions for the Templates
 
 ```
 nix flake init -t github:niksingh710/ndots#<template>
@@ -77,19 +77,16 @@ nix flake init -t github:niksingh710/ndots#<template>
 </p>
 
 <details>
+  <summary>📀 Instructions for Default ISO</summary>
 
-  <summary>
-    Instructions for Default ISO
-  </summary>
-
-   ```
-# Look the disko dir, It contains a non Encrypted partitioning scheme (disko) and an Encrypted partitioning scheme (enc-disko).
+```bash
+# The disko directory contains both a non-encrypted partitioning scheme (disko)
+# and an encrypted partitioning scheme (enc-disko).
 
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko disko.nix
 
-nixos-install --root /mnt --flake github:niksingh710/ndots#<hostname>
+sudo nixos-install --root /mnt --flake github:niksingh710/ndots#<hostname>
 ```
-
 </details>
 
 ```sh
@@ -132,7 +129,7 @@ Check out my favorite color schemes on [base16](https://github.com/niksingh710/b
 
 ### 🐚 Shell Setup
 
-> **Note:** My shell module is written as an independent HomeManager module, so it can be utilized by anyone.
+> **Note:** My shell module is written as an independent Home Manager module, so it can be utilized by anyone.
 
 #### Starship Config for Zsh
 
