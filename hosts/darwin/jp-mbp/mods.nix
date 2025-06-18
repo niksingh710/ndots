@@ -10,6 +10,9 @@ let
 in
 {
   hm = {
+    home.packages = with pkgs; [
+      omnix
+    ];
     programs.tmux.plugins = [
       {
         plugin = minimal-tmux;

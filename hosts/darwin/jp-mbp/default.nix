@@ -4,6 +4,7 @@
   inputs,
   lib,
   opts,
+  config,
   ...
 }:
 let
@@ -33,14 +34,30 @@ with lib;
     enable = true;
     profile = "default";
   };
+
   hm = {
+    sops.secrets."private-keys/gemini_api" = { };
+    sops.secrets."private-keys/openai_api" = { };
+    sops.secrets."private-keys/nix_access_token" = {
+      path = "${config.hm.home.homeDirectory}/.cache/token.conf";
+    };
+
+    programs.zsh.initContent = # sh
+      ''
+        export OPENAI_API_BASE=https://api.githubcopilot.com
+        export OPENAI_API_KEY=$(cat ${config.hm.sops.secrets."private-keys/openai_api".path})
+        export GEMINI_API_KEY=$(cat ${config.hm.sops.secrets."private-keys/gemini_api".path})
+      '';
+
     home.sessionVariables.SOPS_AGE_KEY_FILE = keyPath;
     ndots = {
       sops.enable = true;
       sops.keyFile = keyPath;
     };
   };
-
+  hm.nix.extraOptions = ''
+    !include ${config.hm.sops.secrets."private-keys/nix_access_token".path}
+  '';
   hm.nvix.pkg = inputs.nvix.packages.${pkgs.system}.core.extend {
     nvix.explorer.neo-tree = false;
     nvix.explorer.oil = true;

@@ -6,12 +6,12 @@
   ...
 }:
 let
-  pname = "zen";
-  version = "1.12.10b";
+  pname = "CrystalFetch";
+  version = "v2.2.0";
 
   src = fetchurl {
-    url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.macos-universal.dmg";
-    sha256 = "sha256:75c27e278870a48749134edfc84706f04ec272c0cd11c4baab7d320ba17db8ca"; # Remember as in url `/latest/` is used the sha256 will change with releases.
+    url = "https://github.com/TuringSoftware/CrystalFetch/releases/download/${version}/CrystalFetch.dmg";
+    sha256 = "sha256-bkKKQZvF3t7SHaDJ6vrkUH/VsvtuLIz4tZ+XUi8B3u4="; # Remember as in url `/latest/` is used the sha256 will change with releases.
   };
 in
 stdenv.mkDerivation {
@@ -33,7 +33,7 @@ stdenv.mkDerivation {
     set -x  # Enables command tracing
     mkdir -p $out/Applications
     ls >&2
-    cp -r "Zen.app" $out/Applications/
+    cp -r "CrystalFetch.app" $out/Applications/
     set +x  # Disables command tracing when you're done
   '';
   meta.platforms = lib.platforms.darwin;

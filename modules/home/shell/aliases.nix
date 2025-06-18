@@ -1,12 +1,8 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }:
-let
-  utils = inputs.utils.packages.${pkgs.system};
-in
 {
   # Most of the aliases are associated with the respective program files.
   # Still here are a few that i like to have on my shell.
@@ -25,8 +21,6 @@ in
     };
 
     packages = [
-      utils.myip
-      utils.cat
       (pkgs.writeShellScriptBin "help" "$@ --help 2>&1 | ${lib.getExe pkgs.bat} --plain --language=help")
     ];
   };

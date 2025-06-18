@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 let
   navigator = pkgs.tmuxPlugins.vim-tmux-navigator.overrideAttrs (oa: {
     src = pkgs.fetchFromGitHub {
@@ -13,7 +18,7 @@ in
   home.shellAliases.ta = "tmux new-session -A -s";
   # TODO: SessionX implementation
   programs.tmux = {
-    enable = true;
+    enable = lib.mkDefault true;
     baseIndex = 1;
     historyLimit = 10000;
     keyMode = "vi";

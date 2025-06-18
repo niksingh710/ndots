@@ -6,12 +6,12 @@
   ...
 }:
 let
-  pname = "zen";
-  version = "1.12.10b";
+  pname = "signal";
+  version = "7.57.0";
 
   src = fetchurl {
-    url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.macos-universal.dmg";
-    sha256 = "sha256:75c27e278870a48749134edfc84706f04ec272c0cd11c4baab7d320ba17db8ca"; # Remember as in url `/latest/` is used the sha256 will change with releases.
+    url = "https://updates.signal.org/desktop/signal-desktop-mac-universal-${version}.dmg";
+    sha256 = "sha256-dGZde/yihXjNwF6oRTghDuKREE6g522wFETVUVA+NLY="; # Remember as in url `/latest/` is used the sha256 will change with releases.
   };
 in
 stdenv.mkDerivation {
@@ -23,17 +23,17 @@ stdenv.mkDerivation {
   nativeBuildInputs = with pkgs; [
     makeWrapper
     copyDesktopItems
-    undmg
+    _7zz
   ];
 
   unpackPhase = ''
-    undmg $src
+    7zz x -snld $src
   '';
   installPhase = ''
     set -x  # Enables command tracing
     mkdir -p $out/Applications
     ls >&2
-    cp -r "Zen.app" $out/Applications/
+    cp -r "Signal.app" $out/Applications/
     set +x  # Disables command tracing when you're done
   '';
   meta.platforms = lib.platforms.darwin;

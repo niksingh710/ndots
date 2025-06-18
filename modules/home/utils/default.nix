@@ -4,6 +4,9 @@
   self,
   ...
 }:
+let
+  utils = inputs.utils.packages.${pkgs.system};
+in
 {
   home.packages = with pkgs; [
     figlet
@@ -18,6 +21,8 @@
     poppler_utils
     pdftk
     # (pkgs.callPackage "${self}/pkgs/syncall" { inherit (inputs) poetry2nix syncall; })
+    utils.myip
+    utils.cat
   ];
 
   programs.taskwarrior = {

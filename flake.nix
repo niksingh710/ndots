@@ -40,7 +40,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixcord.url = "github:kaylorben/nixcord";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
@@ -64,7 +64,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-nebula.url = "github:JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser";
+    zen-nebula.url = "github:niksingh710/Nebula-A-Minimal-Theme-for-Zen-Browser";
 
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";

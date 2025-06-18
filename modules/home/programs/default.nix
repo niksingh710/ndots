@@ -11,7 +11,7 @@
   home.packages =
     with pkgs;
     [
-      telegram-desktop
+      pkgs.stable.telegram-desktop
       zoom-us
       upterm
       tailscale
