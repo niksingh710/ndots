@@ -10,4 +10,5 @@
   pronotes = pkgs.callPackage ./pronotes { };
   flipqo = pkgs.callPackage ./flipqo { };
   signal = pkgs.callPackage ./signal-darwin { };
+  orbstack = pkgs.callPackage ./orbstack { };
 }

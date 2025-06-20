@@ -13,6 +13,11 @@ in
     home.packages = with pkgs; [
       omnix
     ];
+    programs.ssh = {
+      enable = true;
+      addKeysToAgent = "yes";
+      forwardAgent = true;
+    };
     programs.tmux.plugins = [
       {
         plugin = minimal-tmux;
