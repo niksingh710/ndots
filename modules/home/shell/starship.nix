@@ -19,8 +19,8 @@ let
           ["git"]=" "
         )
 
-        ICON=" "  # Default icon
-        URL="''${URL:-localhost}"  # Default URL if unset
+        ICON=" "
+        URL="''${URL:-localhost}"
 
         # Prioritize matching longer keys first
         for key in $(printf "%s\n" "''${!icons[@]}" | awk '{ print length, $0 }' | sort -nr | cut -d" " -f2-); do
@@ -29,13 +29,13 @@ let
             break
           fi
         done
-        # # Clean up the URL
+        # Clean up the URL
         URL="''${URL#*@}"                      # Remove "git@" if present
         URL="''${URL#*://}"                    # Remove "https://" or "http://"
-        URL="''${URL%.git}"                     # Remove ".git" suffix
-        URL="''${URL%/}"                        # Remove trailing slash if any
+        URL="''${URL%.git}"                    # Remove ".git" suffix
+        URL="''${URL%/}"                       # Remove trailing slash if any
 
-        # # Output the final result in "icon: username/repo" format
+        # Output the final result in "icon: username/repo" format
         printf "%s%s\n" "$ICON" "$URL"
       '';
 in

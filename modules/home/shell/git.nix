@@ -1,21 +1,24 @@
-{ opts, ... }:
 {
   programs = {
     git = {
       enable = true;
-      userName = "${opts.username}";
-      userEmail = "${opts.userEmail}";
+      ignores = [ "*~" "*.swp" ];
+      lfs.enable = true;
+      iniContent = {
+        branch.sort = "-committerdate";
+      };
       extraConfig = {
         init.defaultBranch = "master";
-        core.editor = "vim";
+        core.editor = "nvim";
         core.sharedRepository = "group";
+        credential.helper = "store --file ~/.git-credentials";
+        pull.rebase = "false";
       };
     };
     gh.enable = true;
-    gh-dash.enable = true;
     lazygit = {
       enable = true;
-      settings.gui.nerdFontsVersion = "3";
+      settings.gui.theme.lightTheme = false;
     };
   };
 }

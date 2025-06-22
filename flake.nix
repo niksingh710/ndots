@@ -1,188 +1,48 @@
 {
-  description = "My Personal NixOS Configuration";
-  outputs =
-    inputs@{ flake-parts, ... }:
-
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./iso # custom iso builds for me
-
-        ./modules # custom modules for me
-
-        # all possible hosts configurations
-        # - standalone home-manager configs
-        # - nixOs config for NixOS
-        # - darwin config for macOS
-        ./hosts
-
-        # shell instances to test configurations
-        ./devshells
-
-        # My custom overlays
-        ./overlays
-
-        # For shell env and commits
-        inputs.git-hooks-nix.flakeModule
-      ];
-      flake.templates = import ./templates;
-      flake.disko = import ./disko;
-
-      systems = import inputs.systems;
-      perSystem =
-        { pkgs, ... }:
-        {
-          packages = import ./pkgs { inherit pkgs; }; # Packaged by me accessible to anyone
-          pre-commit.settings.hooks.nixfmt-rfc-style.enable = true;
-        };
-    };
+  description = "Nikhil's NixOs / nix-darwin configuration";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    systems.url = "github:nix-systems/default";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nix-gaming.url = "github:fufexan/nix-gaming";
-    nixcord.url = "github:kaylorben/nixcord";
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-unified.url = "github:srid/nixos-unified";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    systems.url = "github:nix-systems/default";
 
-    mac-app-util.url = "github:hraban/mac-app-util";
-
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-
-    # Optional: Declarative tap management
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zen-nebula.url = "github:niksingh710/Nebula-A-Minimal-Theme-for-Zen-Browser";
-
-    git-hooks-nix = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-alien = {
-      url = "github:thiagokokada/nix-alien";
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs";
-    };
-
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # My neovim config based on Nixvim
+    # Editor
     nvix.url = "github:niksingh710/nvix";
-    fzf-preview.url = "github:niksingh710/fzf-preview";
 
-    impermanence.url = "github:nix-community/impermanence";
+    # Deveshell
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.flake = false;
 
-    textfox.url = "github:niksingh710/textfox/librefox";
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    utils = {
-      url = "github:niksingh710/utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mailspring-theme = {
-      url = "github:jpminor/mailspring-isaac-dark-theme";
-      flake = false;
-    };
-
-    zulip-theme = {
-      url = "github:botder/zulip-discord-css";
-      flake = false;
-    };
-
-    # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    # Custom hyprland scripts
-    hyprland-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # for taskwarrior HACK: Fix it
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    syncall = {
-      url = "github:bergercookie/syncall";
-      flake = false;
-    };
-
-    # For secure boot
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # For secrets management
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nsearch = {
-      url = "github:niksingh710/nsearch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # My Tmux Plugin for minimal status line
-    # TODO: Make it available to nixpkgs by default
-    minimal-tmux = {
-      url = "github:niksingh710/minimal-tmux-status";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    tmux-sessionx = {
-      url = "github:omerxx/tmux-sessionx";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Discord flake
+    nixcord.url = "github:kaylorben/nixcord";
   };
+
+  outputs = inputs@{ self, ... }:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      # debug = true;
+      systems = import inputs.systems;
+      imports = (with builtins;
+        map
+          (file: ./modules/flake/${file})
+          (attrNames (readDir ./modules/flake)));
+
+      perSystem = { lib, system, ... }: {
+        # Make our overlay available to the devShell
+        # "Flake parts does not yet come with an endorsed module that initializes the pkgs argument.""
+        # So we must do this manually; https://flake.parts/overlays#consuming-an-overlay
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = lib.attrValues self.overlays;
+          config.allowUnfree = true;
+        };
+      };
+    };
 }

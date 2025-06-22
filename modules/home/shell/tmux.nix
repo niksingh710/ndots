@@ -1,117 +1,116 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 let
+  # TODO: Add the package to nixpkgs
+  minimal-tmux-status = (builtins.getFlake
+    "github:niksingh710/minimal-tmux-status/de2bb049a743e0f05c08531a0461f7f81da0fc72").packages.${pkgs.system}.default;
+  # TODO: Update the package on nixpkgs to a newer version
   navigator = pkgs.tmuxPlugins.vim-tmux-navigator.overrideAttrs (oa: {
     src = pkgs.fetchFromGitHub {
       owner = "christoomey";
       repo = "vim-tmux-navigator";
-      rev = "d847ea942a5bb4d4fab6efebc9f30d787fd96e65";
+      rev = "412c474e97468e7934b9c217064025ea7a69e05e";
       hash = "sha256-EkuAlK7RSmyrRk3RKhyuhqKtrrEVJkkuOIPmzLHw2/0=";
     };
   });
+  edit-pane = pkgs.writeShellScript "edit-pane" # sh
+    ''
+      buf=$(mktemp).sh
+      # -32768 is the length of the buffer
+      # Why -32768? Coz everyone using this
+      tmux capture-pane -pS -32768 > "$buf"
+      tmux new-window -n:edit-pane "$EDITOR $buf"
+    '';
 in
 {
-  home.shellAliases.ta = "tmux new-session -A -s";
-  # TODO: SessionX implementation
-  programs.tmux = {
-    enable = lib.mkDefault true;
-    baseIndex = 1;
-    historyLimit = 10000;
-    keyMode = "vi";
-    mouse = true;
-    prefix = "C-a";
-    terminal = "screen-256color";
-    escapeTime = 0;
-    aggressiveResize = true;
-    plugins = with pkgs; [
-      tmuxPlugins.fzf-tmux-url
-      tmuxPlugins.yank
-      tmuxPlugins.open
-      navigator
-      {
-        plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;
-      }
-      {
-        plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
-      }
-    ];
-    extraConfig =
-      let
-        edit-pane =
-          pkgs.writeShellScript "edit-pane" # sh
-            ''
-              buf=$(mktemp).sh
-              # -32768 is the length of the buffer
-              # Why -32768? Coz everyone using this
-              tmux capture-pane -pS -32768 > "$buf"
-              tmux new-window -n:edit-pane "$EDITOR $buf"
-            '';
-      in
-      # tmux
-      ''
-        set -g default-command "''${SHELL}" # this will avoid loading profile again
-        set -g set-clipboard on
-        set-option -g automatic-rename on
-        set-option -g status-style bg=default
+  programs = {
+    # TODO: Test tmate vs upterm
+    # tmate.enable = true;
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      keyMode = "vi";
+      mouse = true;
+      shortcut = "a";
+      escapeTime = 0;
+      secureSocket = false;
+      plugins = [
+        navigator
+        {
+          plugin = minimal-tmux-status;
+          extraConfig = ''
+            set -g @minimal-tmux-use-arrow true
+            set -g @minimal-tmux-right-arrow ""
+            set -g @minimal-tmux-left-arrow ""
+          '';
+        }
+        pkgs.tmuxPlugins.better-mouse-mode
+        pkgs.tmuxPlugins.yank
+        pkgs.tmuxPlugins.open
+        pkgs.tmuxPlugins.fzf-tmux-url
+      ];
+      extraConfig = # tmux
+        ''
+          # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
+          set -g default-terminal "xterm-256color"
+          set -g allow-passthrough on
+          set -ga terminal-overrides ",*256col*:Tc"
+          set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
 
-        set-option -ga terminal-overrides ",xterm*:Tc"
+          set-environment -g COLORTERM "truecolor"
 
-        # Enable Sixel support
-        set -g allow-passthrough on
+          set -g default-command "''${SHELL}" # this will avoid loading profile again
+          set -g set-clipboard on
+          set-option -g automatic-rename on
+          set-option -g status-style bg=default
+          set -g prefix C-a
 
-        set -g prefix C-a
+          bind N new-session
+          bind n new-window
 
-        bind C-a send-prefix
+          bind H swap-pane -D
+          bind L swap-pane -U
 
-        bind N new-session
-        bind n new-window
+          # edit tmux output in vim `ctrl e`
+          bind C-e run-shell "${edit-pane}"
 
-        bind H swap-pane -D
-        bind L swap-pane -U
+          bind-key r movew -r\; display-message "Renumbered Windows"
 
-        # edit tmux output in vim `ctrl e`
-        bind C-e run-shell "${edit-pane}"
+          # window remap `-r` allows to repeat the keyb
+          bind -r C-h previous-window
+          bind -r C-l next-window
 
-        bind-key r movew -r\; display-message "Renumbered Windows"
+          # start selecting text with "v"
+          bind -T copy-mode-vi 'v' send -X begin-selection
+          bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
 
-        # window remap `-r` allows to repeat the keyb
-        bind -r C-h previous-window
-        bind -r C-l next-window
+          bind -T copy-mode-vi v send -X begin-selection
+          bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
 
-        # start selecting text with "v"
-        bind -T copy-mode-vi 'v' send -X begin-selection
-        bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
+          bind -n c-f \
+            if-shell -F '#{==:#{session_name},scratch}' \
+            { detach-client } { display-popup -h 80% -w 90% -E \
+            "tmux new-session -A -s scratch"}
 
-        bind -T copy-mode-vi v send -X begin-selection
-        bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+          bind b set-option  status
 
-        bind -n c-f \
-          if-shell -F '#{==:#{session_name},scratch}' \
-          { detach-client } { display-popup -h 80% -w 90% -E \
-          "tmux new-session -A -s scratch"}
+          bind v split-window -h -c "#{pane_current_path}"
+          bind s split-window -v -c "#{pane_current_path}"
 
-        bind b set-option  status
+          bind S choose-session
 
-        bind v split-window -h -c "#{pane_current_path}"
-        bind s split-window -v -c "#{pane_current_path}"
+          bind -r j resize-pane -D
+          bind -r k resize-pane -U
+          bind -r l resize-pane -R
+          bind -r h resize-pane -L
+          bind -r m resize-pane -Z
 
-        bind S choose-session
+          bind x kill-pane
+          bind q kill-window
+          bind Q kill-session
 
-        bind -r j resize-pane -D
-        bind -r k resize-pane -U
-        bind -r l resize-pane -R
-        bind -r h resize-pane -L
-        bind -r m resize-pane -Z
-
-        bind x kill-pane
-        bind q kill-window
-        bind Q kill-session
-
-        bind V copy-mode
-      '';
+          bind V copy-mode
+        '';
+    };
   };
+  home.shellAliases.ta = "tmux -u new-session -A -s";
 }

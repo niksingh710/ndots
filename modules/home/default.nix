@@ -1,16 +1,15 @@
+{ flake, ... }:
+let
+  inherit (flake) self;
+in
 {
-  # Shell module is responsible for setting up the cli environment
-  # This is the environment that i am comfortable with
-  nix = ./nix;
-  sops = ./sops;
-  shell = ./shell;
-  editor = ./editor;
-  stylix = ./stylix;
-  home = ./home.nix;
-  nixos = ./nixos;
-  utils = ./utils;
-  programs = ./programs;
-  browsers = ./browsers;
-  hyprland = ./hyprland;
-  terminal = ./terminal;
+  # This has to be same for darwin/home-manager/nixOs.
+  home.stateVersion = "25.05";
+  imports = [
+    self.homeModules.shell
+    self.homeModules.terminal
+    self.homeModules.editor
+    self.homeModules.ssh
+    self.homeModules.packages
+  ];
 }

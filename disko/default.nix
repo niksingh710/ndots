@@ -1,3 +1,0 @@
-{
-  partition = import ./partition.nix;
-}

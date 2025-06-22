@@ -1,57 +1,53 @@
-{ pkgs, ... }:
-# This is zsh config
-# You may need to make zsh as your default shell
+{ pkgs, lib, ... }:
+let
+  clipboard =
+    if pkgs.stdenv.hostPlatform.isDarwin then
+      "pbcopy"
+    else
+      "wlcopy";
+in
 {
-
-  home.packages = with pkgs; [ nix-zsh-completions ];
-  programs = {
-    zsh = {
-      enable = true;
-      defaultKeymap = "viins";
-      dotDir = ".config/zsh";
-      enableVteIntegration = true;
-      autocd = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
-
-      history = {
-        append = true;
-        expireDuplicatesFirst = true;
-        path = "$HOME/.cache/zsh/.history";
-      };
-
-      localVariables = {
-        ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
-      };
-
-      initContent = # sh
-        ''
-          bindkey '^ ' autosuggest-accept # Makes `ctrl + space` to accept autosuggestions
-
-          bindkey '^[j' fzf-tab-complete
-          bindkey '^[k' fzf-tab-complete
-
-          # user can add session based alias and fn for quick use
-          [ -f "$HOME/.temp.zsh" ] && source "$HOME/.temp.zsh"
-        '';
-
-      plugins = [
-        {
-          name = "vi-mode";
-          src = pkgs.zsh-vi-mode;
-          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-        }
-        {
-          name = "zsh-fzf-tab";
-          src = pkgs.zsh-fzf-tab;
-          file = "share/fzf-tab/fzf-tab.plugin.zsh";
-        }
-      ];
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    history = {
+      append = true;
+      expireDuplicatesFirst = true;
     };
 
-    zoxide = {
-      enable = true;
-      options = [ "--cmd cd" ];
-    };
+    localVariables.ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
+    plugins = [
+      {
+        name = "vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+      {
+        name = "zsh-fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+      {
+        name = "zsh-system-clipboard";
+        src = pkgs.zsh-system-clipboard;
+        file = "share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh";
+      }
+    ];
+    initContent = lib.mkOrder 1500 # sh
+      ''
+        # `ctrl + j` and `ctrl + k` to navigate through suggestions
+        bindkey '^[j' fzf-tab-complete
+        bindkey '^[k' fzf-tab-complete
+
+        function zvm_vi_yank() {
+          zvm_yank
+          echo ''${CUTBUFFER} | ${clipboard}
+          zvm_exit_visual_mode
+        }
+
+        # user can add session based alias and fn for quick use
+        [ -f "$HOME/.temp.zsh" ] && source "$HOME/.temp.zsh"
+      '';
   };
 }

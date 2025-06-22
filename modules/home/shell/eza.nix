@@ -11,7 +11,6 @@
       "--classify=auto"
       "--group-directories-first"
     ];
-
   };
   home.shellAliases = rec {
     ls = "eza -s modified --reverse";

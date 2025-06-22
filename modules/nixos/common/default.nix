@@ -1,3 +1,4 @@
+# Common module for NixOs and darwin
 {
   imports =
     with builtins;

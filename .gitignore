@@ -1,14 +1,3 @@
-result
-test
-
-# Devenv
-.devenv*
-devenv.local.nix
-
-# direnv
-.direnv
-
-# pre-commit
-.pre-commit-config.yaml
-pkgs/.DS_Store
-.aider*
+/result
+/.direnv
+/.pre-commit-config.yaml
