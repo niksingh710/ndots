@@ -4,10 +4,18 @@
   fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
 
   homebrew = {
-    casks = [ "zulip" "signal" "zen" "pronotes" "tailscale" ];
-    brews = [ "mas" "brew-cask-completion" ];
+    casks = [
+      "homerow"
+      "zulip"
+      "signal"
+      "zen"
+      "pronotes"
+      "tailscale"
+    ];
+    brews = [ "brew-cask-completion" ];
     masApps = {
       # "tailscale" = 1475387142;
+      "chess.com" = 329218549;
     };
   };
 

@@ -1,9 +1,20 @@
+{ pkgs, ... }:
 {
   programs = {
     git = {
       enable = true;
+      package = pkgs.gitFull;
+      maintenance = {
+        enable = true;
+        repositories = [
+          "$HOME/work/nixpkgs"
+        ];
+      };
       ignores = [ "*~" "*.swp" ];
       lfs.enable = true;
+      aliases = {
+        gl = "log --oneline --graph --decorate";
+      };
       iniContent = {
         branch.sort = "-committerdate";
       };

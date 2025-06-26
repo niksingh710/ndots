@@ -1,15 +1,6 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 with lib;{
   programs = {
-    ghostty = {
-      enable = mkDefault false;
-      package = pkgs.stable.ghostty;
-      settings = {
-        gtk-titlebar = false;
-        font-size = 10;
-        theme = "catppuccin-mocha";
-      };
-    };
     kitty = {
       enable = mkDefault true;
       environment.FZF_PREVIEW_IMAGE_HANDLER = "kitty";
@@ -17,9 +8,12 @@ with lib;{
         name = mkDefault "JetBrainsMono Nerd Font Mono";
         size = 16;
       };
+      keybindings = {
+        "cmd+opt+s" = "no_op";
+      };
       settings =
         {
-          background_opacity = 0.8;
+          background_opacity = 0.4;
           background_blur = 64;
           window_padding_width = 4;
           hide_window_decorations = "titlebar-only";

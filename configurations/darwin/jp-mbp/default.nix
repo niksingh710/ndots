@@ -21,10 +21,11 @@ in
     name = fullname;
     home = "/Users/${username}";
   };
-  home-manager.backupFileExtension = "bak";
+  home-manager.backupFileExtension = "";
   home-manager.users.${username} = {
     imports = [
       self.homeModules.sops
+      self.homeModules.darwin
       ./secrets.nix
     ];
     programs.git = {
@@ -32,6 +33,10 @@ in
       userEmail = email;
     };
   };
+  environment.etc."sudoers.d/10-nix-sudo".text =
+    ''
+      ${username} ALL=(ALL:ALL) NOPASSWD: ALL
+    '';
 
   system.primaryUser = username;
   nix.settings.trusted-users = [ username ];

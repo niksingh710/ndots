@@ -79,6 +79,9 @@ in
           bind -r C-h previous-window
           bind -r C-l next-window
 
+          bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
+          set -g detach-on-destroy off  # don't exit from tmux when closing a session
+
           # start selecting text with "v"
           bind -T copy-mode-vi 'v' send -X begin-selection
           bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
@@ -95,6 +98,9 @@ in
 
           bind v split-window -h -c "#{pane_current_path}"
           bind s split-window -v -c "#{pane_current_path}"
+
+          bind | split-window -h -c "#{pane_current_path}"
+          bind - split-window -v -c "#{pane_current_path}"
 
           bind S choose-session
 

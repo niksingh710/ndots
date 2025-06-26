@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   programs.zsh.enable = true;
   security.pam.services.sudo_local = {
@@ -9,6 +8,8 @@
     startup.chime = false;
     keyboard.enableKeyMapping = true;
     defaults = {
+      hitoolbox.AppleFnUsageType = "Do Nothing";
+      spaces.spans-displays = true; # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
       trackpad.Clicking = true;
       finder = {
         AppleShowAllExtensions = true;
@@ -18,7 +19,6 @@
         ShowHardDrivesOnDesktop = false;
         ShowMountedServersOnDesktop = false;
         ShowRemovableMediaOnDesktop = false;
-        _FXShowPosixPathInTitle = true;
         FXDefaultSearchScope = "SCcf";
         FXEnableExtensionChangeWarning = false;
         FXRemoveOldTrashItems = true;
@@ -47,6 +47,9 @@
         AppleMeasurementUnits = "Centimeters";
         ApplePressAndHoldEnabled = true;
         NSWindowShouldDragOnGesture = true;
+        NSAutomaticWindowAnimationsEnabled = false;
+        "com.apple.sound.beep.feedback" = 0;
+        "com.apple.sound.beep.volume" = 0.000;
       };
       WindowManager.EnableStandardClickToShowDesktop = false;
       screencapture = {
@@ -55,6 +58,7 @@
       };
       dock = {
         autohide-time-modifier = 0.1;
+        static-only = true;
         autohide = true;
         magnification = true;
         largesize = 80;
@@ -65,18 +69,19 @@
         wvous-br-corner = 14;
         wvous-bl-corner = 7;
         slow-motion-allowed = true;
+        expose-group-apps = true; # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
         persistent-apps = [
           # For custom apps use home-manager location
           # "${config.hm.home.homeDirectory}/Applications/Home Manager Trampolines/kitty.app"
-          "${pkgs.google-chrome}/Applications/Google Chrome.app"
-          "${pkgs.kitty}/Applications/Kitty.app"
-          "/System/Applications/Photos.app"
-          "/System/Applications/FaceTime.app"
-          "/System/Applications/Messages.app"
-          "/System/Applications/Mail.app"
-          "/System/Applications/Calendar.app"
-          "/System/Applications/System Settings.app"
-          "/Applications/Slack.app"
+          # "${pkgs.google-chrome}/Applications/Google Chrome.app"
+          # "${pkgs.kitty}/Applications/Kitty.app"
+          # "/System/Applications/Photos.app"
+          # "/System/Applications/FaceTime.app"
+          # "/System/Applications/Messages.app"
+          # "/System/Applications/Mail.app"
+          # "/System/Applications/Calendar.app"
+          # "/System/Applications/System Settings.app"
+          # "/Applications/Slack.app"
         ];
       };
     };

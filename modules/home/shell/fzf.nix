@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   # TODO: Make fzf-preview available in nixpkgs.
   fzf-preview = (builtins.getFlake
@@ -26,6 +26,9 @@ let
 in
 {
   programs = {
+    sesh.settings = {
+      preview_command = "${lib.getExe fzf-preview} {}";
+    };
     ripgrep.enable = true;
     fzf = {
       enable = true;

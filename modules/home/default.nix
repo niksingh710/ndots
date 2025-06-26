@@ -11,5 +11,6 @@ in
     self.homeModules.editor
     self.homeModules.ssh
     self.homeModules.packages
+    self.homeModules.nix-index
   ];
 }

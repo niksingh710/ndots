@@ -5,6 +5,9 @@ let
 
   both = with pkgs;[
     stable.telegram-desktop
+    omnix
+    google-chrome
+    slack
   ];
 
   linux = lib.optionals isLinux (with pkgs;[
@@ -13,6 +16,7 @@ let
     mailspring
   ]);
   darwin = lib.optionals isDarwin (with pkgs;[
+    mas
     raycast
     keycastr
     whatsapp-for-mac
