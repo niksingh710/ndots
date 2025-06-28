@@ -6,14 +6,12 @@ with lib;{
       environment.FZF_PREVIEW_IMAGE_HANDLER = "kitty";
       font = {
         name = mkDefault "JetBrainsMono Nerd Font Mono";
-        size = 16;
       };
       keybindings = {
         "cmd+opt+s" = "no_op";
       };
       settings =
         {
-          background_opacity = 0.4;
           background_blur = 64;
           window_padding_width = 4;
           hide_window_decorations = "titlebar-only";
@@ -31,6 +29,7 @@ with lib;{
           active_tab_font_style = "italic";
           tab_title_template = "[{index}] {title}";
           active_tab_title_template = "[{index}] {title}";
+          cursor_trail = 3;
 
           bold_font = "auto";
           italic_font = "auto";

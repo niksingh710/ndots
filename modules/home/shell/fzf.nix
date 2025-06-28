@@ -1,8 +1,8 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 let
   # TODO: Make fzf-preview available in nixpkgs.
   fzf-preview = (builtins.getFlake
-    "github:niksingh710/fzf-preview/5d1d0930b80a310da5438141b8078916835156c0").packages.${pkgs.system}.default;
+    "github:niksingh710/fzf-preview/422198e735c7b5f2a327e2f1a092c8c86d8c8233").packages.${pkgs.system}.default;
   binds = [
     "--bind='ctrl-d:preview-down'"
     "--bind='ctrl-u:preview-up'"
@@ -25,6 +25,7 @@ let
   sortFilesCmd = "${lib.getExe pkgs.eza} -s modified -1 --no-quotes --reverse";
 in
 {
+  home.sessionVariables.FZF_TMUX = lib.mkForce 0;
   programs = {
     sesh.settings = {
       preview_command = "${lib.getExe fzf-preview} {}";

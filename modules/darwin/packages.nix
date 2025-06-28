@@ -6,6 +6,7 @@
   homebrew = {
     casks = [
       "homerow"
+      "caffeine"
       "zulip"
       "signal"
       "zen"
@@ -14,8 +15,8 @@
     ];
     brews = [ "brew-cask-completion" ];
     masApps = {
+      # only mac apps supported not iOS one
       # "tailscale" = 1475387142;
-      "chess.com" = 329218549;
     };
   };
 

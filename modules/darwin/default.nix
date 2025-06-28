@@ -8,6 +8,10 @@ in
     self.darwinModules.settings
     self.darwinModules.packages
     inputs.mac-app-util.darwinModules.default
+
+
+    self.darwinModules.stylix
+    (self + /modules/home/stylix/config.nix)
   ];
 
   home-manager.sharedModules = [

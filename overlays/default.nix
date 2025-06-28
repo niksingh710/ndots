@@ -12,4 +12,7 @@ final: prev: {
     overlays = prev.lib.attrValues self.overlays;
   };
   swipeaerospace = prev.callPackage "${packages}/swipeaerospace.nix" { };
+  nvix = inputs.nvix.packages.${prev.system}.core.extend {
+    config.vimAlias = true;
+  };
 }

@@ -1,5 +1,7 @@
 { config, ... }:
 {
+  # Sops are handled at home-manager level only.
+
   sops.secrets = {
     "private-keys/gemini_api" = { };
     "private-keys/openai_api" = { };
@@ -9,7 +11,6 @@
       mode = "0600";
     };
   };
-
   home.sessionVariables = {
     OPENAI_API_BASE = "https://api.githubcopilot.com";
     OPENAI_API_KEY = "$(cat ${config.sops.secrets."private-keys/openai_api".path})";

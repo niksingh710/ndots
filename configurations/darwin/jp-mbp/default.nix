@@ -14,6 +14,7 @@ in
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
     self.darwinModules.default
+    ./overrides.nix
   ];
 
   # user Setup

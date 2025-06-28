@@ -26,7 +26,12 @@
         pull.rebase = "false";
       };
     };
-    gh.enable = true;
+    gh = {
+      enable = true;
+      extensions = [
+        pkgs.gh-notify
+      ];
+    };
     lazygit = {
       enable = true;
       settings.gui.theme.lightTheme = false;

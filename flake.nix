@@ -1,6 +1,5 @@
 {
   description = "Nikhil's NixOs / nix-darwin configuration";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -14,7 +13,7 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
 
-    # mac-app solution
+    # mac-app solution (linking to launcher and finder)
     mac-app-util.url = "github:hraban/mac-app-util";
 
     # nix-index; `,` command available
@@ -24,32 +23,19 @@
     # Editor
     nvix.url = "github:niksingh710/nvix";
 
-    # Deveshell
+    # hooks for git
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.flake = false;
 
     # Discord flake
     nixcord.url = "github:kaylorben/nixcord";
+
+    # stylix
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      debug = true; # Always live in debug mode;
-      systems = import inputs.systems;
-      imports = (with builtins;
-        map
-          (file: ./modules/flake/${file})
-          (attrNames (readDir ./modules/flake)));
-
-      perSystem = { lib, system, ... }: {
-        # Make our overlay available to the devShell
-        # "Flake parts does not yet come with an endorsed module that initializes the pkgs argument.""
-        # So we must do this manually; https://flake.parts/overlays#consuming-an-overlay
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = lib.attrValues self.overlays;
-          config.allowUnfree = true;
-        };
-      };
-    };
+  outputs = inputs:
+    inputs.nixos-unified.lib.mkFlake
+      { inherit inputs; root = ./.; };
 }
