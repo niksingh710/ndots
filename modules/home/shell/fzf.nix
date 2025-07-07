@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   # TODO: Make fzf-preview available in nixpkgs.
+  # https://github.com/NixOS/nixpkgs/pull/420244
   fzf-preview = (builtins.getFlake
     "github:niksingh710/fzf-preview/422198e735c7b5f2a327e2f1a092c8c86d8c8233").packages.${pkgs.system}.default;
   binds = [
@@ -65,6 +66,6 @@ in
     };
   };
 
-  home.packages = [ fzf-preview ];
+  home.packages = [ fzf-preview pkgs.nixpkgs ];
   home.shellAliases.fzfp = "${lib.getExe pkgs.fzf} --preview='${lib.getExe fzf-preview} {}'";
 }

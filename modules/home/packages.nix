@@ -7,7 +7,6 @@ let
     stable.telegram-desktop
     omnix
     google-chrome
-    slack
   ];
 
   linux = lib.optionals isLinux (with pkgs;[

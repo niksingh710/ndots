@@ -9,8 +9,8 @@
       session = [
         rec {
           name = "todo";
-          path = "~/.todo.md";
-          startup_command = "nvim ~/.todo.md";
+          path = "~/.todo/todo.md";
+          startup_command = "nvim ${path}";
           preview_command = "${lib.getExe pkgs.glow} ${path}";
         }
       ];

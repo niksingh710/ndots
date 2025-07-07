@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
   # TODO: Add the package to nixpkgs
+  # https://github.com/NixOS/nixpkgs/pull/420244
   minimal-tmux-status = (builtins.getFlake
     "github:niksingh710/minimal-tmux-status/de2bb049a743e0f05c08531a0461f7f81da0fc72").packages.${pkgs.system}.default;
   # TODO: Update the package on nixpkgs to a newer version

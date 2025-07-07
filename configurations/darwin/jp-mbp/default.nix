@@ -14,7 +14,7 @@ in
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
     self.darwinModules.default
-    ./overrides.nix
+    ./overrides/nix-darwin.nix
   ];
 
   # user Setup
@@ -28,10 +28,17 @@ in
       self.homeModules.sops
       self.homeModules.darwin
       ./secrets.nix
+      ./overrides/home.nix
     ];
     programs.git = {
-      userName = username;
+      userName = flake.config.me.fullname;
       userEmail = email;
+      includes = [
+        {
+          condition = "gitdir:~/work/bitbucket/";
+          contents.user.email = "${username}@juspay.in";
+        }
+      ];
     };
   };
   environment.etc."sudoers.d/10-nix-sudo".text =

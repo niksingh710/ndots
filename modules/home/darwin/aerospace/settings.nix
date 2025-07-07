@@ -42,14 +42,13 @@ let
     "Screen Sharing"
     "systempreferences"
 
-    "telegram"
-    "slack"
-    "discord"
-    "slack"
+    # "telegram"
+    # "slack"
+    # "discord"
+    # "signal"
     "spotify"
     "whatsapp"
     "zoom.us"
-    "signal"
     "kandji"
     "karabiner"
   ];

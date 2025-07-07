@@ -18,7 +18,7 @@ in
       options = "--delete-older-than 30d";
     };
 
-    nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
+    nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" "nixpkgs-stable=${flake.inputs.nixpkgs-stable}" ]; # Enables use of `nix-shell -p ...` etc
     registry = {
       nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
       nixpkgs-stable.flake = flake.inputs.nixpkgs-stable;
@@ -30,7 +30,7 @@ in
       extra-platforms = lib.mkIf pkgs.stdenv.isDarwin "aarch64-darwin x86_64-darwin";
       # Nullify the registry for purity.
       flake-registry = builtins.toFile "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
-      trusted-users = [ "root" (if pkgs.stdenv.isDarwin then flake.config.me.username else "@wheel") ];
+      trusted-users = [ (lib.optionalString pkgs.stdenv.isLinux "@wheel") ];
     };
   };
 }

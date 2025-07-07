@@ -12,7 +12,21 @@ final: prev: {
     overlays = prev.lib.attrValues self.overlays;
   };
   swipeaerospace = prev.callPackage "${packages}/swipeaerospace.nix" { };
+  nixpkgs = prev.callPackage "${packages}/nix-search-tv-script.nix" { };
+  utils = prev.callPackage "${packages}/utils.nix" { };
   nvix = inputs.nvix.packages.${prev.system}.core.extend {
-    config.vimAlias = true;
+    config = {
+      vimAlias = true;
+      colorschemes = {
+        catppuccin.enable = prev.lib.mkForce false;
+        gruvbox-material = {
+          enable = true;
+          settings = {
+            contrast = "hard";
+            background.transparent = true;
+          };
+        };
+      };
+    };
   };
 }

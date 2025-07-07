@@ -10,7 +10,6 @@ in
     self.homeModules.terminal
     self.homeModules.editor
     self.homeModules.ssh
-    self.homeModules.packages
     self.homeModules.nix-index
   ];
 }

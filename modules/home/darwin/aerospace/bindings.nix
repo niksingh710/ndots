@@ -1,8 +1,6 @@
 { pkgs, lib, ... }:
 let
   # I map holding of `capslock` key to `cmd+alt` in karabiner-elements
-  # TODO: Assign workspaces with accordion layout to apps for comms
-  # NOTE: Keep everything in one service mode, multiple modes maybecome confusing
   mod = "cmd-alt";
   scratchpad = lib.getExe' (builtins.getFlake "github:cristianoliveira/aerospace-scratchpad/3118229ccb1ec0a6ee9ca166ea19ff5d08cdfd66").packages.${pkgs.system}.default "aerospace-scratchpad";
   scratchpadCmd = "exec-and-forget ${scratchpad}";

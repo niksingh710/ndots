@@ -4,7 +4,7 @@
     inputs.nixos-unified.flakeModules.default
     inputs.nixos-unified.flakeModules.autoWire
   ];
-
+  debug = true;
   perSystem = { lib, system, self', ... }: {
 
     # Make our overlay available to the devShell
