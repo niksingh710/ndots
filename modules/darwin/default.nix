@@ -17,5 +17,6 @@ in
   home-manager.sharedModules = [
     self.homeModules.default
     self.homeModules.packages
+    self.homeModules.terminal
   ];
 }

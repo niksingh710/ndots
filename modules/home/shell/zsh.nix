@@ -34,6 +34,10 @@ in
         file = "share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh";
       }
     ];
+    profileExtra = lib.optionalString pkgs.stdenv.hostPlatform.isLinux # sh
+      ''
+        export ZSH_SYSTEM_CLIPBOARD_USE_WL_CLIPBOARD="wl-clipboard"
+      '';
     initContent = lib.mkOrder 1500 # sh
       ''
         # `ctrl + j` and `ctrl + k` to navigate through suggestions

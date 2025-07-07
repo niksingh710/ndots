@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   # TODO: Add the package to nixpkgs
   # https://github.com/NixOS/nixpkgs/pull/420244
@@ -21,6 +21,8 @@ let
       tmux capture-pane -pS -32768 > "$buf"
       tmux new-window -n:edit-pane "$EDITOR $buf"
     '';
+  # on vm with only home-manager config kitty might throw error for EGL
+  xterm = if config.programs.kitty.enable then "xterm-kitty" else "xterm-256color";
 in
 {
   programs = {
@@ -52,7 +54,7 @@ in
       extraConfig = # tmux
         ''
           # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
-          set -g default-terminal "xterm-256color"
+          set -g default-terminal ${xterm}
           set -g allow-passthrough on
           set -ga terminal-overrides ",*256col*:Tc"
           set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
