@@ -92,11 +92,6 @@ in
           bind -T copy-mode-vi v send -X begin-selection
           bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
 
-          bind -n c-f \
-            if-shell -F '#{==:#{session_name},scratch}' \
-            { detach-client } { display-popup -h 80% -w 90% -E \
-            "tmux new-session -A -s scratch"}
-
           bind b set-option  status
 
           bind v split-window -h -c "#{pane_current_path}"

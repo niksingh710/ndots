@@ -86,12 +86,22 @@ in
         outer.right = 8;
       };
       workspace-to-monitor-force-assignment = {
+        "1" = "primary";
+        "2" = "primary";
+        "3" = "primary";
+        "4" = "primary";
+        "5" = "primary";
+        "6" = [ "secondary" "primary" ];
+        "7" = [ "secondary" "primary" ];
+        "8" = [ "secondary" "primary" ];
+        "9" = [ "secondary" "primary" ];
         "10" = "secondary";
       };
       after-startup-command = [
         # Handled by service but still here to ensure it runs
         "exec-and-forget borders"
         "exec-and-forget SwipeAeroSpace"
+        "exec-and-forget kitten panel --single-instance --instance-group dmenu --start-as-hidden --lines=0 --columns=0 --detach cat"
       ];
     };
   };

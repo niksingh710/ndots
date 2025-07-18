@@ -6,7 +6,6 @@
 , gnused
 , gawk
 , nix-search-tv
-, xdg-utils
 , bash
 }:
 
@@ -29,7 +28,6 @@ stdenv.mkDerivation {
     fzf
     gnused
     gawk
-    xdg-utils
   ];
 
   installPhase = ''
@@ -49,7 +47,7 @@ stdenv.mkDerivation {
 
     # Wrap the script to ensure dependencies are available
     wrapProgram $out/bin/nixpkgs \
-      --prefix PATH : ${lib.makeBinPath [ fzf gnused gawk nix-search-tv xdg-utils ]}
+      --prefix PATH : ${lib.makeBinPath [ fzf gnused gawk nix-search-tv ]}
 
     runHook postInstall
   '';

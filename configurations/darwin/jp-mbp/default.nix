@@ -1,9 +1,8 @@
 # Configuration for my MacBook Pro
 { flake, lib, ... }:
 let
-  inherit (flake) inputs;
+  inherit (flake) self;
   inherit (flake.config.me) email;
-  inherit (inputs) self;
 
   # NOTE: If the configuration requires multiple users
   #       then add a users dir and utilize that.
@@ -27,6 +26,7 @@ in
     imports = [
       self.homeModules.sops
       self.homeModules.darwin
+      self.homeModules.espanso
       ./secrets.nix
       ./overrides/home.nix
     ];

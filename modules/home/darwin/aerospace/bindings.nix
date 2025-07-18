@@ -1,11 +1,18 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   # I map holding of `capslock` key to `cmd+alt` in karabiner-elements
   mod = "cmd-alt";
   scratchpad = lib.getExe' (builtins.getFlake "github:cristianoliveira/aerospace-scratchpad/3118229ccb1ec0a6ee9ca166ea19ff5d08cdfd66").packages.${pkgs.system}.default "aerospace-scratchpad";
   scratchpadCmd = "exec-and-forget ${scratchpad}";
+  aerospaceFocusCmd = lib.getExe pkgs.utils.aerospace-focus-fzf;
+  kittenDmenuFocusCmd = "kitten panel --single-instance --instance-group dmenu --start-as-hidden --layer=top --edge=bottom -o cursor_trail=0 -o background_opacity=0.4 --focus-policy=exclusive --lines=20 ${aerospaceFocusCmd}";
 in
 {
+  programs.aerospace.userSettings = {
+    exec.env-vars = {
+      PATH = ''/etc/profiles/per-user/${config.home.username}/bin:''${PATH}'';
+    };
+  };
   programs.aerospace.userSettings.mode = {
     main.binding = {
       "${mod}-shift-semicolon" = "mode service";
@@ -15,12 +22,12 @@ in
 
       # layouts
       "${mod}-shift-slash" = "layout accordion tiles horizontal";
-
+      "${mod}-slash" = "exec-and-forget ${kittenDmenuFocusCmd}";
       # Focus window
-      "${mod}-h" = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left";
-      "${mod}-j" = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down";
-      "${mod}-k" = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up";
-      "${mod}-l" = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right";
+      "${mod}-h" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left" "move-mouse window-lazy-center" ];
+      "${mod}-j" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down" "move-mouse window-lazy-center" ];
+      "${mod}-k" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up" "move-mouse window-lazy-center" ];
+      "${mod}-l" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right" "move-mouse window-lazy-center" ];
 
       # Move window
       "${mod}-shift-h" = "move left";
@@ -83,17 +90,9 @@ in
       "${mod}-minus" = "resize smart -50";
       "${mod}-equal" = "resize smart +50";
 
-      "${mod}-quote" = "mode scratchpad";
+      "${mod}-quote" = "${scratchpadCmd} move";
 
       "${mod}-enter" = "exec-and-forget open -a kitty";
-      "${mod}-comma" = "${scratchpadCmd}";
-    };
-    scratchpad.binding = {
-      quote = [ "${scratchpadCmd} show Slack" "mode main" ];
-      "${mod}-quote" = [ "${scratchpadCmd} show Slack" "mode main" ];
-      t = [ "${scratchpadCmd} show Telegram" "mode main" ];
-      esc = [ "mode main" ];
-      q = [ "mode main" ];
     };
     resize.binding = {
       h = "resize width -50";

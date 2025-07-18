@@ -81,7 +81,7 @@ in
           active_tab_font_style = "italic";
           tab_title_template = "[{index}] {title}";
           active_tab_title_template = "[{index}] {title}";
-          cursor_trail = 1; # make 3 if feel less
+          cursor_trail = 3;
 
           bold_font = "auto";
           italic_font = "auto";

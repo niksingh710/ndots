@@ -1,3 +1,3 @@
 { pkgs, ... }:
 (builtins.getFlake
-  "github:niksingh710/utils/2b414fdcbdea34d25cb5d3e5f40c604b26c540c5").packages.${pkgs.system}
+  "github:niksingh710/utils/efd613813db08fe7a514e1b9cf98f8e06b00f4d5").packages.${pkgs.system}

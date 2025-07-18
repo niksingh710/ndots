@@ -25,6 +25,7 @@ in
     };
 
     settings = {
+      warn-dirty = false;
       max-jobs = "auto";
       experimental-features = "nix-command flakes";
       extra-platforms = lib.mkIf pkgs.stdenv.isDarwin "aarch64-darwin x86_64-darwin";

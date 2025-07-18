@@ -22,12 +22,9 @@
     };
   };
 
-
   homebrew = {
     enable = true;
-    taps = [
-      "homebrew/cask"
-    ];
+    taps = [ ];
     onActivation = {
       upgrade = true;
       cleanup = "zap";

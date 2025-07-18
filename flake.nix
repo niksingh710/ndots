@@ -13,6 +13,14 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
 
+    # disk management for nixos installations/configurations
+    disko.url = "github:nix-community/disko";
+    impermanence.url = "github:nix-community/impermanence";
+
+    # For secure boot
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+
     # mac-app solution (linking to launcher and finder)
     mac-app-util.url = "github:hraban/mac-app-util";
 
