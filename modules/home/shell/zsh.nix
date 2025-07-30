@@ -5,6 +5,10 @@ let
       "pbcopy"
     else
       "wlcopy";
+  zshSysClip = lib.optionalString pkgs.stdenv.hostPlatform.isLinux # sh
+    ''
+      export ZSH_SYSTEM_CLIPBOARD_USE_WL_CLIPBOARD="wl-clipboard"
+    '';
 in
 {
   programs.zsh = {
@@ -34,10 +38,6 @@ in
         file = "share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh";
       }
     ];
-    profileExtra = lib.optionalString pkgs.stdenv.hostPlatform.isLinux # sh
-      ''
-        export ZSH_SYSTEM_CLIPBOARD_USE_WL_CLIPBOARD="wl-clipboard"
-      '';
     initContent = lib.mkOrder 1500 # sh
       ''
         # `ctrl + j` and `ctrl + k` to navigate through suggestions
@@ -49,7 +49,7 @@ in
           echo ''${CUTBUFFER} | ${clipboard}
           zvm_exit_visual_mode
         }
-
+        ${zshSysClip}
         # user can add session based alias and fn for quick use
         [ -f "$HOME/.temp.zsh" ] && source "$HOME/.temp.zsh"
       '';

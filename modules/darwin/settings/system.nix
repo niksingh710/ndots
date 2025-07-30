@@ -66,8 +66,10 @@
         show-recents = false;
         show-process-indicators = true;
         scroll-to-open = true;
-        wvous-br-corner = 14;
-        wvous-bl-corner = 7;
+        wvous-br-corner = 1;
+        wvous-bl-corner = 1;
+        wvous-tr-corner = 1;
+        wvous-tl-corner = 1;
         slow-motion-allowed = true;
         expose-group-apps = true; # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
         persistent-apps = [

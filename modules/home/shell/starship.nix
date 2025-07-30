@@ -77,6 +77,9 @@ in
         read_only_style = "fg:red bg:black bold";
         fish_style_pwd_dir_length = 1;
       };
+      gcloud = {
+        disabled = true;
+      };
       custom.home_dir = {
         command = "echo  ";
         shell = [
