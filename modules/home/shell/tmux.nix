@@ -61,7 +61,6 @@ in
 
           set-environment -g COLORTERM "truecolor"
 
-          set -g default-command "''${SHELL}" # this will avoid loading profile again
           set -g set-clipboard on
           set-option -g automatic-rename on
           set-option -g status-style bg=default

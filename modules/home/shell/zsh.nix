@@ -19,6 +19,10 @@ in
       append = true;
       expireDuplicatesFirst = true;
     };
+    profileExtra = # sh
+      ''
+        ${zshSysClip}
+      '';
 
     localVariables.ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
     plugins = [
@@ -49,7 +53,6 @@ in
           echo ''${CUTBUFFER} | ${clipboard}
           zvm_exit_visual_mode
         }
-        ${zshSysClip}
         # user can add session based alias and fn for quick use
         [ -f "$HOME/.temp.zsh" ] && source "$HOME/.temp.zsh"
       '';
