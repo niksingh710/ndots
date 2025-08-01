@@ -34,7 +34,10 @@
     };
     lazygit = {
       enable = true;
-      settings.gui.theme.lightTheme = false;
+      settings.gui = {
+        nerdFontsVersion = "3";
+        theme.lightTheme = false;
+      };
     };
   };
 }

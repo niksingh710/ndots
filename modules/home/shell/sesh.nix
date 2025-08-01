@@ -19,8 +19,5 @@
   programs.tmux.extraConfig = # tmux
     ''
       bind -N "last-session (via sesh) " "C-p" run-shell "sesh last"
-      bind-key "c-r" display-popup -E -w 40% "sesh connect \"$(
-        sesh list -i -H | gum filter --value \"$(sesh root)\" --limit 1 --fuzzy --no-sort --placeholder 'Pick a sesh' --prompt='⚡'readme
-      )\""
     '';
 }
