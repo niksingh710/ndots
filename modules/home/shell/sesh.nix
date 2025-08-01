@@ -13,6 +13,10 @@
           startup_command = "nvim ${path}";
           preview_command = "${lib.getExe pkgs.glow} ${path}";
         }
+        {
+          name = "main";
+          path = "~";
+        }
       ];
     };
   };
