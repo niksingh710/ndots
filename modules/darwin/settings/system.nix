@@ -8,7 +8,6 @@
     startup.chime = false;
     keyboard.enableKeyMapping = true;
     defaults = {
-      hitoolbox.AppleFnUsageType = "Do Nothing";
       spaces.spans-displays = true; # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
       trackpad.Clicking = true;
       finder = {
@@ -17,6 +16,7 @@
         QuitMenuItem = true;
         ShowExternalHardDrivesOnDesktop = false;
         ShowHardDrivesOnDesktop = false;
+        ShowPathbar = true;
         ShowMountedServersOnDesktop = false;
         ShowRemovableMediaOnDesktop = false;
         FXDefaultSearchScope = "SCcf";

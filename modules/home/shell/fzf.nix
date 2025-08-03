@@ -10,7 +10,7 @@ let
     "--bind='ctrl-space:toggle'"
     "--bind='ctrl-s:toggle-sort'"
     "--bind='ctrl-y:yank'"
-    "--bind='ctrl-p:change-preview-window(down|hidden|)'"
+    "--bind='ctrl-alt-p:change-preview-window(down|hidden|)'"
   ];
   defaultOptions = binds ++ [
     "--height 60%"
