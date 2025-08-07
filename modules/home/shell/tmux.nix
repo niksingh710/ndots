@@ -62,7 +62,7 @@ in
           set-environment -g COLORTERM "truecolor"
 
           set-option -ga update-environment " UPTERM_ADMIN_SOCKET"
-          set-option -ga set-environment "$SSH_AUTH_SOCK"
+          set-option -ga update-environment "SSH_AUTH_SOCK"
 
           set -g set-clipboard on
           set-option -g automatic-rename on
