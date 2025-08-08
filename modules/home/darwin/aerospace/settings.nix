@@ -19,38 +19,40 @@ let
     list;
   floatingApps = floaters [
     # Apple apps
-    "facetime"
-    "messages"
-    "findmy"
-    "finder"
-    "home"
-    "freefrom"
-    "diskutility"
-    "addressbook"
-    "colorsyncutility"
-    "ical"
-    "calculator"
-    "automator"
-    "appstore"
-    "activitymonitor"
-    "maps"
-    "weather"
-    "voicememos"
-    "notes"
-    "email"
-    "mail"
     "Screen Sharing"
-    "systempreferences"
-
-    # "telegram"
-    # "slack"
-    # "discord"
-    # "signal"
-    "spotify"
-    "whatsapp"
-    "zoom.us"
+    "activitymonitor"
+    "addressbook"
+    "appstore"
+    "automator"
+    "calculator"
+    "colorsyncutility"
+    "diskutility"
+    "email"
+    "facetime"
+    "finder"
+    "findmy"
+    "freefrom"
+    "gladys"
+    "home"
+    "iPhone Mirroring"
+    "ical"
+    "imageoptim"
     "kandji"
     "karabiner"
+    "lulu"
+    "mail"
+    "maps"
+    "messages"
+    "notes"
+    "passwords"
+    "photos"
+    "picture-in-picture"
+    "spotify"
+    "systempreferences"
+    "voicememos"
+    "weather"
+    "whatsapp"
+    "zoom.us"
   ];
 
   commApps = comms [
@@ -65,8 +67,6 @@ let
   ];
 in
 {
-  home.packages = with pkgs;
-    [ swipeaerospace ]; # Comes from overlay.
   programs.aerospace = {
     enable = true;
     userSettings = {
@@ -100,7 +100,6 @@ in
       after-startup-command = [
         # Handled by service but still here to ensure it runs
         "exec-and-forget borders"
-        "exec-and-forget SwipeAeroSpace"
         "exec-and-forget kitten panel --single-instance --instance-group dmenu --start-as-hidden --lines=0 --columns=0 --detach cat"
       ];
     };

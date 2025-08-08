@@ -11,7 +11,6 @@ final: prev: {
     inherit (prev) system;
     overlays = prev.lib.attrValues self.overlays;
   };
-  swipeaerospace = prev.callPackage "${packages}/swipeaerospace.nix" { };
   nixpkgs = prev.callPackage "${packages}/nix-search-tv-script.nix" { };
   utils = prev.callPackage "${packages}/utils.nix" { };
   nvix = inputs.nvix.packages.${prev.system}.core.extend {

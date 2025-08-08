@@ -21,6 +21,7 @@ let
     whatsapp-for-mac
     ice-bar
     utm
+    numi
   ]);
 
 in

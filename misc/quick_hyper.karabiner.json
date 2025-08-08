@@ -2,6 +2,28 @@
   "title": "Advanced Fn Vim Mode with Toggle - Fixed",
   "rules": [
     {
+      "description": "Microphone mute/unmute toggle with Cmd+Opt+F5",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "f5",
+            "modifiers": {
+              "mandatory": [
+                "command",
+                "option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'set currentInputVolume to input volume of (get volume settings)\nif currentInputVolume > 0 then\n\tset volume input volume 0\n\tdo shell script \"afplay /System/Library/Sounds/Bottle.aiff\"\nelse\n\tset volume input volume 50\n\tdo shell script \"afplay /System/Library/Sounds/Pop.aiff\"\nend if'"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
       "description": "⌘ + ⌥ + . → Emoji Picker (⌃ + ⌘ + Space)",
       "manipulators": [
         {
