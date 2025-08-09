@@ -1,6 +1,7 @@
 # Impermanenet setup is purely designed for ndots
 # make sure you understand the partition scheme and mount points.
 { flake, lib, config, ... }:
+# TODO: Create a separate module if impermanence is used by multiple hosts
 let
   inherit (flake) inputs;
   cfg = config.ndots.disko;

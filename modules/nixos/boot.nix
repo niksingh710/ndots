@@ -1,10 +1,10 @@
 # General boot configuration to make booting look nice
-{ lib, pkgs, opts, ... }:
+{ lib, pkgs, ... }:
 with lib;
 {
   environment.etc."issue".source = pkgs.runCommand "issue" { } # bash
     ''
-      echo "Welcome, ${opts.username}" > $out
+      echo "Welcome to NixOs!" > $out
     '';
   systemd.watchdog.rebootTime = "0s";
   boot = {

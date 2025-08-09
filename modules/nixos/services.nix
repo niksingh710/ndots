@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   services = {
     envfs.enable = true;
@@ -10,7 +11,7 @@
       };
     };
     openssh = {
-      enable = false;
+      enable = lib.mkDefault false;
       settings = {
         PermitRootLogin = "yes";
         PasswordAuthentication = true;

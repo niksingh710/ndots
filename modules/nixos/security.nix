@@ -1,3 +1,3 @@
 {
-  security.sudo.extraConfig = "Defaults passwd_tries=10 lecture=never";
+  security.sudo.extraConfig = "Defaults lecture=never";
 }
