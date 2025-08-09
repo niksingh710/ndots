@@ -11,6 +11,7 @@
       "imageoptim"
       "karabiner-elements" # check home/darwin/karabiner.nix
       "keepingyouawake"
+      # "kindavim" # nice but requires premium license
       "lulu"
       "middleclick"
       "monitorcontrol"
@@ -26,6 +27,7 @@
     ];
     masApps = {
       # only mac apps supported not iOS one
+      "handmirror" = 1502839586;
       "gifski" = 1351639930;
       "gladys" = 1382386877;
       "lensocr" = 1549961729;
