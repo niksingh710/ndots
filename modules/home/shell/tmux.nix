@@ -49,7 +49,14 @@ in
         pkgs.tmuxPlugins.better-mouse-mode
         pkgs.tmuxPlugins.yank
         pkgs.tmuxPlugins.open
-        pkgs.tmuxPlugins.fzf-tmux-url
+        (pkgs.tmuxPlugins.fzf-tmux-url.overrideAttrs (oa: {
+          src = pkgs.fetchFromGitHub {
+            owner = "wfxr";
+            repo = "tmux-fzf-url";
+            rev = "09d4998ba1277e9c824282eb0a45eb53be20af93";
+            hash = "sha256-HmlXZPE+soSf5uDz3wRrrMYyX1NCiIrJHXLW/7xPZgM=";
+          };
+        }))
       ];
       extraConfig = # tmux
         ''

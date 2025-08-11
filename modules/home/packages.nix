@@ -16,7 +16,6 @@ let
   ]);
   darwin = lib.optionals isDarwin (with pkgs;[
     mas
-    raycast
     keycastr
     whatsapp-for-mac
     ice-bar

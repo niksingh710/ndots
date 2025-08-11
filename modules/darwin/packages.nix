@@ -11,9 +11,7 @@
       "imageoptim"
       "karabiner-elements" # check home/darwin/karabiner.nix
       "keepingyouawake"
-      # "kindavim" # nice but requires premium license
       "lulu"
-      "middleclick"
       "monitorcontrol"
       "pronotes"
       "signal"
