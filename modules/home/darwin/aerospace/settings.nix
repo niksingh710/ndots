@@ -43,6 +43,7 @@ let
     "mail"
     "maps"
     "messages"
+    "mpv"
     "notes"
     "passwords"
     "photos"
