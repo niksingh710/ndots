@@ -3,7 +3,6 @@
   programs = {
     git = {
       enable = true;
-      package = pkgs.gitFull;
       maintenance = {
         enable = true;
         repositories = [
