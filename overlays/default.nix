@@ -13,6 +13,14 @@ final: prev: {
   };
   nixpkgs = prev.callPackage "${packages}/nix-search-tv-script.nix" { };
   utils = prev.callPackage "${packages}/utils.nix" { };
+  choose-gui = prev.choose-gui.overrideAttrs {
+    src = prev.fetchFromGitHub {
+      owner = "chipsenkbeil";
+      repo = "choose";
+      rev = "1.5.0";
+      hash = "sha256-ewXZpP3XmOuV/MA3fK4BwZnNb2jkE727Sse6oAd4HJk=";
+    };
+  };
   nvix = inputs.nvix.packages.${prev.system}.core.extend {
     config = {
       vimAlias = true;

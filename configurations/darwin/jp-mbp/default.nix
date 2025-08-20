@@ -13,6 +13,8 @@ in
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
     self.darwinModules.default
+    self.darwinModules.yabai
+    self.darwinModules.skhd
     ./overrides/nix-darwin.nix
   ];
 
@@ -25,8 +27,10 @@ in
   home-manager.users.${username} = {
     imports = [
       self.homeModules.sops
-      self.homeModules.darwin
+      (self.homeModules.darwin + "/karabiner.nix")
+      (self.homeModules.darwin + "/jankyborders.nix")
       self.homeModules.espanso
+      self.homeModules.mpv
       ./secrets.nix
       ./overrides/home.nix
     ];

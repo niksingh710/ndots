@@ -8,7 +8,10 @@
     startup.chime = false;
     keyboard.enableKeyMapping = true;
     defaults = {
-      spaces.spans-displays = true; # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
+      # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
+      # for aerospace turn this true and for yabai turn this false
+      spaces.spans-displays = false;
+      universalaccess.reduceMotion = true;
       trackpad.Clicking = true;
       finder = {
         AppleShowAllExtensions = true;
@@ -48,6 +51,7 @@
         ApplePressAndHoldEnabled = true;
         NSWindowShouldDragOnGesture = true;
         NSAutomaticWindowAnimationsEnabled = false;
+        _HIHideMenuBar = false;
         "com.apple.sound.beep.feedback" = 0;
         "com.apple.sound.beep.volume" = 0.000;
       };
@@ -71,7 +75,11 @@
         wvous-tr-corner = 1;
         wvous-tl-corner = 1;
         slow-motion-allowed = true;
-        expose-group-apps = true; # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+        expose-animation-duration = 0.0;
+        # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+        # Toggle to true for aerospace and false for yabai
+        expose-group-apps = false;
+        mru-spaces = false;
         persistent-apps = [
           # For custom apps use home-manager location
           # "${config.hm.home.homeDirectory}/Applications/Home Manager Trampolines/kitty.app"
