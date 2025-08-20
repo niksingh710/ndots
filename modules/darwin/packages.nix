@@ -16,13 +16,12 @@
       "pronotes"
       "signal"
       "soundsource"
+      "stremio"
       "tailscale-app"
       "zen"
       "zulip"
     ];
-    brews = [
-      "imageoptim-cli"
-    ];
+    brews = [ ];
     masApps = {
       # only mac apps supported not iOS one
       "handmirror" = 1502839586;

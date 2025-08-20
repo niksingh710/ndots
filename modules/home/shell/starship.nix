@@ -158,7 +158,7 @@ in
       };
       hostname = {
         ssh_only = true;
-        format = "$ssh_symbol$hostname";
+        format = "$ssh_symbol$hostname ";
       };
 
       custom.lastcommit = {
