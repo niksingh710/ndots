@@ -23,6 +23,7 @@ let
     "ical"
     "weather"
     "passwords"
+    "FaceTime"
     "mpv"
   ];
 in
@@ -34,7 +35,7 @@ in
       active_window_opacity = 1.0;
       auto_balance = "on";
       bottom_padding = 10;
-      focus_follows_mouse = "autofocus";
+      focus_follows_mouse = "autoraise";
       layout = "bsp";
       left_padding = 10;
       mouse_drop_action = "swap";

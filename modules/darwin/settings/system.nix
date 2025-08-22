@@ -11,7 +11,7 @@
       # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
       # for aerospace turn this true and for yabai turn this false
       spaces.spans-displays = false;
-      universalaccess.reduceMotion = true;
+      universalaccess.reduceMotion = false;
       trackpad.Clicking = true;
       finder = {
         AppleShowAllExtensions = true;

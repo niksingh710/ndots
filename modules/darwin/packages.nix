@@ -7,6 +7,7 @@
     taps = [ ];
     casks = [
       "blip"
+      "betterdisplay"
       "homerow"
       "imageoptim"
       "karabiner-elements" # check home/darwin/karabiner.nix
