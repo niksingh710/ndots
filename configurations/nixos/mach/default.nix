@@ -25,7 +25,7 @@ in
 
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = pubKeys;
-  sops.secrets.user-password.neededForUsers = true;
+  # sops.secrets.user-password.neededForUsers = true;
   security.sudo.wheelNeedsPassword = false;
   # user Setup
   users.groups.${username} = { };
@@ -34,8 +34,8 @@ in
     home = "/home/${username}";
     extraGroups = [ "networkmanager" ];
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.user-password.path;
-    password = lib.mkForce null;
+    # hashedPasswordFile = config.sops.secrets.user-password.path;
+    password = "password";
     group = username;
 
     openssh.authorizedKeys.keys = pubKeys;
