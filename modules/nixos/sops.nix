@@ -8,7 +8,7 @@ in
   ];
 
   sops = {
-    age.keyFile = "/var/sops/age/keys.txt";
+    age.keyFile = "/var/lib/sops/age/keys.txt";
     # TODO: Convert to a json file
     defaultSopsFile = "${self}/secrets/keys.yaml";
   };
