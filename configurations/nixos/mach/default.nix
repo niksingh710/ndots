@@ -14,11 +14,14 @@ in
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  hm.home.sessionVariables.SOPS_AGE_KEY_FILE = config.sops.age.keyFile;
+
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
     self.nixosModules.default
     self.nixosModules.secure-boot
     self.nixosModules.sops
+    self.nixosModules.tailscale
     ./hardware.nix
     ./disk.nix
   ];
@@ -34,8 +37,9 @@ in
     home = "/home/${username}";
     extraGroups = [ "wheel" "networkmanager" ];
     isNormalUser = true;
-    # hashedPasswordFile = config.sops.secrets.user-password.path;
-    password = "password";
+    # TODO: To be investigated not working for some reason
+    hashedPasswordFile = config.sops.secrets.user-password.path;
+    initialPassword = "password";
     group = username;
 
     openssh.authorizedKeys.keys = pubKeys;
