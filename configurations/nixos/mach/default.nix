@@ -32,7 +32,7 @@ in
   users.users.${username} = {
     name = username;
     home = "/home/${username}";
-    extraGroups = [ "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" ];
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.user-password.path;
     password = lib.mkForce null;
