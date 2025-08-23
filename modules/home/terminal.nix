@@ -57,8 +57,8 @@ in
       environment.FZF_PREVIEW_IMAGE_HANDLER = "kitty";
       keybindings = {
         "cmd+opt+s" = "no_op";
-        "ctrl+shift+h" = "next_tab";
-        "ctrl+shift+l" = "previous_tab";
+        "ctrl+shift+l" = "next_tab";
+        "ctrl+shift+h" = "previous_tab";
       };
       extraConfig = # conf
         ''
