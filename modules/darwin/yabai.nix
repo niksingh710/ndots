@@ -24,6 +24,8 @@ let
     "weather"
     "passwords"
     "FaceTime"
+    "Finder"
+    "lulu"
     "mpv"
   ];
 in
@@ -34,15 +36,15 @@ in
     config = {
       active_window_opacity = 1.0;
       auto_balance = "on";
-      bottom_padding = 10;
       focus_follows_mouse = "autoraise";
       layout = "bsp";
-      left_padding = 10;
       mouse_drop_action = "swap";
       mouse_follows_focus = "on";
       mouse_modifier = "alt";
       normal_window_opacity = 0.98;
+      bottom_padding = 10;
       right_padding = 10;
+      left_padding = 10;
       top_padding = 10;
       window_gap = 10;
       window_opacity = "on";
@@ -62,8 +64,8 @@ in
         yabai -m rule --apply
 
         yabai -m space 1 --label 1
-        yabai -m space 2 --label comms
-        yabai -m space 3 --label 3
+        yabai -m space 2 --label 2
+        yabai -m space 3 --label comms
         yabai -m space 4 --label 4
         yabai -m space 5 --label 5
         yabai -m space 6 --label 6

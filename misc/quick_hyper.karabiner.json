@@ -53,7 +53,7 @@
       ]
     },
     {
-      "description": "Right Cmd leader with hjkl navigation, a=backspace, f=tab",
+      "description": "Right Cmd or Fn leader with hjkl navigation, a=backspace, f=tab",
       "manipulators": [
         {
           "from": {
@@ -91,9 +91,62 @@
           "type": "basic"
         },
         {
+          "from": {
+            "key_code": "fn",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 100
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "fn_leader",
+                "value": 1
+              }
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "fn_leader",
+                "value": 0
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "conditions": [
             {
               "name": "right_cmd_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "fn_leader",
               "type": "variable_if",
               "value": 1
             }
@@ -139,7 +192,53 @@
         {
           "conditions": [
             {
+              "name": "fn_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
               "name": "right_cmd_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "fn_leader",
               "type": "variable_if",
               "value": 1
             }
@@ -185,6 +284,29 @@
         {
           "conditions": [
             {
+              "name": "fn_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
               "name": "right_cmd_leader",
               "type": "variable_if",
               "value": 1
@@ -208,7 +330,53 @@
         {
           "conditions": [
             {
+              "name": "fn_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
               "name": "right_cmd_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "fn_leader",
               "type": "variable_if",
               "value": 1
             }

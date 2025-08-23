@@ -3,6 +3,12 @@
   home.packages = with pkgs; [ ffmpegthumbnailer ];
   programs.mpv = {
     enable = true;
+    package = pkgs.mpv-unwrapped.wrapper {
+      mpv = pkgs.mpv-unwrapped;
+      scripts = with pkgs.mpvScripts;[
+        modernx-zydezu
+      ];
+    };
     bindings = {
       h = "seek -5";
       l = "seek 5";
@@ -17,9 +23,6 @@
       save-position-on-quit = "yes";
       ytdl-format = "bestvideo+bestaudio";
     };
-    scripts = with pkgs.mpvScripts; [
-      modernx-zydezu
-    ];
   };
 
   xdg.mimeApps.defaultApplications = {

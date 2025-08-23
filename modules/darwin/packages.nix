@@ -8,12 +8,12 @@
     casks = [
       "blip"
       "betterdisplay"
+      "element"
       "homerow"
       "imageoptim"
       "karabiner-elements" # check home/darwin/karabiner.nix
       "keepingyouawake"
       "lulu"
-      "monitorcontrol"
       "pronotes"
       "signal"
       "soundsource"

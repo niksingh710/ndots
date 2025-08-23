@@ -1,6 +1,7 @@
-{ lib, ... }:
+{ lib, flake, ... }:
 with lib;
 let
+  inherit (flake.inputs) self;
   fontFeatureString = name: # conf
     ''
       font_features Monaspace${name}Var-Bold +dlig +ss01 +ss02 +ss03 +ss04 +ss05 +ss06 +ss07 +ss08
@@ -46,12 +47,18 @@ let
     '';
 in
 {
+  home.file."tab-par" = {
+    source = "${self}/misc/tab_bar.py";
+    target = ".config/kitty/tab_bar.py";
+  };
   programs = {
     kitty = {
       enable = mkDefault true;
       environment.FZF_PREVIEW_IMAGE_HANDLER = "kitty";
       keybindings = {
         "cmd+opt+s" = "no_op";
+        "ctrl+shift+h" = "next_tab";
+        "ctrl+shift+l" = "previous_tab";
       };
       extraConfig = # conf
         ''
@@ -75,12 +82,18 @@ in
           # tabs
           # I rely on tmux, but still for those who want tabs
           tab_bar_style = "custom";
+          tab_separator = ''""'';
+          tab_fade = "0 0 0 0";
+          tab_title_template = "{title}";
+          active_tab_title_template = "{title}";
+          tab_bar_margin_width = 0.0;
           tab_bar_edge = "top";
           tab_bar_align = "left";
-          tab_powerline_style = "slanted";
-          active_tab_font_style = "italic";
-          tab_title_template = "[{index}] {title}";
-          active_tab_title_template = "[{index}] {title}";
+          tab_bar_margin_height = 0.0;
+          active_tab_font_style = "bold";
+          inactive_tab_font_style = "normal";
+          tab_bar_min_tabs = 2;
+          tab_activity_symbol = "none";
           cursor_trail = 3;
 
           bold_font = "auto";
