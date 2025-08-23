@@ -38,7 +38,7 @@ in
     extraGroups = [ "wheel" "networkmanager" ];
     isNormalUser = true;
     # TODO: To be investigated not working for some reason
-    hashedPasswordFile = config.sops.secrets.user-password.path;
+    # hashedPasswordFile = config.sops.secrets.user-password.path;
     initialPassword = "password";
     group = username;
 

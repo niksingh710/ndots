@@ -9,6 +9,7 @@
       "/var/lib/bluetooth"
       "/var/lib/libvirt"
       "/var/lib/waydroid"
+      "/var/lib/tailscale"
       "/etc/waydroid"
 
 
@@ -23,6 +24,12 @@
       # Systemd requires /usr dir to be populated
       # See: https://github.com/nix-community/impermanence/issues/253
       "/usr/systemd-placeholder"
+    ];
+    files = [
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
     ];
     users.${flake.config.me.username} =
       {
