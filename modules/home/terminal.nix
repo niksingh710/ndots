@@ -87,7 +87,7 @@ in
           tab_title_template = "{title}";
           active_tab_title_template = "{title}";
           tab_bar_margin_width = 0.0;
-          tab_bar_edge = "top";
+          tab_bar_edge = "bottom";
           tab_bar_align = "left";
           tab_bar_margin_height = 0.0;
           active_tab_font_style = "bold";

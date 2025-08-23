@@ -67,7 +67,7 @@
             ".librewolf"
 
             ".local/share/zoxide"
-            ".cache/zsh"
+            ".zsh_history"
 
             ".cache/nsearch"
 
