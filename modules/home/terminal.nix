@@ -57,8 +57,10 @@ in
       environment.FZF_PREVIEW_IMAGE_HANDLER = "kitty";
       keybindings = {
         "cmd+opt+s" = "no_op";
-        "ctrl+shift+l" = "next_tab";
-        "ctrl+shift+h" = "previous_tab";
+        "cmd+l" = "next_tab";
+        "cmd+h" = "previous_tab";
+        "cmd+u" = "open_url_with_hints";
+        "cmd+q" = "close_tab";
       };
       extraConfig = # conf
         ''
@@ -72,7 +74,7 @@ in
       settings =
         {
           background_blur = 64;
-          window_padding_width = 4;
+          window_padding_width = 0;
           hide_window_decorations = "titlebar-only";
           confirm_os_window_close = 0;
           enable_audio_bell = false;

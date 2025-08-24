@@ -13,6 +13,7 @@ final: prev: {
   };
   nixpkgs = prev.callPackage "${packages}/nix-search-tv-script.nix" { };
   utils = prev.callPackage "${packages}/utils.nix" { };
+  # TODO: remove once <https://github.com/NixOS/nixpkgs/pull/423701> is merged
   choose-gui = prev.choose-gui.overrideAttrs {
     src = prev.fetchFromGitHub {
       owner = "chipsenkbeil";
