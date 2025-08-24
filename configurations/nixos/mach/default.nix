@@ -44,6 +44,19 @@ in
 
     openssh.authorizedKeys.keys = pubKeys;
   };
+
+  # To avoid suspending
+  services.logind.extraConfig = ''
+    HandleLidSwitch=ignore
+    HandleLidSwitchDocked=ignore
+    HandleSuspendKey=ignore
+    HandleHibernateKey=ignore
+  '';
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   home-manager.backupFileExtension = "";
   home-manager.users.${username} = {
     imports = [
