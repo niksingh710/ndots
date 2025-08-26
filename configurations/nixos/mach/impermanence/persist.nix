@@ -36,6 +36,7 @@
         files = [
           ".temp.zsh"
           ".gtasks_credentials.pickle"
+          ".zsh_history"
         ];
         directories =
           let
