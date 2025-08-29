@@ -15,12 +15,13 @@ let
     mailspring
   ]);
   darwin = lib.optionals isDarwin (with pkgs;[
-    mas
-    keycastr
-    whatsapp-for-mac
     ice-bar
-    utm
+    keycastr
+    mas
     numi
+    tart
+    utm
+    whatsapp-for-mac
   ]);
 
 in

@@ -73,7 +73,7 @@ in
         '';
       settings =
         {
-          background_blur = 64;
+          background_blur = 32;
           window_padding_width = 0;
           hide_window_decorations = "titlebar-only";
           confirm_os_window_close = 0;

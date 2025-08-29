@@ -25,7 +25,7 @@ let
     "passwords"
     "FaceTime"
     "Finder"
-    "lulu"
+    "LuLu"
     "mpv"
   ];
 in

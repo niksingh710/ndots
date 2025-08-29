@@ -84,10 +84,11 @@ in
         ${mod} - q : yabai -m window --close
 
         # swap windows                       --swap (for swapping i like warp)
-        ${mod} + shift - h : yabai -m window --warp west
-        ${mod} + shift - j : yabai -m window --warp south
-        ${mod} + shift - k : yabai -m window --warp north
-        ${mod} + shift - l : yabai -m window --warp east
+        # Move or Warp depending on floating state
+        ${mod} + shift - h : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --move rel:-20:0; else yabai -m window --warp west; fi
+        ${mod} + shift - j : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --move rel:0:20; else yabai -m window --warp south; fi
+        ${mod} + shift - k : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --move rel:0:-20; else yabai -m window --warp north; fi
+        ${mod} + shift - l : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --move rel:20:0; else yabai -m window --warp east; fi
 
         ${mod} - n : ${lib.getExe spaceCycleNext}
         ${mod} - p : ${lib.getExe spaceCyclePrev}
@@ -106,7 +107,9 @@ in
         ${mod} - space : yabai -m display --focus next || yabai -m display --focus prev
         ${mod} + shift - space : yabai -m window --display next --focus || yabai -m window --display prev --focus
 
-        ${mod} + shift - f : yabai -m window --toggle float --grid 4:4:1:1:2:2
+        ${mod} + shift - f : yabai -m window --toggle float --grid 8:8:1:1:6:6
+
+        ${mod} - r : yabai -m space --rotate 90
 
         ${mod} - m : \
           case "$(yabai -m query --spaces --space | ${lib.getExe pkgs.jq} -r '.type')" in \
@@ -122,6 +125,11 @@ in
 
         ${mod} - c : yabai -m space --focus comms
         ${mod} + shift - c : yabai -m window --space comms --focus
+
+        ${mod} + ctrl - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
+        ${mod} + ctrl - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
+        ${mod} + ctrl - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
+        ${mod} + ctrl - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
 
         ${mod} - 1 : yabai -m space --focus 1
         ${mod} - 2 : yabai -m space --focus 2

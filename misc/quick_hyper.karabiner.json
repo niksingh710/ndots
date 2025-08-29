@@ -53,7 +53,7 @@
       ]
     },
     {
-      "description": "Right Cmd or Fn leader with hjkl navigation, a=backspace, f=tab",
+      "description": "Right Cmd or Fn leader with hjkl navigation, a=backspace, f=tab, fn + <> for keyboard backlit",
       "manipulators": [
         {
           "from": {
@@ -139,6 +139,52 @@
           "to": [
             {
               "key_code": "left_arrow"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "fn_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "illumination_decrement"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "fn_leader",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "illumination_increment"
             }
           ],
           "type": "basic"
