@@ -22,7 +22,7 @@ final: prev: {
       hash = "sha256-ewXZpP3XmOuV/MA3fK4BwZnNb2jkE727Sse6oAd4HJk=";
     };
   };
-  nvix = inputs.nvix.packages.${prev.system}.core.extend {
+  nvix = inputs.nvix.packages.${prev.system}.full.extend {
     config = {
       vimAlias = true;
       colorschemes = {

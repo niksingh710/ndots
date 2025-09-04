@@ -2,8 +2,11 @@
 {
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
-    forwardAgent = true;
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      forwardAgent = false;
+      addKeysToAgent = "no";
+    };
   };
   # To avoid collision in home-manager
   # see: https://github.com/nix-community/home-manager/issues/4199

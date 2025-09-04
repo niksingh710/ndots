@@ -4,6 +4,14 @@ let
   inherit (inputs) self;
 in
 {
+  environment.systemPackages = with pkgs; [
+    nixpkgs-track
+    nixpkgs-manual
+    nixpkgs-review
+
+    nh
+  ];
+
   nixpkgs = {
     config.allowUnfree = true;
     overlays = lib.attrValues self.overlays;

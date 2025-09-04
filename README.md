@@ -188,9 +188,6 @@ I will be updating this repository in the near future. If you can help with docu
 
 ## Acknowledgments
 
-> This config follows the style implemented by [@srid](https://github.com/srid) in
-> [nixos-unified.org](https://nixos-unified.org), keeping **KISS (Keep It Simple, Stupid)** in mind.
-
 I would like to extend my heartfelt thanks to the following individuals whose configurations and resources greatly inspired me to Use NixOs:
 
 - [iynaix](https://github.com/iynaix)
