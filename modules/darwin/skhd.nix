@@ -26,16 +26,42 @@ let
     '';
   cycleFocus = pkgs.writeShellScriptBin "cycle-focus" # sh
     ''
-      dir="$1"
-      layout="$(yabai -m query --spaces --space | jq -r '.type')"
+      dir="''${1:-next}"
 
-      if [ "$layout" = "stack" ]; then
+      # Are we in a stack? (check the focused window)
+      cur_json="$(yabai -m query --windows --window)"
+      cur_idx="$(printf '%s\n' "$cur_json" | jq -r '."stack-index"')"
+
+      if [ "$cur_idx" -gt 0 ] 2>/dev/null; then
         case "$dir" in
-          west|north) yabai -m window --focus stack.prev || yabai -m window --focus stack.next ;;
-          east|south) yabai -m window --focus stack.next || yabai -m window --focus stack.prev ;;
+          east|south|next)
+            last_idx="$(yabai -m query --windows --window stack.last | jq -r '."stack-index"')"
+            if [ "$cur_idx" -eq "$last_idx" ]; then
+              yabai -m window --focus stack.first
+            else
+              yabai -m window --focus stack.next
+            fi
+            ;;
+          west|north|prev)
+            first_idx="$(yabai -m query --windows --window stack.first | jq -r '."stack-index"')"
+            if [ "$cur_idx" -eq "$first_idx" ]; then
+              yabai -m window --focus stack.last
+            else
+              yabai -m window --focus stack.prev
+            fi
+            ;;
+          *)
+            yabai -m window --focus stack.next
+            ;;
         esac
       else
-        yabai -m window --focus "$dir"
+        # Not in a stack: fall back to directional focus
+        case "$dir" in
+          east|west|north|south) yabai -m window --focus "$dir" ;;
+          next) yabai -m window --focus east || yabai -m window --focus south || yabai -m window --focus west || yabai -m window --focus north ;;
+          prev) yabai -m window --focus west || yabai -m window --focus north || yabai -m window --focus east || yabai -m window --focus south ;;
+          *)    yabai -m window --focus "$dir" ;;
+        esac
       fi
     '';
   focusWindow = pkgs.writeShellScriptBin "focus-window" # sh
