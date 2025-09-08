@@ -29,6 +29,9 @@ in
       self.homeModules.sops
       (self.homeModules.darwin + "/karabiner.nix")
       (self.homeModules.darwin + "/jankyborders.nix")
+
+      flake.inputs.mac-app-util.homeManagerModules.default
+
       self.homeModules.espanso
       self.homeModules.mpv
       ./secrets.nix

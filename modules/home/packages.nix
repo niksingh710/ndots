@@ -4,9 +4,10 @@ let
   inherit (pkgs.stdenv) isDarwin isLinux;
 
   both = with pkgs;[
-    stable.telegram-desktop
+    telegram-desktop
     omnix
     google-chrome
+    youtube-music
   ];
 
   linux = lib.optionals isLinux (with pkgs;[
@@ -19,9 +20,9 @@ let
     keycastr
     mas
     numi
+    stremio-enhanced
     tart
     utm
-    whatsapp-for-mac
   ]);
 
 in

@@ -19,7 +19,7 @@ in
 
   nix = {
     # Choose from https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=nix
-    # package = pkgs.nixVersions.latest;
+    package = pkgs.nixVersions.latest;
 
     gc = {
       automatic = true;

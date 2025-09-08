@@ -4,6 +4,6 @@
   # TODO: Move <https://github.com/niksingh710/utils> to packages
   perSystem = { pkgs, ... }: {
     packages.nixpkgs = pkgs.nixpkgs;
-    packages.test = pkgs.callPackage ./fluent-system-icon.nix { };
+    packages.test = pkgs.callPackage ./stremio-enhanced.nix { };
   };
 }

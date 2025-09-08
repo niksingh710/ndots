@@ -81,6 +81,8 @@ in
           macos_option_as_alt = "yes";
           dynamic_background_opacity = "yes";
 
+          macos_disable_default_menubar_accelerators = "yes";
+
           # tabs
           # I rely on tmux, but still for those who want tabs
           tab_bar_style = "custom";

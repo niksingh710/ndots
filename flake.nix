@@ -1,7 +1,9 @@
 {
   description = "Nikhil's NixOs / nix-darwin configuration";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixos-unstable branch is more focused on linux/nixos,
+    # while nixpkgs-unstable is more general purpose
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +43,10 @@
     # stylix
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # zen till (https://github.com/NixOS/nixpkgs/issues/327982) is resolved.
+    # will be resolved once zen comes out of beta.
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = inputs:

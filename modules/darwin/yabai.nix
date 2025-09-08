@@ -27,6 +27,7 @@ let
     "Finder"
     "LuLu"
     "mpv"
+    "mail"
   ];
 in
 {
@@ -51,7 +52,7 @@ in
       window_placement = "second_child";
       window_shadow = "float";
     };
-    extraConfig = # yabairc
+    extraConfig = # sh
       ''
         yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
         sudo yabai --load-sa

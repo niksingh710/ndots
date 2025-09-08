@@ -15,11 +15,10 @@
       "keepingyouawake"
       "lulu"
       "pronotes"
+      "protonvpn"
       "signal"
-      "soundsource"
-      "stremio"
       "tailscale-app"
-      "zen"
+      "whatsapp"
       "zulip"
     ];
     brews = [ ];

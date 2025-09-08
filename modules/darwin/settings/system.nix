@@ -48,7 +48,7 @@
         AppleInterfaceStyle = "Dark";
         AppleICUForce24HourTime = true;
         AppleMeasurementUnits = "Centimeters";
-        ApplePressAndHoldEnabled = true;
+        ApplePressAndHoldEnabled = false;
         NSWindowShouldDragOnGesture = true;
         NSAutomaticWindowAnimationsEnabled = false;
         _HIHideMenuBar = false;

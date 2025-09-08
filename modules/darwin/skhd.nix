@@ -24,6 +24,7 @@ let
           yabai -m space --focus $(echo $info | jq '.[-1].index')
       fi
     '';
+
   cycleFocus = pkgs.writeShellScriptBin "cycle-focus" # sh
     ''
       dir="''${1:-next}"
@@ -64,6 +65,7 @@ let
         esac
       fi
     '';
+
   focusWindow = pkgs.writeShellScriptBin "focus-window" # sh
     ''
       choice=$(yabai -m query --windows \
@@ -76,6 +78,7 @@ let
 
       [ -n "$id" ] && yabai -m window --focus "$id" || open -a "$app"
     '';
+
   getWindow = pkgs.writeShellScriptBin "get-window" # sh
     ''
       choice=$(yabai -m query --windows \
@@ -99,7 +102,7 @@ in
     skhdConfig =
       ''
         ${mod} - return : open -a "kitty"
-        ${mod} - b : open -a "zen"
+        ${mod} - b : open -a "Zen Browser (Beta)"
         ${mod} - s : open -a "slack"
 
         ${mod} - h : ${lib.getExe cycleFocus} west

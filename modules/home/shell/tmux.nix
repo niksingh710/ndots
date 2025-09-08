@@ -4,7 +4,7 @@ let
   # https://github.com/NixOS/nixpkgs/pull/420244
   minimal-tmux-status = (builtins.getFlake
     "github:niksingh710/minimal-tmux-status/de2bb049a743e0f05c08531a0461f7f81da0fc72").packages.${pkgs.system}.default;
-  # TODO: Update the package on nixpkgs to a newer version
+  # TODO: remove once <https://github.com/NixOS/nixpkgs/pull/440255> is merged
   navigator = pkgs.tmuxPlugins.vim-tmux-navigator.overrideAttrs (oa: {
     src = pkgs.fetchFromGitHub {
       owner = "christoomey";
@@ -56,8 +56,18 @@ in
           # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
           set -g default-terminal ${xterm}
           set -g allow-passthrough on
-          set -ga terminal-overrides ",*256col*:Tc"
-          set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+
+          set -g default-terminal "tmux-256color"
+          set -ag terminal-overrides ",xterm-256color:RGB"
+
+          # Undercurl
+          set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+          set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+          # Check if we are in WSL
+          if-shell 'test -n "$WSL_DISTRO_NAME"' {
+            set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m' # underscore colours - needs tmux-3.0 (wsl2 in Windows Terminal)
+          }
 
           set-environment -g COLORTERM "truecolor"
 
