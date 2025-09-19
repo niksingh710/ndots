@@ -1,0 +1,125 @@
+{ pkgs, config, ... }:
+let
+  # TODO: remove once <https://github.com/NixOS/nixpkgs/pull/440255> is merged
+  edit-pane =
+    pkgs.writeShellScript "edit-pane" # sh
+      ''
+        buf=$(mktemp).sh
+        # -32768 is the length of the buffer
+        # Why -32768? Coz everyone using this
+        tmux capture-pane -pS -32768 > "$buf"
+        tmux new-window -n:edit-pane "$EDITOR $buf"
+      '';
+  # on vm with only home-manager config kitty might throw error for EGL
+  xterm = if config.programs.kitty.enable then "xterm-kitty" else "xterm-256color";
+in
+{
+  programs = {
+    # TODO: Test tmate vs upterm
+    # tmate.enable = true;
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      keyMode = "vi";
+      mouse = true;
+      shortcut = "a";
+      escapeTime = 0;
+      historyLimit = 1000000;
+      secureSocket = false;
+      plugins = with pkgs.tmuxPlugins;[
+        {
+          plugin = minimal-tmux-status;
+          extraConfig = ''
+            set -g @minimal-tmux-use-arrow true
+            set -g @minimal-tmux-right-arrow ""
+            set -g @minimal-tmux-left-arrow ""
+          '';
+        }
+        better-mouse-mode
+        yank
+        open
+        fzf-tmux-url
+        vim-tmux-navigator
+      ];
+      extraConfig = # tmux
+        ''
+          # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
+          set -g default-terminal ${xterm}
+          set -g allow-passthrough on
+
+          set -g default-terminal "tmux-256color"
+          set -ag terminal-overrides ",xterm-256color:RGB"
+
+          # Undercurl
+          set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+          set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+          # Check if we are in WSL
+          if-shell 'test -n "$WSL_DISTRO_NAME"' {
+            set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m' # underscore colours - needs tmux-3.0 (wsl2 in Windows Terminal)
+          }
+
+          set-environment -g COLORTERM "truecolor"
+
+          set-option -ga update-environment " UPTERM_ADMIN_SOCKET"
+          set-option -ga update-environment "SSH_AUTH_SOCK"
+
+          set -g set-clipboard on
+          set-option -g automatic-rename on
+          set-option -g status-style bg=default
+          set -g prefix C-a
+
+          bind N new-session
+          bind n new-window
+
+          bind H swap-pane -D
+          bind L swap-pane -U
+
+          bind -r < swap-window -t -1 \; select-window -t -1
+          bind -r > swap-window -t +1 \; select-window -t +1
+
+          # edit tmux output in vim `ctrl e`
+          bind C-e run-shell "${edit-pane}"
+
+          bind-key r movew -r\; display-message "Renumbered Windows"
+
+          # window remap `-r` allows to repeat the keyb
+          bind -r C-h previous-window
+          bind -r C-l next-window
+
+          bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
+          set -g detach-on-destroy off  # don't exit from tmux when closing a session
+
+          # start selecting text with "v"
+          bind -T copy-mode-vi 'v' send -X begin-selection
+          bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
+
+          bind -T copy-mode-vi v send -X begin-selection
+          bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+
+          bind b set-option  status
+
+          bind v split-window -h -c "#{pane_current_path}"
+          bind s split-window -v -c "#{pane_current_path}"
+
+          bind | split-window -h -c "#{pane_current_path}"
+          bind - split-window -v -c "#{pane_current_path}"
+
+          bind S choose-session
+
+          bind -r j resize-pane -D
+          bind -r k resize-pane -U
+          bind -r l resize-pane -R
+          bind -r h resize-pane -L
+          bind -r m resize-pane -Z
+
+          bind x kill-pane
+          bind q kill-window
+          bind Q kill-session
+
+          bind V copy-mode
+        '';
+    };
+  };
+  home.shellAliases.ta = "tmux -u new-session -A -s";
+}

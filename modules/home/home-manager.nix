@@ -1,0 +1,4 @@
+{ ... }:
+{
+  home-manager.backupFileExtension = "";
+}
