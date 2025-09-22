@@ -5,8 +5,8 @@
     enable = true;
     enableDefaultConfig = false;
     matchBlocks."*" = {
-      forwardAgent = false;
-      addKeysToAgent = "no";
+      forwardAgent = true;
+      addKeysToAgent = "yes";
     };
   };
   # To avoid collision in home-manager
