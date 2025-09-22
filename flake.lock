@@ -503,17 +503,17 @@
     },
     "nix-wire": {
       "locked": {
-        "lastModified": 1757774722,
-        "narHash": "sha256-Ctxg3XAZ1xfIX3evTrUupTz4dLzP1N1CwIyxUIotMx8=",
-        "ref": "refs/heads/master",
-        "rev": "968dddc92acb11425b7e2f0d4403e6f29a7725a1",
-        "revCount": 1,
-        "type": "git",
-        "url": "ssh://git@github.com/niksingh710/nix-wire"
+        "lastModified": 1758300273,
+        "narHash": "sha256-njdR/etTGF43NLiV012lFeFhbb85v1r/1twIgJIhHeI=",
+        "owner": "niksingh710",
+        "repo": "nix-wire",
+        "rev": "c4cafd85968f550a9e8b04e23cb387e6f06a5e5e",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/niksingh710/nix-wire"
+        "owner": "niksingh710",
+        "repo": "nix-wire",
+        "type": "github"
       }
     },
     "nixcord": {
