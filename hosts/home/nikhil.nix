@@ -9,7 +9,7 @@ in
     flake.homeModules.default
   ];
   home.username = "nikhil";
-
+  programs.zsh.completionInit = "autoload -U compinit && compinit -i";
   programs.git = {
     userName = me.fullname;
     userEmail = me.email;
