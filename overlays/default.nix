@@ -10,7 +10,7 @@ in
     inherit (prev) system;
     overlays = prev.lib.attrValues inputs.self.overlays;
   };
-  nsearch = inputs.nsearch.packages.${final.system}.nsearch-adv;
+  nsearch-adv = inputs.nsearch.packages.${final.system}.nsearch-adv;
   stremio-enhanced = selfPkgs.stremio-enhanced;
   airsync = selfPkgs.stremio-enhanced;
   utils =

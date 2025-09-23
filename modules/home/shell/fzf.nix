@@ -2,8 +2,6 @@
 let
   # TODO: Make fzf-preview available in nixpkgs.
   # https://github.com/NixOS/nixpkgs/pull/420244
-  fzf-preview =
-    (builtins.getFlake "github:niksingh710/fzf-preview/422198e735c7b5f2a327e2f1a092c8c86d8c8233").packages.${pkgs.system}.default;
   binds = [
     "--bind='ctrl-d:preview-down'"
     "--bind='ctrl-u:preview-up'"
@@ -26,7 +24,7 @@ in
   home.sessionVariables.FZF_TMUX = lib.mkForce 0;
   programs = {
     sesh.settings = {
-      preview_command = "${lib.getExe fzf-preview} {}";
+      preview_command = "${lib.getExe pkgs.fzf-preview} {}";
     };
     ripgrep.enable = true;
     fzf = {
@@ -35,7 +33,7 @@ in
       defaultCommand = "fd -t f";
       changeDirWidgetCommand = "fd -t d";
       fileWidgetCommand = "fd -t f -X ${sortFilesCmd}";
-      fileWidgetOptions = binds ++ [ "--preview='${lib.getExe fzf-preview} {}'" ];
+      fileWidgetOptions = binds ++ [ "--preview='${lib.getExe pkgs.fzf-preview} {}'" ];
       changeDirWidgetOptions = binds ++ [ "--preview='${lib.getExe pkgs.eza} -T {}'" ];
     };
     zsh.initContent = # sh
@@ -63,9 +61,9 @@ in
     };
   };
 
-  home.packages = [
+  home.packages = with pkgs;[
     fzf-preview
-    pkgs.nsearch
+    nsearch-adv
   ];
-  home.shellAliases.fzfp = "${lib.getExe pkgs.fzf} --preview='${lib.getExe fzf-preview} {}'";
+  home.shellAliases.fzfp = "${lib.getExe pkgs.fzf} --preview='${lib.getExe pkgs.fzf-preview} {}'";
 }
