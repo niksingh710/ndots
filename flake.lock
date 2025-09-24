@@ -503,11 +503,11 @@
     },
     "nix-wire": {
       "locked": {
-        "lastModified": 1758300273,
-        "narHash": "sha256-njdR/etTGF43NLiV012lFeFhbb85v1r/1twIgJIhHeI=",
+        "lastModified": 1758621374,
+        "narHash": "sha256-4shaR/1Dehl/zHGKxrROisrkO0b06Oj/+YLRbd3wOAQ=",
         "owner": "niksingh710",
         "repo": "nix-wire",
-        "rev": "c4cafd85968f550a9e8b04e23cb387e6f06a5e5e",
+        "rev": "b9e0d027777306a23526551447f54288c2ebf105",
         "type": "github"
       },
       "original": {
