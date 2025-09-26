@@ -51,32 +51,33 @@ let
         yabai -m display --focus "$next_idx"
       '';
 
-  cycleMoveDisplay = pkgs.writeShellScriptBin "cycle-move-display" # sh
-    ''
-      dir="''${1:-next}"
-      displays=$(yabai -m query --displays | jq 'sort_by(.index)')
-      count=$(echo "$displays" | jq 'length')
+  cycleMoveDisplay =
+    pkgs.writeShellScriptBin "cycle-move-display" # sh
+      ''
+        dir="''${1:-next}"
+        displays=$(yabai -m query --displays | jq 'sort_by(.index)')
+        count=$(echo "$displays" | jq 'length')
 
-      cur_idx=$(yabai -m query --displays --display | jq -r '.index')
+        cur_idx=$(yabai -m query --displays --display | jq -r '.index')
 
-      case "$dir" in
-        next)
-          next_idx=$(( (cur_idx % count) + 1 ))
-          ;;
-        prev)
-          next_idx=$(( ( (cur_idx - 2 + count) % count ) + 1 ))
-          ;;
-        *)
-          next_idx=$cur_idx
-          ;;
-      esac
+        case "$dir" in
+          next)
+            next_idx=$(( (cur_idx % count) + 1 ))
+            ;;
+          prev)
+            next_idx=$(( ( (cur_idx - 2 + count) % count ) + 1 ))
+            ;;
+          *)
+            next_idx=$cur_idx
+            ;;
+        esac
 
-      # Move the focused window to the target display
-      yabai -m window --display "$next_idx"
+        # Move the focused window to the target display
+        yabai -m window --display "$next_idx"
 
-      # Then focus that display
-      yabai -m display --focus "$next_idx";
-    '';
+        # Then focus that display
+        yabai -m display --focus "$next_idx";
+      '';
 
   cycleFocus =
     pkgs.writeShellScriptBin "cycle-focus" # sh

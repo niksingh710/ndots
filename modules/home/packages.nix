@@ -4,10 +4,11 @@
 # Most of the packages are ui based.
 # if cli based increases then a dir/{cli.nix, default.nix} can be created
 # with partial import
-{ inputs
-, pkgs
-, lib
-, ...
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
 }:
 let
   inherit (pkgs.stdenv) isDarwin isLinux;

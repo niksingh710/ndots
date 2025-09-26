@@ -61,7 +61,7 @@ in
     };
   };
 
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     fzf-preview
     nsearch-adv
   ];

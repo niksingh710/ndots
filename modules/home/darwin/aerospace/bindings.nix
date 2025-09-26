@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   # I map holding of `capslock` key to `cmd+alt` in karabiner-elements
   mod = "cmd-alt";
@@ -22,10 +27,22 @@ in
       "${mod}-shift-slash" = "layout accordion tiles horizontal";
       "${mod}-slash" = "exec-and-forget ${kittenDmenuFocusCmd}";
       # Focus window
-      "${mod}-h" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left" "move-mouse window-lazy-center" ];
-      "${mod}-j" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down" "move-mouse window-lazy-center" ];
-      "${mod}-k" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up" "move-mouse window-lazy-center" ];
-      "${mod}-l" = [ "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right" "move-mouse window-lazy-center" ];
+      "${mod}-h" = [
+        "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left"
+        "move-mouse window-lazy-center"
+      ];
+      "${mod}-j" = [
+        "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down"
+        "move-mouse window-lazy-center"
+      ];
+      "${mod}-k" = [
+        "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up"
+        "move-mouse window-lazy-center"
+      ];
+      "${mod}-l" = [
+        "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right"
+        "move-mouse window-lazy-center"
+      ];
 
       # Move window
       "${mod}-shift-h" = "move left";
@@ -101,15 +118,36 @@ in
       esc = "mode main";
     };
     service.binding = {
-      esc = [ "reload-config" "mode main" ];
-      r = [ "reload-config" "mode main" ];
+      esc = [
+        "reload-config"
+        "mode main"
+      ];
+      r = [
+        "reload-config"
+        "mode main"
+      ];
       e = [ "enable toggle" ];
-      f = [ "flatten-workspace-tree" "mode main" ]; # reset layout
+      f = [
+        "flatten-workspace-tree"
+        "mode main"
+      ]; # reset layout
 
-      "${mod}-shift-h" = [ "join-with left" "mode main" ];
-      "${mod}-shift-j" = [ "join-with down" "mode main" ];
-      "${mod}-shift-k" = [ "join-with up" "mode main" ];
-      "${mod}-shift-l" = [ "join-with right" "mode main" ];
+      "${mod}-shift-h" = [
+        "join-with left"
+        "mode main"
+      ];
+      "${mod}-shift-j" = [
+        "join-with down"
+        "mode main"
+      ];
+      "${mod}-shift-k" = [
+        "join-with up"
+        "mode main"
+      ];
+      "${mod}-shift-l" = [
+        "join-with right"
+        "mode main"
+      ];
     };
   };
 }

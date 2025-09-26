@@ -21,7 +21,7 @@ let
     '';
   movefloating = pkgs.writeShellApplication {
     name = "movefloating";
-    runtimeInputs = with pkgs;[ jq ];
+    runtimeInputs = with pkgs; [ jq ];
     text = # sh
       ''
         ${displayInfo}
@@ -68,8 +68,8 @@ let
   };
   centerfloating = pkgs.writeShellApplication {
     name = "centerfloating";
-    runtimeInputs = with pkgs;[ jq ];
-    text = #sh
+    runtimeInputs = with pkgs; [ jq ];
+    text = # sh
       ''
         print_screen_size() {
           # find focused monitor

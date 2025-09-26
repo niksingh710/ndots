@@ -1,7 +1,8 @@
-{ flake
-, pkgs
-, lib
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  ...
 }:
 {
   imports = [ flake.inputs.nix-index-database.homeModules.nix-index ];

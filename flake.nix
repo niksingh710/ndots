@@ -48,8 +48,10 @@
     nvix.url = "github:niksingh710/nvix";
   };
 
-  outputs = inputs: inputs.nix-wire.mkFlake {
-    inherit inputs;
-    imports = [ ./parts ];
-  };
+  outputs =
+    inputs:
+    inputs.nix-wire.mkFlake {
+      inherit inputs;
+      imports = [ ./parts ];
+    };
 }

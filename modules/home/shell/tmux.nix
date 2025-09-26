@@ -26,7 +26,7 @@ in
       escapeTime = 0;
       historyLimit = 1000000;
       secureSocket = false;
-      plugins = with pkgs.tmuxPlugins;[
+      plugins = with pkgs.tmuxPlugins; [
         {
           plugin = minimal-tmux-status;
           extraConfig = ''
@@ -101,6 +101,7 @@ in
 
           bind v split-window -h -c "#{pane_current_path}"
           bind s split-window -v -c "#{pane_current_path}"
+          bind C clear-history
 
           bind | split-window -h -c "#{pane_current_path}"
           bind - split-window -v -c "#{pane_current_path}"

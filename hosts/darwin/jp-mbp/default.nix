@@ -1,4 +1,9 @@
-{ flake, lib, config, ... }:
+{
+  flake,
+  lib,
+  config,
+  ...
+}:
 let
   me = (import (flake + "/config.nix")).me // {
     username = "nikhil.singh";

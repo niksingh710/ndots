@@ -1,8 +1,9 @@
-{ flake
-, pkgs
-, lib
-, config
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 {
   options.nvix.variant = lib.mkOption {

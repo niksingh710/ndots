@@ -1,4 +1,10 @@
-{ flake, modulesPath, pkgs, lib, ... }:
+{
+  flake,
+  modulesPath,
+  pkgs,
+  lib,
+  ...
+}:
 let
   me = (import (flake + "/config.nix")).virt;
 in

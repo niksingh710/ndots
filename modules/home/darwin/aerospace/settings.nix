@@ -1,22 +1,25 @@
 { lib, ... }:
 let
-  floaters = list: lib.map
-    (appID: {
+  floaters =
+    list:
+    lib.map (appID: {
       check-further-callbacks = false;
       "if".app-name-regex-substring = appID;
       run = [
         "layout floating"
       ];
-    })
-    list;
-  comms = list: lib.map
-    (appID: {
+    }) list;
+  comms =
+    list:
+    lib.map (appID: {
       check-further-callbacks = true;
       "if".during-aerospace-startup = true;
       "if".app-name-regex-substring = appID;
-      run = [ "layout tiling" "move-node-to-workspace Comms" ];
-    })
-    list;
+      run = [
+        "layout tiling"
+        "move-node-to-workspace Comms"
+      ];
+    }) list;
   floatingApps = floaters [
     # Apple apps
     "Screen Sharing"
@@ -92,10 +95,22 @@ in
         "3" = "primary";
         "4" = "primary";
         "5" = "primary";
-        "6" = [ "secondary" "primary" ];
-        "7" = [ "secondary" "primary" ];
-        "8" = [ "secondary" "primary" ];
-        "9" = [ "secondary" "primary" ];
+        "6" = [
+          "secondary"
+          "primary"
+        ];
+        "7" = [
+          "secondary"
+          "primary"
+        ];
+        "8" = [
+          "secondary"
+          "primary"
+        ];
+        "9" = [
+          "secondary"
+          "primary"
+        ];
         "10" = "secondary";
       };
       after-startup-command = [

@@ -2,11 +2,12 @@
 # Most of my modules are meant to be used by multiple users
 # and multiple people online.
 # here in this config file i override them according to my needs
-{ flake
-, pkgs
-, lib
-, config
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   me = (import (flake + "/config.nix")).me // {
