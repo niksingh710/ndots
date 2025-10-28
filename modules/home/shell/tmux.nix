@@ -122,5 +122,25 @@ in
         '';
     };
   };
-  home.shellAliases.ta = "tmux -u new-session -A -s";
+  home.packages = [
+    (pkgs.writeShellScriptBin "ta" ''
+      session="$1"
+
+      if [ -z "$session" ]; then
+        echo "Usage: ta <session-name>"
+        exit 1
+      fi
+
+      if [ -z "$TMUX" ]; then
+        tmux -u new-session -A -s "$session"
+      else
+        if tmux has-session -t "$session" 2>/dev/null; then
+          tmux switch-client -t "$session"
+        else
+          tmux new-session -d -s "$session"
+          tmux switch-client -t "$session"
+        fi
+      fi
+    '')
+  ];
 }
