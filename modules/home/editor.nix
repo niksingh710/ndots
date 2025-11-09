@@ -22,18 +22,12 @@
       (flake.inputs.nvix.packages.${pkgs.system}.${config.nvix.variant}.extend {
         config = {
           vimAlias = true;
-          colorschemes = {
-            catppuccin = {
-              enable = true;
-              settings = {
-                background.dark = "mocha";
-                transparent_background = true;
-                color_overrides.all = {
-                  base = "#000000";
-                  mantle = "#000000";
-                  crust = "#000000";
-                };
-              };
+          colorschemes.catppuccin = {
+            enable = true;
+            settings.color_overrides.all = {
+              base = "#000000";
+              mantle = "#000000";
+              crust = "#000000";
             };
           };
         };

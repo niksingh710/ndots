@@ -13,7 +13,6 @@
       "lulu"
       "protonvpn"
       "signal"
-      "soundsource"
       "tailscale-app"
       "whatsapp"
       "zulip"

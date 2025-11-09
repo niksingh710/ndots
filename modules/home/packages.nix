@@ -36,7 +36,6 @@ let
       keycastr
       mas
       numi
-      stremio-enhanced
       tart
       utm
       airsync

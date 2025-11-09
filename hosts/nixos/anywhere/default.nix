@@ -31,12 +31,12 @@ in
     efiInstallAsRemovable = true;
   };
   services.openssh.enable = true;
+  networking.networkmanager.enable = true;
 
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
   ];
-
   users.users.root.openssh.authorizedKeys.keys = me.sshPublicKeys;
   users.users.${me.username} = {
     name = me.username;
@@ -47,5 +47,5 @@ in
 
   system.stateVersion = "25.11";
   # according to the platform
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nixpkgs.hostPlatform = "aarch64-linux";
 }
