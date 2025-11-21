@@ -58,8 +58,12 @@ in
   ];
   # git override for my personal/work email setup
   programs.git = {
-    userName = me.fullname;
-    userEmail = me.email;
+    settings = {
+      user = {
+        name = me.fullname;
+        email = me.email;
+      };
+    };
     includes = [
       {
         condition = "gitdir:~/work/bitbucket/";

@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  home.shellAliases = {
+    git-addnospace = "git diff -U0 -w --no-color --src-prefix=a/ --dst-prefix=b/ | git apply --cached --ignore-whitespace --unidiff-zero -";
+  };
   programs = {
     git = {
       enable = true;
@@ -14,13 +17,13 @@
         "*.swp"
       ];
       lfs.enable = true;
-      aliases = {
-        gl = "log --oneline --graph --decorate";
-      };
       iniContent = {
         branch.sort = "-committerdate";
       };
-      extraConfig = {
+      settings = {
+        aliases = {
+          gl = "log --oneline --graph --decorate";
+        };
         init.defaultBranch = "master";
         core.editor = "nvim";
         core.sharedRepository = "group";

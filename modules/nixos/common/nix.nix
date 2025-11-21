@@ -5,9 +5,6 @@
   ...
 }:
 {
-  environment.systemPackages = [
-    flake.inputs.flox.packages.${pkgs.system}.flox
-  ];
   nix = {
     # Choose from https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=nix
     package = lib.mkForce pkgs.nixVersions.latest;

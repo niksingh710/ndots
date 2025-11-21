@@ -11,8 +11,12 @@ in
   home.username = "nikhil";
   programs.zsh.completionInit = "autoload -U compinit && compinit -i";
   programs.git = {
-    userName = me.fullname;
-    userEmail = me.email;
+    settings = {
+      user = {
+        name = me.fullname;
+        email = me.email;
+      };
+    };
     includes = [
       {
         condition = "gitdir:~/work/bitbucket/";

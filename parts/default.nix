@@ -1,8 +1,13 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   imports = [
     (inputs.git-hooks + /flake-module.nix)
   ];
+
+  flake = {
+    disko = import ./disko;
+    iso = import ./iso { inherit inputs self; };
+  };
 
   perSystem =
     { pkgs, config, ... }:

@@ -24,10 +24,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    # flox (The wrapper around nixpkgs | All in one)
-    flox.url = "github:flox/flox/latest";
-
-    # stylix for themeing
+    # stylix for theming
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
