@@ -38,7 +38,7 @@ in
   };
 
   # comes from homeModules.editor
-  nvix.variant = "full";
+  nvix.variant = "core";
 
   # Color override for tmux plugin
   programs.tmux.plugins = [
@@ -72,9 +72,6 @@ in
     font.size = lib.mkForce 16;
     settings.background_opacity = lib.mkForce 0;
   };
-
-  # color override as it comes from stylix
-  services.jankyborders.settings.active_color = "0xff${config.lib.stylix.colors.base06}";
 
   # Telegram theming via stylix, using walogram package
   home.activation.tg-theme = lib.hm.dag.entryAfter [ "" ] ''
