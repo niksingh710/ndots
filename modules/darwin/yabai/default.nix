@@ -9,7 +9,7 @@ let
   comms =
     list:
     builtins.concatStringsSep "\n" (
-      lib.map (name: "yabai -m rule --add app=\".*${name}.*\" space=comms") list
+      lib.map (name: "yabai -m rule --add app=\"^*${name}$\" space=comms") list
     );
 
   commsApps = [
@@ -43,7 +43,7 @@ in
     config = {
       active_window_opacity = 1.0;
       auto_balance = "on";
-      focus_follows_mouse = "autoraise";
+      focus_follows_mouse = "off";
       layout = "bsp";
       mouse_drop_action = "swap";
       mouse_follows_focus = "on";

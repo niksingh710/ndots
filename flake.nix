@@ -17,9 +17,6 @@
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.flake = false;
 
-    # mac-app solution (linking to launcher and finder)
-    mac-app-util.url = "github:hraban/mac-app-util";
-
     # sops-nix for managing secrets
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";

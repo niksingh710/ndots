@@ -1,7 +1,7 @@
 { flake, pkgs, ... }:
 {
   # This has to be same for darwin/home-manager/nixOs.
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [ monaspace ];
 

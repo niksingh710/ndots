@@ -2,14 +2,14 @@
 with lib;
 let
   blacklistList = [
-    "Kandji"
     "FaceTime"
+    "Kandji"
+    "Privileges"
     "Screen Sharing"
     "iPhone Mirroring"
-    "Privileges"
   ];
 
-  blacklist = lib.concatStringsSep "," blacklistList;
+  blacklist = ''"${lib.concatStringsSep "," blacklistList}"'';
 in
 {
   services.jankyborders = {
@@ -18,7 +18,7 @@ in
       inherit blacklist;
       style = "round";
       width = 1.0;
-      hidpi = true;
+      hidpi = "on";
       active_color = mkDefault "0xffffffff"; # so that stylix can override
       inactive_color = mkDefault "0x00000000"; # so that stylix can override
     };

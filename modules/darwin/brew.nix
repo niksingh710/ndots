@@ -3,21 +3,28 @@
   homebrew = {
     taps = [ ];
     casks = [
-      "blip"
       "betterdisplay"
+      "blip"
       "element"
       "homerow"
       "imageoptim"
       "karabiner-elements" # check home/darwin/karabiner.nix
       "keepingyouawake"
+      "keycastr"
       "lulu"
+      "maccy"
+      "numi"
       "protonvpn"
+      "rclone-ui"
       "signal"
       "tailscale-app"
+      "utm"
       "whatsapp"
       "zulip"
     ];
-    brews = [ ];
+    brews = [
+      "cirruslabs/cli/tart"
+    ];
     masApps = {
       # only mac apps supported not iOS one
       "handmirror" = 1502839586;

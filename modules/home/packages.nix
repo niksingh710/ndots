@@ -15,10 +15,7 @@ let
 
   both = with pkgs; [
     telegram-desktop
-    omnix
-    google-chrome
     youtube-music
-    postman
     zoom-us
   ];
 
@@ -27,18 +24,22 @@ let
     [
       zulip
       mailspring
+      telegram-desktop
+      google-chrome
+      youtube-music
     ]
   );
   darwin = lib.optionals isDarwin (
     with pkgs;
     [
-      ice-bar
-      keycastr
       mas
-      numi
-      tart
-      utm
-      airsync
+
+      # Mac ui apps are preferred to be from homebrew via or mas
+      # check ./../../modules/darwin/brew.nix for more apps
+
+      # Custom package with premium version
+      # Android connector
+      # airsync
     ]
   );
 
