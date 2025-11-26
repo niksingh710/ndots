@@ -15,7 +15,6 @@
       "maccy"
       "numi"
       "protonvpn"
-      "rclone-ui"
       "signal"
       "tailscale-app"
       "utm"

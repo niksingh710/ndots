@@ -6,6 +6,7 @@ let
     "Kandji"
     "Privileges"
     "Screen Sharing"
+    "Rclone UI"
     "iPhone Mirroring"
   ];
 

@@ -14,9 +14,9 @@ let
   inherit (pkgs.stdenv) isDarwin isLinux;
 
   both = with pkgs; [
+    google-chrome
     telegram-desktop
     youtube-music
-    zoom-us
   ];
 
   linux = lib.optionals isLinux (

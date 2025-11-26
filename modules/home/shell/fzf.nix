@@ -1,7 +1,5 @@
 { pkgs, lib, ... }:
 let
-  # TODO: Make fzf-preview available in nixpkgs.
-  # https://github.com/NixOS/nixpkgs/pull/420244
   binds = [
     "--bind='ctrl-d:preview-down'"
     "--bind='ctrl-u:preview-up'"
