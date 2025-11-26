@@ -1,7 +1,6 @@
 {
   flake,
   lib,
-  config,
   ...
 }:
 let
@@ -27,6 +26,7 @@ in
     name = me.username;
     home = "/home/${me.username}";
     openssh.authorizedKeys.keys = me.sshPublicKeys;
+    isNormalUser = true;
   };
 
   boot.loader = {
