@@ -1,7 +1,7 @@
 { flake, ... }:
 {
   imports = [
-    flake.nixosModules.common
+    flake.flakeModules.nix
     flake.nixosModules.stylix
   ];
 

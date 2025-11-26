@@ -17,7 +17,7 @@ in
     ./hardware.nix
 
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" me.username ])
-    flake.nixosModules.common
+    flake.flakeModules.nix
   ];
 
   home-manager.sharedModules = [
