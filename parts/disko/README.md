@@ -29,7 +29,7 @@ This will generate a complete partition configuration and save it to `<name>.nix
 Once you have the generated file, apply it (as root):
 
 ```sh
-sudo disko --mode destroy,format,mount ./<name>.nix
+sudo disko --mode destroy,format,mount --yes-wipe-all-disks ./<name>.nix
 ```
 
 This will **destroy**, **format**, and **mount** partitions exactly as defined in your schema.

@@ -16,14 +16,23 @@ in
     flake.nixosModules.default
 
     # Important for the hardware
+    flake.inputs.disko.nixosModules.disko
     ./disk.nix
+    # should be generated sudo nixos-generate-config --show-hardware-config --root /mnt > ./hosts/nixos/virt/hardware.nix>
+    ./hardware.nix
   ];
 
   # Primary user setup
   users.users.${me.username} = {
     name = me.username;
-    # home = "/home/${me.username}";
+    home = "/home/${me.username}";
     openssh.authorizedKeys.keys = me.sshPublicKeys;
+  };
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot";
   };
 
   environment.etc."sudoers.d/10-nix-sudo".text = ''

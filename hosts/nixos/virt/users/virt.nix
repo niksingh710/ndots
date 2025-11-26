@@ -33,8 +33,10 @@ in
   # git override for my personal/work email setup
   programs.git = {
     settings = {
-      userName = me.fullname;
-      userEmail = me.email;
+      users = {
+        name = me.fullname;
+        email = me.email;
+      };
     };
   };
 }
