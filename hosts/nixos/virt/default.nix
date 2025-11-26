@@ -9,7 +9,6 @@ let
   };
 in
 {
-  # TODO: Follow up to complete
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" me.username ])
     flake.nixosModules.default
@@ -25,19 +24,23 @@ in
   users.users.${me.username} = {
     name = me.username;
     home = "/home/${me.username}";
-    openssh.authorizedKeys.keys = me.sshPublicKeys;
     isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    openssh.authorizedKeys.keys = me.sshPublicKeys;
   };
+
+  time.timeZone = "Asia/Kolkata";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
   };
-
-  environment.etc."sudoers.d/10-nix-sudo".text = ''
-    ${me.username} ALL=(ALL:ALL) NOPASSWD: ALL
-  '';
+  security.sudo.wheelNeedsPassword = false;
 
   nix.settings.trusted-users = [ me.username ];
 
