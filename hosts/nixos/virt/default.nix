@@ -1,6 +1,7 @@
 {
   flake,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -21,15 +22,18 @@ in
   ];
 
   # Primary user setup
-  users.users.${me.username} = {
-    name = me.username;
-    home = "/home/${me.username}";
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    openssh.authorizedKeys.keys = me.sshPublicKeys;
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.${me.username} = {
+      name = me.username;
+      home = "/home/${me.username}";
+      isNormalUser = true;
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+      ];
+      openssh.authorizedKeys.keys = me.sshPublicKeys;
+    };
   };
 
   services.openssh = {
