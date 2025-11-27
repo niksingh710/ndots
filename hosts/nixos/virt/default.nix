@@ -32,6 +32,14 @@ in
     openssh.authorizedKeys.keys = me.sshPublicKeys;
   };
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };
+
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
 
