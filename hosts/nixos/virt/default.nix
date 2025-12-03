@@ -21,6 +21,7 @@ in
     ./hardware.nix
   ];
 
+  programs.zsh.enable = true;
   # Primary user setup
   users = {
     defaultUserShell = pkgs.zsh;
