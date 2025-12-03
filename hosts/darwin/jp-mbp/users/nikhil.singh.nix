@@ -21,7 +21,7 @@ in
     (flake.homeModules.darwin + "/karabiner.nix")
 
     flake.homeModules.sops
-    flake.homeModules.claude
+    flake.homeModules.ai
   ];
 
   sops.secrets = {

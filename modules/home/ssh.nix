@@ -7,6 +7,12 @@
     matchBlocks."*" = {
       forwardAgent = true;
       addKeysToAgent = "yes";
+      sendEnv = [
+        "ANTHROPIC_MODEL"
+        "ANTHROPIC_AUTH_TOKEN"
+        "ANTHROPIC_BASE_URL"
+        "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS"
+      ];
     };
   };
   # To avoid collision in home-manager

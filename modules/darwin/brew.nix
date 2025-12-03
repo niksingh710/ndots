@@ -5,6 +5,7 @@
     casks = [
       "betterdisplay"
       "blip"
+      "cleanupbuddy"
       "element"
       "homerow"
       "imageoptim"

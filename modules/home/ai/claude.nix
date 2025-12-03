@@ -1,4 +1,8 @@
 {
+  home.sessionVariables = {
+    CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = 1;
+    ANTHROPIC_MODEL = "claude-sonnet-4-5";
+  };
   programs.claude-code = {
     enable = true;
     settings.model = "claude-sonnet-4-5";
