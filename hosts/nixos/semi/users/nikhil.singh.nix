@@ -14,7 +14,9 @@ let
 in
 {
   # users specific home modules
-  imports = [ flake.homeModules.sops ];
+  imports = [
+    flake.homeModules.ai
+  ];
 
   # comes from homeModules.editor
   nvix.variant = "core";
