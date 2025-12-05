@@ -19,12 +19,20 @@ in
     ./disk.nix
     # should be generated sudo nixos-generate-config --show-hardware-config --root /mnt > ./hosts/nixos/{host}/hardware.nix>
     ./hardware.nix
+    # extra-users added in the system
+    ./extra-users.nix
   ];
+
+  environment.variables = {
+    TERM = "xterm-256color";
+    ZSH_DISABLE_COMPFIX = "true";
+  };
 
   programs.zsh.enable = true;
   # Primary user setup
   users = {
     defaultUserShell = pkgs.zsh;
+    groups.extra = { };
     users.${me.username} = {
       name = me.username;
       home = "/home/${me.username}";
