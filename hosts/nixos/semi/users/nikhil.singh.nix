@@ -47,14 +47,4 @@ in
       }
     ];
   };
-
-  # git override for my personal/work email setup
-  programs.git = {
-    settings = {
-      users = {
-        name = me.fullname;
-        email = me.email;
-      };
-    };
-  };
 }

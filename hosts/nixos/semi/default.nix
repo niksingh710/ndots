@@ -40,10 +40,13 @@ in
       extraGroups = [
         "wheel"
         "networkmanager"
+        "extra"
+        "docker"
       ];
       openssh.authorizedKeys.keys = me.sshPublicKeys;
     };
   };
+
   services.tailscale.enable = true;
   services.openssh = {
     enable = true;
@@ -56,8 +59,15 @@ in
         AcceptEnv LANG LC_* ANTHROPIC_MODEL ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS
       '';
   };
-
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
   networking = {
+    stevenblack.enable = true;
     networkmanager.enable = true;
 
     # This does not disable wifi

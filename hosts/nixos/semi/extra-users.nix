@@ -7,7 +7,6 @@ let
     users.users = builtins.mapAttrs (username: key: {
       isNormalUser = true;
       group = "extra";
-      extraGroups = [ "docker" ];
       openssh.authorizedKeys.keys = [ key ];
     }) usersFromKeys;
   };
