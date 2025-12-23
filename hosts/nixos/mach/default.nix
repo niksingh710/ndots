@@ -5,9 +5,7 @@
   ...
 }:
 let
-  me = (import (flake + "/config.nix")).me // {
-    username = "nikhil.singh";
-  };
+  me = (import (flake + "/config.nix")).me;
 in
 {
   imports = [
@@ -19,8 +17,6 @@ in
     ./disk.nix
     # should be generated sudo nixos-generate-config --show-hardware-config --root /mnt > ./hosts/nixos/{host}/hardware.nix>
     ./hardware.nix
-    # extra-users added in the system
-    ./extra-users.nix
   ];
 
   environment.variables = {
