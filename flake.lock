@@ -751,11 +751,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1763635970,
-        "narHash": "sha256-0ofhqlWg/qdAmbeD2n7/8zoypgLqcOZGjuwRiCrx7YU=",
+        "lastModified": 1766392746,
+        "narHash": "sha256-kEpkMgoSh/c5RZbpLUfvOn+flK9LFVnO1maJRgdHE08=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "766dbbbb66b1aac2344a26dfb34854391a6a714f",
+        "rev": "55d3725f266d77b44989d812f6bdf9ed3b2ed3c7",
         "type": "github"
       },
       "original": {
