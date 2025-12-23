@@ -4,22 +4,23 @@
     taps = [ ];
     casks = [
       "betterdisplay"
-      "blip"
+      # "blip"
       "cleanupbuddy"
       "element"
       "homerow"
+      "hyperkey"
       "imageoptim"
       "karabiner-elements" # check home/darwin/karabiner.nix
       "keepingyouawake"
       "keycastr"
-      "lulu"
+      # "lulu"
       "maccy"
       "numi"
       "protonvpn"
       "signal"
-      "tailscale-app"
       "utm"
       "whatsapp"
+      "windows-app"
       "zulip"
     ];
     brews = [
@@ -30,6 +31,7 @@
       "handmirror" = 1502839586;
       "gifski" = 1351639930;
       "gladys" = 1382386877;
+      "tailscale" = 1475387142;
       "lensocr" = 1549961729;
     };
   };

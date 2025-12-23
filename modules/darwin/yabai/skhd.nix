@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  mod = "cmd + alt";
+  mod = "cmd + alt + ctrl";
   spaceCycleNext =
     pkgs.writeShellScriptBin "space-cycle-next" # sh
       ''
@@ -211,10 +211,10 @@ in
       ${mod} - c : yabai -m space --focus comms
       ${mod} + shift - c : yabai -m window --space comms --focus
 
-      ${mod} + ctrl - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
-      ${mod} + ctrl - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
-      ${mod} + ctrl - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
-      ${mod} + ctrl - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
+      # ${mod} + fn - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
+      # ${mod} + fn - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
+      # ${mod} + fn - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
+      # ${mod} + fn - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
 
       ${mod} - 1 : yabai -m space --focus 1
       ${mod} - 2 : yabai -m space --focus 2

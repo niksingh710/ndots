@@ -24,7 +24,6 @@ let
     [
       zulip
       mailspring
-      telegram-desktop
       google-chrome
       youtube-music
     ]

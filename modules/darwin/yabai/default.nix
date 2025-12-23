@@ -43,7 +43,7 @@ in
     config = {
       active_window_opacity = 1.0;
       auto_balance = "on";
-      focus_follows_mouse = "autofocus";
+      focus_follows_mouse = "off";
       layout = "bsp";
       mouse_drop_action = "swap";
       mouse_follows_focus = "on";
