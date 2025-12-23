@@ -2,6 +2,7 @@
   flake,
   lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -11,6 +12,7 @@ in
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" me.username ])
     flake.nixosModules.default
+    flake.nixosModules.bluetooth
 
     # Important for the hardware
     flake.inputs.disko.nixosModules.disko
@@ -23,7 +25,7 @@ in
     TERM = "xterm-256color";
     ZSH_DISABLE_COMPFIX = "true";
   };
-
+  hm.sops.secrets.user-password = { };
   programs.zsh.enable = true;
   # Primary user setup
   users = {
@@ -33,6 +35,7 @@ in
       name = me.username;
       home = "/home/${me.username}";
       isNormalUser = true;
+      hashedPasswordFile = config.hm.sops.secrets.user-password.path;
       extraGroups = [
         "wheel"
         "networkmanager"
@@ -70,6 +73,12 @@ in
     # It is just an minimal alternative to Network manager
     wireless.enable = false;
   };
+
+  hm.sops.secrets."private-keys/nix_access_token" = { };
+  nix.extraOptions = # conf
+    ''
+      !include ${config.hm.sops.secrets."private-keys/nix_access_token".path}
+    '';
 
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
