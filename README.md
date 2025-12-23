@@ -92,10 +92,6 @@ My current setup is **fully CLI-based**, accessed via **Tailscale**.
 
 On Darwin systems (MacBook), I use **Yabai** for window management.
 
-![Yabai Setup](https://github.com/user-attachments/assets/1f1600e9-a1d9-4aa6-9035-5d19e4ece908)
-
-> **Note:** For full ricing details, UI screenshots, Hyprland/Waybar setup, and theming information, visit the **[OG Branch](https://github.com/niksingh710/ndots/tree/OG)**.
-
 </details>
 
 ---
