@@ -1,40 +1,89 @@
 {
   flake,
   lib,
-  config,
+  pkgs,
   ...
 }:
 let
   me = (import (flake + "/config.nix")).me // {
-    username = "niksingh710";
+    username = "nikhil.singh";
   };
 in
 {
-  # TODO: Follow up to complete
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" me.username ])
     flake.nixosModules.default
 
     # Important for the hardware
+    flake.inputs.disko.nixosModules.disko
     ./disk.nix
+    # should be generated sudo nixos-generate-config --show-hardware-config --root /mnt > ./hosts/nixos/{host}/hardware.nix>
+    ./hardware.nix
+    # extra-users added in the system
+    ./extra-users.nix
   ];
 
-  # Primary user setup
-  users.users.${me.username} = {
-    name = me.username;
-    # home = "/home/${me.username}";
-    openssh.authorizedKeys.keys = me.sshPublicKeys;
+  environment.variables = {
+    TERM = "xterm-256color";
+    ZSH_DISABLE_COMPFIX = "true";
   };
 
-  # hm.sops.secrets."private-keys/nix_access_token" = { };
-  nix.extraOptions = # conf
-    ''
-      !include ${config.hm.sops.secrets."private-keys/nix_access_token".path}
-    '';
+  programs.zsh.enable = true;
+  # Primary user setup
+  users = {
+    defaultUserShell = pkgs.zsh;
+    groups.extra = { };
+    users.${me.username} = {
+      name = me.username;
+      home = "/home/${me.username}";
+      isNormalUser = true;
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "extra"
+        "docker"
+      ];
+      openssh.authorizedKeys.keys = me.sshPublicKeys;
+    };
+  };
 
-  environment.etc."sudoers.d/10-nix-sudo".text = ''
-    ${me.username} ALL=(ALL:ALL) NOPASSWD: ALL
-  '';
+  services.tailscale.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+    extraConfig = # sshd_config
+      ''
+        AcceptEnv LANG LC_* ANTHROPIC_MODEL ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS
+      '';
+  };
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+  networking = {
+    stevenblack.enable = true;
+    networkmanager.enable = true;
+
+    # This does not disable wifi
+    # It is just an minimal alternative to Network manager
+    wireless.enable = false;
+  };
+
+  time.timeZone = "Asia/Kolkata";
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot";
+  };
+  security.sudo.wheelNeedsPassword = false;
 
   nix.settings.trusted-users = [ me.username ];
 
