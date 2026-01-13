@@ -72,7 +72,7 @@ in
 
     # This does not disable wifi
     # It is just an minimal alternative to Network manager
-    wireless.enable = false;
+    wireless.enable = lib.mkForce true;
   };
 
   time.timeZone = "Asia/Kolkata";

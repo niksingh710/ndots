@@ -26,7 +26,7 @@
       };
 
       pre-commit.settings = {
-        hooks.nixfmt-rfc-style.enable = true;
+        hooks.nixfmt.enable = true;
       };
     };
 }
