@@ -13,6 +13,7 @@
       "karabiner-elements" # check home/darwin/karabiner.nix
       "keepingyouawake"
       "keycastr"
+      "localsend"
       # "lulu"
       "maccy"
       "numi"

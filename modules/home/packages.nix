@@ -16,7 +16,6 @@ let
   both = with pkgs; [
     google-chrome
     telegram-desktop
-    youtube-music
   ];
 
   linux = lib.optionals isLinux (
@@ -25,7 +24,6 @@ let
       zulip
       mailspring
       google-chrome
-      youtube-music
     ]
   );
   darwin = lib.optionals isDarwin (
