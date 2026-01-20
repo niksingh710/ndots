@@ -160,6 +160,7 @@ in
       ${mod} - return : open -a "kitty"
       ${mod} - b : open -a "Zen Browser (Beta)"
       ${mod} - s : open -a "slack"
+      ${mod} + shift - s : open -b com.apple.ScreenSaver.Engine
 
       ${mod} - h : ${lib.getExe cycleFocus} west
       ${mod} - j : ${lib.getExe cycleFocus} south
@@ -211,10 +212,10 @@ in
       ${mod} - c : yabai -m space --focus comms
       ${mod} + shift - c : yabai -m window --space comms --focus
 
-      # ${mod} + fn - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
-      # ${mod} + fn - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
-      # ${mod} + fn - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
-      # ${mod} + fn - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
+      ${mod} + fn - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
+      ${mod} + fn - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
+      ${mod} + fn - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
+      ${mod} + fn - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
 
       ${mod} - 1 : yabai -m space --focus 1
       ${mod} - 2 : yabai -m space --focus 2

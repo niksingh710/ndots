@@ -31,8 +31,11 @@ let
     "Finder"
     "LuLu"
     "mpv"
-    "mail"
+    "Mail"
     "AirSync"
+    "WhatsApp"
+    "Messages"
+    "Tailscale"
   ];
 in
 {

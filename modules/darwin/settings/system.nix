@@ -11,7 +11,10 @@
   };
   system = {
     startup.chime = false;
-    keyboard.enableKeyMapping = true;
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    };
     defaults = {
       # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
       # for aerospace turn this true and for yabai turn this false

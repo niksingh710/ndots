@@ -2,12 +2,27 @@
 with lib;
 let
   blacklistList = [
-    "FaceTime"
     "Kandji"
     "Privileges"
     "Screen Sharing"
     "Rclone UI"
+    "System Settings"
+    "Calculator"
+    "Karabiner-Elements"
+    "Screen Sharing"
     "iPhone Mirroring"
+    "ical"
+    "weather"
+    "passwords"
+    "FaceTime"
+    "Finder"
+    "LuLu"
+    "mpv"
+    "Mail"
+    "AirSync"
+    "WhatsApp"
+    "Messages"
+    "Tailscale"
   ];
 
   blacklist = ''"${lib.concatStringsSep "," blacklistList}"'';

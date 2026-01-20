@@ -15,6 +15,7 @@
       "keycastr"
       "localsend"
       # "lulu"
+      "fliqlo"
       "maccy"
       "numi"
       "protonvpn"
