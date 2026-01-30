@@ -5,7 +5,11 @@
   };
   programs.claude-code = {
     enable = true;
-    settings.model = "claude-sonnet-4-5";
+    settings = {
+      preferences.vimMode = true;
+      model = "claude-sonnet-4-5";
+      env.ENABLE_TOOL_SEARCH = true;
+    };
     mcpServers = {
       newton-hs-prod = {
         autoApprove = [

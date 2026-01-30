@@ -64,7 +64,7 @@ in
           set-option -ga update-environment " UPTERM_ADMIN_SOCKET"
           set-option -ga update-environment "SSH_AUTH_SOCK"
 
-          set -g set-clipboard on
+          set -g set-clipboard external
           set-option -g automatic-rename on
           set-option -g status-style bg=default
           set -g prefix C-a
