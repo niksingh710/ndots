@@ -61,7 +61,7 @@ in
 
           set-environment -g COLORTERM "truecolor"
 
-          set-option -ga update-environment " UPTERM_ADMIN_SOCKET"
+          set-option -ga update-environment "UPTERM_ADMIN_SOCKET"
           set-option -ga update-environment "SSH_AUTH_SOCK"
 
           set -g set-clipboard external
