@@ -10,8 +10,6 @@ let
         tmux capture-pane -pS -32768 > "$buf"
         tmux new-window -n:edit-pane "$EDITOR $buf"
       '';
-  # on vm with only home-manager config kitty might throw error for EGL
-  xterm = if config.programs.kitty.enable then "xterm-kitty" else "xterm-256color";
 in
 {
   programs = {
@@ -36,7 +34,6 @@ in
           '';
         }
         better-mouse-mode
-        yank
         open
         fzf-tmux-url
         vim-tmux-navigator
@@ -44,11 +41,11 @@ in
       extraConfig = # tmux
         ''
           # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
-          set -g default-terminal ${xterm}
           set -g allow-passthrough on
 
           set -g default-terminal "tmux-256color"
-          set -ag terminal-overrides ",xterm-256color:RGB"
+          set -as terminal-overrides ",*:Tc"
+
 
           # Undercurl
           set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
@@ -64,7 +61,7 @@ in
           set-option -ga update-environment "UPTERM_ADMIN_SOCKET"
           set-option -ga update-environment "SSH_AUTH_SOCK"
 
-          set -g set-clipboard external
+          set -g set-clipboard on
           set-option -g automatic-rename on
           set-option -g status-style bg=default
           set -g prefix C-a
@@ -96,6 +93,7 @@ in
 
           bind -T copy-mode-vi v send -X begin-selection
           bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+          bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
 
           bind b set-option  status
 
@@ -141,6 +139,9 @@ in
           tmux switch-client -t "$session"
         fi
       fi
+    '')
+    (pkgs.writeShellScriptBin "copy" ''
+      printf "\033]52;c;%s\007" "$(base64 | tr -d '\n')"
     '')
   ];
 }
