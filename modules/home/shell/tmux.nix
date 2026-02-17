@@ -40,8 +40,7 @@ in
       ];
       extraConfig = # tmux
         ''
-          # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
-          set -g allow-passthrough on
+          set -g allow-passthrough all
 
           set -g default-terminal "tmux-256color"
           set -as terminal-overrides ",*:Tc"
@@ -139,9 +138,6 @@ in
           tmux switch-client -t "$session"
         fi
       fi
-    '')
-    (pkgs.writeShellScriptBin "copy" ''
-      printf "\033]52;c;%s\007" "$(base64 | tr -d '\n')"
     '')
   ];
 }
