@@ -68,10 +68,6 @@ in
   networking = {
     stevenblack.enable = true;
     networkmanager.enable = true;
-
-    # This does not disable wifi
-    # It is just an minimal alternative to Network manager
-    wireless.enable = false;
   };
 
   hm.sops.secrets."private-keys/nix_access_token" = { };

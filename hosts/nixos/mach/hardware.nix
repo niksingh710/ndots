@@ -3,16 +3,32 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
+  flake,
   config,
   lib,
   modulesPath,
   ...
 }:
-
+let
+  me = (import (flake + "/config.nix")).me;
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+  services.logind = {
+    lidSwitchExternalPower = "ignore";
+    settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore";
+    };
+  };
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -25,6 +41,17 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+
+  # Mounting external HDD to /mnt/hdd
+  fileSystems."/run/media/${me.username}/hdd" = {
+    device = "/dev/disk/by-label/HDD";
+    fsType = "ext4";
+    # `nofail` is imp to prevent boot failure if the drive is not connected.
+    options = [
+      "defaults"
+      "nofail"
+    ];
+  };
 
   swapDevices = [ ];
 

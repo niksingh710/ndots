@@ -34,9 +34,6 @@ in
       path = "${config.home.homeDirectory}/.ssh/id_ed25519";
       mode = "0600";
     };
-
-    "rclone/conf".path = "${config.home.homeDirectory}/.config/rclone/rclone.conf";
-    "rclone/locked-conf".path = "${config.home.homeDirectory}/.config/rclone/rclone.conf.lock";
   };
 
   home.sessionVariables = {
