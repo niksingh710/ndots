@@ -16,6 +16,7 @@ let
   both = with pkgs; [
     google-chrome
     telegram-desktop
+    # quickemu # OVMF to be fixed
   ];
 
   linux = lib.optionals isLinux (
@@ -30,6 +31,8 @@ let
     with pkgs;
     [
       mas
+      bruno
+      bruno-cli
 
       # Mac ui apps are preferred to be from homebrew via or mas
       # check ./../../modules/darwin/brew.nix for more apps

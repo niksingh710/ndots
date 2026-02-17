@@ -10,8 +10,7 @@
       "homerow"
       "hyperkey"
       "imageoptim"
-      "karabiner-elements" # check home/darwin/karabiner.nix
-      "keepingyouawake"
+      # "karabiner-elements" # check home/darwin/karabiner.nix
       "keycastr"
       "localsend"
       # "lulu"
@@ -35,6 +34,7 @@
       "gladys" = 1382386877;
       "tailscale" = 1475387142;
       "lensocr" = 1549961729;
+      "amphetamine" = 937984704;
     };
   };
 

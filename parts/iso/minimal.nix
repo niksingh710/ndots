@@ -51,13 +51,7 @@
     };
   };
 
-  networking = {
-    networkmanager.enable = true;
-
-    # This does not disable wifi
-    # It is just an minimal alternative to Network manager
-    wireless.enable = false;
-  };
+  networking.networkmanager.enable = true;
 
   services.openssh = {
     enable = true;

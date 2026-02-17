@@ -46,8 +46,6 @@ in
     SOPS_AGE_KEY_FILE = config.sops.age.keyFile;
   };
 
-  home.packages = with pkgs; [ postman ];
-
   # comes from homeModules.editor
   nvix.variant = "full";
 
