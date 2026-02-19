@@ -2,5 +2,6 @@
 {
   home.packages = with pkgs; [
     android-tools
+    scrcpy
   ];
 }
