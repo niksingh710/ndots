@@ -30,6 +30,7 @@ in
     "private-keys/github_token" = { };
     "private-keys/anthropic-jp-key" = { };
     "private-keys/jp-grid" = { };
+    "private-keys/cachix_token" = { };
     "private-keys/ssh" = {
       path = "${config.home.homeDirectory}/.ssh/id_ed25519";
       mode = "0600";
@@ -44,6 +45,7 @@ in
     ANTHROPIC_AUTH_TOKEN = "$(cat ${config.sops.secrets."private-keys/anthropic-jp-key".path})";
     ANTHROPIC_BASE_URL = "$(cat ${config.sops.secrets."private-keys/jp-grid".path})";
     SOPS_AGE_KEY_FILE = config.sops.age.keyFile;
+    CACHIX_AUTH_TOKEN = "$(cat ${config.sops.secrets."private-keys/cachix_token".path})";
   };
 
   # comes from homeModules.editor
