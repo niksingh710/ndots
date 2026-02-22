@@ -27,6 +27,7 @@ in
       plugin = pkgs.tmuxPlugins.minimal-tmux-status;
       extraConfig = ''
         set -g @minimal-tmux-use-arrow true
+        set -g @minimal-tmux-bg "#555555"
         set -g @minimal-tmux-right-arrow " "
         set -g @minimal-tmux-left-arrow " "
       '';

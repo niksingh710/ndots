@@ -11,6 +11,15 @@ in
     overlays = prev.lib.attrValues inputs.self.overlays;
   };
   nsearch-adv = inputs.nsearch.packages.${final.system}.nsearch-adv;
+  # TODO: Create pr on nixpkgs and update it
+  fzf-preview = prev.fzf-preview.overrideAttrs (old: {
+    src = prev.fetchFromGitHub {
+      owner = "niksingh710";
+      repo = "fzf-preview";
+      rev = "5e5a5a5c4258fa86300cb56224e31416ff7401b5";
+      sha256 = "sha256-ZjBoTsZ2ymfhmUbMpMWT1MB20kLf0BILnCDu75F6WEQ=";
+    };
+  });
   stremio-enhanced = selfPkgs.stremio-enhanced;
   airsync = selfPkgs.airsync;
   utils =
