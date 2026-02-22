@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   # TODO: remove once <https://github.com/NixOS/nixpkgs/pull/440255> is merged
   edit-pane =

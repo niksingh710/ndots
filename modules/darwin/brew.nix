@@ -42,6 +42,7 @@
     enable = true;
     onActivation = {
       upgrade = true;
+      autoUpdate = true;
       cleanup = "zap";
     };
     global.brewfile = true;
