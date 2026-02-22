@@ -57,8 +57,6 @@ in
         set -g @minimal-tmux-bg "#${config.lib.stylix.colors.base01}"
         set -g @minimal-tmux-fg "#${config.lib.stylix.colors.base06}"
         set -g @minimal-tmux-use-arrow true
-        set -g @minimal-tmux-right-arrow ""
-        set -g @minimal-tmux-left-arrow ""
       '';
     }
   ];
@@ -81,7 +79,6 @@ in
   # Kitty terminal override
   programs.kitty = {
     font.size = lib.mkForce 16;
-    settings.background_opacity = lib.mkForce 0;
   };
 
   # color override as it comes from stylix
