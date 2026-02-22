@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.shellAliases = {
     git-addnospace = "git diff -U0 -w --no-color --src-prefix=a/ --dst-prefix=b/ | git apply --cached --ignore-whitespace --unidiff-zero -";
@@ -41,9 +41,18 @@
     };
     lazygit = {
       enable = true;
-      settings.gui = {
-        nerdFontsVersion = "3";
-        theme.lightTheme = false;
+      settings = {
+        os.editPreset = "nvim-remote";
+        git.pagers = [
+          {
+            colorArg = "always";
+            pager = "${lib.getExe pkgs.delta} --dark --paging=never";
+          }
+        ];
+        gui = {
+          nerdFontsVersion = "3";
+          theme.lightTheme = false;
+        };
       };
     };
   };
