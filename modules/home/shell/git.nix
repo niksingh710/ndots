@@ -43,12 +43,6 @@
       enable = true;
       settings = {
         os.editPreset = "nvim-remote";
-        git.pagers = [
-          {
-            colorArg = "always";
-            pager = "${lib.getExe pkgs.delta} --dark --paging=never";
-          }
-        ];
         gui = {
           nerdFontsVersion = "3";
           theme.lightTheme = false;

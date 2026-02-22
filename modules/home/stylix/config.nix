@@ -12,9 +12,6 @@ in
       url = "https://gruvbox-wallpapers.pages.dev/wallpapers/photography/beach.png";
       sha256 = "sha256-Uym/931m4K6JQDOJdSYuF2bglYGtGDUD/Qm8yY0xw3s=";
     };
-    override = {
-      base00 = "000000";
-    };
     opacity.terminal = 0.4;
     polarity = "dark";
     fonts.monospace = {
