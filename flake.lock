@@ -678,11 +678,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1771750230,
-        "narHash": "sha256-im72fBWZDZcKrf9p5dCHcoRewZ4Mu6elunlOFKHPny4=",
+        "lastModified": 1771752870,
+        "narHash": "sha256-0MTIHVloY8MTjebSBmis6P4qR+FT78bOFlHr1Jn8jp0=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "a3261dc4c625632ce8f0d6decc13f01cc586d922",
+        "rev": "a0352bcfe4d22812e33c555bf1b507a5a32b9a70",
         "type": "github"
       },
       "original": {
