@@ -42,6 +42,7 @@
     lazygit = {
       enable = true;
       settings = {
+        promptToReturnFromSubprocess = false;
         os.editPreset = "nvim-remote";
         gui = {
           nerdFontsVersion = "3";
