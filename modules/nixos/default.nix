@@ -21,6 +21,7 @@
     gnutar
     gzip
     xz
+    xdg-utils
     openssh
   ];
 }
