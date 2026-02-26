@@ -11,7 +11,8 @@ in
     overlays = prev.lib.attrValues inputs.self.overlays;
   };
   nsearch-adv = inputs.nsearch.packages.${final.system}.nsearch-adv;
-  # TODO: Create pr on nixpkgs and update it
+  # TODO: Once the Pr is merged we can remove this override
+  # <https://github.com/NixOS/nixpkgs/pull/493232>
   fzf-preview = prev.fzf-preview.overrideAttrs (old: {
     src = prev.fetchFromGitHub {
       owner = "niksingh710";

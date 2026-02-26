@@ -16,6 +16,7 @@ in
   # users specific home modules
   imports = [
     flake.homeModules.ai
+    flake.homeModules.terminal
   ];
 
   # comes from homeModules.editor

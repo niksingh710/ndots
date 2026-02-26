@@ -14,6 +14,8 @@ in
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" me.username ])
     flake.nixosModules.default
 
+    flake.nixosModules.office
+
     # Important for the hardware
     flake.inputs.disko.nixosModules.disko
     ./disk.nix
@@ -56,7 +58,7 @@ in
     };
     extraConfig = # sshd_config
       ''
-        AcceptEnv LANG LC_* ANTHROPIC_MODEL ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS
+        AcceptEnv LANG LC_* ANTHROPIC_MODEL ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL GITHUB_TOKEN CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS
       '';
   };
   virtualisation.docker = {

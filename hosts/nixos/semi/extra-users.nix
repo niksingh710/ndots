@@ -6,6 +6,7 @@ let
   };
 
   mkUsers = usersFromKeys: {
+    nix.settings.trusted-users = builtins.attrNames usersFromKeys;
     users.users = builtins.mapAttrs (username: key: {
       isNormalUser = true;
       group = "extra";
