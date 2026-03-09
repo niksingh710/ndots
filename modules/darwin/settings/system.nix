@@ -18,7 +18,7 @@
     defaults = {
       # aerospace https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
       # for aerospace turn this true and for yabai turn this false
-      ".GlobalPreferences"."com.apple.mouse.scaling" = 3.0;
+      ".GlobalPreferences"."com.apple.mouse.scaling" = 7.0;
       spaces.spans-displays = false;
       universalaccess.reduceMotion = false;
       trackpad.Clicking = true;
