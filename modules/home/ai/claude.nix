@@ -7,7 +7,7 @@
     enable = true;
     settings = {
       preferences.vimMode = true;
-      model = "claude-sonnet-4-5";
+      model = "claude-opus-4-6";
       env.ENABLE_TOOL_SEARCH = true;
     };
     mcpServers = {
