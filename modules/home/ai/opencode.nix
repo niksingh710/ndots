@@ -17,8 +17,8 @@
           npm = "@ai-sdk/openai-compatible";
           name = "Juspay";
           options = {
-            baseURL = "https=//grid.ai.juspay.net";
-            apiKey = "{env=ANTHROPIC_AUTH_TOKEN}";
+            baseURL = "https://grid.ai.juspay.net";
+            apiKey = "{env:ANTHROPIC_AUTH_TOKEN}";
             timeout = 600000;
           };
           models = {
@@ -36,6 +36,20 @@
               limit = {
                 "context" = 202752;
                 "output" = 32000;
+              };
+            };
+            kimi-latest = {
+              name = "kimi-latest";
+              modalities = {
+                input = [
+                  "text"
+                  "image"
+                ];
+                output = [ "text" ];
+              };
+              limit = {
+                context = 262000;
+                output = 32000;
               };
             };
           };
