@@ -6,6 +6,7 @@
 
   programs.nix-your-shell.enable = true;
   home.packages = with pkgs; [
+    devenv
     nixpkgs-track
     nixpkgs-manual
     nixpkgs-review
