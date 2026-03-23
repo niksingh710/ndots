@@ -91,7 +91,7 @@ in
   home.activation.tg-theme = lib.hm.dag.entryAfter [ "" ] ''
     run ${
       lib.getExe (
-        pkgs.utils.walogram.override {
+        pkgs.putils.walogram.override {
           image = "${config.stylix.image}";
           colors = (
             with config.lib.stylix.colors;

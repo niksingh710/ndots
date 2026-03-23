@@ -29,6 +29,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
     # Discord flake
     nixcord.url = "github:kaylorben/nixcord";
 
@@ -39,6 +41,12 @@
     # zen till (https://github.com/NixOS/nixpkgs/issues/327982) is resolved.
     # will be resolved once zen comes out of beta.
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # personal flakes
     nsearch.url = "github:niksingh710/nsearch";

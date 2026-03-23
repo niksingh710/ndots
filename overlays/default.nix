@@ -25,7 +25,8 @@ in
   skhd-zig = selfPkgs.skhd-zig;
   airsync = selfPkgs.airsync;
   hammerspoon = selfPkgs.hammerspoon;
-  utils =
+  road-rage = selfPkgs.road-rage;
+  putils =
     (builtins.getFlake "github:niksingh710/utils/efd613813db08fe7a514e1b9cf98f8e06b00f4d5")
     .packages.${prev.stdenv.hostPlatform.system};
 }

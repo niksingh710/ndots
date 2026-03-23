@@ -7,13 +7,13 @@
 let
   # I map holding of `capslock` key to `cmd+alt` in karabiner-elements
   mod = "cmd-alt";
-  aerospaceFocusCmd = lib.getExe pkgs.utils.aerospace-focus-fzf;
+  aerospaceFocusCmd = lib.getExe pkgs.putils.aerospace-focus-fzf;
   kittenDmenuFocusCmd = "kitten panel --single-instance --instance-group dmenu --start-as-hidden --layer=top --edge=bottom -o cursor_trail=0 -o background_opacity=0.4 --focus-policy=exclusive --lines=20 ${aerospaceFocusCmd}";
 in
 {
   programs.aerospace.userSettings = {
     exec.env-vars = {
-      PATH = ''/etc/profiles/per-user/${config.home.username}/bin:''${PATH}'';
+      PATH = "/etc/profiles/per-user/${config.home.username}/bin:\${PATH}";
     };
   };
   programs.aerospace.userSettings.mode = {

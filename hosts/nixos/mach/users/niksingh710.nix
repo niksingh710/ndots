@@ -16,6 +16,8 @@ in
   imports = [
     flake.homeModules.sops
     flake.homeModules.ai
+    flake.homeModules.terminal
+    flake.homeModules.syncthing
   ];
 
   sops.secrets = {
@@ -29,9 +31,25 @@ in
       path = "${config.home.homeDirectory}/.ssh/id_ed25519";
       mode = "0600";
     };
-
     "rclone/conf".path = "${config.home.homeDirectory}/.config/rclone/rclone.conf";
     "rclone/locked-conf".path = "${config.home.homeDirectory}/.config/rclone/rclone.conf.lock";
+    "syncthing/mach/password" = { };
+    "syncthing/mach/cert" = { };
+    "syncthing/mach/key" = { };
+  };
+
+  services.syncthing = {
+    passwordFile = config.sops.secrets."syncthing/mach/password".path;
+    cert = config.sops.secrets."syncthing/mach/cert".path;
+    key = config.sops.secrets."syncthing/mach/key".path;
+    settings = {
+      devices.mach = {
+        name = "mach";
+        id = "73YKZUL-LARTNVW-EOQVSVF-XVVT5XP-ODAH7TC-OCF6D6M-PC4BGPU-AMYP4AS";
+        autoAcceptFolders = true;
+      };
+      gui.user = me.username;
+    };
   };
 
   home.sessionVariables = {
@@ -54,8 +72,9 @@ in
       plugin = pkgs.tmuxPlugins.minimal-tmux-status;
       extraConfig = ''
         set -g @minimal-tmux-use-arrow true
-        set -g @minimal-tmux-right-arrow ""
-        set -g @minimal-tmux-left-arrow ""
+        set -g @minimal-tmux-bg "#555555"
+        set -g @minimal-tmux-right-arrow " "
+        set -g @minimal-tmux-left-arrow " "
       '';
     }
   ];

@@ -1,9 +1,13 @@
-{ flake, pkgs, ... }:
+{
+  flake,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # This has to be same for darwin/home-manager/nixOs.
   home.stateVersion = "25.11";
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [ monaspace ];
 
   # I believe no matter the distro/Os,
   # User should have nice cli setup on any device.
@@ -13,4 +17,25 @@
     flake.homeModules.ssh
     flake.homeModules.nix-index
   ];
+  home.shellAliases.font-family = "fc-list : family | ${lib.getExe pkgs.fzf}";
+  home.packages =
+    with pkgs;
+    [
+      noto-fonts
+      noto-fonts-color-emoji
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+
+      carlito
+      ipafont
+      kochi-substitute
+      source-code-pro
+      ttf_bitstream_vera
+      pkgs.dejavu_fonts
+    ]
+    ++ (with pkgs.nerd-fonts; [
+      jetbrains-mono
+      fira-code
+      droid-sans-mono
+    ]);
 }

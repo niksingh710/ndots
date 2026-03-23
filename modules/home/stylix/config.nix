@@ -9,8 +9,8 @@ in
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${scheme}.yaml";
     image = pkgs.fetchurl {
-      url = "https://gruvbox-wallpapers.pages.dev/wallpapers/photography/beach.png";
-      sha256 = "sha256-Uym/931m4K6JQDOJdSYuF2bglYGtGDUD/Qm8yY0xw3s=";
+      url = "https://gruvbox-wallpapers.pages.dev/wallpapers/pixelart/gruvbox_image55.png";
+      sha256 = "sha256-lgZbAAWTimybsBD+2ZsS/jwKtyPbQ1QCgt/82RDIHug=";
     };
     opacity.terminal = 0.4;
     polarity = "dark";

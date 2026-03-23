@@ -4,33 +4,19 @@
   pkgs,
   modulesPath,
   hostPlatform,
+  self,
   ...
 }:
 {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+    (self.flakeModules.nix)
   ];
 
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-
-  nix.settings = {
-    # To install hyprland quickly
-    substituters = [
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
-      "https://cache.nixos.asia/oss"
-      "https://hyprland.cachix.org"
-    ];
-    trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-      "oss:KO872wNJkCDgmGN3xy9dT89WAhvv13EiKncTtHDItVU="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
 
   nixpkgs = {
     inherit hostPlatform;

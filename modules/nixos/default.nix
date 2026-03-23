@@ -1,4 +1,7 @@
 { flake, pkgs, ... }:
+let
+  inherit (flake.inputs) nix-cachyos-kernel;
+in
 {
   imports = [
     flake.flakeModules.nix
@@ -23,5 +26,9 @@
     xz
     xdg-utils
     openssh
+  ];
+
+  nixpkgs.overlays = [
+    nix-cachyos-kernel.overlays.pinned
   ];
 }

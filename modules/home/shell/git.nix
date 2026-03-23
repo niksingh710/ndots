@@ -5,7 +5,6 @@
   };
   programs = {
     git = {
-      enable = true;
       maintenance = {
         enable = true;
         repositories = [
@@ -28,7 +27,7 @@
         core.editor = "nvim";
         core.sharedRepository = "group";
         credential.helper = "store --file ~/.git-credentials";
-        pull.rebase = "false";
+        pull.rebase = "true";
         diff.wsErrorHighlight = "none";
         apply.whitespace = "nowarn";
       };

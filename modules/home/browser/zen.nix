@@ -16,7 +16,7 @@ in
   stylix.targets.zen-browser.enable = false;
   programs.zen-browser = {
     enable = true;
-    nativeMessagingHosts = lib.optional pkgs.stdenv.isLinux [ pkgs.firefoxpwa ];
+    # nativeMessagingHosts = lib.optional pkgs.stdenv.isLinux [ pkgs.firefoxpwa ];
     profiles."${profileName}" = {
       containersForce = true;
       containers = {

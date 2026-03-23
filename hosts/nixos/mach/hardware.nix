@@ -5,6 +5,7 @@
 {
   flake,
   config,
+  pkgs,
   lib,
   modulesPath,
   ...
@@ -15,32 +16,79 @@ in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    flake.nixosModules.intel
   ];
+
+  powerManagement.cpuFreqGovernor = "performance";
+  boot = {
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+    kernelParams = [
+      "amdgpu.runpm=0"
+      "amdgpu.cik_support=1"
+      "radeon.cik_support=0"
+      "amdgpu.ppfeaturemask=0xffffffff"
+      "usbcore.autosuspend=-1"
+      "amdgpu"
+    ];
+    # kernelPackages = pkgs.linuxPackages_cachyos-lto;
+    extraModprobeConfig = "options i915 enable_guc=2";
+    # This is imp as the drive is encrypted.
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+      "rtsx_pci_sdmmc"
+    ];
+    kernelModules = [ "kvm-intel" ];
+
+    initrd.kernelModules = [ ];
+    extraModulePackages = [ ];
+  };
   services.logind = {
-    lidSwitchExternalPower = "ignore";
     settings.Login = {
       HandleLidSwitch = "ignore";
       HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchExternalPower = "ignore";
     };
   };
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=no
-    AllowHibernation=no
-    AllowHybridSleep=no
-    AllowSuspendThenHibernate=no
-  '';
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-    "rtsx_pci_sdmmc"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  environment.variables = {
+    ROC_ENABLE_PRE_VEGA = "1";
+  };
+
+  systemd.tmpfiles.rules =
+    let
+      rocmEnv = pkgs.symlinkJoin {
+        name = "rocm-combined";
+        paths = with pkgs.rocmPackages; [
+          rocblas
+          hipblas
+          clr
+        ];
+      };
+    in
+    [
+      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+    ];
+  hardware = {
+    graphics.extraPackages = with pkgs; [ mesa.opencl ];
+    firmware = [ pkgs.linux-firmware ];
+    amdgpu = {
+      legacySupport.enable = true;
+      opencl.enable = true;
+    };
+    enableRedistributableFirmware = lib.mkDefault true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
+  services.lact.enable = true;
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "no";
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspendThenHibernate = "no";
+  };
 
   # Mounting external HDD to /mnt/hdd
   fileSystems."/run/media/${me.username}/hdd" = {
@@ -54,7 +102,5 @@ in
   };
 
   swapDevices = [ ];
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

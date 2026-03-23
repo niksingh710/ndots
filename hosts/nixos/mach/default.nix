@@ -12,7 +12,8 @@ in
   imports = [
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" me.username ])
     flake.nixosModules.default
-    flake.nixosModules.bluetooth
+    flake.nixosModules.hardware
+    flake.nixosModules.hyprland # Includes all other home manager modules
 
     # Important for the hardware
     flake.inputs.disko.nixosModules.disko
@@ -20,6 +21,15 @@ in
     # should be generated sudo nixos-generate-config --show-hardware-config --root /mnt > ./hosts/nixos/{host}/hardware.nix>
     ./hardware.nix
   ];
+  networking.firewall = {
+    allowedTCPPorts = [
+      8384
+      22000
+    ];
+    allowedUDPPorts = [ 22000 ];
+  };
+
+  services.getty.autologinUser = "${me.username}";
 
   environment.variables = {
     TERM = "xterm-256color";
