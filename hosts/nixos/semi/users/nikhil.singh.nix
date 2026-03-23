@@ -5,6 +5,7 @@
 {
   flake,
   pkgs,
+  config,
   ...
 }:
 let
@@ -17,8 +18,17 @@ in
   imports = [
     flake.homeModules.ai
     flake.homeModules.terminal
+    flake.homeModules.syncthing
   ];
 
+  services.syncthing = {
+    # CPU is in office and ssh key get's there by ssh-agent forwarding, so skipping sops here
+    # Passwordfile is to be expected in a manual path
+    passwordFile = "${config.home.homeDirectory}/.syncthing.pass";
+    settings = {
+      gui.user = me.username;
+    };
+  };
   # comes from homeModules.editor
   nvix.variant = "core";
 

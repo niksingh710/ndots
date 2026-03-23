@@ -16,6 +16,11 @@
           id = "73YKZUL-LARTNVW-EOQVSVF-XVVT5XP-ODAH7TC-OCF6D6M-PC4BGPU-AMYP4AS";
           autoAcceptFolders = true;
         };
+        semi = {
+          name = "semi";
+          id = "UCAGOTG-DZFF3EY-NVVGRRC-OE7HPXW-AEMDVKL-Q6CVMZJ-AVOHXNC-ILUNBQD";
+          autoAcceptFolders = true;
+        };
         jp-mbp = {
           name = "jp-mbp";
           id = "3AAAQDF-H57Z4S4-4CKGZJX-BLSVSXF-SP7V2LZ-R2YQIFK-KFPG7MJ-I6RPQAQ";
