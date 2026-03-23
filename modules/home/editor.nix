@@ -19,7 +19,7 @@
     home.sessionVariables.EDITOR = "nvim";
     home.packages = [
 
-      (flake.inputs.nvix.packages.${pkgs.system}.${config.nvix.variant}.extend {
+      (flake.inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.${config.nvix.variant}.extend {
         config = {
           vimAlias = true;
           colorschemes.kanagawa = {

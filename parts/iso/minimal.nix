@@ -44,7 +44,7 @@
         disko
       ]
       ++ ([
-        inputs.nvix.packages.${pkgs.system}.bare # My neovim config based on Nixvim
+        inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.bare # My neovim config based on Nixvim
       ]);
     shellAliases = {
       vim = "nvim";
