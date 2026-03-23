@@ -35,6 +35,7 @@
           id = "notes";
           name = id;
           devices = [
+            "semi"
             "mach"
             "jp-mbp"
           ];
