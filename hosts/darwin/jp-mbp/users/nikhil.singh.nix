@@ -23,7 +23,22 @@ in
 
     flake.homeModules.sops
     flake.homeModules.ai
+    flake.homeModules.syncthing
   ];
+
+  services.syncthing = {
+    passwordFile = config.sops.secrets."syncthing/mach/password".path;
+    # cert = config.sops.secrets."syncthing/mach/cert".path;
+    # key = config.sops.secrets."syncthing/mach/key".path;
+    settings = {
+      # devices.mach = {
+      #   name = "jp-mbp";
+      #   id = "73YKZUL-LARTNVW-EOQVSVF-XVVT5XP-ODAH7TC-OCF6D6M-PC4BGPU-AMYP4AS";
+      #   autoAcceptFolders = true;
+      # };
+      gui.user = me.username;
+    };
+  };
 
   sops.secrets = {
     "private-keys/gemini_api" = { };
@@ -36,6 +51,9 @@ in
       path = "${config.home.homeDirectory}/.ssh/id_ed25519";
       mode = "0600";
     };
+    "syncthing/jp-mbp/password" = { };
+    "syncthing/jp-mbp/cert" = { };
+    "syncthing/jp-mbp/key" = { };
   };
 
   home.sessionVariables = {

@@ -5,6 +5,7 @@
   };
   programs = {
     git = {
+      enable = true;
       maintenance = {
         enable = true;
         repositories = [
