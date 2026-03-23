@@ -22,7 +22,6 @@ in
     };
   });
   stremio-enhanced = selfPkgs.stremio-enhanced;
-  skhd-zig = selfPkgs.skhd-zig;
   airsync = selfPkgs.airsync;
   hammerspoon = selfPkgs.hammerspoon;
   road-rage = selfPkgs.road-rage;
