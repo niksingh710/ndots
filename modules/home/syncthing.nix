@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 # For a new System Copy the generated cert and key and set it in that host's user.
 {
   services.syncthing = {
