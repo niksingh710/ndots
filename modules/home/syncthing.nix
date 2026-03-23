@@ -10,6 +10,18 @@
       gui = {
         theme = "black";
       };
+      devices = {
+        mach = {
+          name = "mach";
+          id = "73YKZUL-LARTNVW-EOQVSVF-XVVT5XP-ODAH7TC-OCF6D6M-PC4BGPU-AMYP4AS";
+          autoAcceptFolders = true;
+        };
+        jp-mbp = {
+          name = "jp-mbp";
+          id = "3AAAQDF-H57Z4S4-4CKGZJX-BLSVSXF-SP7V2LZ-R2YQIFK-KFPG7MJ-I6RPQAQ";
+          autoAcceptFolders = true;
+        };
+      };
 
       folders = {
         # <https://nix-community.github.io/home-manager/options.xhtml#opt-services.syncthing.settings.folders._name_.path>
@@ -17,7 +29,10 @@
         "~/.notes" = rec {
           id = "notes";
           name = id;
-          devices = [ "mach" ];
+          devices = [
+            "mach"
+            "jp-mbp"
+          ];
         };
       };
     };

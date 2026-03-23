@@ -43,11 +43,6 @@ in
     cert = config.sops.secrets."syncthing/mach/cert".path;
     key = config.sops.secrets."syncthing/mach/key".path;
     settings = {
-      devices.mach = {
-        name = "mach";
-        id = "73YKZUL-LARTNVW-EOQVSVF-XVVT5XP-ODAH7TC-OCF6D6M-PC4BGPU-AMYP4AS";
-        autoAcceptFolders = true;
-      };
       gui.user = me.username;
     };
   };

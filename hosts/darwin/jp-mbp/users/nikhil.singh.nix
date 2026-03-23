@@ -27,15 +27,10 @@ in
   ];
 
   services.syncthing = {
-    passwordFile = config.sops.secrets."syncthing/mach/password".path;
-    # cert = config.sops.secrets."syncthing/mach/cert".path;
-    # key = config.sops.secrets."syncthing/mach/key".path;
+    passwordFile = config.sops.secrets."syncthing/jp-mbp/password".path;
+    cert = config.sops.secrets."syncthing/jp-mbp/cert".path;
+    key = config.sops.secrets."syncthing/jp-mbp/key".path;
     settings = {
-      # devices.mach = {
-      #   name = "jp-mbp";
-      #   id = "73YKZUL-LARTNVW-EOQVSVF-XVVT5XP-ODAH7TC-OCF6D6M-PC4BGPU-AMYP4AS";
-      #   autoAcceptFolders = true;
-      # };
       gui.user = me.username;
     };
   };
