@@ -6,7 +6,7 @@
 }:
 {
   # This has to be same for darwin/home-manager/nixOs.
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
   fonts.fontconfig.enable = true;
 
   # I believe no matter the distro/Os,

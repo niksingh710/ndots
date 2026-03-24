@@ -16,6 +16,7 @@ let
   both = with pkgs; [
     google-chrome
     telegram-desktop
+    ytmdesktop
     # quickemu # OVMF to be fixed
   ];
 

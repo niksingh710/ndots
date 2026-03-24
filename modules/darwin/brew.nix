@@ -46,5 +46,6 @@
       cleanup = "zap";
     };
     global.brewfile = true;
+    greedyCasks = true;
   };
 }
