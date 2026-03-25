@@ -5,6 +5,13 @@ let
   selfPkgs = self.packages.${final.stdenv.hostPlatform.system};
 in
 {
+  # TODO: <https://github.com/NixOS/nixpkgs/pull/502769> till this get's merged in nixpkgs-unstable
+  direnv = prev.direnv.overrideAttrs (old: {
+    postPatch = ''
+      substituteInPlace GNUmakefile --replace-fail " -linkmode=external" ""
+    '';
+  });
+
   stable = import inputs.nixpkgs-stable {
     allowUnfree = true;
     inherit (prev.stdenv.hostPlatform) system;
