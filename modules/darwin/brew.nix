@@ -4,7 +4,7 @@
     taps = [ ];
     casks = [
       "betterdisplay"
-      # "blip"
+      "blip"
       "cleanupbuddy"
       "element"
       "homerow"
