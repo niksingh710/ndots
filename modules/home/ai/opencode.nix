@@ -1,9 +1,60 @@
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  # Fetch the OpenAgentsControl repository
+  openagents-control = pkgs.fetchFromGitHub {
+    owner = "darrenhinde";
+    repo = "OpenAgentsControl";
+    rev = "main";
+    sha256 = "sha256-H5O08YjxzJMYva1sjMgCl5GTDrx9pR1ELBtO5bqGV/Y=";
+  };
+
+  # Read registry
+  registry = builtins.fromJSON (builtins.readFile "${openagents-control}/registry.json");
+
+  # Profile to install
+  profile = "essential";
+
+  # Get components for the profile
+  allComponents = registry.profiles.${profile}.components or [ ];
+
+  # Convert component spec to file mapping
+  componentToFile =
+    spec:
+    let
+      parts = lib.splitString ":" spec;
+      compType = lib.elemAt parts 0;
+      compId = lib.elemAt parts 1;
+      # Registry uses plural keys
+      registryKey = if lib.hasSuffix "s" compType then compType else compType + "s";
+      components = registry.components.${registryKey} or [ ];
+      matches = c: c.id == compId || lib.elem compId (c.aliases or [ ]);
+      component = lib.findFirst matches null components;
+    in
+    if component == null then
+      null
+    else
+      {
+        name = ".config/opencode/${lib.removePrefix ".opencode/" component.path}";
+        value.source = "${openagents-control}/${component.path}";
+      };
+
+in
+{
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
     web.enable = false;
     settings = {
+      permission = {
+        external_directory = {
+          "~/.notes" = "allow";
+        };
+      };
       model = "litellm/open-large";
       agent = {
         explore = {
@@ -57,4 +108,6 @@
       };
     };
   };
+
+  home.file = lib.listToAttrs (lib.filter (x: x != null) (map componentToFile allComponents));
 }

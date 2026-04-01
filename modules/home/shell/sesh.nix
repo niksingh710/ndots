@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 {
   programs.fzf.tmux.enableShellIntegration = true;
+  # TODO: <https://github.com/joshmedeski/sesh/pull/357> once this is merged, raise nixpkgs pr
   programs.sesh = {
     enable = true;
     tmuxKey = "c-o";
