@@ -1241,11 +1241,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1774399450,
-        "narHash": "sha256-9DaEvP7krA2AUcOm6nlVD/Au+bcs46IVqp6pHu3G7lY=",
+        "lastModified": 1775302312,
+        "narHash": "sha256-bE40mziMPBn9CHMA+oQvybKMm5BWJv//LG+/LK0RLdQ=",
         "owner": "niksingh710",
         "repo": "nvix",
-        "rev": "9ad18e403b03fa9ad7b554b5c3f69cbb137d2a31",
+        "rev": "a6b7ee06b7e777adffc3c4535c53b40c42a01a34",
         "type": "github"
       },
       "original": {
