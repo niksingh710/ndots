@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -17,7 +16,7 @@ let
   registry = builtins.fromJSON (builtins.readFile "${openagents-control}/registry.json");
 
   # Profile to install
-  profile = "essential";
+  profile = "developer";
 
   # Get components for the profile
   allComponents = registry.profiles.${profile}.components or [ ];
@@ -45,12 +44,27 @@ let
 
 in
 {
+  home.sessionVariables.OPENCODE_ENABLE_EXA = 1;
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
     web.enable = false;
     settings = {
       permission = {
+        # Allow read operations without prompting
+        read = "allow";
+        # Keep these on ask for safety
+        write = "ask";
+        edit = "ask";
+        bash = "ask";
+        task = "ask";
+        lsp = "allow";
+        grep = "allow";
+        glob = "allow";
+        skill = "allow";
+        webfetch = "allow";
+        websearch = "allow";
+        questions = "allow";
         external_directory = {
           "~/.notes" = "allow";
         };
