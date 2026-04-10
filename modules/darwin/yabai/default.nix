@@ -36,6 +36,7 @@ let
     "WhatsApp"
     "Messages"
     "Tailscale"
+    "hiddenbar"
   ];
 in
 {

@@ -8,6 +8,7 @@
       "cleanupbuddy"
       "element"
       "homerow"
+      "hiddenbar"
       "hyperkey"
       "imageoptim"
       # "karabiner-elements" # check home/darwin/karabiner.nix
@@ -18,6 +19,7 @@
       "maccy"
       "numi"
       "protonvpn"
+      "steam"
       "signal"
       "utm"
       "whatsapp"
