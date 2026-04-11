@@ -1,0 +1,256 @@
+:root {
+  --font-size: 14;
+  --font-size-hints: 12;
+  --font-size-url: 12;
+
+  --font-weight: normal;
+  --font-weight-medium: medium;
+  --font-weight-bold: bold;
+
+  --font: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+  --padding: 2px;
+  --padding-vomnibar: 15px;
+  --shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.25);
+  --blur: 40px;
+
+  /* VOMNIBAR & HUD */
+  --fg: #ffffff;
+  --fg-dark: #c9c9c9;
+  --fg-url: #84bffa;
+  --fg-match: #2165d9;
+
+  --bg: rgba(30, 30, 30, 0.8);
+  --bg-selected: rgba(150, 150, 150, 0.3);
+
+  --border: #464646;
+  --border-hints: #555555;
+
+  /* HINTS - Dark Theme */
+  --fg-hints: #ffffff;
+  --bg-hints: rgba(40, 40, 40, 0.9);
+}
+
+/* -------- HINTS - FLAT CSS -------- */
+div.vimiumHintMarker,
+div.internal-vimium-hint-marker,
+.vimium-reset.internal-vimium-hint-marker.vimiumHintMarker {
+  background: rgba(40, 40, 40, 0.95) !important;
+  background-color: rgba(40, 40, 40, 0.95) !important;
+  border: 1px solid #555555 !important;
+  border-color: #555555 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.25) !important;
+  padding: 3px 4px !important;
+}
+
+div.vimiumHintMarker span,
+div.internal-vimium-hint-marker span,
+.vimium-reset.internal-vimium-hint-marker.vimiumHintMarker span {
+  color: #ffffff !important;
+  color: white !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  text-shadow: none !important;
+}
+
+div.vimiumHintMarker span.matchingCharacter,
+div.internal-vimium-hint-marker span.matchingCharacter {
+  opacity: 0.3 !important;
+  color: #ffffff !important;
+}
+
+div.vimiumHintMarker > .matchingCharacter ~ span,
+div.internal-vimium-hint-marker > .matchingCharacter ~ span {
+  color: #ffffff !important;
+  color: white !important;
+}
+
+/* -------- VOMNIBAR - FLAT CSS -------- */
+#vomnibar {
+  background: var(--bg);
+  backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+  overflow: hidden;
+  left: 50%;
+  margin-left: -400px;
+  max-width: 800px;
+}
+
+#vomnibar input,
+#vomnibar #vomnibar-search-area {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+}
+
+#vomnibar #vomnibar-search-area {
+  padding: 8px 15px;
+  border-radius: 6px;
+}
+
+#vomnibar input {
+  border: none;
+  padding: var(--padding);
+}
+
+#vomnibar .no-insert-text {
+  display: none;
+}
+
+#vomnibar ul {
+  background: transparent;
+  border-top: 1px solid var(--border);
+  margin: 0;
+  padding: var(--padding-vomnibar);
+}
+
+#vomnibar li {
+  border-bottom: none;
+  padding: 15px;
+}
+
+#vomnibar li .top-half {
+  padding: var(--padding);
+}
+
+#vomnibar li .bottom-half {
+  padding-top: 0px;
+  padding-bottom: 1px;
+}
+
+#vomnibar li .source {
+  color: var(--fg-dark);
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+}
+
+#vomnibar li em,
+#vomnibar li .title {
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-medium);
+}
+
+#vomnibar li .url {
+  color: var(--fg-url);
+  font-family: var(--font);
+  font-size: var(--font-size-url);
+  font-weight: var(--font-weight-medium);
+}
+
+#vomnibar li .match {
+  color: var(--fg-match);
+  font-weight: normal;
+}
+
+#vomnibar li .title .match {
+  color: var(--fg);
+  font-weight: bold;
+}
+
+#vomnibar li.selected {
+  background: var(--bg-selected);
+  backdrop-filter: blur(20px);
+  border-radius: 8px;
+}
+
+#vomnibar li.selected .url {
+  color: var(--fg-url);
+}
+
+#vomnibar li.selected .match {
+  color: var(--fg);
+}
+
+/* -------- HUD - FLAT CSS -------- */
+#hud-container {
+  background: var(--bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 6px;
+}
+
+#hud-container #hud,
+#hud-container span#hud-find-input {
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+}
+
+#hud-container #hud-body,
+#hud-container #hud.hud-find {
+  background-color: transparent;
+  border: none;
+}
+
+#hud-container #hud-search-area {
+  background-color: transparent;
+  padding: 6px;
+}
+
+/* -------- HELP DIALOG - FLAT CSS -------- */
+#container {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+#container #dialog {
+  background: var(--bg);
+  backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  font-family: var(--font);
+  font-size: var(--font-size);
+  padding: 15px 10px !important;
+}
+
+#container #dialog h1 {
+  color: var(--fg);
+}
+
+#container #dialog a:link,
+#container #dialog a:visited,
+#container #dialog a:hover,
+#container #dialog a:active,
+#container #dialog a {
+  color: var(--fg-url);
+  font-family: var(--font);
+  font-size: var(--font-size);
+}
+
+#container #dialog span.key {
+  background-color: var(--bg-hints);
+  border: 1px solid var(--border-hints);
+  box-shadow: var(--shadow);
+  padding: 2px 3px;
+  color: var(--fg-hints);
+  font-family: var(--font);
+  font-size: var(--font-size-hints);
+  font-weight: var(--font-weight-bold);
+  text-shadow: none;
+}
+
+#container #dialog h2,
+#container #dialog .help-description {
+  color: var(--fg);
+  font-family: var(--font);
+}
+
+#container #dialog .column {
+  color: var(--fg);
+  font-family: var(--font);
+}
