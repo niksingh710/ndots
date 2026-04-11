@@ -9,7 +9,7 @@
       "element"
       "homerow"
       "hiddenbar"
-      "hyperkey"
+      "superkey"
       "imageoptim"
       # "karabiner-elements" # check home/darwin/karabiner.nix
       "keycastr"
