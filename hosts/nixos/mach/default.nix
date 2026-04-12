@@ -14,6 +14,7 @@ in
     flake.nixosModules.default
     flake.nixosModules.hardware
     flake.nixosModules.hyprland # Includes all other home manager modules
+    flake.nixosModules.filebrowser
 
     # Important for the hardware
     flake.inputs.disko.nixosModules.disko
@@ -27,6 +28,12 @@ in
       22000
     ];
     allowedUDPPorts = [ 22000 ];
+  };
+  services.filebrowser = {
+    user = me.username;
+    settings = {
+      root = "/run/media/${me.username}/";
+    };
   };
 
   services.getty.autologinUser = "${me.username}";
