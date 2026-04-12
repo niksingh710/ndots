@@ -4,165 +4,6 @@
 
   home.file.".hammerspoon/init.lua".text = # lua
     ''
-      local VimMode = hs.loadSpoon('VimMode')
-      local vim = VimMode:new()
-
-      vim:shouldDimScreenInNormalMode(false)
-      vim:disableForApp('Code')
-      vim:disableForApp('MacVim')
-      vim:disableForApp('zoom.us')
-      vim:disableForApp('kitty')
-      vim:disableForApp('Maccy')
-      vim:enterWithSequence('jk')
-      vim:enableBetaFeature('block_cursor_overlay')
-      vim:shouldShowAlertInNormalMode(true)
-
-      -- Exit normal mode with 'q'
-      vim.modal:bind({}, 'q', function()
-        vim:exitAsync()
-      end)
-
-      -- Exit normal mode with 'Escape'
-      vim.modal:bind({}, 'escape', function()
-        vim:exitAsync()
-      end)
-
-      -- Custom glass-style indicator for Normal/Visual mode
-      hs.timer.doAfter(2.0, function()
-        local canvas = vim.stateIndicator.canvas
-        if not canvas then return end
-
-        -- Static position at bottom center of focused window
-        local function getStaticPosition()
-          local win = hs.window.focusedWindow()
-          if win then
-            local frame = win:frame()
-            print("Window frame: x=" .. frame.x .. " y=" .. frame.y .. " w=" .. frame.w .. " h=" .. frame.h)
-            local pos = {
-              x = math.floor(frame.x + (frame.w / 2) - 20),
-              y = math.floor(frame.y + frame.h - 38)
-            }
-            print("Static position from window: x=" .. pos.x .. " y=" .. pos.y)
-            return pos
-          end
-
-          local screen = hs.mouse.getCurrentScreen() or hs.screen.mainScreen()
-          if screen then
-            local frame = screen:fullFrame()
-            print("Screen frame fallback")
-            return {
-              x = math.floor(frame.x + (frame.w / 2) - 20),
-              y = math.floor(frame.y + frame.h - 68)
-            }
-          end
-
-          print("Using hardcoded position")
-          return { x = 500, y = 800 }
-        end
-
-        -- Get position near cursor if in text field
-        local function getCursorPosition()
-          local ax = require("hs.axuielement")
-          local systemElement = ax.systemWideElement()
-          if not systemElement then
-            print("No system element")
-            return nil
-          end
-
-          local currentElement = systemElement:attributeValue("AXFocusedUIElement")
-          if not currentElement then
-            print("No focused element")
-            return nil
-          end
-
-          local role = currentElement:attributeValue("AXRole")
-          print("Element role: " .. tostring(role))
-
-          -- Strict text field detection
-          local textRoles = {
-            ["AXTextField"] = true,
-            ["AXTextArea"] = true,
-            ["AXComboBox"] = true,
-            ["AXSearchField"] = true
-          }
-
-          if not textRoles[role] then
-            print("Not a text field, role is: " .. tostring(role))
-            return nil
-          end
-
-          local position = currentElement:attributeValue('AXPosition')
-          if not position then
-            print("No position attribute")
-            return nil
-          end
-
-          -- Validate position is reasonable (positive coordinates, on screen)
-          if position.x < 0 or position.y < 0 then
-            print("Invalid position: x=" .. position.x .. " y=" .. position.y)
-            return nil
-          end
-
-          print("Valid cursor position: x=" .. position.x .. " y=" .. position.y)
-          return {
-            x = position.x + 3,
-            y = position.y - 31
-          }
-        end
-
-        -- Replace render function
-        vim.stateIndicator.render = function(self)
-          print("RENDER CALLED - mode: " .. vim.mode .. " enabled: " .. tostring(vim.enabled))
-
-          if not vim.config.shouldShowAlertInNormalMode then
-            print("Alert disabled in config")
-            return false
-          end
-
-          local mode = vim.mode
-          if mode ~= 'normal' and mode ~= 'visual' then
-            print("Not in normal/visual, hiding")
-            canvas:hide()
-            return false
-          end
-
-          print("Should show indicator...")
-
-          -- Choose position
-          local pos
-          local cursorPos = getCursorPosition()
-          if cursorPos and cursorPos.x and cursorPos.x > 0 then
-            pos = cursorPos
-            print("Using CURSOR position")
-          else
-            pos = getStaticPosition()
-            print("Using STATIC position")
-          end
-          print("Setting canvas position to: x=" .. pos.x .. " y=" .. pos.y)
-          canvas:topLeft(pos)
-          canvas:level("overlay")
-
-          canvas:elementAttribute(1, 'fillColor', {
-            red = 0.12, green = 0.12, blue = 0.12, alpha = 0.9
-          })
-          canvas:elementAttribute(1, 'strokeColor', { white = 1.0, alpha = 0.4 })
-          canvas:elementAttribute(1, 'strokeWidth', 1.0)
-          canvas:elementAttribute(1, 'roundedRectRadii', { xRadius = 8, yRadius = 8 })
-
-          canvas:size({ w = 40, h = 28 })
-
-          local text = (mode == 'visual') and "V" or "N"
-          canvas:elementAttribute(2, 'text', hs.styledtext.new(text, {
-            font = { size = 16 },
-            color = { white = 1.0 },
-            paragraphStyle = { alignment = 'center' }
-          }))
-
-          canvas:show()
-          return true
-        end
-      end)
-
       -- ============================================
       -- HAMMERSPOON MODE (Ctrl+Option+Shift+H)
       -- ============================================
@@ -291,6 +132,252 @@
         if not hsmode.active then
           hsmode.enter()
         end
+      end)
+
+      -- ============================================
+      -- VIM MODE
+      -- ============================================
+      local VimMode = hs.loadSpoon('VimMode')
+      local vim = VimMode:new()
+
+      vim:shouldDimScreenInNormalMode(false)
+      vim:disableForApp('Code')
+      vim:disableForApp('MacVim')
+      vim:disableForApp('zoom.us')
+      vim:disableForApp('kitty')
+      vim:disableForApp('Maccy')
+      vim:enterWithSequence('jk')
+      vim:enableBetaFeature('block_cursor_overlay')
+      vim:shouldShowAlertInNormalMode(true)
+
+      -- ============================================
+      -- Spotlight support for vim mode
+      -- ============================================
+      vim.spotlightWatcher = hs.window.filter.new(function(win)
+        if not win then return false end
+        local app = win:application()
+        return app and app:name() == "Spotlight"
+      end)
+
+      vim.spotlightWatcher:subscribe(hs.window.filter.windowCreated, function()
+        -- Spotlight opened - enable vim mode temporarily
+        if vim.enabled == false then
+          vim.vimWasDisabledForApp = true
+          vim:enable()
+        end
+      end)
+
+      vim.spotlightWatcher:subscribe(hs.window.filter.windowDestroyed, function()
+        -- Spotlight closed - restore previous vim state
+        if vim.vimWasDisabledForApp then
+          vim.vimWasDisabledForApp = false
+          vim:disable()
+        end
+      end)
+
+      -- ============================================
+      -- Emoji Picker support for vim mode
+      -- ============================================
+      -- Detect emoji picker by monitoring all visible windows
+      vim.emojiEnabled = false
+      vim.emojiWasDisabled = false
+
+      vim.emojiChecker = hs.timer.doEvery(0.2, function()
+        local isEmojiVisible = false
+        local ax = require("hs.axuielement")
+
+        -- Check if any window looks like emoji picker
+        for _, win in ipairs(hs.window.allWindows()) do
+          local app = win:application()
+          local appName = app and app:name() or ""
+          local title = win:title() or ""
+          local role = win:role() or ""
+          local subrole = win:subrole() or ""
+
+          -- Print debug info for floating/panel windows
+          if subrole:lower():match("panel") or subrole:lower():match("floating") or subrole:lower():match("system") then
+            print("WINDOW CHECK - App: '" .. appName .. "', Title: '" .. title .. "', Subrole: '" .. subrole .. "'")
+          end
+
+          -- Detect emoji picker: owned by "Emoji & Symbols" or "Dock" with system dialog characteristics
+          if (appName == "Emoji & Symbols") or
+             (appName == "Dock" and (subrole:lower():match("floating") or subrole:lower():match("panel"))) or
+             (subrole:lower():match("systemdialog")) then
+            isEmojiVisible = true
+            print("EMOJI WINDOW FOUND - App: '" .. appName .. "', Title: '" .. title .. "', Subrole: '" .. subrole .. "'")
+            break
+          end
+
+          -- Alternative: Check focused element for emoji picker characteristics
+          local systemElement = ax.systemWideElement()
+          if systemElement then
+            local currentElement = systemElement:attributeValue("AXFocusedUIElement")
+            if currentElement then
+              local elSubrole = currentElement:attributeValue("AXSubrole") or ""
+              if elSubrole:lower():match("popover") then
+                isEmojiVisible = true
+                print("EMOJI POPOVER FOUND in focused element")
+                break
+              end
+            end
+          end
+        end
+
+        -- Handle state transitions
+        if isEmojiVisible and not vim.emojiEnabled then
+          if vim.enabled == false then
+            vim.emojiWasDisabled = true
+            vim:enable()
+            vim.emojiEnabled = true
+            print(">>> Vim mode ENABLED for emoji picker")
+          end
+        elseif not isEmojiVisible and vim.emojiEnabled then
+          if vim.emojiWasDisabled then
+            vim:disable()
+            vim.emojiWasDisabled = false
+            print(">>> Vim mode restored after emoji picker")
+          end
+          vim.emojiEnabled = false
+        end
+      end)
+
+      -- Exit normal mode with 'q'
+      vim.modal:bind({}, 'q', function()
+        vim:exitAsync()
+      end)
+
+      -- Exit normal mode with 'Escape'
+      vim.modal:bind({}, 'escape', function()
+        vim:exitAsync()
+      end)
+
+      -- Custom glass-style indicator for Normal/Visual mode
+      -- Hook into the first render call to apply custom styling
+      local originalRender = nil
+
+      -- Function to get static position at bottom center of focused window
+      local function getStaticPosition()
+        local win = hs.window.focusedWindow()
+        if win then
+          local frame = win:frame()
+          return {
+            x = math.floor(frame.x + (frame.w / 2) - 20),
+            y = math.floor(frame.y + frame.h - 38)
+          }
+        end
+
+        local screen = hs.mouse.getCurrentScreen() or hs.screen.mainScreen()
+        if screen then
+          local frame = screen:fullFrame()
+          return {
+            x = math.floor(frame.x + (frame.w / 2) - 20),
+            y = math.floor(frame.y + frame.h - 68)
+          }
+        end
+
+        return { x = 500, y = 800 }
+      end
+
+      -- Function to get position near cursor if in text field
+      local function getCursorPosition()
+        local ax = require("hs.axuielement")
+        local systemElement = ax.systemWideElement()
+        if not systemElement then return nil end
+
+        local currentElement = systemElement:attributeValue("AXFocusedUIElement")
+        if not currentElement then return nil end
+
+        local role = currentElement:attributeValue("AXRole")
+
+        local textRoles = {
+          ["AXTextField"] = true,
+          ["AXTextArea"] = true,
+          ["AXComboBox"] = true,
+          ["AXSearchField"] = true
+        }
+
+        if not textRoles[role] then return nil end
+
+        local position = currentElement:attributeValue('AXPosition')
+        if not position then return nil end
+        if position.x < 0 or position.y < 0 then return nil end
+
+        return {
+          x = position.x + 3,
+          y = position.y - 31
+        }
+      end
+
+      -- Custom render function
+      local function customRender(self)
+        local canvas = vim.stateIndicator.canvas
+        if not canvas then
+          -- Canvas not ready yet, call original
+          if originalRender then return originalRender(self) end
+          return false
+        end
+
+        if not vim.config.shouldShowAlertInNormalMode then
+          canvas:hide()
+          return false
+        end
+
+        local mode = vim.mode
+        if mode ~= 'normal' and mode ~= 'visual' then
+          canvas:hide()
+          return false
+        end
+
+        -- Choose position
+        local pos = getCursorPosition() or getStaticPosition()
+        canvas:topLeft(pos)
+        canvas:level("overlay")
+
+        -- Glass styling
+        canvas:elementAttribute(1, 'fillColor', {
+          red = 0.12, green = 0.12, blue = 0.12, alpha = 0.9
+        })
+        canvas:elementAttribute(1, 'strokeColor', { white = 1.0, alpha = 0.4 })
+        canvas:elementAttribute(1, 'strokeWidth', 1.0)
+        canvas:elementAttribute(1, 'roundedRectRadii', { xRadius = 8, yRadius = 8 })
+
+        canvas:size({ w = 40, h = 28 })
+
+        local text = (mode == 'visual') and "V" or "N"
+        canvas:elementAttribute(2, 'text', hs.styledtext.new(text, {
+          font = { size = 16 },
+          color = { white = 1.0 },
+          paragraphStyle = { alignment = 'center' }
+        }))
+
+        canvas:show()
+        return true
+      end
+
+      -- Watch for stateIndicator updates and apply custom render
+      local hookAttempts = 0
+      hs.timer.doEvery(0.5, function()
+        hookAttempts = hookAttempts + 1
+
+        -- Check if stateIndicator exists
+        if not vim.stateIndicator then
+          if hookAttempts > 20 then
+            print("ERROR: vim.stateIndicator never created after 10 seconds")
+            return false
+          end
+          return -- continue polling
+        end
+
+        -- Check if we need to hook the render
+        if vim.stateIndicator.render ~= customRender then
+          originalRender = vim.stateIndicator.render
+          vim.stateIndicator.render = customRender
+          print("Custom UI render hooked (attempt " .. hookAttempts .. ")")
+        else
+          print("Custom UI already hooked (attempt " .. hookAttempts .. ")")
+        end
+
+        return false -- stop the timer
       end)
     '';
 
