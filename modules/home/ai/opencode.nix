@@ -50,6 +50,7 @@ in
     enableMcpIntegration = true;
     web.enable = false;
     settings = {
+      default_agent = "OpenAgent";
       permission = {
         # Allow read operations without prompting
         read = "allow";
