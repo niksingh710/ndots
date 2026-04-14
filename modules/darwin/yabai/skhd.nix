@@ -121,19 +121,21 @@ let
         fi
       '';
 
-  focusWindow =
-    pkgs.writeShellScriptBin "focus-window" # sh
-      ''
-        choice=$(yabai -m query --windows \
-          | jq -r '.[] | select(.app | endswith("-wrapped") | not) | "\(.id)|\(.app): \(.title)"' \
-          | awk -F'|' '{print $2 "\t" $1}' \
-          | ${lib.getExe pkgs.choose-gui} -n 15 -w 120 -f "Monaspace Radon Var" -s 26 -c FF9800 -b 1E1E1E -p "󰖰  Focus window:")
-
-        id=$(echo "$choice" | awk '{print $NF}')
-        app=$(echo "$choice" | awk -F':' '{print $1}')
-
-        [ -n "$id" ] && yabai -m window --focus "$id" || open -a "$app"
-      '';
+  # Below is being replaced by search of dockdoor
+  # ${mod} - 0x2C : ${lib.getExe focusWindow}
+  # focusWindow =
+  #   pkgs.writeShellScriptBin "focus-window" # sh
+  #     ''
+  #       choice=$(yabai -m query --windows \
+  #         | jq -r '.[] | select(.app | endswith("-wrapped") | not) | "\(.id)|\(.app): \(.title)"' \
+  #         | awk -F'|' '{print $2 "\t" $1}' \
+  #         | ${lib.getExe pkgs.choose-gui} -n 15 -w 120 -f "Monaspace Radon Var" -s 26 -c FF9800 -b 1E1E1E -p "󰖰  Focus window:")
+  #
+  #       id=$(echo "$choice" | awk '{print $NF}')
+  #       app=$(echo "$choice" | awk -F':' '{print $1}')
+  #
+  #       [ -n "$id" ] && yabai -m window --focus "$id" || open -a "$app"
+  #     '';
 
   getWindow =
     pkgs.writeShellScriptBin "get-window" # sh
@@ -181,7 +183,6 @@ in
 
       ${mod} - p : ${lib.getExe spaceCyclePrev}
 
-      ${mod} - 0x2C : ${lib.getExe focusWindow}
       ${mod} + shift - 0x2C : ${lib.getExe getWindow}
 
       ${mod} + shift - n : \

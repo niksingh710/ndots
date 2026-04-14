@@ -23,6 +23,8 @@ let
   floatingApps = floaters [
     # Apple apps
     "Screen Sharing"
+    "Shottr"
+    "Preferences"
     "activitymonitor"
     "addressbook"
     "appstore"
