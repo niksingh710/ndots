@@ -51,14 +51,13 @@ in
           set -as terminal-overrides ",*:Tc"
           set-option -g status-position top
 
-
           # Undercurl
-          set -as terminal-overrides ',*:Smulx=\\E[4::%p1%dm'  # undercurl support
-          set -as terminal-overrides ',*:Setulc=\\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+          set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+          set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
           # Check if we are in WSL
           if-shell 'test -n "$WSL_DISTRO_NAME"' {
-            set -as terminal-overrides ',*:Setulc=\\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m' # underscore colours - needs tmux-3.0 (wsl2 in Windows Terminal)
+            set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m' # underscore colours - needs tmux-3.0 (wsl2 in Windows Terminal)
           }
 
           set-environment -g COLORTERM "truecolor"
