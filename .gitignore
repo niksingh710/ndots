@@ -3,3 +3,4 @@
 /.pre-commit-config.yaml
 .DS_Store
 /result-man
+/.opencode
