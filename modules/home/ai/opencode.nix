@@ -87,6 +87,8 @@ in
             apiKey = "{env:ANTHROPIC_AUTH_TOKEN}";
             timeout = 600000;
           };
+          # for opus meridian i.e <https://github.com/rynfar/meridian>
+          # is a good tool to keep it in sharing without sharing login creds
           models = {
             open-large = {
               name = "open-large";
