@@ -35,15 +35,18 @@ in
         better-mouse-mode
         open
         fzf-tmux-url
-        vim-tmux-navigator
+        {
+          plugin = vim-tmux-navigator;
+          extraConfig = ''
+            # vim-tmux-navigator: Only treat actual vim instances as vim
+            # Exclude lazygit and other TUIs by using a strict pattern
+            # Matches: vim, nvim, view, fzf (but NOT lazygit)
+            set -g @vim_navigator_pattern '(^|\/)(g?(view|n?vim?x?)(diff)?|fzf)(-wrapped)?$'
+          '';
+        }
       ];
       extraConfig = # tmux
         ''
-          # vim-tmux-navigator: Only treat actual vim instances as vim
-          # Exclude lazygit and other TUIs by using a strict pattern
-          # Matches: vim, nvim, view, fzf (but NOT lazygit)
-          set -g @vim_navigator_pattern '(^|\/)(g?(view|n?vim?x?)(diff)?|fzf)(-wrapped)?$'
-
           set -g allow-passthrough all
           set -g default-command "''${SHELL}"
 
