@@ -24,7 +24,11 @@ in
   services.syncthing = {
     # CPU is in office and ssh key get's there by ssh-agent forwarding, so skipping sops here
     # Passwordfile is to be expected in a manual path
-    passwordFile = "${config.home.homeDirectory}/.syncthing.pass";
+    guiCredentials = {
+      username = me.username;
+      passwordFile = "${config.home.homeDirectory}/.syncthing.pass";
+    };
+
     settings = {
       gui.user = me.username;
     };

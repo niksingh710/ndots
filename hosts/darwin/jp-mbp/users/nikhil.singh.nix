@@ -27,7 +27,10 @@ in
   ];
 
   services.syncthing = {
-    passwordFile = config.sops.secrets."syncthing/jp-mbp/password".path;
+    guiCredentials = {
+      username = me.username;
+      passwordFile = config.sops.secrets."syncthing/jp-mbp/password".path;
+    };
     cert = config.sops.secrets."syncthing/jp-mbp/cert".path;
     key = config.sops.secrets."syncthing/jp-mbp/key".path;
     settings = {

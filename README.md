@@ -29,6 +29,16 @@ I've used **[Flake-Parts](https://flake.parts)** to modularize the config.<br>
 ![GitHub forks](https://img.shields.io/github/forks/niksingh710/ndots)
 ![GitHub last commit](https://img.shields.io/github/last-commit/niksingh710/ndots)
 
+## Star History
+
+<a href="https://www.star-history.com/?repos=semi710%2Fndots&type=date&logscale&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=semi710/ndots&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=semi710/ndots&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=semi710/ndots&type=date&legend=top-left" />
+ </picture>
+</a>
+
 <img width="2000" height="0">
 </td>
 </tbody>

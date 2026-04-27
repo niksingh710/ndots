@@ -11,6 +11,13 @@ in
   programs.mcp = {
     enable = true;
     servers = {
+      # TODO: test some servers manually for better configurations
+      git.command = getExe pkgs.mcp-server-git;
+      time.command = getExe pkgs.mcp-server-time;
+      fetch.command = getExe pkgs.mcp-server-fetch;
+      memory.command = getExe pkgs.mcp-server-memory;
+      github.command = getExe pkgs.github-mcp-server;
+      sequential-thinking.command = getExe pkgs.mcp-server-sequential-thinking;
       everything = {
         command = getExe pkgs.mcp-server-filesystem;
         args = [
@@ -24,9 +31,6 @@ in
       #     CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
       #   };
       # };
-      sequential-thinking = {
-        command = getExe pkgs.mcp-server-sequential-thinking;
-      };
       newton-hs-prod = {
         autoApprove = [
           "search_functions_by_keyword"

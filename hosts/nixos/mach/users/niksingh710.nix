@@ -39,12 +39,12 @@ in
   };
 
   services.syncthing = {
-    passwordFile = config.sops.secrets."syncthing/mach/password".path;
+    guiCredentials = {
+      username = me.username;
+      passwordFile = config.sops.secrets."syncthing/jp-mbp/password".path;
+    };
     cert = config.sops.secrets."syncthing/mach/cert".path;
     key = config.sops.secrets."syncthing/mach/key".path;
-    settings = {
-      gui.user = me.username;
-    };
   };
 
   home.sessionVariables = {
