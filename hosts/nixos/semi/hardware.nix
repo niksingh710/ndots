@@ -13,7 +13,12 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024; # 16GB
+    }
+  ];
   boot = {
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
@@ -29,8 +34,6 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
   };
-  swapDevices = [ ];
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
