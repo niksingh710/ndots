@@ -65,7 +65,6 @@ let
     "telegram"
     "slack"
     "discord"
-    "slack"
     "spotify"
     "whatsapp"
     "zoom.us"
