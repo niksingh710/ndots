@@ -12,8 +12,6 @@ let
 in
 {
   programs = {
-    # TODO: Test tmate vs upterm
-    # tmate.enable = true;
     tmux = {
       enable = true;
       baseIndex = 1;
