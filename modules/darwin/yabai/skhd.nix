@@ -156,8 +156,10 @@ let
 in
 {
   environment.shellAliases.yabai-restart = "kill -9 $(pgrep -x yabai); kill -9 $(pgrep -x skhd); sudo yabai --load-sa";
+  environment.systemPackages = [ pkgs.skhd-zig ];
   services.skhd = {
     enable = true;
+    package = pkgs.skhd-zig;
     skhdConfig = ''
       ${mod} - return : open -a "kitty"
       ${mod} - b : open -a "Zen Browser (Beta)"
@@ -179,8 +181,6 @@ in
       ${mod} + shift - l : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --move rel:20:0; else yabai -m window --warp east; fi
 
       ${mod} - n : ${lib.getExe spaceCycleNext}
-      ${mod} - p : ${lib.getExe spaceCyclePrev}
-
       ${mod} - p : ${lib.getExe spaceCyclePrev}
 
       ${mod} + shift - 0x2C : ${lib.getExe getWindow}
