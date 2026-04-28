@@ -87,6 +87,7 @@ let
         # Are we in a stack? (check the focused window)
         cur_json="$(yabai -m query --windows --window)"
         cur_idx="$(printf '%s\n' "$cur_json" | jq -r '."stack-index"')"
+        is_floating="$(printf '%s\n' "$cur_json" | jq -r '."is-floating"')"
 
         if [ "$cur_idx" -gt 0 ] 2>/dev/null; then
           case "$dir" in
@@ -110,6 +111,10 @@ let
               yabai -m window --focus stack.next
               ;;
           esac
+        elif [ "$is_floating" = "true" ]; then
+          # Directional focus doesn't apply to floating windows in BSP.
+          # Snap back to the most recently focused window.
+          yabai -m window --focus recent
         else
           # Not in a stack: fall back to directional focus
           case "$dir" in
@@ -161,6 +166,16 @@ in
     enable = true;
     package = pkgs.skhd-zig;
     skhdConfig = ''
+      :: default   : open -g hammerspoon://skhd-special-off
+      :: special @ : open -g hammerspoon://skhd-special-on
+
+      ${mod} - 0x29 ; special
+
+      special < escape ; default
+      special < return ; default
+      special < 0x29   ; default
+      special < q      ; default
+
       ${mod} - return : open -a "kitty"
       ${mod} - b : open -a "Zen Browser (Beta)"
       ${mod} - s : open -a "slack"
@@ -213,10 +228,12 @@ in
       ${mod} - c : yabai -m space --focus comms
       ${mod} + shift - c : yabai -m window --space comms --focus
 
-      ${mod} + fn - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
-      ${mod} + fn - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
-      ${mod} + fn - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
-      ${mod} + fn - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
+      special < h : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null; fi
+      special < j : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null; fi
+      special < k : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null; fi
+      special < l : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null; fi
+
+      special < c : [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ] && yabai -m window --grid 8:8:1:1:6:6 ; default
 
       ${mod} - 1 : yabai -m space --focus 1
       ${mod} - 2 : yabai -m space --focus 2

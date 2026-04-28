@@ -135,6 +135,68 @@
       end)
 
       -- ============================================
+      -- SKHD Special Mode Indicator
+      -- ============================================
+      local skhdmode = {}
+      skhdmode.canvas = nil
+
+      function skhdmode.createIndicator()
+        local canvas = hs.canvas.new({ w = 110, h = 32, x = 0, y = 0 })
+
+        canvas:insertElement({
+          type = 'rectangle',
+          action = 'fill',
+          roundedRectRadii = { xRadius = 8, yRadius = 8 },
+          fillColor = { red = 0.2, green = 0.2, blue = 0.2, alpha = 0.85 },
+          strokeColor = { white = 1.0, alpha = 0.5 },
+          strokeWidth = 1.0,
+          frame = { x = 0, y = 0, h = 32, w = 110 },
+          withShadow = true
+        })
+
+        canvas:insertElement({
+          type = 'text',
+          action = 'fill',
+          frame = { x = 4, y = 6, h = 24, w = 102 },
+          text = hs.styledtext.new("SPECIAL", {
+            font = { size = 14 },
+            color = { white = 1.0 },
+            paragraphStyle = { alignment = 'center' }
+          })
+        })
+
+        return canvas
+      end
+
+      function skhdmode.targetScreen()
+        local win = hs.window.focusedWindow()
+        if win then return win:screen() end
+        return hs.mouse.getCurrentScreen() or hs.screen.mainScreen()
+      end
+
+      function skhdmode.show()
+        if not skhdmode.canvas then
+          skhdmode.canvas = skhdmode.createIndicator()
+        end
+        local frame = skhdmode.targetScreen():frame()
+        skhdmode.canvas:topLeft({
+          x = frame.x + frame.w - 130,
+          y = frame.y + frame.h - 50
+        })
+        skhdmode.canvas:level("overlay")
+        skhdmode.canvas:show()
+      end
+
+      function skhdmode.hide()
+        if skhdmode.canvas then
+          skhdmode.canvas:hide()
+        end
+      end
+
+      hs.urlevent.bind("skhd-special-on", skhdmode.show)
+      hs.urlevent.bind("skhd-special-off", skhdmode.hide)
+
+      -- ============================================
       -- VIM MODE
       -- ============================================
       local VimMode = hs.loadSpoon('VimMode')
