@@ -5,32 +5,34 @@
   ...
 }:
 let
-  inherit (lib) getExe;
+  inherit (lib) getExe getExe';
 in
 {
   programs.mcp = {
     enable = true;
     servers = {
-      # TODO: test some servers manually for better configurations
       git.command = getExe pkgs.mcp-server-git;
-      time.command = getExe pkgs.mcp-server-time;
       fetch.command = getExe pkgs.mcp-server-fetch;
-      memory.command = getExe pkgs.mcp-server-memory;
-      github.command = getExe pkgs.github-mcp-server;
-      sequential-thinking.command = getExe pkgs.mcp-server-sequential-thinking;
+      sequential-thinking.command = getExe' pkgs.mcp-server-sequential-thinking "mcp-server-sequential-thinking";
+      github = {
+        command = getExe pkgs.github-mcp-server;
+        args = [ "stdio" ];
+        env.GITHUB_PERSONAL_ACCESS_TOKEN = "{env:GITHUB_TOKEN}";
+      };
       everything = {
         command = getExe pkgs.mcp-server-filesystem;
         args = [
           "${config.home.homeDirectory}"
         ];
       };
-      # TODO: Add this with api key and figure out a way to give the env to non sops enabled servers
       # context7 = {
+      #   type = "remote";
       #   url = "https://mcp.context7.com/mcp";
-      #   headers = {
-      #     CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
-      #   };
+      #   headers.CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
       # };
+      playwright = {
+        command = getExe pkgs.playwright-mcp;
+      };
       newton-hs-prod = {
         autoApprove = [
           "search_functions_by_keyword"

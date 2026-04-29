@@ -12,6 +12,15 @@ let
     sha256 = "sha256-H5O08YjxzJMYva1sjMgCl5GTDrx9pR1ELBtO5bqGV/Y=";
   };
 
+  # Fetch anthropics/claude-code (source for vendored skills).
+  # Bump the sha256 when bumping rev (or when 'main' moves and you want updates).
+  claude-code = pkgs.fetchFromGitHub {
+    owner = "anthropics";
+    repo = "claude-code";
+    rev = "main";
+    sha256 = "sha256-O66x6qxUk/qmEXS0USORS2nhfvHdP/2cbj7RJ6bPhqY=";
+  };
+
   # Read registry
   registry = builtins.fromJSON (builtins.readFile "${openagents-control}/registry.json");
 
@@ -126,5 +135,9 @@ in
     };
   };
 
-  home.file = lib.listToAttrs (lib.filter (x: x != null) (map componentToFile allComponents));
+  home.file = (lib.listToAttrs (lib.filter (x: x != null) (map componentToFile allComponents))) // {
+    # Skills sourced directly from anthropics/claude-code
+    ".config/opencode/skills/frontend-design/SKILL.md".source =
+      "${claude-code}/plugins/frontend-design/skills/frontend-design/SKILL.md";
+  };
 }
