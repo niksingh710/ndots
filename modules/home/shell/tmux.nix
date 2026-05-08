@@ -39,7 +39,7 @@ in
             # vim-tmux-navigator: Only treat actual vim instances as vim
             # Exclude lazygit and other TUIs by using a strict pattern
             # Matches: vim, nvim, view, fzf (but NOT lazygit)
-            set -g @vim_navigator_pattern '(^|\/)(g?(view|n?vim?x?)(diff)?|fzf)(-wrapped)?$'
+            set -g @vim_navigator_pattern '(\S+/)?\.?(g?(view|n?vim?x?)(diff)?|fzf)(-wrapped)?$'
           '';
         }
       ];

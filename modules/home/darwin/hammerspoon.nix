@@ -4,6 +4,8 @@
 
   home.file.".hammerspoon/init.lua".text = # lua
     ''
+      hs.allowAppleScript(true)
+
       -- ============================================
       -- HAMMERSPOON MODE (Ctrl+Option+Shift+H)
       -- ============================================

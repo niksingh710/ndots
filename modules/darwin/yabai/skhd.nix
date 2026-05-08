@@ -126,21 +126,19 @@ let
         fi
       '';
 
-  # Below is being replaced by search of dockdoor
-  # ${mod} - 0x2C : ${lib.getExe focusWindow}
-  # focusWindow =
-  #   pkgs.writeShellScriptBin "focus-window" # sh
-  #     ''
-  #       choice=$(yabai -m query --windows \
-  #         | jq -r '.[] | select(.app | endswith("-wrapped") | not) | "\(.id)|\(.app): \(.title)"' \
-  #         | awk -F'|' '{print $2 "\t" $1}' \
-  #         | ${lib.getExe pkgs.choose-gui} -n 15 -w 120 -f "Monaspace Radon Var" -s 26 -c FF9800 -b 1E1E1E -p "󰖰  Focus window:")
-  #
-  #       id=$(echo "$choice" | awk '{print $NF}')
-  #       app=$(echo "$choice" | awk -F':' '{print $1}')
-  #
-  #       [ -n "$id" ] && yabai -m window --focus "$id" || open -a "$app"
-  #     '';
+  focusWindow =
+    pkgs.writeShellScriptBin "focus-window" # sh
+      ''
+        choice=$(yabai -m query --windows \
+          | jq -r '.[] | select(.app | endswith("-wrapped") | not) | "\(.id)|\(.app): \(.title)"' \
+          | awk -F'|' '{print $2 "\t" $1}' \
+          | ${lib.getExe pkgs.choose-gui} -n 15 -w 120 -f "Monaspace Radon Var" -s 26 -c FF9800 -b 1E1E1E -p "󰖰  Focus window:")
+
+        id=$(echo "$choice" | awk '{print $NF}')
+        app=$(echo "$choice" | awk -F':' '{print $1}')
+
+        [ -n "$id" ] && yabai -m window --focus "$id" || open -a "$app"
+      '';
 
   getWindow =
     pkgs.writeShellScriptBin "get-window" # sh
@@ -158,6 +156,15 @@ let
           yabai -m window "$id" --space "$current_space" || open -a "$app"
         fi
       '';
+
+  warpCursor =
+    pkgs.writeShellScriptBin "warp-cursor" # sh
+      ''
+        yabai -m query --windows --window \
+          | ${lib.getExe pkgs.jq} -r '.frame | "hs.mouse.absolutePosition({x=\(.x + .w/2), y=\(.y + .h/2)})"' \
+          | xargs -I{} osascript -e 'tell application "Hammerspoon" to execute lua code "{}"'
+      '';
+
 in
 {
   environment.shellAliases.yabai-restart = "kill -9 $(pgrep -x yabai); kill -9 $(pgrep -x skhd); sudo yabai --load-sa";
@@ -199,6 +206,8 @@ in
       ${mod} - p : ${lib.getExe spaceCyclePrev}
 
       ${mod} + shift - 0x2C : ${lib.getExe getWindow}
+      ${mod} - 0x2C : ${lib.getExe focusWindow}
+
 
       ${mod} + shift - n : \
         yabai -m window --space next --focus \
@@ -212,6 +221,8 @@ in
       ${mod} + shift - f : yabai -m window --toggle float --grid 8:8:1:1:6:6
 
       ${mod} - r : yabai -m space --rotate 90
+
+      ${mod} - x : yabai -m window --toggle split
 
       ${mod} - m : \
         case "$(yabai -m query --spaces --space | ${lib.getExe pkgs.jq} -r '.type')" in \
@@ -234,6 +245,8 @@ in
       special < l : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null; fi
 
       special < c : [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ] && yabai -m window --grid 8:8:1:1:6:6 ; default
+
+      special < shift - c : ${lib.getExe warpCursor} ; default
 
       ${mod} - 1 : yabai -m space --focus 1
       ${mod} - 2 : yabai -m space --focus 2
