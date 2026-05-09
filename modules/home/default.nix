@@ -16,6 +16,7 @@
     flake.homeModules.editor
     flake.homeModules.ssh
     flake.homeModules.nix-index
+    flake.homeModules.aria2
   ];
   home.shellAliases.font-family = "fc-list : family | ${lib.getExe pkgs.fzf}";
   home.packages =

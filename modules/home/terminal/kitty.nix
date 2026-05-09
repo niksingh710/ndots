@@ -73,6 +73,7 @@ in
           ${fontFeatureString "Neon"}
         '';
       settings = {
+        background_opacity = lib.mkForce "0.85";
         background_blur = 32;
         window_padding_width = 0;
         hide_window_decorations = "titlebar-only";

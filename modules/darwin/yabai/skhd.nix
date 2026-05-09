@@ -165,10 +165,17 @@ let
           | xargs -I{} osascript -e 'tell application "Hammerspoon" to execute lua code "{}"'
       '';
 
+  yabai-restart =
+    pkgs.writeShellScriptBin "yabai-restart" # sh
+      ''
+        kill -9 $(pgrep -x yabai); kill -9 $(pgrep -x skhd); sudo yabai --load-sa
+      '';
 in
 {
-  environment.shellAliases.yabai-restart = "kill -9 $(pgrep -x yabai); kill -9 $(pgrep -x skhd); sudo yabai --load-sa";
-  environment.systemPackages = [ pkgs.skhd-zig ];
+  environment.systemPackages = [
+    pkgs.skhd-zig
+    yabai-restart
+  ];
   services.skhd = {
     enable = true;
     package = pkgs.skhd-zig;

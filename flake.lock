@@ -1261,11 +1261,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1778264784,
-        "narHash": "sha256-EX/3BLwq8+/zAXoHJynwbZtt6HVhSiqU6QGY5WYxq3A=",
+        "lastModified": 1778369081,
+        "narHash": "sha256-FET1a3uRQyalbIF+ae0Iy2yB05Kv4eW2HgJq+sc0OQI=",
         "owner": "semi710",
         "repo": "nvix",
-        "rev": "eadd39e75b84272f0ec5ceae7c721d476f8bd5ef",
+        "rev": "4af8c944afd06f46eb5237415e53e1a5b6a96207",
         "type": "github"
       },
       "original": {
