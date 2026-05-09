@@ -11,7 +11,7 @@
       "element"
       "homerow"
       "hiddenbar"
-      "superkey"
+      "hyperkey"
       "pronotes"
       "dockdoor"
       "imageoptim"

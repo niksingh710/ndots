@@ -42,6 +42,12 @@
     # will be resolved once zen comes out of beta.
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
+    # Firefox addons/extensions
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
