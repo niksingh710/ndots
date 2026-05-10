@@ -132,7 +132,7 @@ let
         choice=$(yabai -m query --windows \
           | jq -r '.[] | select(.app | endswith("-wrapped") | not) | "\(.id)|\(.app): \(.title)"' \
           | awk -F'|' '{print $2 "\t" $1}' \
-          | ${lib.getExe pkgs.choose-gui} -n 15 -w 120 -f "Monaspace Radon Var" -s 26 -c FF9800 -b 1E1E1E -p "󰖰  Focus window:")
+          | ${lib.getExe pkgs.choose-gui} -n 15 -w 120 -f "Monaspace Radon Var" -s 26 -c FF9800 -b a9a9a9 -p "󰖰  Focus window:")
 
         id=$(echo "$choice" | awk '{print $NF}')
         app=$(echo "$choice" | awk -F':' '{print $1}')
