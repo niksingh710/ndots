@@ -15,7 +15,7 @@
         name = "Juspay";
         options = {
           baseURL = "https://grid.ai.juspay.net";
-          apiKey = "{env:ANTHROPIC_AUTH_TOKEN}";
+          apiKey = "{env:JUSPAY_API_KEY}";
           timeout = 600000;
         };
         # for opus meridian i.e <https://github.com/rynfar/meridian>

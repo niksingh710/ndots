@@ -45,7 +45,7 @@ in
     };
     extraConfig = # sshd_config
       ''
-        AcceptEnv LANG LC_* ANTHROPIC_MODEL ANTHROPIC_AUTH_TOKEN ANTHROPIC_BASE_URL CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS
+        AcceptEnv LANG LC_* JUSPAY_API_KEY ANTHROPIC_* GITHUB_* CLAUDE_*
       '';
   };
 

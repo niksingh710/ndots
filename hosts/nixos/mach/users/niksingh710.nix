@@ -24,8 +24,7 @@ in
     "private-keys/gemini_api" = { };
     "private-keys/openai_api" = { };
     "private-keys/github_token" = { };
-    "private-keys/anthropic-jp-key" = { };
-    "private-keys/jp-grid" = { };
+    "private-keys/jp-key" = { };
     "private-keys/cachix_token" = { };
     "private-keys/ssh" = {
       path = "${config.home.homeDirectory}/.ssh/id_ed25519";
@@ -52,8 +51,7 @@ in
     OPENAI_API_KEY = "$(cat ${config.sops.secrets."private-keys/openai_api".path})";
     GEMINI_API_KEY = "$(cat ${config.sops.secrets."private-keys/gemini_api".path})";
     GITHUB_TOKEN = "$(cat ${config.sops.secrets."private-keys/github_token".path})";
-    ANTHROPIC_AUTH_TOKEN = "$(cat ${config.sops.secrets."private-keys/anthropic-jp-key".path})";
-    ANTHROPIC_BASE_URL = "$(cat ${config.sops.secrets."private-keys/jp-grid".path})";
+    JUSPAY_API_KEY = "$(cat ${config.sops.secrets."private-keys/jp-key".path})";
     SOPS_AGE_KEY_FILE = config.sops.age.keyFile;
     CACHIX_AUTH_TOKEN = "$(cat ${config.sops.secrets."private-keys/cachix_token".path})";
   };

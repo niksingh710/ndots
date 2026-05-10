@@ -8,10 +8,9 @@
       forwardAgent = true;
       addKeysToAgent = "yes";
       sendEnv = [
-        "ANTHROPIC_MODEL"
-        "ANTHROPIC_AUTH_TOKEN"
-        "ANTHROPIC_BASE_URL"
-        "GITHUB_TOKEN"
+        "JUSPAY_*"
+        "GITHUB_*"
+        "ANTHROPIC_*"
         "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS"
       ];
     };

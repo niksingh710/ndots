@@ -60,78 +60,7 @@ in
     web.enable = false;
     settings = {
       default_agent = "OpenAgent";
-      permission = {
-        # Allow read operations without prompting
-        read = "allow";
-        # Keep these on ask for safety
-        write = "ask";
-        edit = "ask";
-        bash = "ask";
-        task = "ask";
-        lsp = "allow";
-        grep = "allow";
-        glob = "allow";
-        skill = "allow";
-        webfetch = "allow";
-        websearch = "allow";
-        questions = "allow";
-        external_directory = {
-          "~/.notes" = "allow";
-        };
-      };
-      model = "litellm/open-large";
-      agent = {
-        explore = {
-          mode = "subagent";
-          model = "litellm/open-fast";
-        };
-      };
       autoupdate = true;
-      provider = {
-        litellm = {
-          npm = "@ai-sdk/openai-compatible";
-          name = "Juspay";
-          options = {
-            baseURL = "https://grid.ai.juspay.net";
-            apiKey = "{env:ANTHROPIC_AUTH_TOKEN}";
-            timeout = 600000;
-          };
-          # for opus meridian i.e <https://github.com/rynfar/meridian>
-          # is a good tool to keep it in sharing without sharing login creds
-          models = {
-            open-large = {
-              name = "open-large";
-              modalities = {
-                input = [
-                  "text"
-                  "image"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-              limit = {
-                "context" = 202752;
-                "output" = 32000;
-              };
-            };
-            kimi-latest = {
-              name = "kimi-latest";
-              modalities = {
-                input = [
-                  "text"
-                  "image"
-                ];
-                output = [ "text" ];
-              };
-              limit = {
-                context = 262000;
-                output = 32000;
-              };
-            };
-          };
-        };
-      };
     };
   };
 
