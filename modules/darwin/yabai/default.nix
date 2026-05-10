@@ -27,6 +27,7 @@ let
     "ical"
     "weather"
     "passwords"
+    "Proton VPN"
     "FaceTime"
     "Finder"
     "LuLu"
