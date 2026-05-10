@@ -14,6 +14,7 @@
       "hyperkey"
       "pronotes"
       "dockdoor"
+      "finetune"
       "imageoptim"
       "shottr"
       # "karabiner-elements" # check home/darwin/karabiner.nix
