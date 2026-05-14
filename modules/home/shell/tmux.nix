@@ -85,6 +85,8 @@ in
 
           bind-key r movew -r\; display-message "Renumbered Windows"
 
+          bind-key C send-keys -R \; clear-history
+
           # window remap `-r` allows to repeat the keyb
           bind -r C-h previous-window
           bind -r C-l next-window
@@ -104,7 +106,6 @@ in
 
           bind v split-window -h -c "#{pane_current_path}"
           bind s split-window -v -c "#{pane_current_path}"
-          bind C clear-history
 
           bind | split-window -h -c "#{pane_current_path}"
           bind - split-window -v -c "#{pane_current_path}"
