@@ -57,8 +57,17 @@ in
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
-    web.enable = false;
+    web = {
+      enable = lib.mkDefault false;
+      extraArgs = [ "--mdns" ];
+    };
     settings = {
+      provider = {
+        anthropic.models.claude-opus-4-7 = {
+          id = "claude-opus-4-7";
+          name = "Bhai";
+        };
+      };
       default_agent = "OpenAgent";
       autoupdate = true;
     };

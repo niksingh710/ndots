@@ -35,6 +35,10 @@ in
   };
   # comes from homeModules.editor
   nvix.variant = "core";
+  programs.opencode.web = {
+    enable = true;
+    environmentFile = "${config.home.homeDirectory}/.opencode.env";
+  };
 
   # Color override for tmux plugin
   programs.tmux.plugins = [
