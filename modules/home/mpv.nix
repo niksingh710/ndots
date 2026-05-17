@@ -18,6 +18,23 @@
     # OSC text font (button icons keep using fluent-system-icons via the
     # font symlink above; this just controls title/time/chapter text).
     scriptOpts.modernx.font = "JetBrainsMono Nerd Font";
+    # Stats / keybindings overlay (`?` / `i` / `I`): vim-style minimal look.
+    # Scroll with Ctrl+k / Ctrl+j; monospace, thin border, no shadow.
+    # Note: stats.lua colors are libass-format BBGGRR — grayscale only here
+    # so the channel order is irrelevant.
+    scriptOpts.stats = {
+      key_scroll_up = "Ctrl+k";
+      key_scroll_down = "Ctrl+j";
+
+      font = "JetBrainsMono Nerd Font";
+      font_mono = "JetBrainsMono Nerd Font";
+      font_size = 18; # large — fills window height on `?` page
+      font_color = "E4E4E4"; # soft off-white
+      border_size = 3.0; # thick halo, scaled with font, fakes a subtle dark bg
+      border_color = "000000"; # pure black halo for max contrast
+      shadow_x_offset = 0.0; # flat — no drop shadow
+      shadow_y_offset = 0.0;
+    };
     bindings = {
       h = "seek -5";
       l = "seek 5";
@@ -29,6 +46,7 @@
       L = "seek 60";
       "<" = "add window-scale -0.1";
       ">" = "add window-scale 0.1";
+      ":" = "script-binding console/enable"; # vim-style ex-cmd opener
     };
     config = {
       save-position-on-quit = "yes";
