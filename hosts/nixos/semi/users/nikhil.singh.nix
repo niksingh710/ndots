@@ -4,7 +4,6 @@
 # here in this config file i override them according to my needs
 {
   flake,
-  pkgs,
   config,
   ...
 }:
@@ -39,20 +38,6 @@ in
     enable = true;
     environmentFile = "${config.home.homeDirectory}/.opencode.env";
   };
-
-  # Color override for tmux plugin
-  programs.tmux.plugins = [
-    {
-      plugin = pkgs.tmuxPlugins.minimal-tmux-status;
-      extraConfig = ''
-        set -g @minimal-tmux-use-arrow true
-        set -g @minimal-tmux-bg "#555555"
-        set -g @minimal-tmux-use-arrow true
-        set -g @minimal-tmux-right-arrow ""
-        set -g @minimal-tmux-left-arrow ""
-      '';
-    }
-  ];
 
   programs.git = {
     settings = {

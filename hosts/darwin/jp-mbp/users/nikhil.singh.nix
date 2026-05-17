@@ -73,9 +73,6 @@ in
       extraConfig = ''
         set -g @minimal-tmux-bg "#${config.lib.stylix.colors.base01}"
         set -g @minimal-tmux-fg "#${config.lib.stylix.colors.base06}"
-        set -g @minimal-tmux-use-arrow true
-        set -g @minimal-tmux-right-arrow ""
-        set -g @minimal-tmux-left-arrow ""
       '';
     }
   ];

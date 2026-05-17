@@ -25,9 +25,11 @@ in
         {
           plugin = minimal-tmux-status;
           extraConfig = ''
+            set -g @minimal-tmux-bg "#282727"
+            set -g @minimal-tmux-fg "#c8c093"
             set -g @minimal-tmux-use-arrow true
-            set -g @minimal-tmux-right-arrow ""
-            set -g @minimal-tmux-left-arrow ""
+            set -g @minimal-tmux-right-arrow ""
+            set -g @minimal-tmux-left-arrow ""
           '';
         }
         better-mouse-mode

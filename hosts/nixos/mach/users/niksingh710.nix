@@ -4,7 +4,6 @@
 # here in this config file i override them according to my needs
 {
   flake,
-  pkgs,
   config,
   ...
 }:
@@ -58,19 +57,6 @@ in
 
   # comes from homeModules.editor
   nvix.variant = "full";
-
-  # Color override for tmux plugin
-  programs.tmux.plugins = [
-    {
-      plugin = pkgs.tmuxPlugins.minimal-tmux-status;
-      extraConfig = ''
-        set -g @minimal-tmux-use-arrow true
-        set -g @minimal-tmux-bg "#555555"
-        set -g @minimal-tmux-right-arrow " "
-        set -g @minimal-tmux-left-arrow " "
-      '';
-    }
-  ];
 
   programs.git = {
     settings = {
