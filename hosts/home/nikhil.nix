@@ -7,6 +7,7 @@ in
 {
   imports = [
     flake.homeModules.default
+    flake.homeModules.ai
   ];
   home.username = "nikhil";
   programs.zsh.completionInit = "autoload -U compinit && compinit -i";
