@@ -16,6 +16,7 @@ in
   };
   nsearch-adv = inputs.nsearch.packages.${final.stdenv.hostPlatform.system}.nsearch-adv;
   opencode = inputs.llm-agents.packages.${final.stdenv.hostPlatform.system}.opencode;
+  claude-code = inputs.llm-agents.packages.${final.stdenv.hostPlatform.system}.claude-code;
 
   # From ./packages
   stremio-enhanced = selfPkgs.stremio-enhanced;
