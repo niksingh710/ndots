@@ -1,25 +1,11 @@
 {
+  inputs,
   lib,
-  pkgs,
   ...
 }:
 let
-  # Fetch the OpenAgentsControl repository
-  openagents-control = pkgs.fetchFromGitHub {
-    owner = "darrenhinde";
-    repo = "OpenAgentsControl";
-    rev = "main";
-    sha256 = "sha256-H5O08YjxzJMYva1sjMgCl5GTDrx9pR1ELBtO5bqGV/Y=";
-  };
-
-  # Fetch anthropics/claude-code (source for vendored skills).
-  # Bump the sha256 when bumping rev (or when 'main' moves and you want updates).
-  claude-code = pkgs.fetchFromGitHub {
-    owner = "anthropics";
-    repo = "claude-code";
-    rev = "main"; # TODO: pin to a specific commit for easy update/maintainability or better use <flake>
-    sha256 = "sha256-eyjtPpiYyxgY5tH8jldg8AfJQr2u+w1eIiCSQgAdgws=";
-  };
+  openagents-control = inputs.openagents-control;
+  claude-code = inputs.claude-code;
 
   # Read registry
   registry = builtins.fromJSON (builtins.readFile "${openagents-control}/registry.json");

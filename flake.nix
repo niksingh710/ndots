@@ -34,6 +34,18 @@
     # Discord flake
     nixcord.url = "github:kaylorben/nixcord";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
+    # AI tooling sources — vendored at the module level (not full flakes).
+    # `flake = false` makes flake.lock track the rev+narHash, so we don't
+    # have to hand-manage `sha256` in modules/home/ai/opencode.nix.
+    # Bump with: `nix flake update openagents-control claude-code`.
+    openagents-control.url = "github:darrenhinde/OpenAgentsControl";
+    openagents-control.flake = false;
+
+    claude-code.url = "github:anthropics/claude-code";
+    claude-code.flake = false;
+
     # nix-index; `,` command available
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
