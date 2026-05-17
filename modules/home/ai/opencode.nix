@@ -17,8 +17,8 @@ let
   claude-code = pkgs.fetchFromGitHub {
     owner = "anthropics";
     repo = "claude-code";
-    rev = "main";
-    sha256 = "sha256-O66x6qxUk/qmEXS0USORS2nhfvHdP/2cbj7RJ6bPhqY=";
+    rev = "main"; # TODO: pin to a specific commit for easy update/maintainability or better use <flake>
+    sha256 = "sha256-eyjtPpiYyxgY5tH8jldg8AfJQr2u+w1eIiCSQgAdgws=";
   };
 
   # Read registry
