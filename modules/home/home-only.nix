@@ -3,5 +3,6 @@
 {
   imports = [
     flake.homeModules.default
+    flake.flakeModules.nix
   ];
 }
