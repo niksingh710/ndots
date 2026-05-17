@@ -246,10 +246,12 @@ in
       ${mod} - c : yabai -m space --focus comms
       ${mod} + shift - c : yabai -m window --space comms --focus
 
-      special < h : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null; fi
-      special < j : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null; fi
-      special < k : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null; fi
-      special < l : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null; fi
+      # Fallback edge needs OPPOSITE sign to preserve intent (moving the
+      # opposite handle in the same direction grows/shrinks consistently).
+      special < h : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null; fi
+      special < j : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null; fi
+      special < k : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null; fi
+      special < l : if [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ]; then yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null; fi
 
       special < c : [ "$(yabai -m query --windows --window | jq '.["is-floating"]')" = "true" ] && yabai -m window --grid 8:8:1:1:6:6 ; default
 
