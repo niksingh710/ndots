@@ -13,7 +13,6 @@
       "hiddenbar"
       "hyperkey"
       "pronotes"
-      "dockdoor"
       "finetune"
       "imageoptim"
       "shottr"
