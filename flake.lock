@@ -1396,11 +1396,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1778746559,
-        "narHash": "sha256-iy8QhqSB7D41DjSFt95rROURWEUx2SK/9euuZRTD5X8=",
+        "lastModified": 1779106538,
+        "narHash": "sha256-0Wdq79YRQoJ14+FoQKXeQuJ4zrv07hzCga/qCjB3Oy0=",
         "owner": "semi710",
         "repo": "nvix",
-        "rev": "152ded710a79902d7888a7883961092f6be7675f",
+        "rev": "6de501d458c7b27d7488775520f60a5f9e65628c",
         "type": "github"
       },
       "original": {
