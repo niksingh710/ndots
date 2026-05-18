@@ -30,6 +30,10 @@ in
       #   url = "https://mcp.context7.com/mcp";
       #   headers.CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
       # };
+      gitnexus = {
+        command = getExe pkgs.llm-agents.gitnexus;
+        args = [ "mcp" ];
+      };
       playwright = {
         command = getExe pkgs.playwright-mcp;
       };

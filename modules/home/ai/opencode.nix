@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   lib,
   ...
 }:
@@ -42,6 +43,7 @@ in
   home.sessionVariables.OPENCODE_ENABLE_EXA = 1;
   programs.opencode = {
     enable = true;
+    package = pkgs.llm-agents.opencode;
     enableMcpIntegration = true;
     web = {
       enable = lib.mkDefault false;
